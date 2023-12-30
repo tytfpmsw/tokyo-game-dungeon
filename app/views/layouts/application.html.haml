@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title NetkenWebAdmin
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  %body
+    = render 'shared/flash', { message: alert, type: 'alert' } if alert
+    = render 'shared/flash', { message: notice, type: 'notice' } if notice
+    = render 'layouts/header' if header_visible?
