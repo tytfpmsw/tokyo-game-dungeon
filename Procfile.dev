@@ -1,0 +1,2 @@
+web: bin/rails server -b 'ssl://0.0.0.0:3000?key=config/ssl/_wildcard.tokyogamedungeon.localhost-key.pem&cert=config/ssl/_wildcard.tokyogamedungeon.localhost.pem'
+css: bin/rails dartsass:watch
