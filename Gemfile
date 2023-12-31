@@ -73,3 +73,7 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem 'carrierwave', '~> 2.0'
+
+gem 'mini_magick', '~> 4.11'
