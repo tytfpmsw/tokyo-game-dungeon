@@ -1,4 +1,12 @@
 %header.l-header
-  .left
-    = image_tag('tgd_logo_title.png')
-  .right
+  .container
+    .left
+      = image_tag('tgd_logo_title.png')
+    .right
+      %ul
+        %li.page-item.page-item-has-children
+          = link_to root_path do
+            東京ゲームダンジョン4
+        %li.page-item.page-item-has-children
+          = link_to root_path do
+            過去の開催

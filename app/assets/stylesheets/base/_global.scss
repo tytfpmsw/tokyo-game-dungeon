@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.15;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  color: #40536a;
+  font-family: "Lato", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select {
+  outline: none;
+}
