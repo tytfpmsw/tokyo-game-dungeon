@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :exhibitor do
+    get 'home/index'
+  end
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -16,7 +19,9 @@ Rails.application.routes.draw do
   end
 
   constraints subdomain: 'exhibitor' do
-    
+    scope module: 'exhibitor', as: 'exhibitor' do
+      root to: 'home#index'
+    end
   end
 
   root to: 'home#index'

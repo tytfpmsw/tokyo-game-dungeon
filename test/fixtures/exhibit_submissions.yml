@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exhibitor: one
+  exhibit_title: MyString
+  exhibit_description: MyString
+  exhibit_movie_link: MyString
+  status: 1
+
+two:
+  exhibitor: two
+  exhibit_title: MyString
+  exhibit_description: MyString
+  exhibit_movie_link: MyString
+  status: 1

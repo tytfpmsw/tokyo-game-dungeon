@@ -1,0 +1,2 @@
+module Exhibitor::HomeHelper
+end

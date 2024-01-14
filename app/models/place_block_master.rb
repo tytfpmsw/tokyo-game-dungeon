@@ -1,0 +1,2 @@
+class PlaceBlockMaster < ApplicationRecord
+end
