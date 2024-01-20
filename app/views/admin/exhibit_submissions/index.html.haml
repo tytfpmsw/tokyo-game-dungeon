@@ -1,0 +1,18 @@
+%h1 未確認の出展情報一覧
+%table
+  %thead
+    %tr
+      %th 出展者
+      %th タイトル
+      %th 説明
+      %th 動画URL
+      %th 確認
+  %tbody
+    - @exhibit_submissions.each do |exhibit_submission|
+      %tr
+        %td= exhibit_submission.exhibitor.name
+        %td= exhibit_submission.exhibit_title
+        %td= exhibit_submission.exhibit_description
+        %td= exhibit_submission.exhibit_movie_url
+        %td= link_to '確認', exhibitor_exhibit_submission_path(exhibit_submission)
+```

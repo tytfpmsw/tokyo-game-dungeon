@@ -10,41 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_14_022928) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_18_082855) do
   create_table "exhibit_informations", force: :cascade do |t|
     t.integer "exhibitor_id", null: false
-    t.string "title", null: false
-    t.text "description", null: false
-    t.text "movie_link"
+    t.string "title"
+    t.string "description"
+    t.string "movie_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id"
+    t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id", unique: true
   end
 
   create_table "exhibit_submissions", force: :cascade do |t|
     t.integer "exhibitor_id", null: false
     t.string "exhibit_title"
-    t.text "exhibit_description"
-    t.text "exhibit_movie_link"
-    t.integer "status", default: 0, null: false
+    t.string "exhibit_description"
+    t.string "exhibit_movie_url"
+    t.integer "status"
+    t.string "update_user"
+    t.text "update_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exhibitor_id"], name: "index_exhibit_submissions_on_exhibitor_id"
   end
 
   create_table "exhibitors", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "circle_name", null: false
     t.integer "place_block_master_id"
     t.integer "place_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_exhibitors_on_email", unique: true
     t.index ["place_block_master_id"], name: "index_exhibitors_on_place_block_master_id"
+    t.index ["reset_password_token"], name: "index_exhibitors_on_reset_password_token", unique: true
   end
 
   create_table "place_block_masters", force: :cascade do |t|
-    t.string "block_name", null: false
-    t.integer "max_number", null: false
+    t.string "block_name"
+    t.integer "max_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

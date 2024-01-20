@@ -1,0 +1,2 @@
+module Admin::PlaceBlockMasterHelper
+end
