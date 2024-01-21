@@ -1,25 +1,20 @@
 %h1 提出情報の詳細
 
-/ 取得したexhibit_submissionの情報を表示する
 %table
-  %tr
-    %th 出展者
-    %td= @exhibit_submission.exhibitor.name
-  %tr
-    %th タイトル
-    %td= @exhibit_submission.exhibit_title
-  %tr
-    %th 説明
-    %td= @exhibit_submission.exhibit_description
-  %tr
-    %th 動画URL
-    %td= @exhibit_submission.exhibit_movie_url
-  %tr
-    %th 確認
-    %td= link_to '確認', exhibitor_exhibit_submission_path(@exhibit_submission)
-  %tr
-    %th 編集
-    %td= link_to '編集', edit_exhibitor_exhibit_submission_path(@exhibit_submission)
-  %tr
-    %th 削除
-    %td= link_to '削除', exhibitor_exhibit_submission_path(@exhibit_submission), method: :delete, data: { confirm: 'Are you sure?' }
+  %thead
+    %tr
+      %th 出展者
+      %th タイトル
+      %th 説明
+      %th 動画URL
+  %tbody
+    %tr
+      %td= @exhibit_submission.exhibitor.name
+      %td= @exhibit_submission.exhibit_title
+      %td= @exhibit_submission.exhibit_description
+      %td= @exhibit_submission.exhibit_movie_url
+
+= form_with url: admin_exhibit_submissions_url do |f|
+  %div
+    = f.submit '承認', formaction: approve_admin_exhibit_submission_path(@exhibit_submission)
+    = f.submit '却下', formaction: reject_admin_exhibit_submission_path(@exhibit_submission)

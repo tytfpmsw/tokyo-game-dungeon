@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'exhibit_submissions/index'
-    get 'exhibit_submissions/show'
-    get 'exhibit_submissions/edit'
-    get 'exhibit_submissions/update'
-  end
   devise_for :exhibitors
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -19,7 +13,12 @@ Rails.application.routes.draw do
   constraints subdomain: 'admin' do
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
-      resources :exhibit_submissions
+      resources :exhibit_submissions do
+        member do
+          post :approve
+          post :reject
+        end
+      end
     end
   end
 
