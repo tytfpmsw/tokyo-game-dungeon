@@ -29,5 +29,10 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'home#index'
+  constraints subdomain: lambda { |sd| !%w[admin biz].include?(sd) } do
+    scope module: 'front', as: 'front' do
+      root to: 'home#index'
+      resources :exhibit_informations, only: [:index, :show]
+    end
+  end
 end

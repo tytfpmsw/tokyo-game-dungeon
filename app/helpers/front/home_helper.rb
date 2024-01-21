@@ -1,4 +1,4 @@
-module HomeHelper
+module Front::HomeHelper
     def page_items
         [
             {
