@@ -12,6 +12,9 @@
       %tr
         %th= f.label :movie_url, '動画URL'
         %td= f.text_field :movie_url, value: @exhibit_information&.movie_url
+      %tr
+        %th= f.label :image, '画像'
+        %td= f.file_field :image
     .submit-buttons
       = f.submit '提出する'
 

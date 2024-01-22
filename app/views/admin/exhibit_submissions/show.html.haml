@@ -7,12 +7,14 @@
       %th タイトル
       %th 説明
       %th 動画URL
+      %th 画像
   %tbody
     %tr
       %td= @exhibit_submission.exhibitor.name
       %td= @exhibit_submission.title
       %td= @exhibit_submission.description
       %td= @exhibit_submission.movie_url
+      %td= image_tag @exhibit_submission.image.url, width: 200
 
 = form_with url: admin_exhibit_submissions_url do |f|
   %div

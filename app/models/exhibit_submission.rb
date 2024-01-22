@@ -1,4 +1,5 @@
 class ExhibitSubmission < ApplicationRecord
+  mount_uploader :image, ImageUploader
   belongs_to :exhibitor
 
   enum :status, { draft: 0, submitted: 1, approved: 2, rejected: 3 }

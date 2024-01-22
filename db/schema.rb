@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_18_082855) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_22_072802) do
   create_table "exhibit_informations", force: :cascade do |t|
     t.integer "exhibitor_id", null: false
     t.string "title"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_18_082855) do
     t.string "movie_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id", unique: true
   end
 
@@ -31,6 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_18_082855) do
     t.text "update_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["exhibitor_id"], name: "index_exhibit_submissions_on_exhibitor_id"
   end
 

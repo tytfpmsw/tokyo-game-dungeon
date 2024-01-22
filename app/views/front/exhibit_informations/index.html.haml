@@ -5,7 +5,10 @@
 .p-exhibit-informations
   - @exhibit_informations.each do |exhibit_information|
     .p-exhibit-information
-      = image_tag('noimage.jpg', class: 'exhibit-image')
+      -if exhibit_information.image.present?
+        = image_tag exhibit_information.image, class: 'exhibit-image'
+      -else
+        = image_tag 'noimage.jpg', class: 'exhibit-image'
       %h2= exhibit_information.title
       %p= exhibit_information.description
       = link_to image_tag('buttonPV.jpg'), exhibit_information.movie_url, class: 'exhibit-movie'

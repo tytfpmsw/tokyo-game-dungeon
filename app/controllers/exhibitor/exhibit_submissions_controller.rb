@@ -33,7 +33,8 @@ class Exhibitor::ExhibitSubmissionsController < ApplicationController
       ).permit(
       :title,
       :description,
-      :movie_url
+      :movie_url,
+      :image
       )
   end
 end
