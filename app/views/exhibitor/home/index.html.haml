@@ -1,5 +1,22 @@
-%h1 Exhibitor::Home#index
-%ul
-  %li= link_to 'Exhibitor', exhibitor_root_path
-  %li= link_to '出展情報を提出する', new_exhibitor_exhibit_submission_path
-```
+.p-exhibitor-home
+  .exhibitor-home-header
+    %h1 東京ゲームダンジョン4_出展者用ページ
+    .exhibitor-information 
+      %h2 ようこそ #{@exhibitor.name} さん（出展サークル名：#{@exhibitor.circle_name}）
+  .submission-notify
+    %h3 直前に提出した出展情報の状況
+    - if @exhibit_submission.nil?
+      %p まだ出展情報を提出していません。
+    - else
+      %ul
+        %li
+          %span 提出日時：
+          = @exhibit_submission&.created_at&.strftime('%Y年%m月%d日 %H時%M分')
+        %li
+          %span 状況：
+          = @exhibit_submission&.status
+        %li
+          %span コメント：
+          = @exhibit_submission&.update_comment
+  .exhibitor-home-menu
+    = link_to '出展情報を提出・更新する', new_exhibitor_exhibit_submission_path, class: 'menu-submit-exhibit-information'

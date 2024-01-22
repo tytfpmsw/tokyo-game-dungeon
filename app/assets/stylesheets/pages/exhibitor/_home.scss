@@ -1,0 +1,28 @@
+.p-exhibitor-home
+{
+  padding: 0 10%;
+
+  .submission-notify
+  {
+    display: block;
+    border: solid 1px rgba(239,239,239,1);
+  }
+  .exhibitor-home-menu {
+      display: grid;
+  
+      .menu-submit-exhibit-information {
+        display: block;
+        width: 30%;
+        height: 50px;
+        background-color: blue;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 50px;
+        margin: 20px auto;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+}

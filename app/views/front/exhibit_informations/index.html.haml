@@ -1,4 +1,11 @@
 .p-exhibit-informations-header
-  %h1 東京ゲームダンジョン4_出展ブロック#{@place_block.block_name}
-
-= render 'exhibit_informations', exhibit_informations: @exhibit_informations
+  %h1 東京ゲームダンジョン4_出展ブロック#{@place_block&.block_name}
+.p-exhibit-informations-map 
+  = image_tag('tgd4_map.png', class: 'map-image')
+.p-exhibit-informations
+  - @exhibit_informations.each do |exhibit_information|
+    .p-exhibit-information
+      = image_tag('noimage.jpg', class: 'exhibit-image')
+      %h2= exhibit_information.title
+      %p= exhibit_information.description
+      = link_to image_tag('buttonPV.jpg'), exhibit_information.movie_url, class: 'exhibit-movie'

@@ -1,14 +1,17 @@
-%h1 出展情報の提出
+.p-exhibitor-exhibit-submission-new
+  %h1 出展情報の提出
 
-= form_with url: exhibitor_exhibit_submissions_path do |f|
-  %div
-    = f.label :title, 'タイトル'
-    = f.text_field :title
-  %div
-    = f.label :description, '説明'
-    = f.text_area :description
-  %div
-    = f.label :movie_url, '動画URL'
-    = f.text_field :movie_url
-  %div
-    = f.submit '提出する'
+  = form_with url: exhibitor_exhibit_submissions_path do |f|
+    %table
+      %tr
+        %th= f.label :title, 'タイトル'
+        %td= f.text_field :title, value: @exhibit_information&.title
+      %tr
+        %th= f.label :description, '説明'
+        %td= f.text_area :description, value: @exhibit_information&.description
+      %tr
+        %th= f.label :movie_url, '動画URL'
+        %td= f.text_field :movie_url, value: @exhibit_information&.movie_url
+    .submit-buttons
+      = f.submit '提出する'
+
