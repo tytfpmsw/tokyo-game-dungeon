@@ -37,16 +37,16 @@ class Admin::ExhibitSubmissionsController < ApplicationController
     @exhibit_information = ExhibitInformation.find_by(exhibitor_id: @exhibit_submission.exhibitor_id)
     if @exhibit_information
       @exhibit_information.update(
-        title: @exhibit_submission.exhibit_title? ? @exhibit_submission.exhibit_title : @exhibit_information.title,
-        description: @exhibit_submission.exhibit_description? ? @exhibit_submission.exhibit_description : @exhibit_information.description,
-        movie_link: @exhibit_submission.exhibit_movie_url? ? @exhibit_submission.exhibit_movie_url : @exhibit_information.movie_link
+        title: @exhibit_submission.title? ? @exhibit_submission.title : @exhibit_information.title,
+        description: @exhibit_submission.description? ? @exhibit_submission.description : @exhibit_information.description,
+        movie_url: @exhibit_submission.movie_url? ? @exhibit_submission.movie_url : @exhibit_information.movie_url
       )
     else
       ExhibitInformation.create(
         exhibitor_id: @exhibit_submission.exhibitor_id,
-        title: @exhibit_submission.exhibit_title,
-        description: @exhibit_submission.exhibit_description,
-        movie_link: @exhibit_submission.exhibit_movie_url
+        title: @exhibit_submission.title,
+        description: @exhibit_submission.description,
+        movie_url: @exhibit_submission.movie_url
       )
     end
     @exhibit_submission.update(status: "approved")

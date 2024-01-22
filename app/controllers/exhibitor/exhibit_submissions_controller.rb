@@ -7,20 +7,30 @@ class Exhibitor::ExhibitSubmissionsController < ApplicationController
   end
 
   def create
-    @exhibit_submission = ExhibitSubmission.new(exhibit_submission_params)
-    @exhibit_submission.exhibitor = Exhibitor.find_by(email: 'test@example.com')
-    @exhibit_submission.status = :submitted
+    @exhibitor = Exhibitor.find_by(email: 'test@example.com')
+    @exhibit_submission = ExhibitSubmission.new(
+      exhibit_submission_params.merge(exhibitor: @exhibitor, status: :submitted)
+    )
 
     if @exhibit_submission.save
       redirect_to exhibitor_exhibit_submissions_path, notice: 'Exhibit submission was successfully created.'
     else
       render :new, status: :unprocessable_entity
+      # フラッシュメッセージを表示する
     end
   end
 
   private
 
   def exhibit_submission_params
-    params.permit(:exhibit_title, :exhibit_description, :exhibit_movie_url)
+    params.except(
+      :authenticity_token,
+      :commit,
+      :subdomain
+      ).permit(
+      :title,
+      :description,
+      :movie_url
+      )
   end
 end

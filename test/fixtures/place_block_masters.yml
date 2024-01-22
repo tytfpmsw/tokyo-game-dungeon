@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  block_name: MyString
+A:
+  block_name: A
   max_number: 1
 
-two:
-  block_name: MyString
+B:
+  block_name: B
   max_number: 1

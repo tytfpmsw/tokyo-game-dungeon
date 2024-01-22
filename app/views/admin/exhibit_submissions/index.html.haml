@@ -11,8 +11,8 @@
     - @exhibit_submissions.each do |exhibit_submission|
       %tr
         %td= exhibit_submission.exhibitor.name
-        %td= exhibit_submission.exhibit_title
-        %td= exhibit_submission.exhibit_description
-        %td= exhibit_submission.exhibit_movie_url
+        %td= exhibit_submission.title
+        %td= exhibit_submission.description
+        %td= exhibit_submission.movie_url
         %td= link_to '確認', exhibitor_exhibit_submission_path(exhibit_submission)
 ```

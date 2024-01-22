@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_18_082855) do
     t.integer "exhibitor_id", null: false
     t.string "title"
     t.string "description"
-    t.string "movie_link"
+    t.string "movie_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id", unique: true
@@ -23,9 +23,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_18_082855) do
 
   create_table "exhibit_submissions", force: :cascade do |t|
     t.integer "exhibitor_id", null: false
-    t.string "exhibit_title"
-    t.string "exhibit_description"
-    t.string "exhibit_movie_url"
+    t.string "title"
+    t.string "description"
+    t.string "movie_url"
     t.integer "status"
     t.string "update_user"
     t.text "update_comment"

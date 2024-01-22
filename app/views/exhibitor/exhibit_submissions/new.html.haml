@@ -2,13 +2,13 @@
 
 = form_with url: exhibitor_exhibit_submissions_path do |f|
   %div
-    = f.label :exhibit_title, 'タイトル'
-    = f.text_field :exhibit_title
+    = f.label :title, 'タイトル'
+    = f.text_field :title
   %div
-    = f.label :exhibit_description, '説明'
-    = f.text_area :exhibit_description
+    = f.label :description, '説明'
+    = f.text_area :description
   %div
-    = f.label :exhibit_movie_url, '動画URL'
-    = f.text_field :exhibit_movie_url
+    = f.label :movie_url, '動画URL'
+    = f.text_field :movie_url
   %div
     = f.submit '提出する'

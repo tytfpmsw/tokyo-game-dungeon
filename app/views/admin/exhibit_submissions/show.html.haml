@@ -10,9 +10,9 @@
   %tbody
     %tr
       %td= @exhibit_submission.exhibitor.name
-      %td= @exhibit_submission.exhibit_title
-      %td= @exhibit_submission.exhibit_description
-      %td= @exhibit_submission.exhibit_movie_url
+      %td= @exhibit_submission.title
+      %td= @exhibit_submission.description
+      %td= @exhibit_submission.movie_url
 
 = form_with url: admin_exhibit_submissions_url do |f|
   %div

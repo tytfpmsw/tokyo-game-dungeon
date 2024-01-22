@@ -4,10 +4,10 @@ one:
   exhibitor: one
   title: MyString
   description: MyString
-  movie_link: MyString
+  movie_url: MyString
 
 two:
   exhibitor: two
   title: MyString
   description: MyString
-  movie_link: MyString
+  movie_url: MyString

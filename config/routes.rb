@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :front do
+    get 'exhibit_informations/index'
+    get 'exhibit_informations/show'
+  end
   devise_for :exhibitors
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

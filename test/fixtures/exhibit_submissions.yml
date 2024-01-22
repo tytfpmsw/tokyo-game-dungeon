@@ -2,14 +2,14 @@
 
 one:
   exhibitor: one
-  exhibit_title: MyString
-  exhibit_description: MyString
-  exhibit_movie_link: MyString
+  title: MyString
+  description: MyString
+  movie_url: MyString
   status: 1
 
 two:
   exhibitor: two
-  exhibit_title: MyString
-  exhibit_description: MyString
-  exhibit_movie_link: MyString
+  title: MyString
+  description: MyString
+  movie_url: MyString
   status: 1

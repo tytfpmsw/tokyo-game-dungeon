@@ -5,7 +5,7 @@ class CreateExhibitInformations < ActiveRecord::Migration[7.1]
       t.references :exhibitor, null: false
       t.string :title
       t.string :description
-      t.string :movie_link
+      t.string :movie_url
 
       t.timestamps
     end
