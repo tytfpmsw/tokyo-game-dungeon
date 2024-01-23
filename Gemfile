@@ -77,3 +77,9 @@ gem "devise", "~> 4.9"
 gem 'carrierwave', '~> 2.0'
 
 gem 'mini_magick', '~> 4.11'
+
+gem 'bootstrap', '~> 5.3.0'
+
+gem 'jquery-rails'
+
+gem 'sassc-rails'
