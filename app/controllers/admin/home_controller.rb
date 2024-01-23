@@ -1,6 +1,6 @@
 class Admin::HomeController < ApplicationController
-  layout "admin"
 
   def index
+    @exhibit_submissions = ExhibitSubmission.where(status: :submitted)
   end
 end

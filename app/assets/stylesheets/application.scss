@@ -6,6 +6,7 @@
 @forward './layouts/header';
 
 // Pages
+@forward './pages/admin/home';
 @forward './pages/front/home';
 @forward './pages/front/exhibit_informations';
 @forward './pages/exhibitor/home';

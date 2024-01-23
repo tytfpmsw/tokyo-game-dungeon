@@ -16,7 +16,7 @@ class Exhibitor::ExhibitSubmissionsController < ApplicationController
     )
 
     if @exhibit_submission.save
-      redirect_to exhibitor_exhibit_submissions_path, notice: 'Exhibit submission was successfully created.'
+      redirect_to exhibitor_root_path, notice: 'Exhibit submission was successfully created.'
     else
       render :new, status: :unprocessable_entity
       # フラッシュメッセージを表示する

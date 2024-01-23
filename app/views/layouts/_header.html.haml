@@ -1,11 +1,11 @@
 %header.l-header
   .container
     .left
-      = image_tag('tgd_logo_title.png')
+      = link_to image_tag('tgd_logo_title.png'), front_root_path, class: 'logo'
     .right
       %ul
         %li.page-item.page-item-has-children
-          = link_to front_root_path do
+          = link_to front_exhibit_informations_path do
             東京ゲームダンジョン4
         %li.page-item.page-item-has-children
           = link_to front_root_path do

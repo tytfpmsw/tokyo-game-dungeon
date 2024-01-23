@@ -4,6 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title 東京ゲームダンジョン
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %link{:href => "#{asset_url('favicon.png')}", :rel => "icon"}/
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"

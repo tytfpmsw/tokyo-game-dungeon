@@ -1,4 +1,8 @@
-%h1 Admin::Home#index
-%ul
-  %li= link_to 'Admin', admin_root_path
-  %li= link_to '出展情報の一覧', admin_exhibit_submissions_path
+.p-admin-home
+  %h1 管理画面トップページ
+  %ul
+    -if @exhibit_submissions.present?
+      %li
+        .color-red
+          未確認の出展情報があります!
+    %li= link_to '出展情報の一覧', admin_exhibit_submissions_path
