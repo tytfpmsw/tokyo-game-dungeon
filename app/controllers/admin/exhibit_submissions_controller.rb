@@ -1,4 +1,7 @@
 class Admin::ExhibitSubmissionsController < ApplicationController
+
+  before_action :authenticate_administrator!
+
   def index
     @exhibit_submissions = ExhibitSubmission.submitted.order(created_at: :asc)
   end

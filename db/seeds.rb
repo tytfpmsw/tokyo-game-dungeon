@@ -8,6 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Administrator.find_or_create_by!(email: 'admin@example.com') do |administrator|
+  administrator.password = "Abcd-1234"
+end
+
 PlaceBlockMaster.find_or_create_by!(block_name: 'A') do |place_block_master|
   place_block_master.max_number = 10
 end

@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     get 'exhibit_informations/index'
     get 'exhibit_informations/show'
   end
-  devise_for :exhibitors
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   # root "posts#index"
  
   constraints subdomain: 'admin' do
+    devise_for :administrators
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
       resources :exhibit_submissions do
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   constraints subdomain: 'exhibitor' do
+    devise_for :exhibitors
     scope module: 'exhibitor', as: 'exhibitor' do
       root to: 'home#index'
       resources :exhibit_submissions

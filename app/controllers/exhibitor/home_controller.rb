@@ -1,6 +1,9 @@
 class Exhibitor::HomeController < ApplicationController
+
+  before_action :authenticate_exhibitor!
+
   def index
-    @exhibitor = Exhibitor.find_by(email: 'test@example.com')
+    @exhibitor = current_exhibitor
     @exhibit_information = ExhibitInformation.find_by(exhibitor: @exhibitor)
     @exhibit_submission = ExhibitSubmission.where(exhibitor: @exhibitor).order(:created_at).last
   end
