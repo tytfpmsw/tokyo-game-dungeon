@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   # root "posts#index"
  
   constraints subdomain: 'admin' do
-    devise_for :administrators
+    devise_for :administrators, controllers: {
+      sessions: 'administrators/sessions',
+      registrations: 'administrators/registrations'
+    }
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
       resources :exhibit_submissions do
