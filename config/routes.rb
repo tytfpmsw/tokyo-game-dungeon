@@ -30,7 +30,10 @@ Rails.application.routes.draw do
   end
 
   constraints subdomain: 'exhibitor' do
-    devise_for :exhibitors
+    devise_for :exhibitors, controllers: {
+      sessions: 'exhibitors/sessions',
+      registrations: 'exhibitors/registrations'
+    }
     scope module: 'exhibitor', as: 'exhibitor' do
       root to: 'home#index'
       resources :exhibit_submissions
