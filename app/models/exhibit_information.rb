@@ -1,5 +1,9 @@
 class ExhibitInformation < ApplicationRecord
   belongs_to :exhibitor
+  belongs_to :event_master
+  # 作成時には場所は決まっていないはずなのでoptional: trueとする
+  belongs_to :place_block_master, optional: true
+  has_many :exhibit_submissions, dependent: :destroy
 
   def copy_image_from_exhibit_submission(submission_image_path)
     file_name = File.basename(submission_image_path)
