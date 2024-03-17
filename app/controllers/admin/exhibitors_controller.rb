@@ -1,9 +1,9 @@
 class Admin::ExhibitorsController < ApplicationController
 
-  before_action :set_event_master
+  before_action :set_event
 
   def index
-    @exhibitPermissions = @event_master.exhibit_permissions
+    @exhibitPermissions = @event.exhibit_permissions
     @exhibitors = @exhibitPermissions.map(&:exhibitor)
   end
 
@@ -16,7 +16,7 @@ class Admin::ExhibitorsController < ApplicationController
 
     # すでに登録済みの場合
     # もしexhibitor_permissionに@exhibitorと@event_masterが紐づいている場合は、エラーを返す
-    if @exhibitor && ExhibitorPermission.find_by(exhibitor: @exhibitor, event_master: @event_master)
+    if @exhibitor && ExhibitorPermission.find_by(exhibitor: @exhibitor, event: @event)
       render :new, status: :unprocessable_entity
       #  TODO: フラッシュメッセージを表示する
       return
@@ -30,18 +30,18 @@ class Admin::ExhibitorsController < ApplicationController
     end
 
     # 今回のイベントに出展権限を付与
-    @exhibitPermission = ExhibitPermission.new(event_master: @event_master, exhibitor: @exhibitor)
+    @exhibitPermission = ExhibitPermission.new(event: @event, exhibitor: @exhibitor)
     @exhibitPermission.save
 
     # 空の出展情報を作成する
-    @exhibit_information = ExhibitInformation.new(exhibitor: @exhibitor, event_master: @event_master)
+    @exhibit_information = ExhibitInformation.new(exhibitor: @exhibitor, event: @event)
     @exhibit_information.save
   end
 
   private
 
-  def set_event_master
-    @event_master = EventMaster.find(params[:event_master_id])
+  def set_event
+    @event = Event.find(params[:event_id])
   end
 
   def exhibitor_params

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class EventMasterTest < ActiveSupport::TestCase
+class PlaceBlockTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

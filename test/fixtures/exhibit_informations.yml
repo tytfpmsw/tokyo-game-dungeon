@@ -5,9 +5,8 @@ one:
   title: MyString
   description: MyString
   movie_url: MyString
-  image: MyString
-  event_master: one
+  event: one
   circle_name: MyString
-  place_block_master: A
+  place_block: A
   place_number: 1
 

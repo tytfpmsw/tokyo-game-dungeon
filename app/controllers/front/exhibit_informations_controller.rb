@@ -1,13 +1,22 @@
 class Front::ExhibitInformationsController < ApplicationController
+
+  before_action :set_event
+
   def index
     if (params[:place_block])
-      @place_block = PlaceBlockMaster.find_by(block_name: params[:place_block])
-      @exhibit_informations = ExhibitInformation.where(event_master_id: :id, place_block_master_id: @place_block.id)
+      @place_block = PlaceBlock.find_by(name: params[:place_block])
+      @exhibit_informations = ExhibitInformation.where(event_id: @event.id, place_block_id: @place_block.id)
     else
-      @exhibit_informations = ExhibitInformation.where(event_master_id: :id)
+      @exhibit_informations = ExhibitInformation.where(event_id: @event.id)
     end
   end
 
   def show
+  end
+
+  private
+
+  def set_event
+    @event = Event.find(params[:event_id])
   end
 end

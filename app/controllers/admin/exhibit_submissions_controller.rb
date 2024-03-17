@@ -57,14 +57,14 @@ class Admin::ExhibitSubmissionsController < ApplicationController
       )
     end
     @exhibit_submission.update(status: "approved")
-    redirect_to admin_event_master_exhibit_submissions_path
+    redirect_to admin_event_exhibit_submissions_path
     # TODO: フラッシュメッセージを表示する
   end
 
   def reject
     @exhibit_submission = ExhibitSubmission.find(params[:id])
     @exhibit_submission.update(status: "rejected")
-    redirect_to admin_event_master_exhibit_submissions_path
+    redirect_to admin_event_exhibit_submissions_path
     # TODO: フラッシュメッセージを表示する
   end
 end

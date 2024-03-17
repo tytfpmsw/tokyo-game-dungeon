@@ -4,12 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: 
-  name_en: testevent1
-  name_ja: テストイベント1
-# column: value
-#
-two:
-  name_en: testevent2
-  name_ja: テストイベント2
-# column: value
+A:
+  name: A
+  capacity: 10
+  event: one
+
+B:
+  name: B
+  capacity: 10
+  event: one

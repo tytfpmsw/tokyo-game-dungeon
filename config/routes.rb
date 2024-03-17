@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     }
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
-      resources :event_masters do
+      resources :events do
         resources :exhibit_submissions do
           # memberでidを含むURLを生成する 例: /event_masters/1/exhibit_submissions/1/approve
           member do
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   constraints subdomain: lambda { |sd| !%w[admin biz].include?(sd) } do
     scope module: 'front', as: 'front' do
       root to: 'portal#index'
-      resources :event_masters, only: [:index, :show] do
+      resources :events, only: [:index, :show] do
         resources :exhibit_informations, only: [:index, :show]  
       end
     end
