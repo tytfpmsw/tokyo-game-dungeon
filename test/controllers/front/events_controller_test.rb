@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Admin::PlaceBlockMasterControllerTest < Admin::IntegrationTest
+class Front::EventsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

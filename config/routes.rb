@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :front do
-    get 'exhibit_informations/index'
-    get 'exhibit_informations/show'
-  end
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,11 +16,15 @@ Rails.application.routes.draw do
     }
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
-      resources :exhibit_submissions do
-        member do
-          post :approve
-          post :reject
+      resources :event_masters do
+        resources :exhibit_submissions do
+          # memberでidを含むURLを生成する 例: /event_masters/1/exhibit_submissions/1/approve
+          member do
+            post :approve
+            post :reject
+          end
         end
+        resources :exhibitors, only: [:index, :new, :create]
       end
     end
   end
@@ -43,7 +43,9 @@ Rails.application.routes.draw do
   constraints subdomain: lambda { |sd| !%w[admin biz].include?(sd) } do
     scope module: 'front', as: 'front' do
       root to: 'portal#index'
-      resources :exhibit_informations, only: [:index, :show]
+      resources :event_masters, only: [:index, :show] do
+        resources :exhibit_informations, only: [:index, :show]  
+      end
     end
   end
 end

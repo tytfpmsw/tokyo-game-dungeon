@@ -8,5 +8,4 @@ class Exhibitor < ApplicationRecord
   has_many :exhibit_permissions
 
   validates :name, presence:true
-  validates :circle_name, presence:true
 end

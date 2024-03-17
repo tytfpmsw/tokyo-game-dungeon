@@ -10,13 +10,13 @@
       %th 画像
   %tbody
     %tr
-      %td= @exhibit_submission.exhibitor.name
+      %td= @exhibitor.name
       %td= @exhibit_submission.title
       %td= @exhibit_submission.description
       %td= @exhibit_submission.movie_url
       %td= image_tag @exhibit_submission.image.url, width: 200
 
-= form_with url: admin_exhibit_submissions_url do |f|
+= form_with url: admin_event_master_exhibit_submissions_url do |f|
   %div
-    = f.submit '承認', formaction: approve_admin_exhibit_submission_path(@exhibit_submission)
-    = f.submit '却下', formaction: reject_admin_exhibit_submission_path(@exhibit_submission)
+    = f.submit '承認', formaction: approve_admin_event_master_exhibit_submission_path(@exhibit_submission)
+    = f.submit '却下', formaction: reject_admin_event_master_exhibit_submission_path(@exhibit_submission)

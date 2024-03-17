@@ -13,3 +13,21 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+class Admin::IntegrationTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  setup do
+    host! "admin.tokyogamedungeon.com"
+    sign_in administrators(:one)
+  end
+end
+
+class Exhibitor::IntegrationTest < ActionDispatch::IntegrationTest
+include Devise::Test::IntegrationHelpers
+
+  setup do
+    host! "exhibitor.tokyogamedungeon.com"
+    sign_in exhibitors(:one)
+  end
+end

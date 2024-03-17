@@ -8,6 +8,8 @@ class Admin::ExhibitSubmissionsController < ApplicationController
 
   def show
     @exhibit_submission = ExhibitSubmission.find(params[:id])
+    @exhibit_information = ExhibitInformation.find_by(id: @exhibit_submission.exhibit_information_id)
+    @exhibitor = Exhibitor.find_by(id: @exhibit_information.exhibitor_id)
   end
 
   def edit
@@ -22,9 +24,9 @@ class Admin::ExhibitSubmissionsController < ApplicationController
     @exhibit_submission = ExhibitSubmission.find(params[:id])
 
     if :params[:commit] == "承認"
-      @exguibit_submission.status = "approved"
+      @exhibit_submission.status = "approved"
     elsif :params[:commit] == "却下"
-      @exguibit_submission.status = "rejected"
+      @exhibit_submission.status = "rejected"
     end
 
     if @exhibit_submission.update(exhibit_submission_params)
@@ -37,7 +39,7 @@ class Admin::ExhibitSubmissionsController < ApplicationController
 
   def approve
     @exhibit_submission = ExhibitSubmission.find(params[:id])
-    @exhibit_information = ExhibitInformation.find_by(exhibitor_id: @exhibit_submission.exhibitor_id)
+    @exhibit_information = ExhibitInformation.find_by(id: @exhibit_submission.exhibit_information_id)
     @exhibit_information.copy_image_from_exhibit_submission(@exhibit_submission.image.path)
     if @exhibit_information
       @exhibit_information.title = @exhibit_submission.title? ? @exhibit_submission.title : @exhibit_information.title
@@ -55,14 +57,14 @@ class Admin::ExhibitSubmissionsController < ApplicationController
       )
     end
     @exhibit_submission.update(status: "approved")
-    redirect_to admin_exhibit_submissions_path
-    # フラッシュメッセージを表示する
+    redirect_to admin_event_master_exhibit_submissions_path
+    # TODO: フラッシュメッセージを表示する
   end
 
   def reject
     @exhibit_submission = ExhibitSubmission.find(params[:id])
     @exhibit_submission.update(status: "rejected")
-    redirect_to admin_exhibit_submissions_path
-    # フラッシュメッセージを表示する
+    redirect_to admin_event_master_exhibit_submissions_path
+    # TODO: フラッシュメッセージを表示する
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_16_061008) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_16_113452) do
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -40,8 +40,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_061008) do
     t.string "image"
     t.integer "event_master_id"
     t.string "circle_name"
+    t.integer "place_block_master_id"
+    t.integer "place_number"
     t.index ["event_master_id"], name: "index_exhibit_informations_on_event_master_id"
     t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id", unique: true
+    t.index ["place_block_master_id"], name: "index_exhibit_informations_on_place_block_master_id"
   end
 
   create_table "exhibit_permissions", force: :cascade do |t|
@@ -63,8 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_061008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.integer "exhibit_informations_id"
-    t.index ["exhibit_informations_id"], name: "index_exhibit_submissions_on_exhibit_informations_id"
+    t.integer "exhibit_information_id"
+    t.index ["exhibit_information_id"], name: "index_exhibit_submissions_on_exhibit_information_id"
   end
 
   create_table "exhibitors", force: :cascade do |t|
@@ -90,8 +93,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_061008) do
   end
 
   add_foreign_key "exhibit_informations", "exhibitors"
+  add_foreign_key "exhibit_informations", "place_block_masters"
   add_foreign_key "exhibit_permissions", "event_masters"
   add_foreign_key "exhibit_permissions", "exhibitors"
-  add_foreign_key "exhibit_submissions", "exhibit_informations", column: "exhibit_informations_id"
+  add_foreign_key "exhibit_submissions", "exhibit_informations"
   add_foreign_key "place_block_masters", "event_masters"
 end

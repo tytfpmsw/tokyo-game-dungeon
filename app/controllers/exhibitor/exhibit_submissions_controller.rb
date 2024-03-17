@@ -1,25 +1,29 @@
 class Exhibitor::ExhibitSubmissionsController < ApplicationController
+
+  before_action :authenticate_exhibitor!
+
   def index
   end
 
   def new
-    @exhibitor = Exhibitor.find_by(email: 'test@example.com')
+    @exhibitor = current_exhibitor
     @exhibit_information = ExhibitInformation.find_by(exhibitor: @exhibitor)
     # もし@exhibit_submissionが存在しない場合は、新規作成する
     @exhibit_information ||= ExhibitInformation.new(exhibitor: @exhibitor)
   end
 
   def create
-    @exhibitor = Exhibitor.find_by(email: 'test@example.com')
+    @exhibitor = current_exhibitor
+    @exhibit_information = ExhibitInformation.find_by(exhibitor: @exhibitor)
     @exhibit_submission = ExhibitSubmission.new(
-      exhibit_submission_params.merge(exhibitor: @exhibitor, status: :submitted)
+      exhibit_submission_params.merge(exhibit_information_id: @exhibit_information.id, status: :submitted)
     )
 
     if @exhibit_submission.save
       redirect_to exhibitor_root_path, notice: 'Exhibit submission was successfully created.'
     else
       render :new, status: :unprocessable_entity
-      # フラッシュメッセージを表示する
+      # TODO: フラッシュメッセージを表示する
     end
   end
 

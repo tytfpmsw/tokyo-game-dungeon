@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Exhibitor::ExhibitSubmissionsControllerTest < ActionDispatch::IntegrationTest
+class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
   test "should get index" do
     get exhibitor_exhibit_submissions_url
     assert_response :success

@@ -4,6 +4,3 @@ one:
   event_master: one
   exhibitor: one
 
-two:
-  event_master: two
-  exhibitor: two

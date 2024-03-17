@@ -5,9 +5,9 @@ one:
   title: MyString
   description: MyString
   movie_url: MyString
+  image: MyString
+  event_master: one
+  circle_name: MyString
+  place_block_master: A
+  place_number: 1
 
-two:
-  exhibitor: two
-  title: MyString
-  description: MyString
-  movie_url: MyString

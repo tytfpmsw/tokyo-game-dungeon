@@ -8,5 +8,5 @@
     %tbody
       - @exhibit_submissions.each do |exhibit_submission|
         %tr
-          %td= exhibit_submission.exhibitor.name
+          %td= exhibit_submission.exhibit_information.circle_name
           %td= link_to '確認', exhibitor_exhibit_submission_path(exhibit_submission)

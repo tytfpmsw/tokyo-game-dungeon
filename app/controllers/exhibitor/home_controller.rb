@@ -5,6 +5,6 @@ class Exhibitor::HomeController < ApplicationController
   def index
     @exhibitor = current_exhibitor
     @exhibit_information = ExhibitInformation.find_by(exhibitor: @exhibitor)
-    @exhibit_submission = ExhibitSubmission.where(exhibitor: @exhibitor).order(:created_at).last
+    @exhibit_submission = ExhibitSubmission.where(exhibit_information: @exhibit_information).order(:created_at).last
   end
 end
