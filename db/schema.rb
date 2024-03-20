@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_20_050537) do
-  create_table "administrators", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_03_20_083910) do
+  create_table "administrators", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -23,45 +23,45 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_050537) do
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", charset: "utf8mb3", force: :cascade do |t|
     t.string "name_en", null: false
     t.string "name_ja", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "exhibit_informations", force: :cascade do |t|
-    t.integer "exhibitor_id", null: false
+  create_table "exhibit_informations", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "exhibitor_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "place_block_id"
+    t.integer "place_number"
+    t.string "circle_name"
     t.string "title"
     t.string "description"
     t.string "movie_url"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
-    t.string "circle_name"
-    t.integer "place_number"
-    t.integer "event_id"
-    t.integer "place_block_id"
     t.index ["event_id"], name: "index_exhibit_informations_on_event_id"
-    t.index ["exhibitor_id", "event_id"], name: "index_exhibit_informations_on_exhibitor_id_and_event_id", unique: true
+    t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id"
     t.index ["place_block_id"], name: "index_exhibit_informations_on_place_block_id"
   end
 
-  create_table "exhibit_submissions", force: :cascade do |t|
+  create_table "exhibit_submissions", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "exhibit_information_id", null: false
     t.string "title"
     t.string "description"
     t.string "movie_url"
+    t.string "image"
     t.integer "status"
     t.string "update_user"
     t.text "update_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
-    t.integer "exhibit_information_id"
     t.index ["exhibit_information_id"], name: "index_exhibit_submissions_on_exhibit_information_id"
   end
 
-  create_table "exhibitors", force: :cascade do |t|
+  create_table "exhibitors", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -74,10 +74,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_050537) do
     t.index ["reset_password_token"], name: "index_exhibitors_on_reset_password_token", unique: true
   end
 
-  create_table "place_blocks", force: :cascade do |t|
+  create_table "place_blocks", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "event_id", null: false
     t.string "name", null: false
     t.integer "capacity", null: false
-    t.integer "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_place_blocks_on_event_id"

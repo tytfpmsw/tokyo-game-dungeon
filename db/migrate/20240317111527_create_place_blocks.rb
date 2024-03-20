@@ -8,8 +8,5 @@ class CreatePlaceBlocks < ActiveRecord::Migration[7.1]
       t.timestamps
     end
     add_reference :exhibit_informations, :place_block, foreign_key: true
-
-    drop_table :place_block_masters
-    remove_column :exhibit_informations, :place_block_master_id
   end
 end

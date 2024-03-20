@@ -11,9 +11,6 @@ class CreateExhibitInformations < ActiveRecord::Migration[7.1]
     end
     
     change_table :exhibit_informations, bulk: true do |t|
-      # すでにインデックスが存在するとエラーになるため、一旦削除する
-      t.remove_index :exhibitor_id
-      t.index :exhibitor_id, unique: true
       t.foreign_key :exhibitors
     end
   end
