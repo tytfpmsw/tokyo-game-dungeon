@@ -1,17 +1,18 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-already_exhibited_in_past:
-  name: exhibitor_one
-  email: test@example.com
+# 過去に出展したことがあり、今回も出展登録済みの出展者
+has_exhibited_and_registered:
+  name: exhibited_registered
+  email: exhibited_registered@example.com
   created_at: 2020-01-01 00:00:00
   updated_at: 2020-01-01 00:00:00
 
-new_exhibitor:
-  name: exhibitor_two
-  email: test2@example.com
-  created_at: 2020-01-01 00:00:00
-  updated_at: 2020-01-01 00:00:00
+# 過去に出展したことがあり、今回はまだ出展登録していない出展者
+has_exhibited_and_not_registered:
+  name: exhibited_not_registered
+  email: exhibited_not_registered@example.com
+
+# 過去に出展したことがないが、今回出展登録済みの出展者
+newbie:
+  name: newbie
+  email: newbie@example.com
+
+# 「過去に出展したことがなく、今回も出展登録していない出展者」はexhibitorsに存在し得ないので省略

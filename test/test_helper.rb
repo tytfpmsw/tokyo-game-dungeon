@@ -28,6 +28,6 @@ include Devise::Test::IntegrationHelpers
 
   setup do
     host! "exhibitor.tokyogamedungeon.com"
-    sign_in exhibitors(:new_exhibitor)
+    sign_in exhibitors(:newbie)
   end
 end

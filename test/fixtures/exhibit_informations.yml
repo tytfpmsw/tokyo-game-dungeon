@@ -1,12 +1,32 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-new_exhibitor_exhibit:
-  exhibitor: new_exhibitor
-  title: MyString
-  description: MyString
-  movie_url: MyString
-  event: open_recruitment
-  circle_name: MyString
-  place_block: open_recruitment_A
+# 過去出展済み・今回登録済み出展者の過去情報
+has_exhibited_and_registered_exhibit_past:
+  exhibitor: has_exhibited_and_registered
+  title: 過去の出展
+  description: 過去の説明
+  movie_url: https://www.youtube.com/watch?=exhibited_registered1
+  event: past
+  circle_name: サークル1
+  place_block: past_A
   place_number: 1
 
+# 過去出展済み・今回登録済み出展者の今回情報
+has_exhibited_and_registered_exhibit_now_preparing:
+  exhibitor: has_exhibited_and_registered
+  title: 出展済み今回タイトル
+  description: 出展済み今回説明
+  movie_url: https://www.youtube.com/watch?=exhibited_registered2
+  event: now_preparing
+  circle_name: サークル2
+  place_block: now_preparing_B
+  place_number: 2
+
+# 新規出展者の今回情報
+newbie_exhibit:
+  exhibitor: newbie
+  title: 初出展タイトル
+  description: 初出展説明
+  movie_url: https://www.youtube.com/watch?=newbie
+  event: now_preparing
+  circle_name: サークル3
+  place_block: now_preparing_A
+  place_number: 3

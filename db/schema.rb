@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_114100) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_20_050537) do
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -43,17 +43,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_114100) do
     t.integer "event_id"
     t.integer "place_block_id"
     t.index ["event_id"], name: "index_exhibit_informations_on_event_id"
-    t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id", unique: true
+    t.index ["exhibitor_id", "event_id"], name: "index_exhibit_informations_on_exhibitor_id_and_event_id", unique: true
     t.index ["place_block_id"], name: "index_exhibit_informations_on_place_block_id"
-  end
-
-  create_table "exhibit_permissions", force: :cascade do |t|
-    t.integer "exhibitor_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "event_id"
-    t.index ["event_id"], name: "index_exhibit_permissions_on_event_id"
-    t.index ["exhibitor_id"], name: "index_exhibit_permissions_on_exhibitor_id"
   end
 
   create_table "exhibit_submissions", force: :cascade do |t|
@@ -95,8 +86,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_114100) do
   add_foreign_key "exhibit_informations", "events"
   add_foreign_key "exhibit_informations", "exhibitors"
   add_foreign_key "exhibit_informations", "place_blocks"
-  add_foreign_key "exhibit_permissions", "events"
-  add_foreign_key "exhibit_permissions", "exhibitors"
   add_foreign_key "exhibit_submissions", "exhibit_informations"
   add_foreign_key "place_blocks", "events"
 end

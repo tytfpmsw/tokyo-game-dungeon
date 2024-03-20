@@ -3,8 +3,8 @@ require "test_helper"
 class Admin::ExhibitSubmissionsControllerTest < Admin::IntegrationTest
 
   setup do
-    @event = events(:open_recruitment)
-    @exhibit_submission = exhibit_submissions(:new_exhibitor_submission)
+    @event = events(:now_preparing)
+    @exhibit_submission = exhibit_submissions(:newbie_exhibit)
   end
 
   test "should get index" do
