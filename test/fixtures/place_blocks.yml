@@ -4,12 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-A:
+open_recruitment_A:
   name: A
   capacity: 10
-  event: one
+  event: open_recruitment
 
-B:
+open_recruitment_B:
   name: B
   capacity: 10
-  event: one
+  event: open_recruitment

@@ -3,8 +3,8 @@ require "test_helper"
 class Front::ExhibitInformationsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @event = events(:one)
-    @exhibit_information = exhibit_informations(:one)
+    @event = events(:open_recruitment)
+    @exhibit_information = exhibit_informations(:new_exhibitor_exhibit)
   end
 
   test "should get index" do

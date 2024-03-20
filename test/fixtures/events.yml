@@ -4,6 +4,10 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-  name_en: 1
+past:
+  name_en: one
   name_ja: 1
+
+open_recruitment:
+  name_en: two
+  name_ja: 2

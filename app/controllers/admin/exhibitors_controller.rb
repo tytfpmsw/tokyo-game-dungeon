@@ -16,7 +16,7 @@ class Admin::ExhibitorsController < ApplicationController
 
     # すでに登録済みの場合
     # もしexhibitor_permissionに@exhibitorと@event_masterが紐づいている場合は、エラーを返す
-    if @exhibitor && ExhibitorPermission.find_by(exhibitor: @exhibitor, event: @event)
+    if @exhibitor && ExhibitPermission.find_by(exhibitor: @exhibitor, event: @event)
       render :new, status: :unprocessable_entity
       #  TODO: フラッシュメッセージを表示する
       return

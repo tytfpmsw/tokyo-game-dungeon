@@ -1,12 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  exhibitor: one
+new_exhibitor_exhibit:
+  exhibitor: new_exhibitor
   title: MyString
   description: MyString
   movie_url: MyString
-  event: one
+  event: open_recruitment
   circle_name: MyString
-  place_block: A
+  place_block: open_recruitment_A
   place_number: 1
 
