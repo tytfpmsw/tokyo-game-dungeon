@@ -1,0 +1,10 @@
+= form_with url: admin_event_place_blocks_path do |f|
+  - if @place_block.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@place_block.errors.count, "error")} prohibited this place_block from being saved:"
+      %ul
+        - @place_block.errors.full_messages.each do |message|
+          %li= message
+
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,19 @@
+%h1 Listing admin_place_blocks
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @place_blocks.each do |place_block|
+      %tr
+        %td= link_to 'Show', admin_event_place_block_path(place_block.event_id, place_block)
+        %td= link_to 'Edit', edit_admin_event_place_block_path(place_block.event_id, place_block)
+        %td= link_to 'Destroy', admin_event_place_block_path(place_block.event_id, place_block), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Place block', new_admin_event_place_block_path
