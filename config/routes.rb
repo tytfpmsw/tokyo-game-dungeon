@@ -36,10 +36,10 @@ Rails.application.routes.draw do
       sessions: 'exhibitor/sessions',
       registrations: 'exhibitor/registrations'
     }
-    scope module: 'exhibitor', as: 'exhibitor' do
-      root to: 'home#index'
-      resources :events, only: [:index, :show] do
-        resources :exhibit_submissions
+      scope module: 'exhibitor', as: 'exhibitor' do
+        root to: 'events#index'
+        resources :events, only: [:index, :show] do
+          resources :exhibit_submissions
       end
     end
   end

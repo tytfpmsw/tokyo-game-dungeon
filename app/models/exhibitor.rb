@@ -4,8 +4,5 @@ class Exhibitor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :exhibit_submissions, dependent: :destroy
-  has_many :exhibit_permissions
-
   validates :name, presence:true
 end
