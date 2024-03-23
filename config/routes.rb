@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   # root "posts#index"
  
   constraints subdomain: 'admin' do
-    devise_for :administrators, controllers: {
-      sessions: 'administrators/sessions',
-      registrations: 'administrators/registrations'
+    devise_for :administrators, path: 'admin', controllers: {
+      sessions: 'admin/sessions',
+      registrations: 'admin/registrations'
     }
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
@@ -32,9 +32,9 @@ Rails.application.routes.draw do
   end
 
   constraints subdomain: 'exhibitor' do
-    devise_for :exhibitors, controllers: {
-      sessions: 'exhibitors/sessions',
-      registrations: 'exhibitors/registrations'
+    devise_for :exhibitors, path: 'exhibitor', controllers: {
+      sessions: 'exhibitor/sessions',
+      registrations: 'exhibitor/registrations'
     }
     scope module: 'exhibitor', as: 'exhibitor' do
       root to: 'home#index'
