@@ -6,5 +6,19 @@ class ExhibitSubmission < ApplicationRecord
 
   # validates :status, presence: true
   
-  scope :submitted, -> { where(status: :submitted) }
+  def self.submitted(event)
+    ExhibitSubmission.joins(:exhibit_information).where(exhibit_informations: { event_id: event.id }, status: :submitted)
+  end
+
+  def approved
+    
+  end
+
+  def approve!
+    update!(status: :approved)
+  end
+
+  def reject!
+    update!(status: :rejected)
+  end
 end

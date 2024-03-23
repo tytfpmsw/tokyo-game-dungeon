@@ -1,20 +1,20 @@
 class Exhibitor::ExhibitSubmissionsController < ApplicationController
 
   before_action :authenticate_exhibitor!
+  before_action :set_event
 
   def index
+    @submission = ExhibitSubmission.where(exhibit_information: ExhibitInformation.where(event: @event, exhibitor: current_exhibitor))
   end
 
   def new
     @exhibitor = current_exhibitor
-    @exhibit_information = ExhibitInformation.find_by(exhibitor: @exhibitor)
-    # もし@exhibit_submissionが存在しない場合は、新規作成する
-    @exhibit_information ||= ExhibitInformation.new(exhibitor: @exhibitor)
+    @exhibit_information = ExhibitInformation.find_by(event: @event, exhibitor: @exhibitor)
   end
 
   def create
     @exhibitor = current_exhibitor
-    @exhibit_information = ExhibitInformation.find_by(exhibitor: @exhibitor)
+    @exhibit_information = ExhibitInformation.find_by(event: @event, exhibitor: @exhibitor)
     @exhibit_submission = ExhibitSubmission.new(
       exhibit_submission_params.merge(exhibit_information_id: @exhibit_information.id, status: :submitted)
     )
@@ -28,6 +28,10 @@ class Exhibitor::ExhibitSubmissionsController < ApplicationController
   end
 
   private
+
+  def set_event
+    @event = Event.find(params[:event_id])
+  end
 
   def exhibit_submission_params
     params.except(

@@ -1,0 +1,18 @@
+%h1 Listing admin_events
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= link_to 'Show', admin_event_path(event)
+        %td= link_to 'Edit', edit_admin_event_path(event)
+
+%br
+
+= link_to 'New Event', new_admin_event_path

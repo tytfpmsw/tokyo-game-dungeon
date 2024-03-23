@@ -62,5 +62,5 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 
-  config.exhibit_informations_image_path = "test/images/exhibit_informations/image"
+  config.exhibit_informations_image_root = "test/images"
 end

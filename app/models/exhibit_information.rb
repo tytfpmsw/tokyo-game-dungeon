@@ -5,17 +5,18 @@ class ExhibitInformation < ApplicationRecord
   belongs_to :place_block, optional: true
   has_many :exhibit_submissions, dependent: :destroy
 
-  def copy_image_from_exhibit_submission(submission_image_path)
-    file_name = File.basename(submission_image_path)
-    dest = Rails.root.join(Rails.application.config.exhibit_informations_image_path, id.to_s)
-    new_file_path = dest.join(file_name)
-    image_tag_path = 'exhibit_informations/image/' + id.to_s + '/' + file_name
-    if File.exist?(dest)
-      FileUtils.remove(dest.glob('*'))
+  def copy_image(source_image_path)
+    file_name = File.basename(source_image_path)
+    dest_suffix = 'exhibit_informations/image/' + id.to_s
+    dest_dir = Rails.root.join(Rails.application.config.exhibit_informations_image_root, dest_suffix)
+    dest_full_path = dest_dir.join(file_name)
+    image_tag_path = dest_full_path + file_name
+    if File.exist?(dest_dir)
+      FileUtils.remove(dest_dir.glob('*'))
     else
-      FileUtils.mkdir_p(dest)
+      FileUtils.mkdir_p(dest_dir)
     end
-    FileUtils.cp(submission_image_path, new_file_path)
+    FileUtils.cp(source_image_path, dest_full_path)
     self.image = image_tag_path
   end
 end

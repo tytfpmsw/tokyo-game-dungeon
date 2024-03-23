@@ -16,11 +16,20 @@ has_exhibited_and_registered_exhibit_now_preparing:
   image: dummy.png
   exhibit_information: has_exhibited_and_registered_exhibit_now_preparing
 
-  # 新規出展者の今回の申請情報
+# 新規出展者の今回の申請情報
 newbie_exhibit:
   title: 初出展タイトル
   description: 初出展説明
   movie_url: https://www.youtube.com/watch?=newbie
   status: 2
+  image: dummy.png
+  exhibit_information: newbie_exhibit
+
+# 新規出展者の今回の未承認申請情報
+newbie_exhibit_unapproved:
+  title: 初出展未承認タイトル
+  description: 初出展未承認説明
+  movie_url: https://www.youtube.com/watch?=newbie_unapproved
+  status: 1
   image: dummy.png
   exhibit_information: newbie_exhibit

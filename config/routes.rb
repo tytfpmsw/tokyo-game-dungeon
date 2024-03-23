@@ -38,7 +38,9 @@ Rails.application.routes.draw do
     }
     scope module: 'exhibitor', as: 'exhibitor' do
       root to: 'home#index'
-      resources :exhibit_submissions
+      resources :events, only: [:index, :show] do
+        resources :exhibit_submissions
+      end
     end
   end
 

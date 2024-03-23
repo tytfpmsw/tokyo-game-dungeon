@@ -1,0 +1,10 @@
+= form_with url: admin_events_path do |f|
+  - if @event.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this admin_event from being saved:"
+      %ul
+        - @event.errors.full_messages.each do |message|
+          %li= message
+
+  .actions
+    = f.submit 'Save'

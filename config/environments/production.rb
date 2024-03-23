@@ -95,5 +95,5 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
    
-  config.exhibit_informations_image_path = "app/assets/images/exhibit_informations/image"
+  config.exhibit_informations_image_root = "app/assets/images"
 end

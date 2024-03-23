@@ -78,5 +78,5 @@ Rails.application.configure do
 
   config.hosts << ".tokyogamedungeon.localhost"
 
-  config.exhibit_informations_image_path = "test/images/exhibit_informations/image"
+  config.exhibit_informations_image_root = "test/images"
 end

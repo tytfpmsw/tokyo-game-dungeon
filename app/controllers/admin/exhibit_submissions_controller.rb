@@ -1,9 +1,10 @@
 class Admin::ExhibitSubmissionsController < ApplicationController
 
   before_action :authenticate_administrator!
+  before_action :set_event
 
   def index
-    @exhibit_submissions = ExhibitSubmission.submitted.order(created_at: :asc)
+    @exhibit_submissions = ExhibitSubmission.submitted(@event).order(created_at: :asc)
   end
 
   def show
@@ -40,22 +41,15 @@ class Admin::ExhibitSubmissionsController < ApplicationController
   def approve
     @exhibit_submission = ExhibitSubmission.find(params[:id])
     @exhibit_information = ExhibitInformation.find_by(id: @exhibit_submission.exhibit_information_id)
-    @exhibit_information.copy_image_from_exhibit_submission(@exhibit_submission.image.path)
-    if @exhibit_information
-      @exhibit_information.title = @exhibit_submission.title? ? @exhibit_submission.title : @exhibit_information.title
-      @exhibit_information.description = @exhibit_submission.description? ? @exhibit_submission.description : @exhibit_information.description
-      @exhibit_information.movie_url = @exhibit_submission.movie_url? ? @exhibit_submission.movie_url : @exhibit_information.movie_url
-      # imageはcopy_image_from_exhibit_submissionでコピー済み
-      @exhibit_information.update(@exhibit_information.attributes)
-    else
-      ExhibitInformation.create(
-        exhibitor_id: @exhibit_submission.exhibitor_id,
-        title: @exhibit_submission.title,
-        description: @exhibit_submission.description,
-        movie_url: @exhibit_submission.movie_url
-        # imageはcopy_image_from_exhibit_submissionでコピー済み
-      )
-    end
+
+    @exhibit_information.copy_image(@exhibit_submission.image.path)
+    
+    @exhibit_information.title = @exhibit_submission.title? ? @exhibit_submission.title : @exhibit_information.title
+    @exhibit_information.description = @exhibit_submission.description? ? @exhibit_submission.description : @exhibit_information.description
+    @exhibit_information.movie_url = @exhibit_submission.movie_url? ? @exhibit_submission.movie_url : @exhibit_information.movie_url
+    # imageはcopy_image_from_exhibit_submissionでコピー済み
+    @exhibit_information.update(@exhibit_information.attributes)
+    
     @exhibit_submission.update(status: "approved")
     redirect_to admin_event_exhibit_submissions_path
     # TODO: フラッシュメッセージを表示する
@@ -66,5 +60,11 @@ class Admin::ExhibitSubmissionsController < ApplicationController
     @exhibit_submission.update(status: "rejected")
     redirect_to admin_event_exhibit_submissions_path
     # TODO: フラッシュメッセージを表示する
+  end
+
+  private 
+
+  def set_event
+    @event = Event.find(params[:event_id])
   end
 end

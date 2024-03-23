@@ -4,7 +4,6 @@ class Exhibitor::HomeController < ApplicationController
 
   def index
     @exhibitor = current_exhibitor
-    @exhibit_information = ExhibitInformation.find_by(exhibitor: @exhibitor)
-    @exhibit_submission = ExhibitSubmission.where(exhibit_information: @exhibit_information).order(:created_at).last
+    @events_can_submit = Event.accepting_submissions
   end
 end
