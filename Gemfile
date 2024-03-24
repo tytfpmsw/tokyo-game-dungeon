@@ -85,3 +85,9 @@ gem 'jquery-rails'
 gem 'sassc-rails'
 
 gem 'mysql2'
+
+gem 'kaminari'
+
+gem 'ransack'
+
+gem 'bootstrap_form'

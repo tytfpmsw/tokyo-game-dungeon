@@ -1,6 +1,8 @@
-%p#notice= notice
+%p{ style: "color: green" }
+  = notice
+= render @place_block
 
 
-= link_to 'Edit', edit_admin_event_place_block_path(@place_block)
-\|
-= link_to 'Back', admin_event_place_blocks_path
+%div
+  = link_to 'Edit', edit_admin_event_place_block_path(@event, @place_block)
+  = link_to 'Back', admin_event_place_blocks_path

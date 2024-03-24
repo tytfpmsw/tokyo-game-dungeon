@@ -1,0 +1,18 @@
+%header.l-header
+  .container
+    .left
+      - if @event.present?
+        = link_to image_tag(@event.logo_image.url), front_event_path(@event), class: 'logo'
+      - else
+        %h1
+          = link_to front_root_path do
+            東京ゲームダンジョン ポータルページ
+    .right
+      %ul
+        - if @event.present?
+          %li.page-item.page-item-has-children
+            = link_to front_event_path(@event) do
+              = @event.name_ja
+        %li.page-item.page-item-has-children
+          = link_to front_root_path do
+            過去の開催

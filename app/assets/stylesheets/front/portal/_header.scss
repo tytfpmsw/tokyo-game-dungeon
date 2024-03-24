@@ -1,0 +1,49 @@
+.l-portal-header {
+  font-family: 'Lato', sans-serif;
+  background-color: chocolate;
+  color: #fff;
+  height: 100px;
+
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    .left {
+      float: left;
+
+      h1 {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+
+        a {
+          font-size: 2rem;
+          font-weight: 700;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .right {
+      float: right;
+      padding: 30px;
+      
+      a {
+          font-size: 17px;
+          font-weight: 400;
+      }
+
+      li {
+        display: inline-block;
+        position: relative;
+      }
+    }
+
+    &::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}

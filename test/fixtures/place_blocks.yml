@@ -23,3 +23,8 @@ now_preparing_B:
   name: B
   capacity: 10
   event: now_preparing
+
+now_preparing_unreferenced:
+  name: Unreferenced
+  capacity: 10
+  event: now_preparing

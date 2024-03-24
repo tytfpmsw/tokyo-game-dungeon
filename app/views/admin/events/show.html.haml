@@ -1,6 +1,19 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_admin_event_path(@event)
-\|
-= link_to 'Back', admin_events_path
+.p-admin-event-show 
+  %h1
+    = @event.name_ja
+  %table.border
+    %tr
+      %th イベント名(英語)
+      %td= @event.name_en
+    %tr
+      %th ロゴ
+      %td
+        = image_tag @event.logo_image.url
+    %tr
+      %th メイン画像
+      %td
+        = image_tag @event.main_image.url, size: '300x300'
+    %tr
+      %th ステータス
+      %td= @event.status
+  = button_to 'ブロック編集', admin_event_place_blocks_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'

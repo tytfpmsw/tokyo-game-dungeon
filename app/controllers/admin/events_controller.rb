@@ -27,7 +27,7 @@ class Admin::EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to admin_event_url(@event), notice: "Event was successfully created." }
+        format.html { redirect_to admin_event_url(@event), notice: I18n.t('admin.events.create.success') }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -57,6 +57,7 @@ class Admin::EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.permit(:name_en, :name_ja, :status)
+      params
+        .permit(:name_en, :name_ja, :status, :logo_image, :main_image)
     end
 end

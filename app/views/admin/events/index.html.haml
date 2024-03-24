@@ -1,18 +1,7 @@
-%h1 Listing admin_events
+.p-admin-events-index
+  %h1.mt-4.mb-4 イベント一覧
+  = button_to 'イベントを新規作成する', new_admin_event_path, method: :get, class: 'btn btn-primary mg-auto mb-4'
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @events.each do |event|
-      %tr
-        %td= link_to 'Show', admin_event_path(event)
-        %td= link_to 'Edit', edit_admin_event_path(event)
-
-%br
-
-= link_to 'New Event', new_admin_event_path
+  .row.justify-content-center
+    %table.col-2.mg-auto
+      = render @events

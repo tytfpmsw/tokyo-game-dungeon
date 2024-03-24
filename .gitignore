@@ -37,5 +37,6 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
+# 画像系
 /public/uploads
 /app/assets/images/exhibit_informations

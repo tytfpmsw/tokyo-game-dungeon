@@ -1,0 +1,10 @@
+- if notice
+  %div.alert.alert-success.alert-dismissible
+    %button.btn-close{ type: 'button', data: { bs: { dismiss: 'alert' } } }
+      %span.close-icon
+    = notice
+- if alert
+  %div.alert.alert-danger.alert-dismissible
+    %button.btn-close{ type: 'button', data: { bs: { dismiss: 'alert' } } }
+      %span.close-icon
+    = alert

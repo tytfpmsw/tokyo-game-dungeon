@@ -1,0 +1,120 @@
+.p-portal {
+
+  background-color: lavenderblush;
+
+  .inner {
+    padding-top: 20px;
+    width: 100%;
+
+    .scheduled-event-wrapper {
+      padding: 10px;
+
+      .scheduled-event-header {
+        border-radius: 20px 20px 0 0;
+        background-color: chocolate;
+        color: white;
+
+        h2 {
+          margin: 0;
+          padding: 10px;
+          text-align: start;
+          font-size: 1.5rem;
+        }
+      }
+
+      .scheduled-event-body {
+        background-color: white;
+        padding: 10px;
+
+        table {
+          margin: 0 auto;
+
+          h3 {
+            font-size: 1rem;
+            }
+
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        } 
+      }
+
+      .scheduled-event-footer {
+        height: 30px;
+        border-radius: 0 0 20px 20px;
+        background-color: white;
+      }
+    }
+
+    .menu {
+      padding: 10px;
+
+      .menu-header {
+        border-radius: 20px 20px 0 0;
+        background-color: chocolate;
+        color: white;
+
+        h2 {
+          margin: 0;
+          padding: 10px;
+          text-align: start;
+          font-size: 1.5rem;
+        }
+      }
+
+      .menu-body {
+        background-color: white;
+        padding: 10px;
+        text-align: start;
+      }
+
+      .menu-footer {
+        height: 30px;
+        border-radius: 0 0 20px 20px;
+        background-color: white;
+      }
+    }
+
+    .past-event-wrapper {
+      padding: 10px;
+
+      .past-event-header {
+        border-radius: 20px 20px 0 0;
+        background-color: chocolate;
+        color: white;
+
+        h2 {
+          margin: 0;
+          padding: 10px;
+          text-align: start;
+          font-size: 1.5rem;
+        }
+      }
+
+      .past-event-body {
+        background-color: white;
+        padding: 10px;
+
+        table {
+          margin: 0 auto;
+
+          h3 {
+            font-size: 1rem;
+          }
+
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        }
+      }
+
+      .past-event-footer {
+        height: 30px;
+        border-radius: 0 0 20px 20px;
+        background-color: white;
+      }
+    }
+  }
+}

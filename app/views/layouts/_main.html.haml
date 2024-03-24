@@ -1,3 +1,5 @@
 %main.l-main
   = turbo_frame_tag 'modal'
-  = yield
+  = render 'layouts/admin' if admin?
+  = render 'layouts/exhibitor' if exhibitor?
+  = render 'layouts/front' if front?

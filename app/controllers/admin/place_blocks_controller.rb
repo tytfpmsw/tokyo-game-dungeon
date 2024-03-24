@@ -7,6 +7,11 @@ class Admin::PlaceBlocksController < ApplicationController
   # GET /admin_place_blocks or /admin_place_blocks.json
   def index
     @place_blocks = PlaceBlock.where(event_id: @event.id)
+
+    @search = PlaceBlock.ransack(params[:q])
+    @search.sorts = 'id asc' if @search.sorts.empty?
+
+    @place_blocks = @search.result.page(params[:page])
   end
 
   # GET /admin_place_blocks/1 or //admin_place_blocks/1.json
@@ -26,14 +31,10 @@ class Admin::PlaceBlocksController < ApplicationController
   def create
     @place_block = PlaceBlock.new(place_block_params)
 
-    respond_to do |format|
-      if @place_block.save
-        format.html { redirect_to admin_event_place_block_url(@event, @place_block), notice: "Place block was successfully created." }
-        format.json { render :show, status: :created, location: @place_block }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @place_block.errors, status: :unprocessable_entity }
-      end
+    if @place_block.save
+      flash.now.notice = "ブロックを作成しました。"
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -53,11 +54,7 @@ class Admin::PlaceBlocksController < ApplicationController
   # DELETE /admin_place_blocks/1 or /admin_place_blocks/1.json
   def destroy
     @place_block.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to admin_event_place_blocks_url, notice: "Place block was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    flash.now.notice = "ブロックを削除しました。"
   end
 
   private
@@ -72,6 +69,10 @@ class Admin::PlaceBlocksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def place_block_params
-      params.permit(:name, :capacity, :event_id)
+      params.except(
+      :authenticity_token,
+      :commit,
+      :subdomain
+      ).permit(:name, :capacity, :event_id)
     end
 end

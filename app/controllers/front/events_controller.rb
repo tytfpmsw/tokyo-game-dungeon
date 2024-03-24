@@ -1,9 +1,9 @@
 class Front::EventsController < ApplicationController
     def index
-        @events = EventMasters.all
+        @events = Event.all
     end
     
     def show
-        @event = EventMasters.find(params[:id])
+        @event = Event.find(params[:id])
     end
 end

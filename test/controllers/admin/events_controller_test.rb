@@ -34,7 +34,7 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
   end
 
   test "should update event" do
-    patch admin_event_url(@event), params: { event: {  } }
+    patch admin_event_url(@event), params: { name_ja: "テスト" }
     assert_redirected_to admin_event_url(@event)
   end
 end

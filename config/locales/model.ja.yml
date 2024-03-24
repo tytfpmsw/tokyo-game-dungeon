@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      event: イベント
+  views:
+    footer:
+      copyright: "©東京ゲームダンジョン準備会"

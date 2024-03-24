@@ -3,13 +3,17 @@
 
 // Layouts
 @forward './layouts/main';
-@forward './layouts/header';
+@forward './layouts/footer';
 
 // Pages
 @forward './pages/admin/home';
-@forward './pages/front/home';
+@forward './pages/front/portal';
+@forward './pages/front/event';
 @forward './pages/front/exhibit_informations';
 @forward './pages/exhibitor/home';
 @forward './pages/exhibitor/exhibit_submission_new';
+
+@forward './front/event/header';
+@forward './front/portal/header';
 
 @import 'bootstrap';

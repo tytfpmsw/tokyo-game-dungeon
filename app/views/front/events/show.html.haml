@@ -1,0 +1,53 @@
+= render 'front/events/header', event: @event
+.p-event-show
+  .inner
+    .main-banner
+      = image_tag @event.main_image.url
+      
+    = render 'front/events/divider'
+
+    .event-summary-wrapper
+      .event-summary-header
+        %h2 イベント概要
+      .event-summary-body.container
+        .row
+          .left.col-6
+            %h3 インディ開発者主催の<br/>インディゲーム展示会
+            %p 東京ゲームダンジョンは国内の個人や小規模チームが制作するデジタル・ゲーム（インディゲーム）の展示会です。出展者は手頃な料金と充実した設備で、自作ゲームの魅力を伝えることができます。来場者は会場でゲームを試遊・購入したり、開発者と交流することができます。主催者も個人でゲームを作ってます。
+          .right.col-6
+            = image_tag 'tgd4_venue.jpeg'
+
+    = render 'front/events/divider'
+
+    .event-news-wrapper
+      .event-news-header
+        %h2 お知らせ
+        %p
+          = "#{@event.name_ja}の出展申込は終了しました！お申込ありがとうございます！"
+      .event-news-body.container
+        .row
+          .content.col-4
+            .card
+              = image_tag 'CharacterIcon_300x300_1.png'
+              %h4
+                = "#{@event.name_ja}開催のお知らせ"
+              %p 
+                次回はx月x日に開催します。
+                %br 
+                  汝、締切が欲しいか...？
+              = link_to '詳細'
+          .content.col-4
+            .card
+              = image_tag 'CharacterIcon_300x300_2.png'
+              %h4 出展規約
+              %p 
+                出店を希望される方はまず規約をご確認ください。
+                %br
+                  面倒臭いと思いますが、必ず読んでから申し込んでください。
+              = link_to '詳細'
+          .content.col-4
+            .card
+              = image_tag 'CharacterIcon_300x300_3.png'
+              %h4 Disord
+              %p 出展を希望される方は申し込む前にDiscordサーバーにご参加ください。連絡はDiscordでおこないます。
+              = link_to 'Discord'

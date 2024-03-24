@@ -3,6 +3,7 @@ require "test_helper"
 class Admin::PlaceBlocksControllerTest < Admin::IntegrationTest
   setup do
     @place_block = place_blocks(:now_preparing_A)
+    @unreferenced_place_block = place_blocks(:now_preparing_unreferenced)
     @event = events(:now_preparing)
   end
 
@@ -18,10 +19,8 @@ class Admin::PlaceBlocksControllerTest < Admin::IntegrationTest
 
   test "should create place_block" do
     assert_difference("PlaceBlock.count") do
-      post admin_event_place_blocks_url(@event), params: { name: "test", capacity: 1, event: @event}
+      post admin_event_place_blocks_url(@event), params: { name: "test", capacity: 1, event: @event }
     end
-
-    assert_redirected_to admin_event_place_block_url(@event, PlaceBlock.last)
   end
 
   test "should show place_block" do
@@ -41,12 +40,8 @@ class Admin::PlaceBlocksControllerTest < Admin::IntegrationTest
   end
 
   test "should destroy admin_place_block" do
-    post admin_event_place_blocks_url(@event), params: { name: "destroyTest", capacity: 1, event_id: @event.id}
-
     assert_difference("PlaceBlock.count", -1) do
-      delete admin_event_place_block_url(@event, PlaceBlock.last)
+      delete admin_event_place_block_url(@event, @unreferenced_place_block)
     end
-
-    assert_redirected_to admin_event_place_blocks_url
   end
 end

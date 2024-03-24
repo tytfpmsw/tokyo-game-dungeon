@@ -31,3 +31,26 @@ include Devise::Test::IntegrationHelpers
     sign_in exhibitors(:newbie)
   end
 end
+
+class Front::IntegrationTest < ActionDispatch::IntegrationTest
+  
+  setup do
+    host! "tokyogamedungeon.com"
+  end
+end
+
+class SystemTestCase < ActionDispatch::SystemTestCase
+  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+end
+
+class SystemTestCase < ActionDispatch::SystemTestCase
+  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+end
+
+class SystemTestCase < ActionDispatch::SystemTestCase
+  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+end
+
+class SystemTestCase < ActionDispatch::SystemTestCase
+  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+end

@@ -1,4 +1,5 @@
 class Front::PortalController < ApplicationController
   def index
+    @events = Event.all
   end
 end
