@@ -7,6 +7,8 @@
 
 // Pages
 @forward './pages/admin/home';
+@forward './pages/admin/header';
+@forward './pages/admin/sidemenu';
 @forward './pages/front/portal';
 @forward './pages/front/event';
 @forward './pages/front/exhibit_informations';

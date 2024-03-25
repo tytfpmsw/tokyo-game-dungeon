@@ -30,3 +30,13 @@ newbie_exhibit:
   circle_name: サークル3
   place_block: now_preparing_A
   place_number: 3
+
+destroyable_exhibit:
+  exhibitor: destroyable_exhibitor
+  title: 削除用タイトル
+  description: 削除用説明
+  movie_url: https://www.youtube.com/watch?=destroyable
+  event: now_preparing
+  circle_name: サークル4
+  place_block: now_preparing_A
+  place_number: 4

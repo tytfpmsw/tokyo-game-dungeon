@@ -6,6 +6,7 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
     @event = events(:now_preparing)
     @exhibitor = exhibitors(:newbie)
     @exhibitor_exhibited_and_not_registered = exhibitors(:has_exhibited_and_not_registered)
+    @destroyable_exhibitor = exhibitors(:destroyable_exhibitor)
   end
 
   test "should get index" do
@@ -23,9 +24,7 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
   test "should create new exhibitor" do
     @exhibitor_count = Exhibitor.count
     @exhibit_information_count = ExhibitInformation.count
-    post(admin_event_exhibitors_url(@event.id), params: { email: 'unittest@example.com' })
-
-    assert_response :success
+    post(admin_event_exhibitors_url(@event.id), params: { email: 'unittest@example.com', name: 'unittest', discord_name: 'unittestdiscord'})
 
     created_exhibitor = Exhibitor.find_by(email: 'unittest@example.com')
 
@@ -49,5 +48,12 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
 
     assert_equal(@exhibitor_count, Exhibitor.count)
     assert_equal(@exhibit_information_count + 1, ExhibitInformation.count)
+  end
+
+  test "should destroy exhibit_information" do
+    @exhibit_information_count = ExhibitInformation.count
+    delete(admin_event_exhibitor_url(@event.id, @destroyable_exhibitor.id))
+
+    assert_equal(@exhibit_information_count - 1, ExhibitInformation.count)
   end
 end

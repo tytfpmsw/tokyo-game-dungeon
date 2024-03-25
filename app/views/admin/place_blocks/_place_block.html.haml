@@ -1,10 +1,10 @@
 = turbo_frame_tag place_block do
   .row.py-2.border-top
-    .col-4.my-auto
+    .col-3.my-auto
       =place_block.name
-    .col-4.my-auto
+    .col-3.my-auto
       =place_block.capacity
-    .col-4
+    .col-3
       .d-flex.justify-content-end
         =link_to icon_with_text("pencil", "編集"), edit_admin_event_place_block_path(@event, place_block), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
         =button_to "削除", admin_event_place_block_url(@event, place_block), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "place-blocks" }

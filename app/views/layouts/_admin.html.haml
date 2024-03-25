@@ -1,1 +1,8 @@
-= yield
+.admin-wrapper.container
+  .row
+    = render 'admin/shared/header'
+  .row
+    .col-4
+      = render 'admin/shared/sidemenu'
+    .col-8
+      = yield

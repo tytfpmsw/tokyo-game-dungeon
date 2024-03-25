@@ -1,0 +1,8 @@
+%p{ style: "color: green" }
+  = notice
+= render @exhibitor
+
+
+%div
+  = link_to 'Edit', edit_admin_event_exhibitor_path(@event, @exhibitor)
+  = link_to 'Back', admin_event_exhibitors_path

@@ -1,0 +1,12 @@
+= turbo_frame_tag exhibitor do
+  .row.py-2.border-top
+    .col-3.my-auto
+      = exhibitor.email
+    .col-3.my-auto
+      = exhibitor.name
+    .col-3.my-auto
+      = exhibitor.discord_name
+    .col-3
+      .d-flex.justify-content-end
+        =link_to icon_with_text("pencil", "編集"), edit_admin_event_exhibitor_path(@event, exhibitor), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
+        =button_to "削除", admin_event_exhibitor_url(@event, exhibitor), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "exhibitors" }

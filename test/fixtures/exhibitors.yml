@@ -16,3 +16,8 @@ newbie:
   email: newbie@example.com
 
 # 「過去に出展したことがなく、今回も出展登録していない出展者」はexhibitorsに存在し得ないので省略
+
+# 削除テスト用
+destroyable_exhibitor:
+  name: destroable_exhibitor
+  email: destroyable@example.com

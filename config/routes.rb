@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       root to: 'home#index'
       resources :events do
         resources :place_blocks
-        resources :exhibitors, only: [:index, :new, :create]
+        resources :exhibitors
         resources :exhibit_submissions do
           # memberでidを含むURLを生成する 例: /:event_id/exhibit_submissions/:exhibit_submission_id/approve
           member do
@@ -26,7 +26,6 @@ Rails.application.routes.draw do
             post :reject
           end
         end
-        resources :exhibitors, only: [:index, :new, :create]
       end
     end
   end
