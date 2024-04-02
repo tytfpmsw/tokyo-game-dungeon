@@ -1,6 +1,7 @@
 = turbo_frame_tag exhibitor do
   = bootstrap_form_with(url: admin_event_exhibitors_url, data: { action: "turbo:submit-end->modal#close"}) do |form|
     = form.email_field :email
+    = form.text_field :password
     = form.text_field :name
     = form.text_field :discord_name
     = form.primary

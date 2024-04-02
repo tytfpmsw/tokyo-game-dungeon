@@ -3,5 +3,6 @@
   = button_to 'イベントを新規作成する', new_admin_event_path, method: :get, class: 'btn btn-primary mg-auto mb-4'
 
   .row.justify-content-center
-    %table.col-2.mg-auto
+    .col-4.mg-auto.mb-4
+    %table
       = render @events

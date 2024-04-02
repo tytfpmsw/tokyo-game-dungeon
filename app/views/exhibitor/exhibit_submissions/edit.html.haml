@@ -1,0 +1,20 @@
+.p-exhibitor-exhibit-submission-new
+  %h1 出展情報の編集
+
+  = form_with url: exhibitor_event_exhibit_submissions_path do |f|
+    %table
+      %tr
+        %th= f.label :title, 'タイトル'
+        %td= f.text_field :title, value: @exhibit_submission&.title
+      %tr
+        %th= f.label :description, '説明'
+        %td= f.text_area :description, value: @exhibit_submission&.description
+      %tr
+        %th= f.label :movie_url, '動画URL'
+        %td= f.text_field :movie_url, value: @exhibit_submission&.movie_url
+      %tr
+        %th= f.label :image, '画像'
+        %td= f.file_field :image
+    .submit-buttons
+      = f.submit '提出する'
+  = button_to '戻る', exhibitor_event_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'

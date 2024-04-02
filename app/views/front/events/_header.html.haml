@@ -11,7 +11,7 @@
       %ul
         - if @event.present?
           %li.page-item.page-item-has-children
-            = link_to front_event_path(@event) do
+            = link_to front_event_exhibit_informations_path(@event) do
               = @event.name_ja
         %li.page-item.page-item-has-children
           = link_to front_root_path do

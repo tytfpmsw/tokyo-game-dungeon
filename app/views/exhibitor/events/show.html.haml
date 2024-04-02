@@ -1,2 +1,13 @@
-%h1 Exhibitor::Events#show
-%p Find me in app/views/exhibitor/events/show.html.haml
+.p-exhibitor-event-show.container
+  %h1
+    = @event.name_ja
+  .row.justify-content-center
+    .col-4.mg-auto.mb-4
+      %table.border
+        %tr
+          %td
+            = image_tag @event.logo_image.url
+        %tr
+          %td
+            = image_tag @event.main_image.url, size: '300x300'
+  = button_to '出展情報提出', new_exhibitor_event_exhibit_submission_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'

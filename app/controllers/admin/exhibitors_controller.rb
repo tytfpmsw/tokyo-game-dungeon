@@ -18,9 +18,6 @@ class Admin::ExhibitorsController < ApplicationController
     @exhibitor = Exhibitor.new
   end
 
-  def edit
-  end
-
   def create
     @exhibitor = Exhibitor.find_by(email: exhibitor_params[:email])
 
@@ -34,7 +31,8 @@ class Admin::ExhibitorsController < ApplicationController
     # 過去に出展がない場合exhibitorを新規作成
     unless @exhibitor
       @init_password = SecureRandom.hex(8)
-      @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: @init_password, password_confirmation: @init_password)
+      # @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: @init_password, password_confirmation: @init_password)
+      @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: params[:password], password_confirmation: params[:password])
       @exhibitor.save
       @exhibitor = Exhibitor.find_by(email: params[:email])
     end
@@ -45,6 +43,9 @@ class Admin::ExhibitorsController < ApplicationController
     flash.now.notice = "出展者を登録しました。"
   end
 
+  def edit
+  end
+  
   def update
     @exhibitor = Exhibitor.find(params[:id])
     @exhibitor.update(exhibitor_params)
@@ -72,7 +73,8 @@ class Admin::ExhibitorsController < ApplicationController
       :subdomain
       ).permit(
         :email, 
-        :name, 
+        :name,
+        :password,
         :discord_name, 
         :event_id)
   end
