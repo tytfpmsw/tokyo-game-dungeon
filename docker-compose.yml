@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.2
+    container_name: tgd-db-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tokyo_game_dungeon_develop
+      MYSQL_USER: tgd_admin
+      MYSQL_PASSWORD: tgd_admin
+      TZ: Asia/Tokyo
+    ports:
+        - 3306:3306
+    volumes:
+        # db-storeというボリュームをコンテナ内の/var/lib/mysqlにマウント
+        - tgd-db-volume:/var/lib/mysql
+volumes:
+  tgd-db-volume:
