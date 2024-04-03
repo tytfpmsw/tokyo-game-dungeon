@@ -24,30 +24,120 @@
         %h2 お知らせ
         %p
           = "#{@event.name_ja}の出展申込は終了しました！お申込ありがとうございます！"
-      .event-news-body.container
-        .row
-          .content.col-4
-            .card
-              = image_tag 'CharacterIcon_300x300_1.png'
-              %h4
-                = "#{@event.name_ja}開催のお知らせ"
-              %p 
-                次回はx月x日に開催します。
-                %br 
-                  汝、締切が欲しいか...？
-              = link_to '詳細'
-          .content.col-4
-            .card
-              = image_tag 'CharacterIcon_300x300_2.png'
-              %h4 出展規約
-              %p 
-                出店を希望される方はまず規約をご確認ください。
-                %br
-                  面倒臭いと思いますが、必ず読んでから申し込んでください。
-              = link_to '詳細'
-          .content.col-4
-            .card
-              = image_tag 'CharacterIcon_300x300_3.png'
-              %h4 Disord
-              %p 出展を希望される方は申し込む前にDiscordサーバーにご参加ください。連絡はDiscordでおこないます。
-              = link_to 'Discord'
+      .event-news-body
+        .content
+          .card
+            = image_tag 'CharacterIcon_300x300_1.png'
+            %h3
+              = "#{@event.name_ja}開催のお知らせ"
+            %p 
+              次回はx月x日に開催します。
+              %br 
+                汝、締切が欲しいか...？
+            = link_to '詳細'
+        .content
+          .card
+            = image_tag 'CharacterIcon_300x300_2.png'
+            %h3 出展規約
+            %p 
+              出店を希望される方はまず規約をご確認ください。
+              %br
+                面倒臭いと思いますが、必ず読んでから申し込んでください。
+            = link_to '詳細'
+        .content
+          .card
+            = image_tag 'CharacterIcon_300x300_3.png'
+            %h3 Disord
+            %p 出展を希望される方は申し込む前にDiscordサーバーにご参加ください。連絡はDiscordでおこないます。
+            = link_to 'Discord'
+    
+    = render 'front/events/divider'
+
+    .event-recommend-wrapper
+      %h2 （出展）こんな人におすすめ！
+      .event-recommend-body
+        .content
+          .card
+            .icon-box
+              %i.fa-solid.fa-stopwatch.mb-2
+            %h3 締切がほしい人
+            %p 
+              ゲームを完成させるために締切が欲しい！
+              締切がないとダラけてしまうという方へ。
+              作品がエターナりそうな場合は、出展申込して腹をくくりましょう！
+        .content
+          .card
+            .icon-box
+              %i.fa-solid.fa-eye.mb-2
+            %h3 作品を見て欲しい人
+            %p 
+              自作ゲームをリーズナブルに宣伝したい！
+              作品へのフィードバックがほしいという方へ。
+              デカい机であなたの作品の魅力を存分にアピールしてください！
+        .content
+          .shakehands-icon
+          .card
+            .icon-box
+              %i.fa-solid.fa-handshake.mb-2
+            %h3 交流したい人
+            %p 
+              同じインディ開発者やインディゲーム好きとつながりたい！
+              いろんな作品を見て刺激を受けたい方へ。
+              周りにゲーム作ってる人がいなくてもここにはたくさんいます。
+    
+    = render 'front/events/divider'
+    
+    .event-feature-wrapper
+      %h2 東京ゲームダンジョン3つの特徴
+      .event-feature-body
+        .content
+          = image_tag 'point1.jpg'
+          %h3 駅近で新しい会場
+          %p 
+            浜松町駅から5分、2020年オープンの新しい展示施設。
+            出展者用Wi-Fiや作品PV上映用の200㌅スクリーンを用意！
+            室温・換気もバッチリ！
+        .content
+          = image_tag 'point2.jpg'
+          %h3 料金安く机デカい
+          %p 
+            出展料5,500円、入場料750円と他イベントより圧倒的に安い！
+            しかもデカい机(180x90cm)で自作ゲームを自由に展示可能！
+        .content
+          = image_tag 'point3.jpg'
+          %h3 インディに優しい
+          %p 
+            主催もインディ開発者！作品審査はナシ！
+            他にない自由度の高さで、インディらしいトガったイベントを目指しています！
+    
+    = render 'front/events/divider'
+    
+    .event-venue-map-wrapper
+      %h2 会場地図
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12967.548422945705!2d139.760769!3d35.655153!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b60c0d52981%3A0x5db20f81d038f20c!2z5p2x5Lqs6YO956uL55Sj5qWt6LK_5piT44K744Oz44K_44O85rWc5p2-55S66aSo!5e0!3m2!1sja!2sjp!4v1712068976525!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    = render 'front/events/divider'
+
+    .event-sponsor-wrapper
+      %h2 協賛
+      .event-sponsor-body
+      .event-sponsor-footer
+        = image_tag 'Ruis0-1.gif'
+        
+    = render 'front/events/divider'
+
+    .event-organizer-wrapper
+      %h2 主催
+      .event-organizer-body
+        .content
+          = image_tag 'iwski.png'
+          .organizer-name
+            %h3 岩崎
+            %p @iwski
+          .organizer-info 
+            %p 
+              ゲーム会社で働いたことはないが、なぜかゲーム開発沼にハマる。<br/>
+              2016年から<a href="https://indiegame.connpass.com/" target="_blank" rel="noopener">ゲーム開発のもくもく会</a>を100回以上開催、2022年に東京ゲームダンジョンを立ち上げる。<br/>
+              写真は愛犬のジョー。
+
+          
