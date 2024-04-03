@@ -1,6 +1,5 @@
 class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
 
-  before_action :authenticate_exhibitor!
   before_action :set_event
   before_action :set_exhibit_information
   before_action :set_exhibitor

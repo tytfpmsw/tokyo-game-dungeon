@@ -1,6 +1,5 @@
 class Admin::PlaceBlocksController < Admin::ApplicationController
 
-  before_action :authenticate_administrator!
   before_action :set_event
   before_action :set_place_block, only: %i[ show edit update destroy ]
 
