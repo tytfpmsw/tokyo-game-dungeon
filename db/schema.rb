@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_25_115706) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_131505) do
   create_table "administrators", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -87,9 +87,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_115706) do
     t.index ["event_id"], name: "index_place_blocks_on_event_id"
   end
 
+  create_table "sponsors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sponsorships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "sponsor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "sponsor_id"], name: "index_sponsorships_on_event_id_and_sponsor_id", unique: true
+    t.index ["event_id"], name: "index_sponsorships_on_event_id"
+    t.index ["sponsor_id"], name: "index_sponsorships_on_sponsor_id"
+  end
+
   add_foreign_key "exhibit_informations", "events"
   add_foreign_key "exhibit_informations", "exhibitors"
   add_foreign_key "exhibit_informations", "place_blocks"
   add_foreign_key "exhibit_submissions", "exhibit_informations"
   add_foreign_key "place_blocks", "events"
+  add_foreign_key "sponsorships", "events"
+  add_foreign_key "sponsorships", "sponsors"
 end
