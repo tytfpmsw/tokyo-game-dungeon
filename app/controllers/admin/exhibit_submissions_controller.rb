@@ -1,6 +1,5 @@
-class Admin::ExhibitSubmissionsController < ApplicationController
+class Admin::ExhibitSubmissionsController < Admin::ApplicationController
 
-  before_action :authenticate_administrator!
   before_action :set_event
 
   def index

@@ -1,4 +1,4 @@
-class Exhibitor::EventsController < ApplicationController
+class Exhibitor::EventsController < Exhibitor::ApplicationController
 
   before_action :authenticate_exhibitor!
   before_action :set_event

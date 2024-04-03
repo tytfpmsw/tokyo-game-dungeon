@@ -1,4 +1,4 @@
-class Admin::PlaceBlocksController < ApplicationController
+class Admin::PlaceBlocksController < Admin::ApplicationController
 
   before_action :authenticate_administrator!
   before_action :set_event

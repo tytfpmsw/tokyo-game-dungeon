@@ -1,0 +1,2 @@
+module Exhibitor::ApplicationHelper
+end

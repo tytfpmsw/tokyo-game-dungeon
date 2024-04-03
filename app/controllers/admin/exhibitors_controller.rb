@@ -1,6 +1,5 @@
-class Admin::ExhibitorsController < ApplicationController
+class Admin::ExhibitorsController < Admin::ApplicationController
 
-  before_action :authenticate_administrator!
   before_action :set_event
 
   def index
