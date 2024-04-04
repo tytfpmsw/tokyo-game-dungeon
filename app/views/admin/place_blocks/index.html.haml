@@ -3,40 +3,38 @@
 
 .card.shadow.mt-3 
   .card-header
-    =icon_with_text("search", "検索条件")
+    = icon_with_text("search", "検索条件")
   .card-body
     =search_form_for(@search, url: admin_event_place_blocks_path(@event), html: { data: { turbo_frame: "place-blocks", controller: "search_form", action: "input->search_form#submit" } }) do |f|
       .row.g3.mb-3
-        .col-4.col-xl-2
-          =f.label :name_cont, "ブロック名", class: "form-label"
-          =f.search_field :name_cont, class: "form-control"
-        .col-4.col-xl-2
-          =f.label :capacity_gteq, "ブース数(以上)", class: "form-label"
-          =f.search_field :capacity_gteq, class: "form-control"
-        .col-4.col-xl-2
+        .col-3.col-xl-2
+          = f.label :name_cont, "ブロック名", class: "form-label"
+          = f.search_field :name_cont, class: "form-control"
+        .col-3.col-xl-2
+          = f.label :capacity_gteq, "ブース数(以上)", class: "form-label"
+          = f.search_field :capacity_gteq, class: "form-control"
+        .col-3.col-xl-2
           = f.submit
-        .col-4.d-flex.align-items-end
-          =link_to "クリア", admin_event_place_blocks_path(@event), class: "btn btn-outline-secondary", method: :get
+        .col-3.d-flex.align-items-end
+          = link_to "クリア", admin_event_place_blocks_path(@event), class: "btn btn-outline-secondary", method: :get
 
 .card.shadow.mt-3
   .card-header
     = icon_with_text("table", "一覧")
   .card-body.mx-3
-    =turbo_frame_tag "place-block-list", data: { turbo_action: :advance } do
+    = turbo_frame_tag "place-block-list", data: { turbo_action: :advance } do
       .row.py-2
         .col-4.mt-auto
-          =sort_link(@search, :name, "ブロック名")
+          = sort_link(@search, :name, "ブロック名")
         .col-4.mt-auto
-          =sort_link(@search, :capacity, "ブース数")
+          = sort_link(@search, :capacity, "ブース数")
         .col-4.d-flex.justify-content-end
-          =link_to icon_with_text("plus-circle", "新規作成"), new_admin_event_place_block_path(@event), class: "btn btn-primary", data: { turbo_frame: "modal" }
+          = link_to icon_with_text("plus-circle", "新規作成"), new_admin_event_place_block_path(@event), class: "btn btn-primary", data: { turbo_frame: "modal" }
 
-  .card-body.mx-3
-    =turbo_frame_tag "place-blocks", data: { turbo_action: :advance} do
       #place-blocks
-        =turbo_frame_tag "place-block-page-#{@place_blocks.current_page}" do
-          =render @place_blocks
-          =turbo_frame_tag "place-block-page-#{@place_blocks.next_page}"
+        = turbo_frame_tag "place-blocks-page-#{@place_blocks.current_page}" do
+          = render @place_blocks
+          = turbo_frame_tag "place-blocks-page-#{@place_blocks.next_page}"
   
   .d-flex.justify-content-end.mt-3
-    =paginate @place_blocks
+    = paginate @place_blocks

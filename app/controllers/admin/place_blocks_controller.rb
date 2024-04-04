@@ -29,6 +29,7 @@ class Admin::PlaceBlocksController < Admin::ApplicationController
   # POST /admin_place_blocks or /admin_place_blocks.json
   def create
     @place_block = PlaceBlock.new(place_block_params)
+    @place_block.event_id = @event.id
 
     if @place_block.save
       flash.now.notice = "ブロックを作成しました。"
@@ -39,14 +40,10 @@ class Admin::PlaceBlocksController < Admin::ApplicationController
 
   # PATCH/PUT /admin_place_blocks/1 or /admin_place_blocks/1.json
   def update
-    respond_to do |format|
-      if @place_block.update(place_block_params)
-        format.html { redirect_to admin_event_place_block_url(@event, @place_block), notice: "Place block was successfully updated." }
-        format.json { render :show, status: :ok, location: @place_block }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @place_block.errors, status: :unprocessable_entity }
-      end
+    if @place_block.update(place_block_params)
+      flash.now.notice = "ブロックを更新しました。" 
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -72,6 +69,9 @@ class Admin::PlaceBlocksController < Admin::ApplicationController
       :authenticity_token,
       :commit,
       :subdomain
-      ).permit(:name, :capacity, :event_id)
+      ).require(:place_block).permit(
+        :name,
+        :capacity,
+        :event_id)
     end
 end

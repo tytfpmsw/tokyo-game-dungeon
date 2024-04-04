@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     }
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
+      resources :sponsors
       resources :events do
         resources :place_blocks
         resources :exhibitors

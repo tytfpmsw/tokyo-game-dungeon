@@ -1,0 +1,14 @@
+= turbo_frame_tag sponsor do
+  = bootstrap_form_with(model: [:admin, sponsor], data: { action: "turbo:submit-end->modal#close"}) do |form|
+    = form.text_field :name, value: sponsor.name
+    - if sponsor.errors[:name].present?
+      - sponsor.errors.full_messages_for(:name).each do |message|
+        .validation-error
+          = message
+    = form.file_field :image
+    = form.text_field :url, value: sponsor.url
+    - if sponsor.errors[:url].present?
+      - sponsor.errors.full_messages_for(:url).each do |message|
+        .validation-error
+          = message
+    = form.primary

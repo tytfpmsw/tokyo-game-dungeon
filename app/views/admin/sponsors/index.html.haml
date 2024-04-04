@@ -1,0 +1,39 @@
+%h4.fw-bold
+  %span 協賛
+
+.card.shadow.mt-3 
+  .card-header
+    = icon_with_text("search", "検索条件")
+  .card-body
+    = search_form_for([:admin, @search], html: { data: { turbo_frame: "sponsors", controller: "search_form", action: "input->search_form#submit" } }) do |f|
+      .row.g3.mb-3
+        .col-4.col-xl-2
+          = f.label :name_cont, "団体名", class: "form-label"
+          = f.search_field :name_cont, class: "form-control"
+        .col-4.col-xl-2
+          = f.submit
+        .col-4.d-flex.align-items-end
+          = link_to "クリア", admin_sponsors_path(@event), class: "btn btn-outline-secondary", method: :get
+
+.card.shadow.mt-3
+  .card-header
+    = icon_with_text("table", "一覧")
+  .card-body.mx-3
+    = turbo_frame_tag "sponsor-list", data: { turbo_action: :advance } do
+      .row.py-2
+        .col-3.mt-auto
+          = sort_link(@search, :name, "団体名")
+        .col-3.mt-auto
+          画像
+        .col-3.mt-auto
+          = sort_link(@search, :url, "URL")
+        .col-3.d-flex.justify-content-end
+          = link_to icon_with_text("plus-circle", "新規作成"), new_admin_sponsor_path, class: "btn btn-primary", data: { turbo_frame: "modal" }
+
+      #sponsors
+        = turbo_frame_tag "sponsors-page-#{@sponsors.current_page}" do
+          = render @sponsors
+          = turbo_frame_tag "sponsors-page-#{@sponsors.next_page}", loading: :lazy, src: path_to_next_page(@sponsors)
+  
+  .d-flex.justify-content-end.mt-3
+    = paginate @sponsors

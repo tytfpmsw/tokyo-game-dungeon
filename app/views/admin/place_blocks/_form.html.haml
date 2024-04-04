@@ -1,5 +1,13 @@
 = turbo_frame_tag place_block do
-  = bootstrap_form_with(url: admin_event_place_blocks_url, data: { action: "turbo:submit-end->modal#close"}) do |form|
-    = form.text_field :name
-    = form.number_field :capacity
+  = bootstrap_form_with(model: [:admin, @event, place_block], data: { action: "turbo:submit-end->modal#close"}) do |form|
+    = form.text_field :name, value: place_block.name
+    - if place_block.errors[:name].present?
+      - place_block.errors.full_messages_for(:name).each do |message|
+        .validation-error
+          = message
+    = form.number_field :capacity, value: place_block.capacity
+    - if place_block.errors[:capacity].present?
+      - place_block.errors.full_messages_for(:capacity).each do |message|
+        .validation-error
+          = message
     = form.primary
