@@ -13,7 +13,6 @@
     = javascript_importmap_tags
   %body
     .container-fluid.text-center
-      #flash
-        = render 'flash'
       = turbo_frame_tag 'modal'
+      #flashes.position-fixed.top-0.end-0{ style: "margin: 0.75rem" }
       = render 'layouts/main'
