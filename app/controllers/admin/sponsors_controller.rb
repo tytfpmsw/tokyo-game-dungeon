@@ -47,18 +47,19 @@ class Admin::SponsorsController < Admin::ApplicationController
   end
 
   private
-    def set_sponsor
-      @sponsor = Sponsor.find(params[:id])
-    end
+  
+  def set_sponsor
+    @sponsor = Sponsor.find(params[:id])
+  end
 
-    def sponsor_params
-      params.except(
-      :authenticity_token,
-      :commit,
-      :subdomain
-      ).require(:sponsor).permit(
-        :name, 
-        :image, 
-        :url)
-    end
+  def sponsor_params
+    params.except(
+    :authenticity_token,
+    :commit,
+    :subdomain
+    ).require(:sponsor).permit(
+      :name, 
+      :image, 
+      :url)
+  end
 end

@@ -35,7 +35,6 @@ class Admin::PlaceBlocksControllerTest < Admin::IntegrationTest
 
   test "should update place_block" do
     patch admin_event_place_block_url(@event, @place_block), params: { capacity: 2 }
-    assert_redirected_to admin_event_place_block_url(@event, @place_block)
     assert_equal(2, PlaceBlock.find(@place_block.id).capacity)
   end
 

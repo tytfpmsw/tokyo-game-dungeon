@@ -30,16 +30,21 @@ class Admin::ExhibitorsController < Admin::ApplicationController
     # 過去に出展がない場合exhibitorを新規作成
     unless @exhibitor
       @init_password = SecureRandom.hex(8)
-      # @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: @init_password, password_confirmation: @init_password)
-      @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: params[:password], password_confirmation: params[:password])
-      @exhibitor.save
+      @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: @init_password, password_confirmation: @init_password)
+      @exhibitor.save!
       @exhibitor = Exhibitor.find_by(email: params[:email])
     end
 
     # 空の出展情報を作成する
     @exhibit_information = ExhibitInformation.new(exhibitor: @exhibitor, event: @event)
     @exhibit_information.save
-    flash.now.notice = "出展者を登録しました。"
+
+    additional_message = ""
+    if @init_password
+      additional_message = "初期パスワードは#{@init_password}です。"
+      return  
+    end
+    flash.now.notice = "出展者を登録しました。" + additional_message
   end
 
   def edit
@@ -73,7 +78,6 @@ class Admin::ExhibitorsController < Admin::ApplicationController
       ).permit(
         :email, 
         :name,
-        :password,
         :discord_name, 
         :event_id)
   end

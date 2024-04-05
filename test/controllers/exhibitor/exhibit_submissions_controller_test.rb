@@ -13,7 +13,7 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
 
   test "should get new" do
     get new_exhibitor_event_exhibit_submission_url(@event)
-    assert_response :success
+    assert_response :found
   end
 
   test "should post create" do

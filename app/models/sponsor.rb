@@ -8,6 +8,9 @@ class Sponsor < ApplicationRecord
 
   mount_uploader :image, SponsorImageUploader
 
+  scope :sponsorships, ->(event) { where(id: Sponsorship.where(event_id: event.id).map(&:sponsor_id)) }
+  scope :not_sponsorships, ->(event) { where.not(id: Sponsorship.where(event: event).map(&:sponsor_id)) }
+
   def self.ransackable_attributes(auth_object = nil)
     %w[name url]
   end

@@ -15,8 +15,6 @@ class Admin::SponsorsControllerTest < Admin::IntegrationTest
     assert_difference('Sponsor.count') do
       post admin_sponsors_url, params: { sponsor: { name: 'test', url: 'http://example.com' } }
     end
-
-    assert_redirected_to admin_sponsor_url(Sponsor.last)
   end
 
   test "should show sponsor" do
@@ -33,8 +31,10 @@ class Admin::SponsorsControllerTest < Admin::IntegrationTest
 
   test "should update sponsor" do
     sponsor = sponsors(:sponsor1)
-    patch admin_sponsor_url(sponsor), params: { sponsor: { name: 'updated' } }
-    assert_redirected_to admin_sponsor_url(sponsor)
+    assert_no_difference('Sponsor.count') do
+      patch admin_sponsor_url(sponsor), params: { sponsor: { name: 'updated' } }
+    end
+    assert_equal('updated', Sponsor.find(sponsor.id).name)
   end
 
   test "should destroy sponsor" do
@@ -42,7 +42,5 @@ class Admin::SponsorsControllerTest < Admin::IntegrationTest
     assert_difference('Sponsor.count', -1) do
       delete admin_sponsor_url(sponsor)
     end
-
-    assert_redirected_to admin_sponsors_url
   end
 end

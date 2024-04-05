@@ -69,7 +69,7 @@ class Admin::PlaceBlocksController < Admin::ApplicationController
       :authenticity_token,
       :commit,
       :subdomain
-      ).require(:place_block).permit(
+      ).permit(
         :name,
         :capacity,
         :event_id)

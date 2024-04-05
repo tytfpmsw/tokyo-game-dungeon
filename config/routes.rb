@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :sponsors
       resources :events do
         resources :place_blocks
+        resources :sponsorships, only: [:index, :new, :create, :destroy]
         resources :exhibitors
         resources :exhibit_submissions do
           # memberでidを含むURLを生成する 例: /:event_id/exhibit_submissions/:exhibit_submission_id/approve

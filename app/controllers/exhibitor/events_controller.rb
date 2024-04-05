@@ -1,6 +1,6 @@
 class Exhibitor::EventsController < Exhibitor::ApplicationController
 
-  before_action :set_event
+  before_action :set_event , only: [:show]
 
   def index
     @events = Event.all
