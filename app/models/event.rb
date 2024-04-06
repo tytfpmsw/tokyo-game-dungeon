@@ -2,6 +2,7 @@ class Event < ApplicationRecord
     has_many :exhibit_informations
     has_many :sponsorships, dependent: :destroy
     has_many :sponsors, through: :sponsorships
+    has_many :floors, dependent: :destroy
 
     validates :name_en, presence: true
     validates :name_ja, presence: true

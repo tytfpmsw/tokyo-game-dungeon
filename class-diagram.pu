@@ -1,0 +1,19 @@
+@startuml class
+class event
+class exhibit_information
+class exhibit_submission
+class exhibitor
+class floor
+class place_block
+class sponsor
+class sponsorship
+
+event "1" -- "0..*" floor
+floor "1" -- "0..*" place_block
+exhibit_information "1" -- "1" exhibit_submission
+exhibit_information "1" -- "1" exhibitor
+event "1" -- "0..*" sponsorship
+sponsorship "0..*" -- "1" sponsor
+event "1" -- "0..*" exhibit_information
+exhibit_information "0..*" -- "1" place_block
+@enduml

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :sponsors
       resources :events do
         resources :place_blocks
+        resources :floors
         resources :sponsorships, only: [:index, :new, :create, :destroy]
         resources :exhibitors
         resources :exhibit_submissions do

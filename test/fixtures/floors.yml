@@ -4,22 +4,6 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-past_A:
-  name: A
-  capacity: 10
-
-past_B:
-  name: B
-  capacity: 10
-
-now_preparing_A:
-  name: A
-  capacity: 10
-
-now_preparing_B:
-  name: B
-  capacity: 10
-
-now_preparing_unreferenced:
-  name: Unreferenced
-  capacity: 10
+past_1F:
+  event: past
+  name: 1F
