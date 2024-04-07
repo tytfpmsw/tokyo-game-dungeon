@@ -15,8 +15,8 @@ development:
   <<: *default
   database: tokyo_game_dungeon_develop
   pool: 5
-  username: tgd_admin
-  password: tgd_admin
+  username: <%= Rails.application.credentials.database.development.user %>
+  password: <%= Rails.application.credentials.database.development.password %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -24,9 +24,19 @@ development:
 test:
   <<: *default
   database: tokyo_game_dungeon_test
-  username: tgd_admin
-  password: tgd_admin
+  username: <%= Rails.application.credentials.database.test.user %>
+  password: <%= Rails.application.credentials.database.test.password %>
 
 production:
   <<: *default
   database: tokyo_game_dungeon
+  username: <%= Rails.application.credentials.database.production.user %>
+  password: <%= Rails.application.credentials.database.production.password %>
+  host:
+
+staging:
+  <<: *default
+  database: tokyo_game_dungeon_staging
+  username: <%= Rails.application.credentials.database.staging.user %>
+  password: <%= Rails.application.credentials.database.staging.password %>
+  host:
