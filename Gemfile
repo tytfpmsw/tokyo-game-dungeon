@@ -91,3 +91,7 @@ gem 'kaminari'
 gem 'ransack'
 
 gem 'bootstrap_form'
+
+group :production, :staging do
+  gem 'unicorn'
+end
