@@ -33,7 +33,6 @@ production:
   database: tokyo_game_dungeon
   username: <%= Rails.application.credentials.database.production.user %>
   password: <%= Rails.application.credentials.database.production.password %>
-  host:
 
 staging:
   <<: *default
@@ -41,4 +40,3 @@ staging:
   database: tokyo_game_dungeon_staging
   username: <%= Rails.application.credentials.database.staging.user %>
   password: <%= Rails.application.credentials.database.staging.password %>
-  host:
