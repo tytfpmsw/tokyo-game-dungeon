@@ -3,7 +3,8 @@
     .modal-dialog
       .modal-content
         .modal-header
-          %h5.modal-title = title
+          %h5.modal-title
+            = title
           %button{ type: "button", class: "btn-close", data: { bs: { dismiss: "modal" } }, aria: { label: "Close" } }
         .modal-body
           = yield
