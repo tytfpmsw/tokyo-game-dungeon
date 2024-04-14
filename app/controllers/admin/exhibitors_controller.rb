@@ -42,9 +42,10 @@ class Admin::ExhibitorsController < Admin::ApplicationController
     additional_message = ""
     if @init_password
       additional_message = "初期パスワードは#{@init_password}です。"
+      flash.now.notice = "出展者を登録しました。" + additional_message
       return  
     end
-    flash.now.notice = "出展者を登録しました。" + additional_message
+    flash.now.notice = "出展者を登録しました。"
   end
 
   def edit
