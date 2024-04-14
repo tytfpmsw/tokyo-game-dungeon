@@ -50,6 +50,9 @@ Rails.application.routes.draw do
     scope module: 'front', as: 'front' do
       root to: 'portal#index'
       resources :events, only: [:index, :show] do
+        collection do
+          post :inquiry
+        end
         resources :exhibit_informations, only: [:index, :show]  
       end
     end

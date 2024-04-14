@@ -143,4 +143,29 @@
       height: auto;
     }
   }
+
+  .event-contact-wrapper {
+    .event-contact-body {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      justify-content: start;
+      align-items: center;
+      width: 80%;
+      margin: 50px auto;
+      height: auto;
+
+      .content {
+        padding: 2rem;
+        height: 100%;
+
+        .form-group {
+          margin-top: 1rem;
+        }
+
+        img {
+          max-width: 100%;
+        }
+      }
+    }
+  }
 }

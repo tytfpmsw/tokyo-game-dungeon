@@ -1,0 +1,12 @@
+= form_with url: inquiry_front_events_url do |f|
+  .form-group
+    = f.label :name, 'お名前'
+    = f.text_field :name, class: 'form-control', required: true
+  .form-group
+    = f.label :email, 'メールアドレス'
+    = f.email_field :email, class: 'form-control', required: true
+  .form-group
+    = f.label :content, 'お問い合わせ内容'
+    = f.text_area :content, class: 'form-control', required: true
+  .form-group
+    = f.submit '送信', class: 'btn btn-primary'
