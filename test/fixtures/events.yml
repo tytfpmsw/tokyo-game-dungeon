@@ -5,15 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 past:
-  name_en: one
-  name_ja: 東京ゲームダンジョン１
+  name: 東京ゲームダンジョン１
   status: 3
   logo_image: logo_image_past.png
   main_image: main_image_past.png
 
 now_preparing:
-  name_en: two
-  name_ja: 東京ゲームダンジョン２
+  name: 東京ゲームダンジョン２
   status: 1
   logo_image: logo_image_now.png
   main_image: main_image_now.png

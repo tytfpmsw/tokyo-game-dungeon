@@ -4,8 +4,7 @@ class Event < ApplicationRecord
     has_many :sponsors, through: :sponsorships
     has_many :floors, dependent: :destroy
 
-    validates :name_en, presence: true
-    validates :name_ja, presence: true
+    validates :name, presence: true
 
     mount_uploader :logo_image, EventLogoImageUploader
     mount_uploader :main_image, EventMainImageUploader

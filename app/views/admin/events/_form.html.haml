@@ -1,17 +1,26 @@
 = form_with url: admin_events_path do |f|
   %table
     %tr
-      %th= f.label :name_ja, 'イベント名(日本語)'
-      %td= f.text_field :name_ja, value: @event&.name_ja
-    %tr
-      %th= f.label :name_en, 'イベント名(英語)'
-      %td= f.text_field :name_en, value: @event&.name_en
+      %th= f.label :name, 'イベント名'
+      %td= f.text_field :name, value: @event&.name
     %tr
       %th= f.label :logo_image, 'ロゴ画像'
       %td= f.file_field :logo_image
     %tr
       %th= f.label :main_image, 'メイン画像'
       %td= f.file_field :main_image
+    %tr
+      %th= f.label :event_date, 'イベント開催日'
+      %td= f.date_field :event_date
+    %tr
+      %th= f.label :publish_date, 'Web公開日時'
+      %td= f.datetime_field :publish_date
+    %tr
+      %th= f.label :exhibit_submit_start_date, '出展情報申込開始日時'
+      %td= f.datetime_field :exhibit_submit_start_date
+    %tr
+      %th= f.label :exhibit_submit_end_date, '出展情報申込締切日時'
+      %td= f.datetime_field :exhibit_submit_end_date
   
 
   - if @event.errors.any?

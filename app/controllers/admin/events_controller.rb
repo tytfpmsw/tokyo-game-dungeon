@@ -57,6 +57,6 @@ class Admin::EventsController < Admin::ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params
-        .permit(:name_en, :name_ja, :status, :logo_image, :main_image)
+        .permit(:name, :status, :logo_image, :main_image)
     end
 end

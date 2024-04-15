@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_05_151505) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_15_133651) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -24,11 +24,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_151505) do
   end
 
   create_table "events", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.string "name_en", null: false
-    t.string "name_ja", null: false
+    t.string "name", null: false
     t.integer "status", default: 0, null: false
     t.string "logo_image"
     t.string "main_image"
+    t.datetime "publish_time"
+    t.datetime "exhibit_submit_start_time"
+    t.datetime "exhibit_submit_end_time"
+    t.string "reflection_title"
+    t.text "reflection_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

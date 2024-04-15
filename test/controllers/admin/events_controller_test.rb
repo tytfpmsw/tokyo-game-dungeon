@@ -17,7 +17,7 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
 
   test "should create event" do
     assert_difference("Event.count") do
-      post admin_events_url, params: { name_en: 'test', name_ja: 'test', status: :before_accepting }
+      post admin_events_url, params: { name: 'test', status: :before_accepting }
     end
 
     assert_redirected_to admin_event_url(Event.last)
@@ -34,7 +34,7 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
   end
 
   test "should update event" do
-    patch admin_event_url(@event), params: { name_ja: "テスト" }
+    patch admin_event_url(@event), params: { name: "テスト" }
     assert_redirected_to admin_event_url(@event)
   end
 end
