@@ -5,21 +5,26 @@
 # below each fixture, per the syntax in the comments below
 #
 past_A:
+  floor: past_1F
   name: A
   capacity: 10
 
 past_B:
+  floor: past_1F
   name: B
   capacity: 10
 
 now_preparing_A:
+  floor: now_preparing_1F
   name: A
   capacity: 10
 
 now_preparing_B:
+  floor: now_preparing_1F
   name: B
   capacity: 10
 
 now_preparing_unreferenced:
+  floor: now_preparing_1F
   name: Unreferenced
   capacity: 10

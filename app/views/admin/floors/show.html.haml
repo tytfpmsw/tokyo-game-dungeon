@@ -1,0 +1,8 @@
+%p{ style: "color: green" }
+  = notice
+= render @floor
+
+
+%div
+  = link_to 'Edit', edit_admin_floor_path(@floor)
+  = link_to 'Back', admin_floor_path(@floor)

@@ -18,8 +18,7 @@ Rails.application.routes.draw do
       root to: 'home#index'
       resources :sponsors
       resources :events do
-        resources :place_blocks
-        resources :floors
+        resources :floors, only: [:index, :new, :create]
         resources :sponsorships, only: [:index, :new, :create, :destroy]
         resources :exhibitors
         resources :exhibit_submissions do
@@ -29,6 +28,9 @@ Rails.application.routes.draw do
             post :reject
           end
         end
+      end
+      resources :floors, only: [:show, :edit, :update, :destroy] do
+        resources :place_blocks
       end
     end
   end

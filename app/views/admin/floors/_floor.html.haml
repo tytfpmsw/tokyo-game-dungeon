@@ -1,0 +1,8 @@
+= turbo_frame_tag floor do
+  .row.py-2.border-top
+    .col-3.my-auto
+      = floor.name
+    .col-3
+      .d-flex.justify-content-end
+        = link_to icon_with_text("pencil", "編集"), edit_admin_floor_path(floor), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
+        = button_to "削除", admin_floor_url(floor), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "place-blocks" }

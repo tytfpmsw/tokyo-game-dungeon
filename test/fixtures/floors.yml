@@ -6,4 +6,13 @@
 #
 past_1F:
   event: past
-  name: 1F
+  name: 1階
+
+now_preparing_1F:
+  event: now_preparing
+  name: 1階
+
+# place_blockが紐づいていないため削除可能なfloor
+deletable:
+  event: now_preparing
+  name: 2階

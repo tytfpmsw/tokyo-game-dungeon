@@ -1,0 +1,7 @@
+= bootstrap_form_with(model: [:admin, @event, floor], data: { action: "turbo:submit-end->modal#close"}) do |form|
+  = form.text_field :name, value: floor.name, :placeholder => "例：３階"
+  - if floor.errors[:name].present?
+    - floor.errors.full_messages_for(:name).each do |message|
+      .validation-error
+        = message
+  = form.primary

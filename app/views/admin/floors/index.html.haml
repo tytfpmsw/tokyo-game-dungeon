@@ -1,0 +1,17 @@
+%h4.fw-bold
+  %span
+    #{@event.name} フロア一覧
+
+.card.shadow.mt-3
+  .card-header
+    = icon_with_text("table", "一覧")
+  .card-body.mx-3
+    = turbo_frame_tag "floor-list", data: { turbo_action: :advance } do
+      .row.py-2
+        .col-4.mt-auto
+          フロア名
+        .col-4.d-flex.justify-content-end
+          = link_to icon_with_text("plus-circle", "新規作成"), new_admin_event_floor_path(@event), class: "btn btn-primary", data: { turbo_frame: "modal" }
+
+      #floors
+        = render @floors
