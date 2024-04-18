@@ -2,9 +2,10 @@ class ExhibitSubmission < ApplicationRecord
   mount_uploader :image, ImageUploader
   belongs_to :exhibit_information
 
-  enum :status, { draft: 0, submitted: 1, approved: 2, rejected: 3 }
+  enum :status, { draft: 0, submitted: 1, approved: 2, rejected: 3 }, prefix: true
 
   # validates :status, presence: true
+  validates :movie_url, format: /\A#{URI::regexp(%w(http https))}\z/
   
   def submit
     begin

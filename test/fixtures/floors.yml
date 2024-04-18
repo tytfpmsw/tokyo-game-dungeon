@@ -5,14 +5,14 @@
 # below each fixture, per the syntax in the comments below
 #
 past_1F:
-  event: past
+  event_schedule: past_1stday
   name: 1階
 
 now_preparing_1F:
-  event: now_preparing
+  event_schedule: now_preparing_1stday
   name: 1階
 
 # place_blockが紐づいていないため削除可能なfloor
 deletable:
-  event: now_preparing
+  event_schedule: now_preparing_1stday
   name: 2階

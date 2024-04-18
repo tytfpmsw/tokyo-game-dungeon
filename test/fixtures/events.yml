@@ -6,12 +6,14 @@
 #
 past:
   name: 東京ゲームダンジョン１
+  url_subdirectory: tokyo_game_dungeon_1 
   status: 3
   logo_image: logo_image_past.png
   main_image: main_image_past.png
 
 now_preparing:
   name: 東京ゲームダンジョン２
+  url_subdirectory: tokyo_game_dungeon_2
   status: 1
   logo_image: logo_image_now.png
   main_image: main_image_now.png

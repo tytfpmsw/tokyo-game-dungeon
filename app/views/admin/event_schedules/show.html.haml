@@ -1,0 +1,8 @@
+%p{ style: "color: green" }
+  = notice
+= render @event_schedule
+
+
+%div
+  = link_to 'Edit', edit_admin_event_schedule_path(@event_schedule)
+  = link_to 'Back', admin_event_schedule_path(@event_schedule)

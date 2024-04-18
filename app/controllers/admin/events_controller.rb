@@ -2,40 +2,42 @@ class Admin::EventsController < Admin::ApplicationController
 
   before_action :set_event, only: %i[ show edit update ]
 
-  # GET /admin/events or /admin/events.json
   def index
     @events = Event.all
   end
 
-  # GET /admin/events/1 or /admin/events/1.json
   def show
   end
 
-  # GET /admin/events/new
   def new
     @event = Event.new
   end
 
-  # GET /admin/events/1/edit
   def edit
   end
 
-  # POST /admin/events or /admin/events.json
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(
+      name: event_params[:name],
+      url_subdirectory: event_params[:url_subdirectory],
+      location: event_params[:location],
+      logo_image: event_params[:logo_image],
+      main_image: event_params[:main_image],
+      publish_start_at: event_params[:publish_start_at],
+      exhibit_submit_start_at: event_params[:exhibit_submit_start_at],
+      exhibit_submit_end_at: event_params[:exhibit_submit_end_at]
+      )
+    @event_schedule = EventSchedule.new(event: @event, start_at: event_params[:start_at], end_at: event_params[:end_at])
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to admin_event_url(@event), notice: I18n.t('admin.events.create.success') }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    Event.transaction do
+      result = @event.save! && @event_schedule.save!
+      redirect_to admin_event_url(@event), notice: I18n.t('admin.events.create.success')
     end
+  rescue ActiveRecord::RecordInvalid => e
+    render :new, status: :unprocessable_entity
+    flash.now.alert = e.message
   end
 
-  # PATCH/PUT /admin/events/1 or /admin/events/1.json
   def update
     respond_to do |format|
       if @event.update(event_params)
@@ -49,14 +51,23 @@ class Admin::EventsController < Admin::ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def event_params
       params
-        .permit(:name, :status, :logo_image, :main_image)
+        .permit(
+          :name,
+          :url_subdirectory,
+          :location,
+          :start_at,
+          :end_at,
+          :logo_image,
+          :main_image,
+          :publish_start_at,
+          :exhibit_submit_start_at,
+          :exhibit_submit_end_at
+          )
     end
 end

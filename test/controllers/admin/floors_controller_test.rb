@@ -3,23 +3,23 @@ require "test_helper"
 class Admin::FloorsControllerTest < Admin::IntegrationTest
   
   def setup
-    @event = events(:now_preparing)
+    @event_schedule = event_schedules(:now_preparing_1stday)
     @floor = floors(:now_preparing_1F)
   end
 
   test "should get index" do
-    get admin_event_floors_url(@event)
+    get admin_event_schedule_floors_url(@event_schedule)
     assert_response :success
   end
 
   test "should get new" do
-    get new_admin_event_floor_url(@event)
+    get new_admin_event_schedule_floor_url(@event_schedule)
     assert_response :success
   end
 
   test "should create floor" do
     assert_difference("Floor.count") do
-      post admin_event_floors_url(@event), params: { floor: { name: "test" } }
+      post admin_event_schedule_floors_url(@event_schedule), params: { floor: { name: "test" } }
     end
   end
 

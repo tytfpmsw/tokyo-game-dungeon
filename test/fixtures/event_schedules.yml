@@ -1,0 +1,9 @@
+past_1stday:
+  event: past
+  start_at: <%= 1.year.ago.strftime('%Y-%m-%d 12:00:00') %>
+  end_at: <%= 1.year.ago.strftime('%Y-%m-%d 17:00:00') %>
+
+now_preparing_1stday:
+  event: now_preparing
+  start_at: <%= 1.week.after.strftime('%Y-%m-%d 12:00:00') %>
+  end_at: <%= 1.week.after.strftime('%Y-%m-%d 17:00:00') %>

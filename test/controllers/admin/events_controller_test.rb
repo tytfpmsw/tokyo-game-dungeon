@@ -17,7 +17,16 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
 
   test "should create event" do
     assert_difference("Event.count") do
-      post admin_events_url, params: { name: 'test', status: :before_accepting }
+      post admin_events_url, params: { 
+        name: 'test',
+        url_subdirectory: 'test',
+        location: :undecided,
+        start_at: Time.zone.today + 12.hours,
+        end_at: Time.zone.today + 17.hour,
+        publish_start_at: Time.zone.now,
+        exhibit_submit_start_at: Time.zone.now,
+        exhibit_submit_end_at: Time.zone.now + 1.day
+      }
     end
 
     assert_redirected_to admin_event_url(Event.last)

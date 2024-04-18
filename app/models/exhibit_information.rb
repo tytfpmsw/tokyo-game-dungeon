@@ -5,6 +5,8 @@ class ExhibitInformation < ApplicationRecord
   belongs_to :place_block, optional: true
   has_many :exhibit_submissions, dependent: :destroy
 
+  validates :movie_url, allow_blank: true, format: /\A#{URI::regexp(%w(http https))}\z/
+
   def copy_image(source_image_path)
     file_name = File.basename(source_image_path)
     dest_suffix = 'uploads/exhibit_informations/image/' + id.to_s

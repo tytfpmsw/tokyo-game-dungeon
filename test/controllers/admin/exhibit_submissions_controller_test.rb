@@ -19,11 +19,11 @@ class Admin::ExhibitSubmissionsControllerTest < Admin::IntegrationTest
 
   test "should approve" do
     post approve_admin_event_exhibit_submission_url(@event.id, @exhibit_submission.id)
-    assert @exhibit_submission.reload.approved?
+    assert @exhibit_submission.reload.status_approved?
   end
 
   test "should reject" do
     post reject_admin_event_exhibit_submission_url(@event.id, @exhibit_submission.id)
-    assert @exhibit_submission.reload.rejected?
+    assert @exhibit_submission.reload.status_rejected?
   end
 end

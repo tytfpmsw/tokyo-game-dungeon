@@ -1,12 +1,10 @@
 class Admin::FloorsController < Admin::ApplicationController
   
+  before_action :set_event_schedule, only: %i[index new create]
+
   def index
-    if params[:event_id]
-      @event = Event.find(params[:event_id])
-      @floors = Floor.where(event_id: @event.id)
-    else
-      redirect_to admin_events_path
-    end
+    @floors = Floor.where(event_schedule: @event_schedule)
+    @event = @event_schedule.event
   end
 
   def show
@@ -14,12 +12,7 @@ class Admin::FloorsController < Admin::ApplicationController
   end
 
   def new
-    if params[:event_id]
-      @event = Event.find(params[:event_id])
-      @floor = Floor.new
-    else
-      redirect_to admin_events_path
-    end
+    @floor = Floor.new
   end
 
   def edit
@@ -27,18 +20,13 @@ class Admin::FloorsController < Admin::ApplicationController
   end
 
   def create
-    if params[:event_id]
-      @event = Event.find(params[:event_id])
-      @floor = Floor.new(floor_params)
-      @floor.event_id = @event.id
+    @floor = Floor.new(floor_params)
+    @floor.event_schedule = @event_schedule
 
-      if @floor.save
-        flash.now.notice = "フロアを作成しました。"
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @floor.save
+      flash.now.notice = "フロアを作成しました。"
     else
-      redirect_to admin_events_path
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -59,6 +47,11 @@ class Admin::FloorsController < Admin::ApplicationController
   end
 
   private
+
+    def set_event_schedule
+      @event_schedule = EventSchedule.find(params[:event_schedule_id])
+    end
+
     def floor_params
       params.require(:floor).permit(:name)
     end

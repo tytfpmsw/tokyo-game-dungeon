@@ -2,6 +2,14 @@ ja:
   activerecord:
     models:
       event: イベント
+    attributes:
+      event/status:
+        unpublished: 未公開
+        published: 公開
+        archived: アーカイブとして公開
+      event/location:
+        undecided: 未定
+        hamamatsu_tsbc: 都立産業貿易センター浜松町館
   views:
     footer:
       copyright: "©東京ゲームダンジョン準備会"

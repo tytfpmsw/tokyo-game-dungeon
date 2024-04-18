@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rails/test'
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
       root to: 'home#index'
       resources :sponsors
       resources :events do
-        resources :floors, only: [:index, :new, :create]
+        resources :event_schedules
         resources :sponsorships, only: [:index, :new, :create, :destroy]
         resources :exhibitors
         resources :exhibit_submissions do
@@ -28,6 +29,9 @@ Rails.application.routes.draw do
             post :reject
           end
         end
+      end
+      resources :event_schedules, only: [:show, :edit, :update, :destroy] do
+        resources :floors
       end
       resources :floors, only: [:show, :edit, :update, :destroy] do
         resources :place_blocks
