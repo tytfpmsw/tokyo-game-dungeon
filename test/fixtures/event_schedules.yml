@@ -7,3 +7,8 @@ now_preparing_1stday:
   event: now_preparing
   start_at: <%= 1.week.after.strftime('%Y-%m-%d 12:00:00') %>
   end_at: <%= 1.week.after.strftime('%Y-%m-%d 17:00:00') %>
+
+future_1stday:
+  event: future
+  start_at: <%= 1.month.after.strftime('%Y-%m-%d 12:00:00') %>
+  end_at: <%= 1.month.after.strftime('%Y-%m-%d 17:00:00') %>

@@ -7,7 +7,7 @@
 past:
   name: 東京ゲームダンジョン１
   url_subdirectory: tokyo_game_dungeon_1 
-  status: 3
+  status: 2
   logo_image: logo_image_past.png
   main_image: main_image_past.png
 
@@ -17,3 +17,17 @@ now_preparing:
   status: 1
   logo_image: logo_image_now.png
   main_image: main_image_now.png
+
+future:
+  name: 東京ゲームダンジョン３
+  url_subdirectory: tokyo_game_dungeon_3
+  status: 1
+  logo_image: logo_image_future.png
+  main_image: main_image_future.png
+
+unpublished:
+  name: 東京ゲームダンジョン４
+  url_subdirectory: tokyo_game_dungeon_4
+  status: 0
+  logo_image: logo_image_unpublished.png
+  main_image: main_image_unpublished.png
