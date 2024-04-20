@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       event: イベント
+      event_schedule: 開催日時
     attributes:
       event/status:
         unpublished: 未公開
@@ -10,6 +11,14 @@ ja:
       event/location:
         undecided: 未定
         hamamatsu_tsbc: 都立産業貿易センター浜松町館
+      event_schedule:
+        start_at: 開始日時
+        end_at: 終了日時
+  errors:
+    models:
+      event:
+        end_at_must_be_after_start_at: "終了日時は開始日時より後に設定してください"
+
   views:
     footer:
       copyright: "©東京ゲームダンジョン準備会"

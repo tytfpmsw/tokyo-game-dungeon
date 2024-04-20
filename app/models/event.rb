@@ -21,11 +21,15 @@ class Event < ApplicationRecord
   scope :first_day_desc, -> { joins(:event_schedule).order(Arel.sql('event_schedules.start_at DESC')) }
   scope :published_event_date_asc, -> { where(status: :published).first_day_asc }
   scope :archived_event_date_desc, -> { where(status: :archived).first_day_desc }
+
+  def all_day_has_floor?
+    event_schedule.all?(&:has_floor?)
+  end
   
   private
     def exhibit_submit_period_is_valid
       if exhibit_submit_start_at >= exhibit_submit_end_at
-        errors.add(:exhibit_submit_start_at, :invalid)
+        errors.add(:exhibit_submit_start_at, I18n.t('errors.models.event.end_at_must_be_after_start_at'))
       end  
     end
 end

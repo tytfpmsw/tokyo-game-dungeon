@@ -30,6 +30,15 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
     end
 
     assert_redirected_to admin_event_url(Event.last)
+    @event = Event.last
+    assert_equal 'test', @event.name
+    assert_equal 'test', @event.url_subdirectory
+    assert_equal 'undecided', @event.location
+    assert_equal Time.zone.today + 12.hours, @event.event_schedule.start_at
+    assert_equal Time.zone.today + 17.hours, @event.event_schedule.end_at
+    assert_equal Time.zone.now, @event.publish_start_at
+    assert_equal Time.zone.now, @event.exhibit_submit_start_at
+    assert_equal Time.zone.now + 1.day, @event.exhibit_submit_end_at
   end
 
   test "should show event" do

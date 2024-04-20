@@ -20,6 +20,7 @@ class Admin::EventsController < Admin::ApplicationController
     @event = Event.new(
       name: event_params[:name],
       url_subdirectory: event_params[:url_subdirectory],
+      status: :unpublished,
       location: event_params[:location],
       logo_image: event_params[:logo_image],
       main_image: event_params[:main_image],
@@ -27,7 +28,7 @@ class Admin::EventsController < Admin::ApplicationController
       exhibit_submit_start_at: event_params[:exhibit_submit_start_at],
       exhibit_submit_end_at: event_params[:exhibit_submit_end_at]
       )
-    @event_schedule = EventSchedule.new(event: @event, start_at: event_params[:start_at], end_at: event_params[:end_at])
+    @event_schedule = @event.event_schedule.build(start_at: event_params[:start_at], end_at: event_params[:end_at])
 
     Event.transaction do
       result = @event.save! && @event_schedule.save!
