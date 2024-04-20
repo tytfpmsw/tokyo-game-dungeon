@@ -17,6 +17,6 @@ class Front::ExhibitInformationsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:event_id])
+    @event = Event.find_by(url_subdirectory: params[:event_url_subdirectory])
   end
 end

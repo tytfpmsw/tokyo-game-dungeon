@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     }
       scope module: 'exhibitor', as: 'exhibitor' do
         root to: 'events#index'
-        resources :events, only: [:index, :show] do
+        resources :events, only: [:index, :show], param: :url_subdirectory do
           resources :exhibit_submissions
       end
     end
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   constraints subdomain: lambda { |sd| !%w[admin biz].include?(sd) } do
     scope module: 'front', as: 'front' do
       root to: 'portal#index'
-      resources :events, only: [:index, :show] do
+      resources :events, only: [:index, :show], param: :url_subdirectory do
         collection do
           post :inquiry
         end

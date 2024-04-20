@@ -13,7 +13,7 @@
                   %td
                     %h3.title
                       = event.name
-                    = link_to front_event_path(event) do
+                    = link_to front_event_path(event.url_subdirectory) do
                       .event-image
                         = image_tag event.main_image.url, size: '300x200'
           .scheduled-event-footer
@@ -27,7 +27,7 @@
                   %td
                     %h3.title
                       = event.name
-                    = link_to front_event_path(event) do
+                    = link_to front_event_path(event.url_subdirectory) do
                       .event-image
                         = image_tag event.main_image.url, size: '300x200'
           .past-event-footer

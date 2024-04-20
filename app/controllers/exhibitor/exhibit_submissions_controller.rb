@@ -11,7 +11,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
   def new
     @exhibit_submission = ExhibitSubmission.find_by(exhibit_information: @exhibit_information)
     if @exhibit_submission
-      redirect_to edit_exhibitor_event_exhibit_submission_path(@event, @exhibit_submission)
+      redirect_to edit_exhibitor_event_exhibit_submission_url(@event.url_subdirectory, @exhibit_submission)
     end
   end
 
@@ -60,7 +60,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:event_id])
+    @event = Event.find_by!(url_subdirectory: params[:event_url_subdirectory])
   end
 
   def set_exhibitor
