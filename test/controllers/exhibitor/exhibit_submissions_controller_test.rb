@@ -7,17 +7,17 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
   end
 
   test "should get index" do
-    get exhibitor_event_exhibit_submissions_url(@event)
+    get exhibitor_event_exhibit_submissions_url(@event.url_subdirectory)
     assert_response :success
   end
 
-  test "should get new" do
-    get new_exhibitor_event_exhibit_submission_url(@event)
-    assert_response :found
+  test "should get edit" do
+    get edit_exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit))
+    assert_response :success
   end
 
   test "should post create" do
-    post exhibitor_event_exhibit_submissions_url(@event),
+    post exhibitor_event_exhibit_submissions_url(@event.url_subdirectory),
     params: {
       title: 'test',
       description: 'test',

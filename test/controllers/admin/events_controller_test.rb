@@ -34,11 +34,14 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
     assert_equal 'test', @event.name
     assert_equal 'test', @event.url_subdirectory
     assert_equal 'undecided', @event.location
-    assert_equal Time.zone.today + 12.hours, @event.event_schedule.start_at
-    assert_equal Time.zone.today + 17.hours, @event.event_schedule.end_at
-    assert_equal Time.zone.now, @event.publish_start_at
-    assert_equal Time.zone.now, @event.exhibit_submit_start_at
-    assert_equal Time.zone.now + 1.day, @event.exhibit_submit_end_at
+    expected_start_at = Time.zone.today + 12.hours
+    assert_equal expected_start_at.floor, @event.event_schedule[0].start_at
+    expected_end_at = Time.zone.today + 17.hours
+    assert_equal expected_end_at.floor, @event.event_schedule[0].end_at
+    assert_equal Time.zone.now.floor, @event.publish_start_at
+    assert_equal Time.zone.now.floor, @event.exhibit_submit_start_at
+    expected_submit_end_at = Time.zone.now + 1.day
+    assert_equal expected_submit_end_at.floor, @event.exhibit_submit_end_at
   end
 
   test "should show event" do

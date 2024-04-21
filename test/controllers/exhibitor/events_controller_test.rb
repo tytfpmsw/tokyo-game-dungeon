@@ -12,7 +12,7 @@ class Exhibitor::EventsControllerTest < Exhibitor::IntegrationTest
   end
 
   test "should get show" do
-    get exhibitor_event_url(@event)
+    get exhibitor_event_url(@event.url_subdirectory)
     assert_response :success
   end
 end
