@@ -1,8 +1,8 @@
 = bootstrap_form_with(model: [:admin, @event, event_schedule], data: { action: "turbo:submit-end->modal#close"}) do |form|
   = form.datetime_field :start_at, value: event_schedule.start_at
   = form.datetime_field :end_at, value: event_schedule.end_at
-  - if floor.errors[:name].present?
-    - floor.errors.full_messages_for(:name).each do |message|
+  - if event_schedule.errors[:name].present?
+    - event_schedule.errors.full_messages_for(:name).each do |message|
       .validation-error
         = message
   = form.primary

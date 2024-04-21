@@ -1,0 +1,13 @@
+.container.p-5
+  .row
+    .col-md-12
+      %h5 パスワードの再設定
+      = form_tag exhibitor_password_path, method: :patch do
+        .form-group
+          = label_tag :password
+          = password_field_tag :password, nil, class: 'form-control'
+        .form-group
+          = label_tag :password_confirmation
+          = password_field_tag :password_confirmation, nil, class: 'form-control'
+        .form-group
+          = submit_tag 'Update Password', class: 'btn btn-primary'

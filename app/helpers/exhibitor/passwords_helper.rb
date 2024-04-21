@@ -1,0 +1,2 @@
+module Exhibitor::PasswordsHelper
+end

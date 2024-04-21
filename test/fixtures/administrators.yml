@@ -5,5 +5,5 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  email: MyString
+  email: administrator@example.com
 

@@ -2,5 +2,11 @@
   %span
     #{@event.name} 開催日程
 
-#event_schedules
-  = render @event_schedules
+= turbo_frame_tag "event-schedule-list", data: { turbo_action: :advance } do
+  .row.py-2
+    .col-4.mt-auto
+      開始時刻
+    .col-4.d-flex.justify-content-end
+      = link_to icon_with_text("plus-circle", "新規作成"), new_admin_event_event_schedule_path(@event), class: "btn btn-primary", data: { turbo_frame: "modal" }
+  #event_schedules
+    = render @event_schedules

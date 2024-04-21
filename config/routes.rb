@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   constraints subdomain: 'admin' do
     devise_for :administrators, path: 'admin', controllers: {
       sessions: 'admin/sessions',
-      registrations: 'admin/registrations'
+      registrations: 'admin/registrations',
+      passwords: 'admin/passwords'
     }
     scope module: 'admin', as: 'admin' do
       root to: 'home#index'
@@ -42,7 +43,8 @@ Rails.application.routes.draw do
   constraints subdomain: 'exhibitor' do
     devise_for :exhibitors, path: 'exhibitor', controllers: {
       sessions: 'exhibitor/sessions',
-      registrations: 'exhibitor/registrations'
+      registrations: 'exhibitor/registrations',
+      passwords: 'exhibitor/passwords'
     }
       scope module: 'exhibitor', as: 'exhibitor' do
         root to: 'events#index'
