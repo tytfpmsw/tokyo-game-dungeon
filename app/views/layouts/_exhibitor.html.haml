@@ -1,6 +1,11 @@
 .exhibitor-wrapper.container 
-  .row 
-    .col-4 
-      = render 'exhibitor/shared/sidemenu' 
-    .col-8
-      = yield
+  - if exhibitor_signed_in?
+    .row 
+      .col-4 
+        = render 'exhibitor/shared/sidemenu' 
+      .col-8
+        = yield
+  - else
+    .row
+      .col-12
+        = yield

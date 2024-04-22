@@ -1,8 +1,13 @@
 .admin-wrapper.container
-  .row
-    = render 'admin/shared/header'
-  .row
-    .col-4
-      = render 'admin/shared/sidemenu'
-    .col-8
-      = yield
+  - if administrator_signed_in?
+    .row
+      = render 'admin/shared/header'
+    .row
+      .col-4
+        = render 'admin/shared/sidemenu'
+      .col-8
+        = yield
+  - else
+    .row
+      .col-12
+        = yield
