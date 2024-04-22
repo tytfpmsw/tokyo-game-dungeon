@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_18_044432) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_150537) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_044432) do
   create_table "event_reports", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.string "title", null: false
-    t.string "url"
+    t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_event_reports_on_event_id"
@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_044432) do
     t.string "circle_name"
     t.string "title"
     t.string "description"
-    t.string "movie_url"
+    t.text "movie_url"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_044432) do
     t.bigint "exhibit_information_id", null: false
     t.string "title"
     t.string "description"
-    t.string "movie_url"
+    t.text "movie_url"
     t.string "image"
     t.integer "status"
     t.string "update_user"
@@ -125,7 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_044432) do
   create_table "sponsors", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "image"
-    t.string "url"
+    t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
