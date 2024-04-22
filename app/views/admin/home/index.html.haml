@@ -1,3 +1,3 @@
 .p-admin-home
-  %button.btn.btn-primary{ type: 'button' }
-    = link_to 'イベント一覧', admin_events_path
+  = button_to 'イベント一覧', admin_events_path, method: :get, class: 'btn btn-primary mg-auto mb-4'
+  = button_to '協賛団体一覧', admin_sponsors_path, method: :get, class: 'btn btn-primary mg-auto mb-4'

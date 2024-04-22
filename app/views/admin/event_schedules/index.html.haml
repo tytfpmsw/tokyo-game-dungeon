@@ -7,6 +7,6 @@
     .col-4.mt-auto
       開始時刻
     .col-4.d-flex.justify-content-end
-      = link_to icon_with_text("plus-circle", "新規作成"), new_admin_event_event_schedule_path(@event), class: "btn btn-primary", data: { turbo_frame: "modal" }
+      = button_to "新規作成", new_admin_event_event_schedule_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
   #event_schedules
     = render @event_schedules

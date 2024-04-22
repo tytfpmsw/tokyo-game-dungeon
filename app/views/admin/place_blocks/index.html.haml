@@ -29,7 +29,7 @@
         .col-4.mt-auto
           = sort_link(@search, :capacity, "ブース数")
         .col-4.d-flex.justify-content-end
-          = link_to icon_with_text("plus-circle", "新規作成"), new_admin_floor_place_block_path(@floor), class: "btn btn-primary", data: { turbo_frame: "modal" }
+          = button_to "新規作成", new_admin_floor_place_block_path(@floor), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
 
       #place-blocks
         = turbo_frame_tag "place-blocks-page-#{@place_blocks.current_page}" do

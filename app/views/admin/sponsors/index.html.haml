@@ -28,7 +28,7 @@
         .col-3.mt-auto
           = sort_link(@search, :url, "URL")
         .col-3.d-flex.justify-content-end
-          = link_to icon_with_text("plus-circle", "新規作成"), new_admin_sponsor_path, class: "btn btn-primary", data: { turbo_frame: "modal" }
+          = button_to "新規作成", new_admin_sponsor_path, method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
 
       #sponsors
         = turbo_frame_tag "sponsors-page-#{@sponsors.current_page}" do
