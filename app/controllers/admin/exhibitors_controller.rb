@@ -23,8 +23,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
     # すでに登録済みかつ今回のイベントに出展権限がある場合
     if @exhibitor && ExhibitInformation.where(exhibitor: @exhibitor, event: @event).exists?
       render :new, status: :unprocessable_entity
-      flash.now.alert = "すでに登録済みです。"
-      return
+      flash.now.alert = "すでに登録済みです。" and return
     end
 
     # 過去に出展がない場合exhibitorを新規作成
@@ -43,9 +42,11 @@ class Admin::ExhibitorsController < Admin::ApplicationController
     if @init_password
       additional_message = "初期パスワードは#{@init_password}です。"
       flash.now.notice = "出展者を登録しました。" + additional_message
+      # TODO: メール送信
       return  
     end
     flash.now.notice = "出展者を登録しました。"
+    # TODO: メール送信
   end
 
   def edit
@@ -63,6 +64,13 @@ class Admin::ExhibitorsController < Admin::ApplicationController
     # turbo_streamで動的に削除する対象として@exhibitorを指定
     @exhibitor = Exhibitor.find(params[:id])
     flash.now.notice = "出展権限を削除しました。"
+  end
+
+  def regenerate_password
+    @exhibitor = Exhibitor.find(params[:id])
+    @init_password = @exhibitor.regenerate_password
+    flash.now.notice = "#{@exhibitor.name}さんのパスワードを再設定しました。新規パスワードは'#{@init_password}'です。"
+    # TODO: メール送信
   end
 
   private

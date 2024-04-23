@@ -22,7 +22,11 @@ Rails.application.routes.draw do
       resources :events do
         resources :event_schedules
         resources :sponsorships, only: [:index, :new, :create, :destroy]
-        resources :exhibitors
+        resources :exhibitors do
+          member do
+            patch :regenerate_password
+          end
+        end
         resources :exhibit_submissions do
           # memberでidを含むURLを生成する 例: /:event_id/exhibit_submissions/:exhibit_submission_id/approve
           member do
