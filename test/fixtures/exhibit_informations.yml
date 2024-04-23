@@ -31,6 +31,17 @@ newbie_exhibit:
   place_block: now_preparing_A
   place_number: 3
 
+# 出展情報未提出者
+unsubmitted_exhibit:
+  exhibitor: unsubmitted
+  title: 
+  description: 
+  movie_url: 
+  event: now_preparing
+  circle_name: 
+  place_block: 
+  place_number: 
+
 destroyable_exhibit:
   exhibitor: destroyable_exhibitor
   title: 削除用タイトル

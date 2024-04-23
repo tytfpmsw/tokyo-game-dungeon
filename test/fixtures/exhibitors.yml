@@ -15,6 +15,11 @@ newbie:
   name: newbie
   email: newbie@example.com
 
+# 今回出展済みでまだ出展情報を提出していない出展者
+unsubmitted:
+  name: unsubmitted
+  email: unsubmitted@example.com
+
 # 「過去に出展したことがなく、今回も出展登録していない出展者」はexhibitorsに存在し得ないので省略
 
 # 削除テスト用

@@ -24,7 +24,7 @@ class Admin::IntegrationTest < ActionDispatch::IntegrationTest
 end
 
 class Exhibitor::IntegrationTest < ActionDispatch::IntegrationTest
-include Devise::Test::IntegrationHelpers
+  include Devise::Test::IntegrationHelpers
 
   setup do
     host! "exhibitor.tokyogamedungeon.com"

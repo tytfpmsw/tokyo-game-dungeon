@@ -1,6 +1,6 @@
 @startuml class
 class event
-class event_interview
+class event_report
 class event_schedule
 class exhibit_information
 class exhibit_submission
@@ -11,13 +11,13 @@ class sponsor
 class sponsorship
 
 event "1" -- "1..*" event_schedule
-event "1" -- "0..*" event_interview
+event "1" -- "0..*" event_report
+event "1" -- "0..*" exhibit_information
 event_schedule "1" -- "0..*" floor
 floor "1" -- "0..*" place_block
 exhibit_information "1" -- "1" exhibit_submission
-exhibit_information "1" -- "1" exhibitor
+exhibitor "1" -- "0..*" exhibit_information
 event "1" -- "0..*" sponsorship
 sponsorship "0..*" -- "1" sponsor
-event "1" -- "0..*" exhibit_information
-exhibit_information --> place_block
+place_block "1" -- "0..*" exhibit_information
 @enduml

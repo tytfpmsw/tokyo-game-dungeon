@@ -24,12 +24,3 @@ newbie_exhibit:
   status: 2
   image: dummy.png
   exhibit_information: newbie_exhibit
-
-# 新規出展者の今回の未承認申請情報
-newbie_exhibit_unapproved:
-  title: 初出展未承認タイトル
-  description: 初出展未承認説明
-  movie_url: https://www.youtube.com/watch?=newbie_unapproved
-  status: 1
-  image: dummy.png
-  exhibit_information: newbie_exhibit

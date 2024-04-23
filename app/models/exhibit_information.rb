@@ -3,8 +3,9 @@ class ExhibitInformation < ApplicationRecord
   belongs_to :event
   # 作成時には場所は決まっていないはずなのでoptional: trueとする
   belongs_to :place_block, optional: true
-  has_many :exhibit_submissions, dependent: :destroy
+  has_one :exhibit_submissions, dependent: :destroy
 
+  validates :event, uniqueness: { scope: :exhibitor }
   validates :movie_url, allow_blank: true, format: /\A#{URI::regexp(%w(http https))}\z/
 
   def copy_image(source_image_path)
