@@ -3,6 +3,7 @@ class event
 class event_report
 class event_schedule
 class exhibit_information
+class exhibit_information_place
 class exhibit_submission
 class exhibitor
 class floor
@@ -19,5 +20,6 @@ exhibit_information "1" -- "1" exhibit_submission
 exhibitor "1" -- "0..*" exhibit_information
 event "1" -- "0..*" sponsorship
 sponsorship "0..*" -- "1" sponsor
-place_block "1" -- "0..*" exhibit_information
+place_block "1" -- "0..*" exhibit_information_place
+exhibit_information "1" -- "0..*" exhibit_information_place
 @enduml

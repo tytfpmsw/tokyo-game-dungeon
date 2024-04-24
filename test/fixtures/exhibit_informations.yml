@@ -6,8 +6,6 @@ has_exhibited_and_registered_exhibit_past:
   movie_url: https://www.youtube.com/watch?=exhibited_registered1
   event: past
   circle_name: サークル1
-  place_block: past_A
-  place_number: 1
 
 # 過去出展済み・今回登録済み出展者の今回情報
 has_exhibited_and_registered_exhibit_now_preparing:
@@ -17,8 +15,6 @@ has_exhibited_and_registered_exhibit_now_preparing:
   movie_url: https://www.youtube.com/watch?=exhibited_registered2
   event: now_preparing
   circle_name: サークル2
-  place_block: now_preparing_B
-  place_number: 2
 
 # 新規出展者の今回情報
 newbie_exhibit:
@@ -28,8 +24,6 @@ newbie_exhibit:
   movie_url: https://www.youtube.com/watch?=newbie
   event: now_preparing
   circle_name: サークル3
-  place_block: now_preparing_A
-  place_number: 3
 
 # 出展情報未提出者
 unsubmitted_exhibit:
@@ -39,8 +33,6 @@ unsubmitted_exhibit:
   movie_url: 
   event: now_preparing
   circle_name: 
-  place_block: 
-  place_number: 
 
 destroyable_exhibit:
   exhibitor: destroyable_exhibitor
@@ -49,5 +41,3 @@ destroyable_exhibit:
   movie_url: https://www.youtube.com/watch?=destroyable
   event: now_preparing
   circle_name: サークル4
-  place_block: now_preparing_A
-  place_number: 4

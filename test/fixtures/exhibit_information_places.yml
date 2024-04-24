@@ -1,0 +1,14 @@
+has_exhibited_and_registered_exhibit_past_place:
+  exhibit_information: has_exhibited_and_registered_exhibit_past
+  place_block: past_A
+  place_number: 1
+
+has_exhibited_and_registered_exhibit_now_preparing_place:
+  exhibit_information: has_exhibited_and_registered_exhibit_now_preparing
+  place_block: now_preparing_B
+  place_number: 2
+
+newbie_exhibit_place:
+  exhibit_information: newbie_exhibit
+  place_block: now_preparing_A
+  place_number: 1

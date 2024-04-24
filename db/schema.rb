@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_23_142645) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_140717) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,11 +59,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_142645) do
     t.index ["url_subdirectory"], name: "index_events_on_url_subdirectory", unique: true
   end
 
+  create_table "exhibit_information_places", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "exhibit_information_id", null: false
+    t.bigint "place_block_id", null: false
+    t.integer "place_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibit_information_id", "place_block_id"], name: "idx_on_exhibit_information_id_place_block_id_57297952ff", unique: true
+    t.index ["exhibit_information_id"], name: "index_exhibit_information_places_on_exhibit_information_id"
+    t.index ["place_block_id", "place_number"], name: "idx_on_place_block_id_place_number_ec8e3797d3", unique: true
+    t.index ["place_block_id"], name: "index_exhibit_information_places_on_place_block_id"
+  end
+
   create_table "exhibit_informations", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "exhibitor_id", null: false
     t.bigint "event_id", null: false
-    t.bigint "place_block_id"
-    t.integer "place_number"
     t.string "circle_name"
     t.string "title"
     t.string "description"
@@ -73,7 +83,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_142645) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_exhibit_informations_on_event_id"
     t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id"
-    t.index ["place_block_id"], name: "index_exhibit_informations_on_place_block_id"
   end
 
   create_table "exhibit_submissions", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
@@ -142,9 +151,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_23_142645) do
 
   add_foreign_key "event_reports", "events"
   add_foreign_key "event_schedules", "events"
+  add_foreign_key "exhibit_information_places", "exhibit_informations"
+  add_foreign_key "exhibit_information_places", "place_blocks"
   add_foreign_key "exhibit_informations", "events"
   add_foreign_key "exhibit_informations", "exhibitors"
-  add_foreign_key "exhibit_informations", "place_blocks"
   add_foreign_key "exhibit_submissions", "exhibit_informations", on_delete: :cascade
   add_foreign_key "floors", "event_schedules"
   add_foreign_key "place_blocks", "floors"
