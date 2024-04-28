@@ -38,7 +38,7 @@ class Admin::SponsorsControllerTest < Admin::IntegrationTest
   end
 
   test "should destroy sponsor" do
-    sponsor = sponsors(:sponsor1)
+    sponsor = Sponsor.create(name: 'test', url: 'http://example.com')
     assert_difference('Sponsor.count', -1) do
       delete admin_sponsor_url(sponsor)
     end

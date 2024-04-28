@@ -22,10 +22,6 @@ class EventSchedule < ApplicationRecord
     event.event_schedules.order(:start_at).pluck(:id).index(id) + 1
   end
 
-  def day_count_in_event
-    event.event_schedules.count
-  end
-
   private 
     def start_at_should_be_before_end_at
       if start_at >= end_at
@@ -47,7 +43,7 @@ class EventSchedule < ApplicationRecord
     end
 
     def can_destroy?
-      if day_count_in_event <= 1
+      if event.event_schedules.count <= 1
         errors.add(:base, 'イベントには1つ以上の開催日が必要です')
         throw :abort
       end
