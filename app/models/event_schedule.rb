@@ -12,12 +12,18 @@ class EventSchedule < ApplicationRecord
   validate :start_at_should_be_before_end_at
   validate :start_at_and_end_at_should_be_same_day
 
+  before_destroy :can_destroy?
+
   def has_floors?
     floors.present?
   end
 
   def day_number_in_event
     event.event_schedules.order(:start_at).pluck(:id).index(id) + 1
+  end
+
+  def day_count_in_event
+    event.event_schedules.count
   end
 
   private 
@@ -37,6 +43,13 @@ class EventSchedule < ApplicationRecord
     def start_at_should_be_after_other_event_schedule
       if event.event_schedule.where.not(id: id).where('start_at >= ?', start_at).exists?
         errors.add(:start_at, 'は他の日程よりも後に設定してください')
+      end
+    end
+
+    def can_destroy?
+      if day_count_in_event <= 1
+        errors.add(:base, 'イベントには1つ以上の開催日が必要です')
+        throw :abort
       end
     end
 end
