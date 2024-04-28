@@ -1,7 +1,7 @@
 class EventSchedule < ApplicationRecord
   belongs_to :event
 
-  has_many :floors, dependent: :destroy
+  has_many :floors, dependent: :restrict_with_error
   has_many :place_blocks, through: :floors
   has_many :exhibit_information_places, through: :place_blocks
 

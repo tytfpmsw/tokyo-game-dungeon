@@ -1,5 +1,5 @@
 class Sponsor < ApplicationRecord
-  has_many :sponsorships, dependent: :destroy
+  has_many :sponsorships, dependent: :restrict_with_error
   has_many :events, through: :sponsorships
 
   validates :name, presence: true

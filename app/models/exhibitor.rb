@@ -6,6 +6,8 @@ class Exhibitor < ApplicationRecord
 
   validates :name, presence:true
 
+  has_many :exhibit_informations, dependent: :restrict_with_error
+
   def self.ransackable_attributes(auth_object = nil)
     %w[name email discord_name]
   end

@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   has_many :exhibit_informations
   has_many :sponsorships, dependent: :destroy
   has_many :sponsors, through: :sponsorships
-  has_many :event_schedules, dependent: :destroy
+  has_many :event_schedules, dependent: :restrict_with_error
   has_many :floors, through: :event_schedules
   has_many :place_blocks, through: :floors
   has_many :exhibit_information_places, through: :exhibit_informations
