@@ -1,7 +1,7 @@
 class ExhibitInformation < ApplicationRecord
   belongs_to :exhibitor
   belongs_to :event
-  has_one :exhibit_submissions, dependent: :destroy
+  has_one :exhibit_submission, dependent: :destroy
   has_many :exhibit_information_places
 
   validates :event, uniqueness: { scope: :exhibitor }

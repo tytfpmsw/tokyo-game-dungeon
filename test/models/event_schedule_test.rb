@@ -7,12 +7,12 @@ class EventScheduleTest < ActiveSupport::TestCase
   end
 
   test "should return true when has floor" do
-    assert @event_schedule.has_floor?
+    assert @event_schedule.has_floors?
   end
 
   test "should return false when has no floor" do
     event_schedule = event_schedules(:future_1stday)
-    assert_not event_schedule.has_floor?
+    assert_not event_schedule.has_floors?
   end
 
   test "should validate start_at should be before end_at" do

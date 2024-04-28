@@ -1,0 +1,9 @@
+.p-exhibit-information
+  - if exhibit_information.image.present?
+    = image_tag exhibit_information.image, class: 'exhibit-image'
+  - else
+    = image_tag 'noimage.jpg', class: 'exhibit-image'
+  %h2= exhibit_information.title.present? ? exhibit_information.title : '準備中'
+  %p= exhibit_information.description.present? ? exhibit_information.description : '出展者からの入稿をお待ちください！'
+  - if exhibit_information.movie_url.present?
+    = link_to image_tag('buttonPV.jpg'), exhibit_information.movie_url, class: 'exhibit-movie'

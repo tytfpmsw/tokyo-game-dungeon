@@ -4,7 +4,7 @@
     .main-banner
       = image_tag @event.main_image.url
       
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
 
     .event-summary-wrapper
       .event-summary-header
@@ -17,7 +17,7 @@
           .right.col-6
             = image_tag 'tgd4_venue.jpeg'
 
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
 
     .event-news-wrapper
       .event-news-header
@@ -31,7 +31,7 @@
             %h3
               = "#{@event.name}開催のお知らせ"
             %p 
-              次回はx月x日に開催します。
+              = "次回は#{ l @event.event_schedules.first.start_at, format: :month}に開催します。"
               %br 
                 汝、締切が欲しいか...？
             = link_to '詳細'
@@ -51,7 +51,7 @@
             %p 出展を希望される方は申し込む前にDiscordサーバーにご参加ください。連絡はDiscordでおこないます。
             = link_to 'Discord'
     
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
 
     .event-recommend-wrapper
       %h2 （出展）こんな人におすすめ！
@@ -85,7 +85,7 @@
               いろんな作品を見て刺激を受けたい方へ。
               周りにゲーム作ってる人がいなくてもここにはたくさんいます。
     
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
     
     .event-feature-wrapper
       %h2 東京ゲームダンジョン3つの特徴
@@ -110,13 +110,13 @@
             主催もインディ開発者！作品審査はナシ！
             他にない自由度の高さで、インディらしいトガったイベントを目指しています！
     
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
     
     .event-venue-map-wrapper
       %h2 会場地図
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12967.548422945705!2d139.760769!3d35.655153!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b60c0d52981%3A0x5db20f81d038f20c!2z5p2x5Lqs6YO956uL55Sj5qWt6LK_5piT44K744Oz44K_44O85rWc5p2-55S66aSo!5e0!3m2!1sja!2sjp!4v1712068976525!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
 
     .event-sponsor-wrapper
       %h2 協賛
@@ -124,7 +124,7 @@
       .event-sponsor-footer
         = image_tag 'Ruis0-1.gif'
         
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
 
     .event-organizer-wrapper
       %h2 主催
@@ -140,7 +140,7 @@
               2016年から<a href="https://indiegame.connpass.com/" target="_blank" rel="noopener">ゲーム開発のもくもく会</a>を100回以上開催、2022年に東京ゲームダンジョンを立ち上げる。<br/>
               写真は愛犬のジョー。
 
-    = render 'front/events/divider'
+    = render 'front/shared/divider'
 
     .event-contact-wrapper
       %h2 お問合せ

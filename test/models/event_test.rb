@@ -75,12 +75,12 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "should return true when all day has floor" do
-    assert @event.all_day_has_floor?, "Did not return true when all day has floor"
+    assert @event.all_day_has_floors?, "Did not return true when all day has floor"
   end
 
   test "should return false when all day has no floor" do
     event = events(:future)
-    assert_not event.all_day_has_floor?, "Did not return false when all day has no floor"
+    assert_not event.all_day_has_floors?, "Did not return false when all day has no floor"
   end
 
   test "should raise error when exhibit submit period is invalid" do

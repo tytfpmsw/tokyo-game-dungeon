@@ -20,7 +20,7 @@ class Admin::PlaceBlocksControllerTest < Admin::IntegrationTest
 
   test "should create place_block" do
     assert_difference("PlaceBlock.count") do
-      post admin_floor_place_blocks_url(@floor), params: { name: "test", capacity: 1 }
+      post admin_floor_place_blocks_url(@floor), params: { place_block: { name: "test", capacity: 1 } }
     end
   end
 
@@ -35,7 +35,7 @@ class Admin::PlaceBlocksControllerTest < Admin::IntegrationTest
   end
 
   test "should update place_block" do
-    patch admin_floor_place_block_url(@floor, @place_block), params: { capacity: 2 }
+    patch admin_floor_place_block_url(@floor, @place_block), params: { place_block: { capacity: 2 } }
     assert_equal(2, PlaceBlock.find(@place_block.id).capacity)
   end
 

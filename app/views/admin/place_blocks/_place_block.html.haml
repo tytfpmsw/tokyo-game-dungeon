@@ -1,10 +1,11 @@
 = turbo_frame_tag place_block do
   .row.py-2.border-top
     .col-3.my-auto
-      =place_block.name
+      = place_block.name
     .col-3.my-auto
-      =place_block.capacity
+      = place_block.capacity
     .col-3
       .d-flex.justify-content-end
-        =link_to icon_with_text("pencil", "編集"), edit_admin_floor_place_block_path(@floor, place_block), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
-        =button_to "削除", admin_floor_place_block_url(@floor, place_block), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "place-blocks" }
+        = link_to "出展作品割り当て", admin_place_block_assign_places_path(place_block), class: "btn btn-outline-primary", data: { turbo_frame: "_top" }
+        = link_to icon_with_text("pencil", "編集"), edit_admin_floor_place_block_path(@floor, place_block), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
+        = button_to "削除", admin_floor_place_block_url(@floor, place_block), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "place-blocks" }

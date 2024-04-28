@@ -1,7 +1,9 @@
 class EventSchedule < ApplicationRecord
   belongs_to :event
 
-  has_many :floor, dependent: :destroy
+  has_many :floors, dependent: :destroy
+  has_many :place_blocks, through: :floors
+  has_many :exhibit_information_places, through: :place_blocks
 
   validates :event, presence: true 
   validates :start_at, presence: true
@@ -10,8 +12,12 @@ class EventSchedule < ApplicationRecord
   validate :start_at_should_be_before_end_at
   validate :start_at_and_end_at_should_be_same_day
 
-  def has_floor?
-    floor.present?
+  def has_floors?
+    floors.present?
+  end
+
+  def day_number_in_event
+    event.event_schedules.order(:start_at).pluck(:id).index(id) + 1
   end
 
   private 

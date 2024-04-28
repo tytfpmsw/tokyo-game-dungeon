@@ -34,7 +34,7 @@
 
   - if @event.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this admin_event from being saved:"
+      %h2= "#{@event.errors.count}個のエラーで保存できませんでした:"
       %ul
         - @event.errors.full_messages.each do |message|
           %li= message

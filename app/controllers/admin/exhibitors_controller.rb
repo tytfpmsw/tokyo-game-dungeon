@@ -32,13 +32,14 @@ class Admin::ExhibitorsController < Admin::ApplicationController
       @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: @init_password, password_confirmation: @init_password)
       @exhibitor.save!
       @exhibitor = Exhibitor.find_by(email: params[:email])
+    else
+      @exhibitor.update(name: params[:name], discord_name: params[:discord_name])
     end
 
     # 空の出展情報を作成する
     @exhibit_information = ExhibitInformation.new(exhibitor: @exhibitor, event: @event)
     @exhibit_information.save
 
-    additional_message = ""
     if @init_password
       additional_message = "初期パスワードは#{@init_password}です。"
       flash.now.notice = "出展者を登録しました。" + additional_message
@@ -54,7 +55,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
   
   def update
     @exhibitor = Exhibitor.find(params[:id])
-    @exhibitor.update(exhibitor_params)
+    @exhibitor.update(name: params[:name], discord_name: params[:discord_name])
     flash.now.notice = "出展者情報を更新しました。"
   end
 

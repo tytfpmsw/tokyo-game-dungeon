@@ -1,0 +1,27 @@
+%h4.fw-bold
+  %span
+    %a{href: admin_event_path(@place_block.event)} #{@place_block.event.name}
+    %a{href: admin_event_event_schedule_path(@place_block.event, @place_block.event_schedule)} #{@place_block.event.event_schedules.index(@place_block.event_schedule) + 1}日目
+    %a{href: admin_floor_path(@place_block.floor)} #{@place_block.floor.name}
+    #{@place_block.name}ブロック 場所割り当て
+    -# #{@floor.event.name} #{@floor.event.event_schedules.index(@floor.event_schedule) + 1}日目 #{@floor.name} #{@place_block.name}ブロック 場所割り当て
+
+.card.shadow.mt-3
+  .card-header
+    = icon_with_text("table", "一覧")
+  .card-body.mx-3
+    = turbo_frame_tag "place-list", data: { turbo_action: :advance } do
+      .row.py-2
+        .col-3.mt-auto
+          ブロック名
+        .col-3.mt-auto 
+          番号
+        .col-3.mt-auto
+          出展作品名
+
+      #places
+        = for i in 0..@place_block.capacity.size - 1 do
+          - if @exhibit_information_places.where(place_block: @place_block, place_number: i + 1).exists?
+            = render "place", { floor: @floor, place_block: @place_block, number: i + 1, exhibit_information_title: @exhibit_information_places.find_by(place_block: @place_block, place_number: i + 1).exhibit_information.title }
+          
+            

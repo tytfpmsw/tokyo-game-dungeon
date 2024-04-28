@@ -1,0 +1,18 @@
+= turbo_frame_tag place_block do
+  .row.py-2.border-top
+    .col-3.my-auto
+      = place_block.name
+    .col-3.my-auto 
+      = number
+    .col-3.my-auto
+      = exhibit_information_title
+    .col-3
+      .d-flex.justify-content-end
+        = bootstrap_form_with(url: edit_admin_place_block_assign_place_url(place_block.id, number), method: :get, data: { turbo_frame: "modal" }) do |form|
+          = form.hidden_field :place_block_id, value: place_block.id
+          = form.hidden_field :number, value: number
+          = form.primary "割り当て", class: "btn btn-outline-primary"
+        = bootstrap_form_with(url: admin_place_block_assign_place_url(place_block.id, number), method: :delete, data: { turbo_confirm: "本当に削除しますか？", turbo_frame: place_block }) do |form|
+          = form.hidden_field :place_block_id, value: place_block.id
+          = form.hidden_field :number, value: number
+          = form.primary "解除", class: "btn btn-outline-danger"

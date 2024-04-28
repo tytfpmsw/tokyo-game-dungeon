@@ -50,6 +50,22 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
     assert_equal(@exhibit_information_count + 1, ExhibitInformation.count)
   end
 
+  test "should not create but update when exhibitor already exists" do
+    @exhibitor_count = Exhibitor.count
+    @exhibit_information_count = ExhibitInformation.count
+    post(admin_event_exhibitors_url(@event.id), params: { email: @exhibitor_exhibited_and_not_registered.email, name: 'updated_name' })
+
+    assert_equal(@exhibitor_count, Exhibitor.count)
+    assert_equal(@exhibit_information_count + 1, ExhibitInformation.count)
+    assert_equal('updated_name', Exhibitor.find(@exhibitor_exhibited_and_not_registered.id).name)
+  end
+
+  test "should update exhitibor" do
+    patch(admin_event_exhibitor_url(@event.id, @exhibitor.id), params: { name: 'updated_name' })
+
+    assert_equal('updated_name', Exhibitor.find(@exhibitor.id).name)
+  end
+
   test "should destroy exhibit_information" do
     @exhibit_information_count = ExhibitInformation.count
     delete(admin_event_exhibitor_url(@event.id, @destroyable_exhibitor.id))

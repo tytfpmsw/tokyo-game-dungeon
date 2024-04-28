@@ -12,7 +12,7 @@
         - if @event.present?
           %li.page-item.page-item-has-children
             = link_to front_event_exhibit_informations_path(@event.url_subdirectory) do
-              = @event.name
+              = "#{@event.name}出展作品一覧"
         %li.page-item.page-item-has-children
           = link_to front_root_path do
-            過去の開催
+            ポータルページへ

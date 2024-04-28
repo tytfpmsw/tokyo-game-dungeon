@@ -1,0 +1,5 @@
+= bootstrap_form_with(url: admin_event_exhibitors_url, data: { action: "turbo:submit-end->modal#close"}) do |form|
+  %p メールアドレスを間違えて登録した場合は、トップ > 出展者情報からこの出展者を削除して再登録してください。
+  = form.text_field :name
+  = form.text_field :discord_name
+  = form.primary

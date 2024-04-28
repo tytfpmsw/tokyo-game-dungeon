@@ -56,13 +56,12 @@ class Admin::PlaceBlocksController < Admin::ApplicationController
     end
 
     def place_block_params
-      params.except(
+      params.require(:place_block).except(
       :authenticity_token,
       :commit,
       :subdomain
       ).permit(
         :name,
-        :capacity,
-        :event_id)
+        :capacity)
     end
 end

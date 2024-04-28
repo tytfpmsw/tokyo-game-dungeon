@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :sponsors
       resources :events do
         resources :event_schedules
+        resources :exhibit_informations
         resources :sponsorships, only: [:index, :new, :create, :destroy]
         resources :exhibitors do
           member do
@@ -40,6 +41,9 @@ Rails.application.routes.draw do
       end
       resources :floors, only: [:show, :edit, :update, :destroy] do
         resources :place_blocks
+      end
+      resources :place_blocks do
+        resources :assign_places, only: [:index, :edit, :update, :destroy]
       end
     end
   end
@@ -65,7 +69,7 @@ Rails.application.routes.draw do
         collection do
           post :inquiry
         end
-        resources :exhibit_informations, only: [:index, :show]  
+        resources :exhibit_informations, only: [:index, :show]
       end
     end
   end
