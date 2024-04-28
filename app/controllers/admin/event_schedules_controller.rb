@@ -1,6 +1,7 @@
 class Admin::EventSchedulesController < Admin::ApplicationController
 
   before_action :set_event, only: %i[index new create]
+  before_action :set_event_from_schedule, only: %i[destroy]
 
   def index
     @event_schedules = EventSchedule.where(event_id: @event.id)
@@ -41,14 +42,23 @@ class Admin::EventSchedulesController < Admin::ApplicationController
 
   def destroy
     @event_schedule = EventSchedule.find(params[:id])
-    @event_schedule.destroy!
-    flash.now.notice = "開催日を削除しました。"
+    if @event_schedule.destroy
+      flash.now.notice = "開催日を削除しました。"
+    else
+      # まだフラッシュは表示されない
+      flash.alert = "開催日を削除できません。"
+      redirect_to admin_event_event_schedules_path(@event)
+    end
   end
 
   private
 
     def set_event
       @event = Event.find(params[:event_id])
+    end
+
+    def set_event_from_schedule
+      @event = EventSchedule.find(params[:id]).event
     end
 
     def event_schedule_params

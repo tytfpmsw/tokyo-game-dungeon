@@ -1,3 +1,11 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item.active
+    = @event.name
+
 .p-admin-event-show 
   %h1
     = @event.name
@@ -15,6 +23,6 @@
         %tr
           %th ステータス
           %td= @event.human_attribute_enum(:status)
-  = button_to '開催日/フロア編集', admin_event_event_schedule_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
+  = button_to '開催日/フロア編集', admin_event_event_schedules_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展者管理', admin_event_exhibitors_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展情報確認', admin_event_exhibit_submissions_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'

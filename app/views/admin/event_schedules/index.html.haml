@@ -1,12 +1,28 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @event.name, admin_event_path(@event)
+  %li.breadcrumb-item.active
+    開催日程一覧
+
 %h4.fw-bold
   %span
     #{@event.name} 開催日程一覧
 
-= turbo_frame_tag "event-schedule-list", data: { turbo_action: :advance } do
-  .row.py-2
-    .col-4.mt-auto
-      開始時刻
-    .col-4.d-flex.justify-content-end
-      = button_to "新規作成", new_admin_event_event_schedule_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
-  #event_schedules
-    = render @event_schedules
+.card.shadow.mt-3
+  .card-header
+    = icon_with_text("table", "一覧")
+  .card-body.mx-3
+    = turbo_frame_tag "event-schedule-list", data: { turbo_action: :advance } do
+      .row.py-2
+        .col-3.mt-auto
+          開始時刻
+        .col-3.mt-auto
+          終了時刻
+        .col-3.d-flex.justify-content-end
+          = button_to "新規作成", new_admin_event_event_schedule_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
+      #event_schedules
+        = render @event_schedules

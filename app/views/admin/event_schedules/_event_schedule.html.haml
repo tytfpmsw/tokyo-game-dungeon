@@ -1,10 +1,10 @@
 = turbo_frame_tag event_schedule do
-  .schedule-body
-    .schedule-detail
-      %h3 開始時刻
+  .row.py-2.border-top
+    .col-3.my-auto
       = event_schedule.start_at.strftime("%Y/%m/%d %H:%M")
-      %h3 終了時刻
+    .col-3.my-auto
       = event_schedule.end_at.strftime("%Y/%m/%d %H:%M")
+    .col-3.d-flex.justify-content-end
       = link_to "フロアを編集", admin_event_schedule_floors_url(event_schedule), method: :get, class: "btn btn-outline-primary", data: { turbo_frame: "_top" }
       = link_to "開催時間を編集", edit_admin_event_schedule_path(event_schedule), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
       = button_to "削除", admin_event_schedule_url(event_schedule), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "place-blocks" }

@@ -1,3 +1,17 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @floor.event.name, admin_event_path(@floor.event)
+  %li.breadcrumb-item
+    = link_to "開催日程一覧", admin_event_event_schedules_path(@floor.event)
+  %li.breadcrumb-item
+    = link_to "フロア一覧", admin_event_schedule_floors_path(@floor.event_schedule)
+  %li.breadcrumb-item.active
+    ブロック一覧
+
 %h4.fw-bold
   %span ブロック
 

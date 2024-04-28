@@ -1,10 +1,20 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @place_block.event.name, admin_event_path(@place_block.event)
+  %li.breadcrumb-item
+    = link_to "開催日程一覧", admin_event_event_schedule_path(@place_block.event, @place_block.event_schedule)
+  %li.breadcrumb-item
+    = link_to "フロア一覧", admin_event_schedule_floors_path(@place_block.event_schedule)
+  %li.breadcrumb-item.active
+    = @place_block.name
+
 %h4.fw-bold
   %span
-    %a{href: admin_event_path(@place_block.event)} #{@place_block.event.name}
-    %a{href: admin_event_event_schedule_path(@place_block.event, @place_block.event_schedule)} #{@place_block.event.event_schedules.index(@place_block.event_schedule) + 1}日目
-    %a{href: admin_floor_path(@place_block.floor)} #{@place_block.floor.name}
-    #{@place_block.name}ブロック 場所割り当て
-    -# #{@floor.event.name} #{@floor.event.event_schedules.index(@floor.event_schedule) + 1}日目 #{@floor.name} #{@place_block.name}ブロック 場所割り当て
+    #{@place_block.event.name} #{@place_block.event.event_schedules.index(@place_block.event_schedule) + 1}日目 #{@place_block.floor.name} #{@place_block.name}ブロック 場所割り当て
 
 .card.shadow.mt-3
   .card-header

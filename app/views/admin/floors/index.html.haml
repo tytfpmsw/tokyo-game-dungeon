@@ -1,6 +1,18 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @event.name, admin_event_path(@event)
+  %li.breadcrumb-item
+    = link_to "開催日程一覧", admin_event_event_schedules_path(@event) 
+  %li.breadcrumb-item.active
+    フロア一覧
+
 %h4.fw-bold
   %span
-    #{@event.name} フロア一覧
+    #{@event.name} #{@event_schedule.day_number_in_event}日目 フロア一覧
 
 .card.shadow.mt-3
   .card-header
