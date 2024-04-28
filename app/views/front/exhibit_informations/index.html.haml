@@ -17,6 +17,6 @@
       = render 'front/shared/divider'
       %h2{id: place_block.name}= place_block.name
       .row.exhibit-informations
-        - for i in 0..place_block.capacity.size - 1 do
-          - if @exhibit_information_places.where(place_block: place_block, place_number: i + 1).exists?
-            = render 'exhibit_information', exhibit_information: @exhibit_information_places.find_by(place_block: place_block, place_number: i + 1).exhibit_information
+        - for i in 1..place_block.capacity.size do
+          - if @exhibit_information_places.where(place_block: place_block, place_number: i).exists?
+            = render 'exhibit_information', { exhibit_information: @exhibit_information_places.find_by(place_block: place_block, place_number: i).exhibit_information, place_block: place_block, place_number: i }
