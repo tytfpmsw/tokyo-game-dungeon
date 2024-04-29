@@ -1,0 +1,10 @@
+.container.p-5
+  .row
+    .col-md-12
+      %h5 ログイン用メールアドレス変更
+      = form_with url: administrator_registration_path, method: :patch do |f|
+        .form-group
+          = f.label :email, '新しいメールアドレス'
+          = f.text_field :email, class: 'form-control'
+        .form-group
+          = f.submit '変更', class: 'btn btn-primary'

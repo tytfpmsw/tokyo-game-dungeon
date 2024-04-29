@@ -1,11 +1,30 @@
 # frozen_string_literal: true
 
-class Admin::RegistrationsController < Devise::RegistrationsController
-  # cancel, new, destroy, createの時はguard_signup!でエラーを発生させ、変更以外のアクションを実行できないようにする
-  # %iはrubyのリテラル構文で、スペース区切りのシンボルの配列を作成する
-  before_action :guard_signup!, only: %i[cancel new destroy create]
+class Admin::RegistrationsController < Admin::ApplicationController
+
+  before_action :authenticate_administrator!, only: %i[edit update]
+
+  def edit
+    @administrator = current_administrator
+  end
+
+  def update
+    @administrator = current_administrator
+
+    if @administrator.update(administrator_params)
+      redirect_to admin_root_path, notice: '管理者情報を更新しました'
+    else
+      # TODO: フラッシュメッセージを表示する
+      flash.alert = '管理者情報を更新できませんでした'
+      render :edit
+    end
+  end
 
   private
+
+  def administrator_params
+    params.permit(:email)
+  end
   
   def guard_signup!
     raise ActionController::RoutingError, 'Not Found'

@@ -4,6 +4,7 @@ class Exhibitor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence:true
 
   has_many :exhibit_informations, dependent: :restrict_with_error

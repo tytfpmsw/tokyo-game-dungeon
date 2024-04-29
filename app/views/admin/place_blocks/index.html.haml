@@ -13,24 +13,25 @@
     ブロック一覧
 
 %h4.fw-bold
-  %span ブロック
+  %span 
+    #{@floor.event.name} #{@floor.event_schedule.day_number_in_event}日目 #{@floor.name} ブロック一覧
 
-.card.shadow.mt-3 
-  .card-header
-    = icon_with_text("search", "検索条件")
-  .card-body
-    =search_form_for(@search, url: admin_floor_place_blocks_path(@floor), html: { data: { turbo_frame: "place-blocks", controller: "search_form", action: "input->search_form#submit" } }) do |f|
-      .row.g3.mb-3
-        .col-3.col-xl-2
-          = f.label :name_cont, "ブロック名", class: "form-label"
-          = f.search_field :name_cont, class: "form-control"
-        .col-3.col-xl-2
-          = f.label :capacity_gteq, "ブース数(以上)", class: "form-label"
-          = f.search_field :capacity_gteq, class: "form-control"
-        .col-3.col-xl-2
-          = f.submit
-        .col-3.d-flex.align-items-end
-          = link_to "クリア", admin_floor_place_blocks_path(@floor), class: "btn btn-outline-secondary", method: :get
+-# .card.shadow.mt-3 
+-#   .card-header
+-#     = icon_with_text("search", "検索条件")
+-#   .card-body
+-#     =search_form_for(@search, url: admin_floor_place_blocks_path(@floor), html: { data: { turbo_frame: "place-blocks", controller: "search_form", action: "input->search_form#submit" } }) do |f|
+-#       .row.g3.mb-3
+-#         .col-3.col-xl-2
+-#           = f.label :name_cont, "ブロック名", class: "form-label"
+-#           = f.search_field :name_cont, class: "form-control"
+-#         .col-3.col-xl-2
+-#           = f.label :capacity_gteq, "ブース数(以上)", class: "form-label"
+-#           = f.search_field :capacity_gteq, class: "form-control"
+-#         .col-3.col-xl-2
+-#           = f.submit
+-#         .col-3.d-flex.align-items-end
+-#           = link_to "クリア", admin_floor_place_blocks_path(@floor), class: "btn btn-outline-secondary", method: :get
 
 .card.shadow.mt-3
   .card-header

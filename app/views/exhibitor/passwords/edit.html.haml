@@ -4,10 +4,10 @@
       %h5 パスワードの再設定
       = form_tag exhibitor_password_path, method: :patch do
         .form-group
-          = label_tag :password
+          = label_tag :password, '新しいパスワード'
           = password_field_tag :password, nil, class: 'form-control'
         .form-group
-          = label_tag :password_confirmation
+          = label_tag :password_confirmation, '新しいパスワード（確認）'
           = password_field_tag :password_confirmation, nil, class: 'form-control'
         .form-group
-          = submit_tag 'Update Password', class: 'btn btn-primary'
+          = submit_tag '更新', class: 'btn btn-primary'
