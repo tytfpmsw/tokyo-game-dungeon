@@ -11,9 +11,15 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
   end
 
   def update
+    # ExhibitInformation.imageにuploaderをマウントしてしまうと
+    # ExhibitSubmissionからコピーした際にimageカラムにCarrierwaveのオブジェクトが保存されず
+    # 画像を参照できなくなってしまうので、ExhibitInformationにuploaderはマウントしない。
+    # そのため、admin画面からでも直接ExhibitInformationは編集せず、ExhibitSubmissionを経由する。
+    # Carrierwaveの画像を他モデルにコピーできる方法がわかれば修正する。
     @exhibit_information = @event.exhibit_informations.find(params[:id])
-    if @exhibit_information.update(exhibit_information_params)
-      flash.now.notice = '出展情報を更新しました'
+    @exhibit_submission = @exhibit_information.exhibit_submission
+    if @exhibit_submission.update(exhibit_information_params.merge(status: :submitted))
+      flash.now.notice = '出展情報を申請しました。承認することで反映されます。'
       redirect_to admin_event_exhibit_informations_path(@event), notice: '出展情報を更新しました'
     else
       render :edit

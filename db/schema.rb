@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_24_140717) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_29_052306) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -87,6 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_140717) do
 
   create_table "exhibit_submissions", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "exhibit_information_id", null: false
+    t.string "circle_name"
     t.string "title"
     t.string "description"
     t.text "movie_url"

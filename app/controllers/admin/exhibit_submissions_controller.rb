@@ -43,6 +43,7 @@ class Admin::ExhibitSubmissionsController < Admin::ApplicationController
 
     @exhibit_information.copy_image(@exhibit_submission.image.path)
     
+    @exhibit_information.circle_name = @exhibit_submission.circle_name? ? @exhibit_submission.circle_name : @exhibit_information.circle_name
     @exhibit_information.title = @exhibit_submission.title? ? @exhibit_submission.title : @exhibit_information.title
     @exhibit_information.description = @exhibit_submission.description? ? @exhibit_submission.description : @exhibit_information.description
     @exhibit_information.movie_url = @exhibit_submission.movie_url? ? @exhibit_submission.movie_url : @exhibit_information.movie_url

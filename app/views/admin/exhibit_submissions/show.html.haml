@@ -4,6 +4,7 @@
   %thead
     %tr
       %th 出展者
+      %th サークル名
       %th タイトル
       %th 説明
       %th 動画URL
@@ -11,6 +12,7 @@
   %tbody
     %tr
       %td= @exhibitor.name
+      %td= @exhibit_submission.circle_name
       %td= @exhibit_submission.title
       %td= @exhibit_submission.description
       %td= @exhibit_submission.movie_url

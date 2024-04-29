@@ -2,7 +2,7 @@
   .row.py-2.border-top
     .col-2.my-auto
       - if exhibit_information.exhibit_submission.status_submitted?
-        = button_to "確認", admin_exhibit_submission_path(exhibit_information.exhibit_submission), class: "btn btn-outline-primary", data: { turbo_frame: "_top" }
+        = button_to "確認", admin_event_exhibit_submission_path(exhibit_information.event, exhibit_information.exhibit_submission), method: :get, class: "btn btn-outline-primary", data: { turbo_frame: "_top" }
       - else
         
     .col-2.my-auto
