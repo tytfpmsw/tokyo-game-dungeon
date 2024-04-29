@@ -1,4 +1,7 @@
 class EventSchedule < ApplicationRecord
+
+  before_destroy :can_destroy?
+
   belongs_to :event
 
   has_many :floors, dependent: :restrict_with_error
@@ -11,8 +14,6 @@ class EventSchedule < ApplicationRecord
 
   validate :start_at_should_be_before_end_at
   validate :start_at_and_end_at_should_be_same_day
-
-  before_destroy :can_destroy?
 
   def has_floors?
     floors.present?

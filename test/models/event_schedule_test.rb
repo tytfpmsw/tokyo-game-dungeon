@@ -58,9 +58,18 @@ class EventScheduleTest < ActiveSupport::TestCase
   end
 
   test "should not destroy when the schedule has floor" do
+    event_schedule = EventSchedule.create(
+      event: @event,
+      start_at: @event_schedule.start_at + 1.day,
+      end_at: @event_schedule.end_at + 1.day
+    )
+    Floor.create(
+      event_schedule: event_schedule,
+      name: 'Test Floor'
+    )
     assert_no_difference('EventSchedule.count') do
-      @event_schedule.destroy
-      assert_includes @event_schedule.errors.messages[:base], 'floorsが存在しているので削除できません'
+      event_schedule.destroy
+      assert_includes event_schedule.errors.messages[:base], 'floorsが存在しているので削除できません'
     end
   end
 
