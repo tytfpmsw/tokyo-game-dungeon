@@ -5,6 +5,9 @@ class ExhibitInformation < ApplicationRecord
   has_many :exhibit_information_places
 
   validates :event, uniqueness: { scope: :exhibitor }
+  validates :circle_name, presence: true, length: { maximum: 25 }
+  validates :title, presence: true, length: { maximum: 25 }
+  validates :description, presence: true, length: { maximum: 255 }
   validates :movie_url, allow_blank: true, format: /\A#{URI::regexp(%w(http https))}\z/
 
   def copy_image(source_image_path)

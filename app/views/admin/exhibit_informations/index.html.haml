@@ -1,0 +1,33 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @event.name, admin_event_path(@event)
+  %li.breadcrumb-item.active
+    出展情報一覧
+
+%h4.fw-bold
+  %span
+    #{@event.name} 出展情報一覧
+
+.card.shadow.mt-3
+  .card-header
+    = icon_with_text("table", "一覧")
+  .card-body.mx-3
+    = turbo_frame_tag "exhibit-information-list", data: { turbo_action: :advance } do
+      .row.py-2
+        .col-2.mt-auto
+          出展提出
+        .col-2.mt-auto
+          出展者
+        .col-2.mt-auto
+          サークル名
+        .col-2.mt-auto
+          タイトル
+        .col-2.mt-auto
+          画像
+        .col-2.mt-auto
+      #exhibit-informations
+        = render @exhibit_informations

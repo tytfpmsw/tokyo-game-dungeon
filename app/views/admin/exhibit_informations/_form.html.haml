@@ -1,0 +1,13 @@
+= bootstrap_form_with(model: [:admin, @event, exhibit_information], data: { action: "turbo:submit-end->modal#close"}) do |form|
+  = form.text_field :circle_name, value: exhibit_information.circle_name
+  = form.text_field :title, value: exhibit_information.title
+  = form.text_area :description, value: exhibit_information.description
+  = form.text_field :movie_url, value: exhibit_information.movie_url
+  = form.file_field :image
+  - if exhibit_information.errors.any?
+    #error_explanation
+      %h2= "#{exhibit_information.errors.count}個のエラーで保存できませんでした:"
+      %ul
+        - exhibit_information.errors.full_messages.each do |message|
+          %li= message
+  = form.primary

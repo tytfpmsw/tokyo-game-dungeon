@@ -4,7 +4,10 @@ class ExhibitSubmission < ApplicationRecord
 
   enum :status, { draft: 0, submitted: 1, approved: 2, rejected: 3 }, prefix: true
 
-  # validates :status, presence: true
+  validates :exhibit_information, uniqueness: true
+  validates :circle_name, presence: true, length: { maximum: 25 }
+  validates :title, presence: true, length: { maximum: 25 }
+  validates :description, presence: true, length: { maximum: 255 }
   validates :movie_url, format: /\A#{URI::regexp(%w(http https))}\z/
   
   def submit
@@ -22,10 +25,6 @@ class ExhibitSubmission < ApplicationRecord
 
   def self.submitted(event)
     ExhibitSubmission.joins(:exhibit_information).where(exhibit_informations: { event_id: event.id }, status: :submitted)
-  end
-
-  def approved
-    
   end
 
   def approve!
