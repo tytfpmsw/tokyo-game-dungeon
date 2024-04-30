@@ -40,16 +40,20 @@
     = turbo_frame_tag "place-block-list", data: { turbo_action: :advance } do
       .row.py-2
         .col-4.mt-auto
-          = sort_link(@search, :name, "ブロック名")
+          -# = sort_link(@search, :name, "ブロック名")
+          ブロック名
         .col-4.mt-auto
-          = sort_link(@search, :capacity, "ブース数")
+          -# = sort_link(@search, :capacity, "ブース数")
+          ブース数
         .col-4.d-flex.justify-content-end
           = button_to "新規作成", new_admin_floor_place_block_path(@floor), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
 
       #place-blocks
-        = turbo_frame_tag "place-blocks-page-#{@place_blocks.current_page}" do
+        -# = turbo_frame_tag "place-blocks-page-#{@place_blocks.current_page}" do
           = render @place_blocks
           = turbo_frame_tag "place-blocks-page-#{@place_blocks.next_page}"
+          
+        = render @place_blocks
   
-  .d-flex.justify-content-end.mt-3
-    = paginate @place_blocks
+  -# .d-flex.justify-content-end.mt-3
+  -#   = paginate @place_blocks

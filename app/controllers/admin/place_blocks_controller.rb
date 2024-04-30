@@ -6,10 +6,10 @@ class Admin::PlaceBlocksController < Admin::ApplicationController
   def index
     @place_blocks = PlaceBlock.where(floor: @floor)
 
-    @search = PlaceBlock.ransack(params[:q])
-    @search.sorts = 'id asc' if @search.sorts.empty?
+    # @search = PlaceBlock.ransack(params[:q])
+    # @search.sorts = 'id asc' if @search.sorts.empty?
 
-    @place_blocks = @search.result.page(params[:page])
+    # @place_blocks = @search.result.page(params[:page])
   end
 
   def show

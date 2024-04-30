@@ -9,7 +9,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
   end
 
   def new
-    @exhibit_submission = ExhibitSubmission.find_by(exhibit_information: @exhibit_information)
+    @exhibit_submission ||= ExhibitSubmission.find_by(exhibit_information: @exhibit_information)
     if @exhibit_submission
       redirect_to edit_exhibitor_event_exhibit_submission_url(@event.url_subdirectory, @exhibit_submission)
     end
@@ -27,17 +27,17 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
     begin
       if @exhibit_submission
         @exhibit_submission.merge(exhibit_submission_params, status: :submitted)
-        @exhibit_submission.update
+        @exhibit_submission.update!
       else
         @exhibit_submission = ExhibitSubmission.new(exhibit_submission_params.merge(exhibit_information_id: @exhibit_information.id, status: :submitted))
-        @exhibit_submission.save
+        @exhibit_submission.save!
       end
     rescue
       render :new, status: :unprocessable_entity
       flash.now.alert = '提出情報の作成に失敗しました。' and return
     end
 
-    redirect_to exhibitor_root_path, notice: 'Exhibit submission was successfully created.'
+    redirect_to exhibitor_root_path, notice: '出展情報を提出しました。'
   end
 
   def edit
