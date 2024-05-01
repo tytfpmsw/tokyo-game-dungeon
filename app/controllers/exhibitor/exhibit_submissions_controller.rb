@@ -5,14 +5,11 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
   before_action :set_exhibitor
 
   def index
-    @submission = ExhibitSubmission.where(exhibit_information: ExhibitInformation.where(event: @event, exhibitor: current_exhibitor))
+    @exhibit_submission = ExhibitSubmission.find_by(exhibit_information: ExhibitInformation.where(event: @event, exhibitor: current_exhibitor))
   end
 
   def new
-    @exhibit_submission ||= ExhibitSubmission.find_by(exhibit_information: @exhibit_information)
-    if @exhibit_submission
-      redirect_to edit_exhibitor_event_exhibit_submission_url(@event.url_subdirectory, @exhibit_submission)
-    end
+    @exhibit_submission = ExhibitSubmission.new
   end
 
   def create
@@ -22,19 +19,12 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       return
     end
 
-    @exhibit_submission = ExhibitSubmission.find_by(exhibit_information_id: @exhibit_information.id)
-  
-    begin
-      if @exhibit_submission
-        @exhibit_submission.merge(exhibit_submission_params, status: :submitted)
-        @exhibit_submission.update!
-      else
-        @exhibit_submission = ExhibitSubmission.new(exhibit_submission_params.merge(exhibit_information_id: @exhibit_information.id, status: :submitted))
-        @exhibit_submission.save!
-      end
-    rescue
+    @exhibit_submission = ExhibitSubmission.new(exhibit_submission_params)
+    @exhibit_submission.exhibit_information = @exhibit_information
+
+    unless @exhibit_submission.save
       render :new, status: :unprocessable_entity
-      flash.now.alert = '提出情報の作成に失敗しました。' and return
+      return
     end
 
     redirect_to exhibitor_root_path, notice: '出展情報を提出しました。'
@@ -74,6 +64,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       :commit,
       :subdomain
       ).permit(
+      :circle_name,
       :title,
       :description,
       :movie_url,

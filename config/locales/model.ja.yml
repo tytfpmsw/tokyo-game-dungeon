@@ -1,9 +1,41 @@
 ja:
   activerecord:
     models:
-      event: イベント
+      administrator: 管理者
+      event_report: イベントレポート
+      event_schedule: 開催日
       event_schedule: 開催日時
+      event: イベント
+      exhibit_information_places: 出展場所
+      exhibit_information: 出展情報
+      exhibit_submission: 出展情報申請
+      exhibitor: 出展者
+      floor: フロア
+      place_block: ブロック
+      sponsor: 協賛団体
+      sponsorship: 協賛
     attributes:
+      administrator:
+        email: メールアドレス
+      event_report:
+        title: タイトル
+        url: URL
+      event_schedule:
+        start_at: 開始日時
+        end_at: 終了日時
+      event:
+        name: イベント名
+        url_subdirectory: URLサブディレクトリ
+        status: ステータス
+        location: 開催場所
+        logo_image: ロゴ画像
+        main_image: メイン画像
+        publish_start_at: 公開開始日時
+        exhibit_submit_start_at: 出展情報申請開始日時
+        exhibit_submit_end_at: 出展情報申請終了日時
+        reflection_title: 振り返りタイトル
+        reflection_body: 振り返り
+        reflection_image: 振り返り画像
       event/status:
         unpublished: 未公開
         published: 公開
@@ -14,6 +46,42 @@ ja:
       event_schedule:
         start_at: 開始日時
         end_at: 終了日時
+      exhibit_information_places:
+        place_number: 出展場所番号
+      exhibit_information:
+        circle_name: サークル名
+        title: タイトル
+        description: 説明
+        movie_url: 動画URL
+        image: 画像
+      exhibit_submission:
+        circle_name: サークル名
+        title: タイトル
+        description: 説明
+        movie_url: 動画URL
+        image: 画像
+        status: ステータス
+        update_user: 更新者
+        update_comment: コメント
+      exhibit_submission/status:
+        draft: 下書き
+        submitted: 申請済
+        approved: 承認
+        rejected: 却下
+      exhibitor:
+        email: メールアドレス
+        name: 名前
+        discord_name: Discord名
+      floor:
+        name: フロア名
+        image: フロア画像
+      place_block:
+        name: ブロック名
+        capacity: ブース数
+      sponsor:
+        name: 名前
+        image: 画像
+        url: URL
   errors:
     models:
       event:

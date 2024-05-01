@@ -10,4 +10,7 @@
         %tr
           %td
             = image_tag @event.main_image.url, size: '300x300'
-  = button_to '出展情報提出', new_exhibitor_event_exhibit_submission_path(@event.url_subdirectory), method: :get, class: 'btn btn-primary mg-auto mb-4'
+  - if @exhibit_submission.present?
+    = button_to '出展情報提出', edit_exhibitor_event_exhibit_submission_path(@event.url_subdirectory, @exhibit_submission), method: :get, class: 'btn btn-primary mg-auto mb-4'
+  - else
+    = button_to '出展情報提出', new_exhibitor_event_exhibit_submission_path(@event.url_subdirectory), method: :get, class: 'btn btn-primary mg-auto mb-4'
