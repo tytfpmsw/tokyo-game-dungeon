@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_052306) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_01_130501) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_052306) do
     t.datetime "exhibit_submit_start_at"
     t.datetime "exhibit_submit_end_at"
     t.string "reflection_title"
-    t.text "reflection_description"
+    t.text "reflection_body"
     t.string "reflection_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
