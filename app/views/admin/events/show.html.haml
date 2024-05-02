@@ -23,6 +23,7 @@
         %tr
           %th ステータス
           %td= @event.human_attribute_enum(:status)
+  = button_to 'イベント編集', edit_admin_event_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '開催日/フロア編集', admin_event_event_schedules_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展者管理', admin_event_exhibitors_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展情報確認', admin_event_exhibit_informations_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'

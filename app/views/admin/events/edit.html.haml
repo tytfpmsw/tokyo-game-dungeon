@@ -1,4 +1,12 @@
-%h1 Editing admin_event
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item.active
+    = @event.name
+
+%h2 イベント情報編集
 
 = render 'form'
 
