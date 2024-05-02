@@ -31,7 +31,7 @@ class Admin::EventsController < Admin::ApplicationController
     @event_schedule = @event.event_schedules.build(start_at: event_params[:start_at], end_at: event_params[:end_at])
 
     Event.transaction do
-      result = @event.save! && @event_schedule.save!
+      @event.save! && @event_schedule.save!
       redirect_to admin_event_url(@event), notice: I18n.t('admin.events.create.success')
     end
   rescue ActiveRecord::RecordInvalid => e
@@ -40,14 +40,13 @@ class Admin::EventsController < Admin::ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to admin_event_url(@event), notice: "Event was successfully updated." }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    begin
+    @event.update!(event_params.except(:start_at, :end_at)) && @event.event_schedules.first.update!(start_at: event_params[:start_at], end_at: event_params[:end_at])
+      redirect_to admin_event_url(@event), notice: "イベントを更新しました。"
+    
+    rescue ActiveRecord::RecordInvalid => e
+      render :edit, status: :unprocessable_entity
+      flash.now.alert = e.message
     end
   end
 
@@ -58,6 +57,7 @@ class Admin::EventsController < Admin::ApplicationController
 
     def event_params
       params
+        .require(:event)
         .permit(
           :name,
           :url_subdirectory,

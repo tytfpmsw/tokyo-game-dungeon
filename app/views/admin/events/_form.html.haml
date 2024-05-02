@@ -1,20 +1,20 @@
-= form_with url: admin_events_path do |f|
+= form_with model: [:admin, @event] do |f|
   %table
     %tr
       %th= f.label :name, 'イベント名'
-      %td= f.text_field :name, value: @event&.name
+      %td= f.text_field :name, value: @event.name
     %tr
       %th= f.label :url_subdirectory, 'URLサブディレクトリ'
-      %td= f.text_field :url_subdirectory, value: @event&.url_subdirectory
+      %td= f.text_field :url_subdirectory, value: @event.url_subdirectory
     %tr
       %th= f.label :location, '開催場所'
-      %td= f.select :location, Event.locations.keys.map { |k| [t("activerecord.attributes.event/location.#{k}"), k] }, value: @event&.location
+      %td= f.select :location, Event.locations.keys.map { |k| [t("activerecord.attributes.event/location.#{k}"), k] }, selected: @event.location
     %tr
-      %th= f.label :start_at, 'イベント開始日時'
-      %td= f.datetime_field :start_at
+      %th= f.label :start_at, 'イベント開始日時(1日目)'
+      %td= f.datetime_field :start_at, value: @event.event_schedules.first.start_at
     %tr
-      %th= f.label :end_at, 'イベント終了日時'
-      %td= f.datetime_field :end_at
+      %th= f.label :end_at, 'イベント終了日時(1日目)'
+      %td= f.datetime_field :end_at, value: @event.event_schedules.first.end_at
     %tr
       %th= f.label :logo_image, 'ロゴ画像'
       %td= f.file_field :logo_image
@@ -23,13 +23,13 @@
       %td= f.file_field :main_image
     %tr
       %th= f.label :publish_start_at, 'イベントページ公開日時'
-      %td= f.datetime_field :publish_start_at
+      %td= f.datetime_field :publish_start_at, value: @event.publish_start_at
     %tr
       %th= f.label :exhibit_submit_start_at, '出展情報申込開始日時'
-      %td= f.datetime_field :exhibit_submit_start_at
+      %td= f.datetime_field :exhibit_submit_start_at, value: @event.exhibit_submit_start_at
     %tr
       %th= f.label :exhibit_submit_end_at, '出展情報申込締切日時'
-      %td= f.datetime_field :exhibit_submit_end_at
+      %td= f.datetime_field :exhibit_submit_end_at, value: @event.exhibit_submit_end_at
   
 
   - if @event.errors.any?
@@ -40,4 +40,4 @@
           %li= message
 
   .actions
-    = f.submit '作成する'
+    = f.submit '保存する'

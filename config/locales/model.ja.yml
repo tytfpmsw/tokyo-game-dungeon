@@ -43,6 +43,7 @@ ja:
       event/location:
         undecided: 未定
         hamamatsu_tsbc: 都立産業貿易センター浜松町館
+        note_place: note place
       event_schedule:
         start_at: 開始日時
         end_at: 終了日時
