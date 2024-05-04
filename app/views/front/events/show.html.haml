@@ -87,36 +87,24 @@
     
     = render 'front/shared/divider'
     
-    -# .event-feature-wrapper
-    -#   %h2 東京ゲームダンジョン3つの特徴
-    -#   .event-feature-body
-    -#     .content
-    -#       = image_tag 'point1.jpeg'
-    -#       %h3 駅近で新しい会場
-    -#       %p 
-    -#         浜松町駅から5分、2020年オープンの新しい展示施設。
-    -#         出展者用Wi-Fiや作品PV上映用の200㌅スクリーンを用意！
-    -#         室温・換気もバッチリ！
-    -#     .content
-    -#       = image_tag 'point2.jpeg'
-    -#       %h3 料金安く机デカい
-    -#       %p 
-    -#         出展料5,500円、入場料750円と他イベントより圧倒的に安い！
-    -#         しかもデカい机(180x90cm)で自作ゲームを自由に展示可能！
-    -#     .content
-    -#       = image_tag 'point3.jpeg'
-    -#       %h3 インディに優しい
-    -#       %p 
-    -#         主催もインディ開発者！作品審査はナシ！
-    -#         他にない自由度の高さで、インディらしいトガったイベントを目指しています！
-    
-    -# = render 'front/shared/divider'
-    
-    -# .event-venue-map-wrapper
-    -#   %h2 会場地図
-    -#   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12967.548422945705!2d139.760769!3d35.655153!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b60c0d52981%3A0x5db20f81d038f20c!2z5p2x5Lqs6YO956uL55Sj5qWt6LK_5piT44K744Oz44K_44O85rWc5p2-55S66aSo!5e0!3m2!1sja!2sjp!4v1712068976525!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    - case Event.locations[@event.location]
+    - when Event.locations[:hamamatsu_tsbc]
+      = render 'feature_hamamatsu_tsbc'
+      = render 'front/shared/divider'
+    - when Event.locations[:note_place]
+      = render 'feature_note_place'
+      = render 'front/shared/divider'
 
-    -# = render 'front/shared/divider'
+    .event-venue-map-wrapper
+      %h2 会場地図
+
+      - case Event.locations[@event.location]
+      - when Event.locations[:hamamatsu_tsbc]
+        %iframe{ src: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12967.548422945705!2d139.760769!3d35.655153!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b60c0d52981%3A0x5db20f81d038f20c!2z5p2x5Lqs6YO956uL55Sj5qWt6LK_5piT44K744Oz44K_44O85rWc5p2-55S66aSo!5e0!3m2!1sja!2sjp!4v1712068976525!5m2!1sja!2sjp", width: "600", height: "450", style: "border:0;", allowfullscreen: "", loading: "lazy", referrerpolicy: "no-referrer-when-downgrade"}
+      - when Event.locations[:note_place]
+        %iframe{ src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.647906486383!2d139.7294469116286!3d35.685670672471545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d46d2e8b7ed%3A0x595355ca710fc19a!2snote%20place!5e0!3m2!1sja!2sjp!4v1714651046803!5m2!1sja!2sjp", width: "600", height:"450", style:"border:0;", allowfullscreen:"", loading: "lazy", referrerpolicy: "no-referrer-when-downgrade" }
+
+    = render 'front/shared/divider'
 
     .event-sponsor-wrapper
       %h2 協賛

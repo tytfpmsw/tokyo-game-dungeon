@@ -5,14 +5,6 @@ class Front::EventsController < ApplicationController
   
   def show
     @event = Event.find_by!(url_subdirectory: params[:url_subdirectory])
-    case Event.locations[@event.location]
-    when Event.locations[:hamamatsu_tsbc] then
-      render :show_hamamatsu_tsbc
-    when Event.locations[:note_place] then
-      render :show_note_place
-    else
-      render :show
-    end
   end
 
   def inquiry
