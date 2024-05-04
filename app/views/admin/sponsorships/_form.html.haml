@@ -1,4 +1,3 @@
-= turbo_frame_tag sponsorship do
-  = bootstrap_form_with url: admin_event_sponsorships_url(@event), data: { action: "turbo:submit-end->modal#close"} do |form|
-    = form.collection_select :sponsor_id, @sponsors, :id, :name, include_blank: "選択してください"
-    = form.primary
+= bootstrap_form_with url: admin_event_sponsorships_url(@event), data: { action: "turbo:submit-end->modal#close"} do |form|
+  = form.collection_select :sponsor_id, @sponsors, :id, :name, include_blank: "選択してください"
+  = form.primary
