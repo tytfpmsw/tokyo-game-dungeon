@@ -13,11 +13,11 @@
     %h2= "#{@event_schedule.day_number_in_event}日目 #{@floor.name}"
   - elsif @event.floors.count >= 2
     %h2= @floor.name
-  - if @exhibit_information_places.present?
+  - if !@exhibit_information_places.nil?
     - @place_blocks.each do |place_block|
       %h2{id: place_block.name}= place_block.name
       .row.exhibit-informations
         - for i in 1..place_block.capacity do
-          - if @exhibit_information_places.where(place_block: place_block, place_number: i).exists?
-            = render 'exhibit_information', { exhibit_information: @exhibit_information_places.find_by(place_block: place_block, place_number: i).exhibit_information, place_block: place_block, place_number: i }
+          - if @exhibit_information_places.find { |eip| eip.place_block == place_block && eip.place_number == i}
+            = render 'exhibit_information', { exhibit_information: @exhibit_information_places.find { |eip| eip.place_block == place_block && eip.place_number == i}.exhibit_information, place_block: place_block, place_number: i }
       = render 'front/shared/divider'
