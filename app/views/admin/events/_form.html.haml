@@ -10,12 +10,6 @@
       %th= f.label :location, '開催場所'
       %td= f.select :location, Event.locations.keys.map { |k| [t("activerecord.attributes.event/location.#{k}"), k] }, selected: @event.location
     %tr
-      %th= f.label :start_at, 'イベント開始日時(1日目)'
-      %td= f.datetime_field :start_at, value: @event.event_schedules.first.start_at
-    %tr
-      %th= f.label :end_at, 'イベント終了日時(1日目)'
-      %td= f.datetime_field :end_at, value: @event.event_schedules.first.end_at
-    %tr
       %th= f.label :logo_image, 'ロゴ画像'
       %td= f.file_field :logo_image
     %tr

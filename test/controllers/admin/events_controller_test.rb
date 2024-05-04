@@ -18,14 +18,14 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
   test "should create event" do
     assert_difference("Event.count") do
       post admin_events_url, params: { 
-        name: 'test',
-        url_subdirectory: 'test',
-        location: :undecided,
-        start_at: Time.zone.today + 12.hours,
-        end_at: Time.zone.today + 17.hour,
-        publish_start_at: Time.zone.now,
-        exhibit_submit_start_at: Time.zone.now,
-        exhibit_submit_end_at: Time.zone.now + 1.day
+        event: {
+          name: 'test',
+          url_subdirectory: 'test',
+          location: :undecided,
+          publish_start_at: Time.zone.now,
+          exhibit_submit_start_at: Time.zone.now,
+          exhibit_submit_end_at: Time.zone.now + 1.day
+        }
       }
     end
 
@@ -34,10 +34,6 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
     assert_equal 'test', @event.name
     assert_equal 'test', @event.url_subdirectory
     assert_equal 'undecided', @event.location
-    expected_start_at = Time.zone.today + 12.hours
-    assert_equal expected_start_at.floor, @event.event_schedules[0].start_at
-    expected_end_at = Time.zone.today + 17.hours
-    assert_equal expected_end_at.floor, @event.event_schedules[0].end_at
     assert_equal Time.zone.now.floor, @event.publish_start_at
     assert_equal Time.zone.now.floor, @event.exhibit_submit_start_at
     expected_submit_end_at = Time.zone.now + 1.day
@@ -55,7 +51,7 @@ class Admin::EventsControllerTest < Admin::IntegrationTest
   end
 
   test "should update event" do
-    patch admin_event_url(@event), params: { name: "テスト" }
+    patch admin_event_url(@event), params: { event: { name: "テスト" } }
     assert_redirected_to admin_event_url(@event)
   end
 end

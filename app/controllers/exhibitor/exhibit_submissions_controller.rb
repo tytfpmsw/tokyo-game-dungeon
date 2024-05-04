@@ -37,7 +37,14 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
   def update
     @exhibit_submission = ExhibitSubmission.find(params[:id])
 
-    if @exhibit_submission.update(exhibit_submission_params)
+    if @exhibit_submission.update(
+      circle_name: exhibit_submission_params[:circle_name],
+      title: exhibit_submission_params[:title],
+      description: exhibit_submission_params[:description],
+      movie_url: exhibit_submission_params[:movie_url],
+      image: exhibit_submission_params[:image],
+      status: ExhibitSubmission.statuses[:submitted]
+    )
       redirect_to exhibitor_root_path, notice: '提出情報を更新しました。'
     else
       render :edit, status: :unprocessable_entity

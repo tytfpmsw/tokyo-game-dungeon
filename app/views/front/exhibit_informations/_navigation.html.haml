@@ -5,7 +5,7 @@
       - event_schedule.event.event_schedules.each do |es|
         - if es == event_schedule
           .navigation-button.active
-            = link_to "#{es.day_number_in_event}日目", url_with_params(front_event_exhibit_informations_path(event_schedule.event.url_subdirectory), { 'day' => es.day_number_in_event })
+            = "#{es.day_number_in_event}日目"
         - else
           .navigation-button
             = link_to "#{es.day_number_in_event}日目", url_with_params(front_event_exhibit_informations_path(event_schedule.event.url_subdirectory), { 'day' => es.day_number_in_event })

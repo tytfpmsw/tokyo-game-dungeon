@@ -9,8 +9,10 @@
     - if @event_schedule.floors.first.image.present?
       = image_tag(@event_schedule.floors.first.image, class: 'map-image')
 .p-exhibit-informations-content
-  - if @event.event_schedules.count >= 2
+  - if @event.event_schedules.count >= 2 && @event.floors.count >= 2
     %h2= "#{@event_schedule.day_number_in_event}日目 #{@floor.name}"
+  - elsif @event.event_schedules.count >= 2
+    %h2= "#{@event_schedule.day_number_in_event}日目"
   - elsif @event.floors.count >= 2
     %h2= @floor.name
   - if !@exhibit_information_places.nil?
