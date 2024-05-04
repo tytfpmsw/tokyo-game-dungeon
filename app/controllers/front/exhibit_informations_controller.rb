@@ -3,26 +3,29 @@ class Front::ExhibitInformationsController < ApplicationController
   before_action :set_event
 
   def index
-    # /events/:event_url_subdirectory/exhibit_informations?day=1
-    if params[:day].present?
+    exhibit_information_places = ExhibitInformationPlace.includes(:place_block, :exhibit_information).where(place_block: @event.place_blocks)
+
+    # dayとfloorが指定されたら、その日のそのフロアの展示情報を表示
+    if params[:day].present? && params[:floor].present?
       @event_schedule = @event.event_schedules.offset(params[:day].to_i - 1).first
-      @floors = @event_schedule.floors
-      @place_blocks = @event_schedule.floors.map(&:place_blocks).flatten
-      @exhibit_information_places = @event_schedule.exhibit_information_places and return
-      # /events/:event_url_subdirectory/exhibit_informations?day=1&floor=３階
-      if params[:floor].present?
-        @floor = @event_schedule.floors.find_by(name: params[:floor])
-        @place_blocks = @floor.place_blocks
-        @exhibit_information_places = @floor.exhibit_information_places and return
-      end
+      @floor = @event_schedule.floors.find_by(name: params[:floor])
+      @place_blocks = @floor.place_blocks
+      @exhibit_information_places = exhibit_information_places.where(place_block: @place_blocks) and return
     end
 
-    # パラメータがなければ1日目の展示情報を表示
-    @event_schedule ||= @event.event_schedules.first
-    @floors ||= @event_schedule.floors
-    @place_blocks ||= @event_schedule.floors.map(&:place_blocks).flatten
-    @exhibit_information_places ||= @event_schedule.exhibit_information_places
+    # dayのみが指定されたら、その日のidが一番最初のフロアの展示情報を表示
+    if params[:day].present?
+      @event_schedule = @event.event_schedules.offset(params[:day].to_i - 1).first
+      @floor = @event_schedule.floors.first
+      @place_blocks = @event_schedule.floors.first.place_blocks
+      @exhibit_information_places = exhibit_information_places.where(place_block: @place_blocks) and return
+    end
 
+    # パラメータがなければ1日目のidが一番最初のフロアの展示情報を表示
+    @event_schedule = @event.event_schedules.first
+    @floor = @event_schedule.floors.first
+    @place_blocks = @event_schedule.floors.first.place_blocks
+    @exhibit_information_places = exhibit_information_places.where(place_block: @place_blocks)
   end
 
   def show

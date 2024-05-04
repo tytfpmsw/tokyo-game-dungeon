@@ -20,5 +20,5 @@
 
 = form_with url: admin_event_exhibit_submissions_url do |f|
   %div
-    = f.submit '承認', formaction: approve_admin_event_exhibit_submission_path(@exhibit_submission)
-    = f.submit '却下', formaction: reject_admin_event_exhibit_submission_path(@exhibit_submission)
+    = f.submit '承認', formaction: approve_admin_event_exhibit_submission_path(@exhibit_submission.exhibit_information.event, @exhibit_submission)
+    = f.submit '却下', formaction: reject_admin_event_exhibit_submission_path(@exhibit_submission.exhibit_information.event, @exhibit_submission)

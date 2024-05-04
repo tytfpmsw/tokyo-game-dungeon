@@ -1,11 +1,27 @@
-.navigation-buttons
+.p-exhibit-informations-navigation
   - if event_schedule.event.event_schedules.count >= 2
-    - for i in 1..event_schedule.event.event_schedules.count do
-      - for j in 0..event_schedule.floors.count do
-        = link_to "#{i}日目 #{event_schedule.floors[j].name}", url_with_params(front_event_exhibit_informations_path(event_schedule.event), { 'day' => i, 'floor' => event_schedule.floors[j].name }), class: 'navigation-button'
-  - elsif event_schedule.floors.count >= 2
-    - for i in 0..event_schedule.floors.count - 1 do
-      = link_to event_schedule.floors[i].name, url_with_params(front_event_exhibit_informations_path(event_schedule.event), { 'day' => 1, 'floor' => event_schedule.floors[i].name }), class: 'navigation-button'
-  - place_blocks.each do |place_block|
-    .navigation-button
-      %a{ href: "##{place_block.name}" }= place_block.name
+    %h3 日程
+    .navigation-buttons.day
+      - for i in 1..event_schedule.event.event_schedules.count do
+        - event_schedule.floors.each do |f|
+          - if f == floor
+            .navigation-button.active
+              = link_to "#{i}日目 #{f.name}", url_with_params(front_event_exhibit_informations_path(event_schedule.event.url_subdirectory), { 'day' => i, 'floor' => f.name })
+          - else
+            .navigation-button
+              = link_to "#{i}日目 #{f.name}", url_with_params(front_event_exhibit_informations_path(event_schedule.event.url_subdirectory), { 'day' => i, 'floor' => f.name })
+  - if event_schedule.floors.count >= 2
+    %h3 フロア
+    .navigation-buttons.floor
+      - event_schedule.floors.each do |f|
+        - if f == floor
+          .navigation-button.active
+            = f.name
+        - else
+          .navigation-button
+            = link_to f.name, url_with_params(front_event_exhibit_informations_path(event_schedule.event.url_subdirectory), { 'day' => 1, 'floor' => f.name })
+  %h3 ブロック
+  .navigation-buttons.place-block
+    - place_blocks.each do |place_block|
+      .navigation-button
+        %a{ href: "##{place_block.name}" }= place_block.name

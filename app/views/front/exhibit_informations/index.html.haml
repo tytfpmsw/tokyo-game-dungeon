@@ -1,10 +1,7 @@
 = render 'front/events/header', event: @event
 .p-exhibit-informations-header
   %h1= "#{@event.name} 出展作品一覧"
-  - if @event.event_schedules.count >= 2
-    %h2= "#{@event_schedule.day_number_in_event}日目 #{@floor.name}"
-.p-exhibit-informations-navigation
-  = render 'navigation', { event_schedule: @event_schedule, place_blocks: @place_blocks }
+= render 'navigation', { event_schedule: @event_schedule, floor: @floor, place_blocks: @place_blocks }
 .p-exhibit-informations-map 
   - if @floor.present? && @floor.image.present?
     = image_tag(@floor.image, class: 'map-image')
@@ -12,11 +9,15 @@
     - if @event_schedule.floors.first.image.present?
       = image_tag(@event_schedule.floors.first.image, class: 'map-image')
 .p-exhibit-informations-content
+  - if @event.event_schedules.count >= 2
+    %h2= "#{@event_schedule.day_number_in_event}日目 #{@floor.name}"
+  - elsif @event.floors.count >= 2
+    %h2= @floor.name
   - if @exhibit_information_places.present?
     - @place_blocks.each do |place_block|
-      = render 'front/shared/divider'
       %h2{id: place_block.name}= place_block.name
       .row.exhibit-informations
-        - for i in 1..place_block.capacity.size do
+        - for i in 1..place_block.capacity do
           - if @exhibit_information_places.where(place_block: place_block, place_number: i).exists?
             = render 'exhibit_information', { exhibit_information: @exhibit_information_places.find_by(place_block: place_block, place_number: i).exhibit_information, place_block: place_block, place_number: i }
+      = render 'front/shared/divider'
