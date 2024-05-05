@@ -94,4 +94,23 @@ class EventTest < ActiveSupport::TestCase
     assert_not event.valid?, "Validated exhibit submit period is valid"
     assert_includes event.errors.messages[:exhibit_submit_start_at], "終了日時は開始日時より後に設定してください"
   end
+
+  test "should not publish when event is already published" do
+    event = events(:past)
+    assert_not event.publish, "Published the event when event is already published"
+    assert event.errors.messages[:status].include?("は既に公開されています"), "Did not raise error when event is already published"
+  end
+
+  test "should not publish when event has no schedule" do
+    event = events(:unpublished)
+    assert_not event.publish, "Published the event when event has no schedule"
+    assert event.errors.messages[:event_schedules].include?("が存在しません"), "Did not raise error when event has no schedule"
+  end
+
+  test "should publish when event is unpublished and has schedule" do
+    event = events(:unpublished)
+    event_schedule = event.event_schedules.create!(start_at: Time.zone.now + 1.year, end_at: Time.zone.now + 1.year)
+    event.event_schedules << event_schedule
+    assert event.publish, "Did not publish the event when event is unpublished and has schedule"
+  end
 end

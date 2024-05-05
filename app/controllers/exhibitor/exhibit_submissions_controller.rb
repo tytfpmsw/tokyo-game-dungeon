@@ -3,6 +3,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
   before_action :set_event
   before_action :set_exhibit_information
   before_action :set_exhibitor
+  before_action :return_to_exhibitor_root_if_exhibitor_can_not_submit
 
   def index
     @exhibit_submission = ExhibitSubmission.find_by(exhibit_information: ExhibitInformation.where(event: @event, exhibitor: current_exhibitor))
@@ -63,6 +64,13 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
 
   def set_exhibit_information
     @exhibit_information = ExhibitInformation.find_by(event: @event, exhibitor: current_exhibitor)
+  end
+
+  def return_to_exhibitor_root_if_exhibitor_can_not_submit
+    unless @event.exhibitor_registered?(current_exhibitor) || @event.in_submit_period?
+      redirect_to exhibitor_root_path
+      return
+    end
   end
 
   def exhibit_submission_params

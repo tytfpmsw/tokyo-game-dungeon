@@ -24,9 +24,37 @@ class Event < ApplicationRecord
   scope :first_day_desc, -> { joins(:event_schedules).order(Arel.sql('event_schedules.start_at DESC')) }
   scope :published_event_date_asc, -> { where(status: :published).first_day_asc }
   scope :archived_event_date_desc, -> { where(status: :archived).first_day_desc }
+  scope :exhibitor_registered, ->(exhibitor) { joins(:exhibit_informations).where(exhibit_informations: { exhibitor: exhibitor }) }
+  scope :in_submit_period, -> { where('exhibit_submit_start_at <= ? AND exhibit_submit_end_at >= ?', Time.current, Time.current) }
+
+  def publish
+    if published? || archived?
+      errors.add(:status, "は既に公開されています")
+      return false
+    end
+
+    if event_schedules.empty?
+      errors.add(:event_schedules, "が存在しません")
+      return false
+    end
+
+    update!(status: :published)
+  end
+
+  def unpublish
+    update!(status: :unpublished)
+  end
 
   def all_day_has_floors?
     event_schedules.all?(&:has_floors?)
+  end
+
+  def exhibitor_registered?(exhibitor)
+    exhibit_informations.exists?(exhibitor: exhibitor)
+  end
+
+  def in_submit_period?
+    exhibit_submit_start_at <= Time.current && exhibit_submit_end_at >= Time.current
   end
   
   private

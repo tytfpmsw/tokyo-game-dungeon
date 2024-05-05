@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       root to: 'home#index'
       resources :sponsors
       resources :events do
+        member do
+          patch :publish
+        end
         resources :event_schedules
         resources :exhibit_informations
         resources :sponsorships

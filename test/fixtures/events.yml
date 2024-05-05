@@ -10,6 +10,9 @@ past:
   status: 2
   logo_image: logo_image_past.png
   main_image: main_image_past.png
+  publish_start_at: <%= 1.year.ago.strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_start_at: <%= (1.year.ago - 1.month).strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_end_at: <%= (1.year.ago - 1.week).strftime('%Y-%m-%d 12:00:00 +0900') %>
 
 now_preparing:
   name: 東京ゲームダンジョン２
@@ -17,6 +20,9 @@ now_preparing:
   status: 1
   logo_image: logo_image_now.png
   main_image: main_image_now.png
+  publish_start_at: <%= 1.month.ago.strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_start_at: <%= 2.week.ago.strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_end_at: <%= Time.current.tomorrow.strftime('%Y-%m-%d 12:00:00 +0900') %>
 
 future:
   name: 東京ゲームダンジョン３
@@ -24,6 +30,9 @@ future:
   status: 1
   logo_image: logo_image_future.png
   main_image: main_image_future.png
+  publish_start_at: <%= Time.current.tomorrow.strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_start_at: <%= 1.week.since.strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_end_at: <%= 2.week.since.strftime('%Y-%m-%d 12:00:00 +0900') %>
 
 unpublished:
   name: 東京ゲームダンジョン４
@@ -31,3 +40,6 @@ unpublished:
   status: 0
   logo_image: logo_image_unpublished.png
   main_image: main_image_unpublished.png
+  publish_start_at: <%= (1.year.since + 1.month).strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_start_at: <%= (1.year.since + 2.week).strftime('%Y-%m-%d 12:00:00 +0900') %>
+  exhibit_submit_end_at: <%= (1.year.since + 3.week).strftime('%Y-%m-%d 12:00:00 +0900') %>

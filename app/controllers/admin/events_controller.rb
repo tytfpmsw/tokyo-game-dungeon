@@ -1,6 +1,6 @@
 class Admin::EventsController < Admin::ApplicationController
 
-  before_action :set_event, only: %i[ show edit update ]
+  before_action :set_event, only: %i[ show edit update publish ]
 
   def index
     @events = Event.all
@@ -41,6 +41,14 @@ class Admin::EventsController < Admin::ApplicationController
       redirect_to admin_event_url(@event), notice: "イベントを更新しました。"
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def publish
+    if @event.publish?
+      redirect_to admin_event_url(@event), notice: '公開しました。'
+    else
+      redirect_to admin_event_url(event), alert: "#{@event.errors.full_messages.join(', ')}"
     end
   end
 
