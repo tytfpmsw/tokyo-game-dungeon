@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :events do
         resources :event_schedules
         resources :exhibit_informations
-        resources :sponsorships, only: [:index, :new, :create, :destroy]
+        resources :sponsorships
         resources :exhibitors do
           member do
             patch :regenerate_password

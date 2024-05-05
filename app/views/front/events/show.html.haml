@@ -109,6 +109,8 @@
     .event-sponsor-wrapper
       %h2 協賛
       .event-sponsor-body
+        - @event.sponsors.each do |sponsor|
+          = render 'sponsor', sponsor: sponsor
       .event-sponsor-footer
         = image_tag 'Ruis0-1.gif'
         

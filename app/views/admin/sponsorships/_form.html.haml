@@ -1,3 +1,8 @@
-= bootstrap_form_with url: admin_event_sponsorships_url(@event), data: { action: "turbo:submit-end->modal#close"} do |form|
+= bootstrap_form_with(model: [:admin, @event, @sponsorship], data: { action: "turbo:submit-end->modal#close"}) do |form|
   = form.collection_select :sponsor_id, @sponsors, :id, :name, include_blank: "選択してください"
+  = form.hidden_field :event_id, value: @event.id
+  - if @sponsorship.errors.present?
+    - @sponsorship.errors.full_messages.each do |message|
+      .validation-error
+        = message
   = form.primary

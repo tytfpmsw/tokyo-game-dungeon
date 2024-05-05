@@ -1,14 +1,12 @@
-= turbo_frame_tag sponsor do
+= turbo_frame_tag sponsorship do
   .row.py-2.border-top
     .col-3.my-auto
-      = sponsor.name
+      = sponsorship.sponsor.name
     .col-3.my-auto
-      = sponsor.image.present? ? image_tag(sponsor.image.url, size: "100x100") : "No Image"
+      = sponsorship.sponsor.image.present? ? image_tag(sponsorship.sponsor.image.url, size: "100x100") : "No Image"
     .col-3.my-auto
-      = sponsor.url.present? ? link_to(sponsor.url, sponsor.url) : "No URL"
+      = sponsorship.sponsor.url.present? ? link_to(sponsorship.sponsor.url, sponsorship.sponsor.url) : "No URL"
     .col-3
       .d-flex.justify-content-end
-        - if @sponsorships.find_by(sponsor: sponsor)
-          = button_to "このイベントから削除", admin_event_sponsor_url(sponsor), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "sponsors" }
-        - else
-          = button_to "このイベントに協賛として追加", admin_event_sponsorship_url(@event), class: "btn btn-outline-primary", data: { turbo_confirm: "このイベントに協賛として追加しますか？", turbo_frame: "sponsors"}, { params: { sponsorship: { event: @event, sponsor: sponsor } } }
+        = button_to "スポンサーを変更", edit_admin_event_sponsorship_path(@event, sponsorship), method: :get, class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
+        = button_to "削除", admin_event_sponsorship_path(@event, sponsorship), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-danger"

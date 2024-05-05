@@ -5,6 +5,7 @@ class Front::EventsController < ApplicationController
   
   def show
     @event = Event.find_by!(url_subdirectory: params[:url_subdirectory])
+    @spnsors = @event.sponsors
   end
 
   def inquiry

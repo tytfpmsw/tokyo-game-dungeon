@@ -14,7 +14,7 @@
         .col-3.mt-auto
           URL
         .col-3.d-flex.justify-content-end
-          = button_to "協賛を追加", new_admin_event_sponsorship_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
+          = button_to "協賛枠を追加", new_admin_event_sponsorship_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
 
-      #sponsor-ships
-        = render @sponsors
+      #sponsorships
+        = render @sponsorships

@@ -3,8 +3,7 @@ class Admin::SponsorshipsController < Admin::ApplicationController
   before_action :set_event
 
   def index
-    @sponsorships = Sponsorship.where(event_id: @event.id)
-    @sponsors = @sponsorships.map(&:sponsor)
+    @sponsorships = Sponsorship.includes(:sponsor).where(event_id: @event.id)
   end
 
   def new
@@ -14,18 +13,38 @@ class Admin::SponsorshipsController < Admin::ApplicationController
 
   def create
     @sponsorship = Sponsorship.new(sponsorship_params)
-    @sponsor = Sponsor.find(params[:sponsor_id])
+    @sponsor = Sponsor.find(sponsorship_params[:sponsor_id])
 
     if @sponsorship.save
+      flash.now[:notice] = "協賛を登録しました。"
     else
-      render :new
+      @sponsors = Sponsor.not_sponsorships(@event)
+      render :new, response: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @sponsorship = Sponsorship.find(params[:id])
+    @sponsors = Sponsor.not_sponsorships(@event)
+  end
+
+  def update
+    @sponsorship = Sponsorship.find(params[:id])
+    if @sponsorship.update(sponsorship_params)
+      flash[:notice] = "協賛を更新しました。"
+    else
+      @sponsors = Sponsor.not_sponsorships(@event)
+      render :edit
     end
   end
 
   def destroy
     @sponsorship = Sponsorship.find(params[:id])
-    @sponsor = Sponsor.find(@sponsorship.sponsor_id)
-    @sponsorship.destroy!
+    if @sponsorship.destroy
+      flash[:notice] = "協賛を解除しました。"
+    else
+      render :index
+    end
   end
 
   private
@@ -35,6 +54,6 @@ class Admin::SponsorshipsController < Admin::ApplicationController
   end
 
   def sponsorship_params
-    params.permit(:sponsor_id, :event_id)
+    params.require(:sponsorship).permit(:sponsor_id, :event_id)
   end
 end
