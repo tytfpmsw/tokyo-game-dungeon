@@ -8,7 +8,7 @@
             %h2 今後開催予定のイベント
           .scheduled-event-body
             %table
-              - @events.each do |event|
+              - @events_upcoming.each do |event|
                 %tr
                   %td
                     %h3.title
@@ -22,7 +22,7 @@
             %h2 過去のイベント
           .past-event-body
             %table
-              - @events.each do |event|
+              - @events_archived.each do |event|
                 %tr
                   %td
                     %h3.title
