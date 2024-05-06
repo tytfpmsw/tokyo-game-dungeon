@@ -67,8 +67,8 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
   end
 
   def return_to_exhibitor_root_if_exhibitor_can_not_submit
-    unless @event.exhibitor_registered?(current_exhibitor) || @event.in_submit_period?
-      redirect_to exhibitor_root_path
+    unless @event.exhibitor_registered?(current_exhibitor) && @event.in_submit_period?
+      redirect_to exhibitor_root_path, status: :forbidden
       return
     end
   end

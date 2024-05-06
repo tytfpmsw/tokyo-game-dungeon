@@ -64,4 +64,18 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
         }
     end
   end
+
+  test "should not update when event is not in submit period" do
+    
+    travel_to 1.week.since do
+      put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
+      params: {
+        title: 'test',
+        description: 'test',
+        movie_url: 'http://test'
+        }
+      assert_response :forbidden
+      assert ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id).title == '初出展タイトル'
+    end
+  end
 end
