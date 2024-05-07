@@ -36,4 +36,10 @@ class Front::ExhibitInformationsController < ApplicationController
   def set_event
     @event = Event.find_by(url_subdirectory: params[:event_url_subdirectory])
   end
+
+  def return_top_before_exhibit_information_publish
+    if  Time.zone.now < @event.exhibit_information_publish_start_at
+      redirect_to front_event_path(@event.url_subdirectory)
+    end
+  end
 end

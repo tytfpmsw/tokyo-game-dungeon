@@ -24,7 +24,9 @@
     %tr
       %th= f.label :exhibit_submit_end_at, '出展情報申込締切日時'
       %td= f.datetime_field :exhibit_submit_end_at, value: @event.exhibit_submit_end_at
-  
+    %tr
+      %th= f.label :exhibit_informations_publish_start_at, '出展情報公開日時'
+      %td= f.datetime_field :exhibit_informations_publish_start_at, value: @event.exhibit_informations_publish_start_at
 
   - if @event.errors.any?
     #error_explanation

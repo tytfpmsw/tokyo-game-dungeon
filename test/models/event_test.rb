@@ -58,7 +58,6 @@ class EventTest < ActiveSupport::TestCase
     assert_equal events[0], events(:past), "Did not get events ordered by first day in ascending"
     assert_equal events[1], events(:now_preparing), "Did not get events ordered by first day in ascending"
     assert_equal events[2], events(:future), "Did not get events ordered by first day in ascending"
-    
   end
 
   test "should get published events in ascending order of event date" do
@@ -92,7 +91,7 @@ class EventTest < ActiveSupport::TestCase
       exhibit_submit_end_at: Time.zone.now - 1.day
     )
     assert_not event.valid?, "Validated exhibit submit period is valid"
-    assert_includes event.errors.messages[:exhibit_submit_start_at], "終了日時は開始日時より後に設定してください"
+    assert_includes event.errors.messages[:exhibit_submit_start_at], "は終了日時より前に設定してください"
   end
 
   test "should not publish when event is already published" do
@@ -109,8 +108,20 @@ class EventTest < ActiveSupport::TestCase
 
   test "should publish when event is unpublished and has schedule" do
     event = events(:unpublished)
-    event_schedule = event.event_schedules.create!(start_at: Time.zone.now + 1.year, end_at: Time.zone.now + 1.year)
+    event_schedule = event.event_schedules.create!(start_at: (Time.zone.now + 1.year + 1.month).strftime('%Y-%m-%d 12:00:00 +0900'), end_at: (Time.zone.now + 1.year + 1.month).strftime('%Y-%m-%d 17:00:00 +0900'))
     event.event_schedules << event_schedule
     assert event.publish, "Did not publish the event when event is unpublished and has schedule"
+  end
+
+  test "should raise error when exhibit informations publish start at is invalid" do
+    event = Event.new(
+      name: "test",
+      url_subdirectory: "test",
+      location: 0,
+      publish_start_at: (Time.zone.now + 1.year).strftime('%Y-%m-%d 12:00:00 +0900'),
+      exhibit_informations_publish_start_at: (Time.zone.now + 1.year - 1.day).strftime('%Y-%m-%d 12:00:00 +0900')
+    )
+    assert_not event.valid?, "Validated exhibit informations publish start at is valid"
+    assert_includes event.errors.messages[:exhibit_informations_publish_start_at], "はイベント公開日時より後に設定してください"
   end
 end

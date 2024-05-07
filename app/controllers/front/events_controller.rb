@@ -1,11 +1,8 @@
 class Front::EventsController < ApplicationController
-  def index
-    @events = Event.all
-  end
   
   def show
     @event = Event.find_by!(url_subdirectory: params[:url_subdirectory])
-    @spnsors = @event.sponsors
+    @sponsors = @event.sponsors
   end
 
   def inquiry

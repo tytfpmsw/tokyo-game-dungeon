@@ -13,19 +13,36 @@
     .col-8.mg-auto.mb-4
       %table.border
         %tr
-          %th ロゴ
-          %td
-            = image_tag @event.logo_image.url
-        %tr
-          %th メイン画像
-          %td
-            = image_tag @event.main_image.url, size: '300x300'
-        %tr
           %th ステータス
           %td= @event.human_attribute_enum(:status)
+        %tr
+          %th 開催場所
+          %td= @event.human_attribute_enum(:location)
+        %tr
+          %th ロゴ
+          %td= image_tag @event.logo_image.url, size: '290x70'
+        %tr
+          %th メイン画像
+          %td= image_tag @event.main_image.url, size: '300x300'
+        %tr
+          %th イベントページ公開日時
+          %td= @event.publish_start_at
+        %tr
+          %th 出展情報申込開始日時
+          %td= @event.exhibit_submit_start_at
+        %tr
+          %th 出展情報申込締切日時
+          %td= @event.exhibit_submit_end_at
+        %tr
+          %th 出展情報公開日時
+          %td= @event.exhibit_informations_publish_start_at
+        
   = button_to 'イベント編集', edit_admin_event_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '開催日/フロア編集', admin_event_event_schedules_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '協賛管理', admin_event_sponsorships_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展者管理', admin_event_exhibitors_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展情報確認', admin_event_exhibit_informations_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
-  = button_to 'イベントを公開待ちにする', publish_admin_event_path(@event), method: :patch, class: 'btn btn-primary mg-auto mb-4'
+  - if @event.unpublished?
+    = button_to 'イベントを公開待ちにする', publish_admin_event_path(@event), method: :patch, class: 'btn btn-primary mg-auto mb-4'
+  - else
+    = button_to 'イベントを非公開にする', unpublish_admin_event_path(@event), method: :patch, class: 'btn btn-primary mg-auto mb-4'

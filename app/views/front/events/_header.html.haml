@@ -1,16 +1,11 @@
 %header.l-event-header
   .container
     .left
-      - if @event.present?
-        = link_to image_tag(@event.logo_image.url), front_event_path(@event.url_subdirectory), class: 'logo'
-      - else
-        %h1
-          = link_to front_root_path do
-            東京ゲームダンジョン ポータルページ
+      = link_to image_tag(@event.logo_image.url), front_event_path(@event.url_subdirectory), class: 'logo'
     .right
       %ul
-        - if @event.present?
-          %li.page-item.page-item-has-children
+        %li.page-item.page-item-has-children
+          - if @event.exhibit_informations_publish_start_at.present? && @event.exhibit_informations_publish_start_at < Time.zone.now
             = link_to front_event_exhibit_informations_path(@event.url_subdirectory) do
               = "#{@event.name}出展作品一覧"
         %li.page-item.page-item-has-children

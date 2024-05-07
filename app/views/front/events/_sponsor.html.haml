@@ -1,4 +1,12 @@
-%a{ :href => sponsor.url, :target => "_blank", :rel => "noopener" }
-  .event-sponsor-content
-    = image_tag sponsor.image.url
-    %h3= sponsor.name
+.event-sponsor-body
+  - if sponsor.url.present?
+    %a{ :href => sponsor.url, :target => "_blank", :rel => "noopener" }
+      .event-sponsor-content
+        - if sponsor.image.present?
+          = image_tag sponsor.image&.url
+        %h3= sponsor.name
+  - else
+    .event-sponsor-content
+      - if sponsor.image.present?
+        = image_tag sponsor.image&.url
+      %h3= sponsor.name

@@ -26,7 +26,8 @@ class Admin::EventsController < Admin::ApplicationController
       main_image: event_params[:main_image],
       publish_start_at: event_params[:publish_start_at],
       exhibit_submit_start_at: event_params[:exhibit_submit_start_at],
-      exhibit_submit_end_at: event_params[:exhibit_submit_end_at]
+      exhibit_submit_end_at: event_params[:exhibit_submit_end_at],
+      exhibit_informations_publish_start_at: event_params[:exhibit_informations_publish_start_at]
       )
 
       if @event.save
@@ -45,11 +46,16 @@ class Admin::EventsController < Admin::ApplicationController
   end
 
   def publish
-    if @event.publish?
-      redirect_to admin_event_url(@event), notice: '公開しました。'
+    if @event.publish
+      redirect_to admin_event_url(@event), notice: 'イベントを公開しました。'
     else
       redirect_to admin_event_url(event), alert: "#{@event.errors.full_messages.join(', ')}"
     end
+  end
+
+  def unpublish
+    @event.unpublish
+    redirect_to admin_event_url(@event), notice: 'イベントを非公開にしました。'
   end
 
   private
@@ -68,7 +74,8 @@ class Admin::EventsController < Admin::ApplicationController
           :main_image,
           :publish_start_at,
           :exhibit_submit_start_at,
-          :exhibit_submit_end_at
+          :exhibit_submit_end_at,
+          :exhibit_informations_publish_start_at
           )
     end
 end

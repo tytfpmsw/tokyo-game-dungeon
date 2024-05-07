@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   validates :location, presence: true
 
   validate :exhibit_submit_period_is_valid, if: -> { exhibit_submit_start_at.present? && exhibit_submit_end_at.present? }
+  validate :exhibit_informations_publish_start_at_is_valid, if: -> { exhibit_informations_publish_start_at.present? }
 
   mount_uploader :logo_image, EventLogoImageUploader
   mount_uploader :main_image, EventMainImageUploader
@@ -58,9 +59,16 @@ class Event < ApplicationRecord
   end
   
   private
-    def exhibit_submit_period_is_valid
-      if exhibit_submit_start_at >= exhibit_submit_end_at
-        errors.add(:exhibit_submit_start_at, I18n.t('errors.models.event.end_at_must_be_after_start_at'))
-      end  
+
+  def exhibit_submit_period_is_valid
+    if exhibit_submit_start_at >= exhibit_submit_end_at
+      errors.add(:exhibit_submit_start_at, "は終了日時より前に設定してください")
+    end  
+  end
+
+  def exhibit_informations_publish_start_at_is_valid
+    if  exhibit_informations_publish_start_at < publish_start_at
+      errors.add(:exhibit_informations_publish_start_at, "はイベント公開日時より後に設定してください")
     end
+  end
 end

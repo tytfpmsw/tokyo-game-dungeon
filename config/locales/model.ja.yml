@@ -33,6 +33,7 @@ ja:
         publish_start_at: 公開開始日時
         exhibit_submit_start_at: 出展情報申請開始日時
         exhibit_submit_end_at: 出展情報申請終了日時
+        exhibit_informations_publish_start_at: 出展情報公開開始日時
         reflection_title: 振り返りタイトル
         reflection_body: 振り返り
         reflection_image: 振り返り画像
@@ -83,10 +84,6 @@ ja:
         name: 名前
         image: 画像
         url: URL
-  errors:
-    models:
-      event:
-        end_at_must_be_after_start_at: "終了日時は開始日時より後に設定してください"
 
   views:
     footer:

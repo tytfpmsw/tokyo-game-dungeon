@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :events do
         member do
           patch :publish
+          patch :unpublish
         end
         resources :event_schedules
         resources :exhibit_informations
