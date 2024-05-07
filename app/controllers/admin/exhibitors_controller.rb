@@ -62,7 +62,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
   
   def update
     @exhibitor = Exhibitor.find(params[:id])
-    if @exhibitor.update(name: params[:name], discord_name: params[:discord_name], exhibitor_type: params[:exhibitor_type])
+    if @exhibitor.update(email: params[:email], name: params[:name], discord_name: params[:discord_name], exhibitor_type: params[:exhibitor_type])
       flash.now.notice = "出展者情報を更新しました。"
     else
       render :edit, status: :unprocessable_entity
