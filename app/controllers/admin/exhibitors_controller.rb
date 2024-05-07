@@ -29,16 +29,22 @@ class Admin::ExhibitorsController < Admin::ApplicationController
     # 過去に出展がない場合exhibitorを新規作成
     unless @exhibitor
       @init_password = SecureRandom.hex(8)
-      @exhibitor = Exhibitor.new(email: params[:email], name: params[:name], discord_name: params[:discord_name], password: @init_password, password_confirmation: @init_password)
+      @exhibitor = Exhibitor.new(
+        email: params[:email],
+        name: params[:name],
+        discord_name: params[:discord_name],
+        exhibitor_type: params[:exhibitor_type],
+        password: @init_password,
+        password_confirmation: @init_password)
       @exhibitor.save!
       @exhibitor = Exhibitor.find_by(email: params[:email])
     else
-      @exhibitor.update(name: params[:name], discord_name: params[:discord_name])
+      @exhibitor.update!(name: params[:name], discord_name: params[:discord_name])
     end
 
     # 空の出展情報を作成する
     @exhibit_information = ExhibitInformation.new(exhibitor: @exhibitor, event: @event)
-    @exhibit_information.save
+    @exhibit_information.save!
 
     if @init_password
       additional_message = "初期パスワードは#{@init_password}です。"
@@ -51,12 +57,17 @@ class Admin::ExhibitorsController < Admin::ApplicationController
   end
 
   def edit
+    @exhibitor = Exhibitor.find(params[:id])
   end
   
   def update
     @exhibitor = Exhibitor.find(params[:id])
-    @exhibitor.update(name: params[:name], discord_name: params[:discord_name])
-    flash.now.notice = "出展者情報を更新しました。"
+    if @exhibitor.update(name: params[:name], discord_name: params[:discord_name], exhibitor_type: params[:exhibitor_type])
+      flash.now.notice = "出展者情報を更新しました。"
+    else
+      render :edit, status: :unprocessable_entity
+      flash.now.alert = "入力内容に誤りがあります。"
+    end
   end
 
   def destroy
@@ -88,7 +99,8 @@ class Admin::ExhibitorsController < Admin::ApplicationController
       ).permit(
         :email, 
         :name,
-        :discord_name, 
+        :discord_name,
+        :exhibitor_type,
         :event_id)
   end
 end

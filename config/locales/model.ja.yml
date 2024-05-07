@@ -74,6 +74,9 @@ ja:
         email: メールアドレス
         name: 名前
         discord_name: Discord名
+      exhibitor/exhibitor_type:
+        working_adult: 社会人
+        student: 学生
       floor:
         name: フロア名
         image: フロア画像

@@ -18,6 +18,9 @@
             =f.label :discord_name_cont, "Discordユーザー名", class: "form-label"
             =f.search_field :discord_name_cont, class: "form-control"
           .col-2.col-xl-2
+            =f.label :exhibitor_type_eq, "出展者種別", class: "form-label"
+            =f.select :exhibitor_type_eq, Exhibitor.exhibitor_types.keys.map { |exhibitor_type| [exhibitor_type.humanize, exhibitor_type] }, { include_blank: true }, class: "form-select"
+          .col-2.col-xl-2
             = f.submit
           .col-2.d-flex.align-items-end
             =link_to "クリア", admin_event_exhibitors_path(@event), class: "btn btn-outline-secondary", method: :get
@@ -28,13 +31,15 @@
     .card-body.mx-3
       =turbo_frame_tag "exhibitor-list", data: { turbo_action: :advance } do
         .row.py-2
-          .col-3.mt-auto
-            =sort_link(@search, :name, "出展者名")
-          .col-3.mt-auto
+          .col-2.mt-auto
             =sort_link(@search, :email, "メールアドレス")
-          .col-3.mt-auto
+          .col-2.mt-auto
+            =sort_link(@search, :name, "出展者名")
+          .col-2.mt-auto
             =sort_link(@search, :discord_name, "Discordユーザー名")
-          .col-3.d-flex.justify-content-end
+          .col-2.mt-auto
+            =sort_link(@search, :exhibitor_type, "出展者種別")
+          .col-2.d-flex.justify-content-end
             =button_to "出展者を追加", new_admin_event_exhibitor_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
 
     .card-body.mx-3

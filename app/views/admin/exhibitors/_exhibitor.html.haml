@@ -1,12 +1,14 @@
 = turbo_frame_tag exhibitor do
   .row.py-2.border-top
-    .col-3.my-auto
+    .col-2.my-auto
       = exhibitor.email
-    .col-3.my-auto
+    .col-2.my-auto
       = exhibitor.name
-    .col-3.my-auto
+    .col-2.my-auto
       = exhibitor.discord_name
-    .col-3
+    .col-2.my-auto
+      = exhibitor.human_attribute_enum(:exhibitor_type)
+    .col-2
       .d-flex.justify-content-end
         = link_to "編集", edit_admin_event_exhibitor_path(@event, exhibitor), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
         = button_to "パスワードをリセット", regenerate_password_admin_event_exhibitor_path(@event, exhibitor), method: :patch, class: "btn btn-outline-primary", data: { turbo_confirm: "#{exhibitor.name}さんのパスワードをリセットして本人にメールを送信します。よろしいですか？", turbo_frame: "exhibitors" }

@@ -7,10 +7,12 @@ class Exhibitor < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence:true
 
+  enum exhibitor_type: { working_adult: 0, student: 1 }
+
   has_many :exhibit_informations, dependent: :restrict_with_error
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[name email discord_name]
+    %w[name email discord_name exhibitor_type]
   end
 
   def regenerate_password

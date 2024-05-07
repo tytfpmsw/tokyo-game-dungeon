@@ -1,5 +1,6 @@
-= bootstrap_form_with(url: admin_event_exhibitors_url, data: { action: "turbo:submit-end->modal#close"}) do |form|
+= bootstrap_form_with(url: admin_event_exhibitor_url, method: :put, data: { action: "turbo:submit-end->modal#close"}) do |form|
   %p メールアドレスを間違えて登録した場合は、トップ > 出展者情報からこの出展者を削除して再登録してください。
-  = form.text_field :name
-  = form.text_field :discord_name
+  = form.text_field :name, value: @exhibitor.name
+  = form.text_field :discord_name, value: @exhibitor.discord_name
+  = form.select :exhibitor_type, Exhibitor.exhibitor_types.keys.map { |k| [t("activerecord.attributes.exhibitor/exhibitor_type.#{k}"), k] }, selected: @exhibitor.exhibitor_type
   = form.primary
