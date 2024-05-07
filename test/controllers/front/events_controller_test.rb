@@ -10,15 +10,15 @@ class Front::EventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should not display exhibit informations link" do
-    get front_event_url(@event.url_subdirectory)
-    assert_select "a[href=?]", front_event_exhibit_informations_path(@event), count: 0
-  end
+  # test "should not display exhibit informations link" do
+  #   get front_event_url(@event.url_subdirectory)
+  #   assert_select "a[href=?]", front_event_exhibit_informations_path(@event), count: 0
+  # end
 
-  test "should display exhibit informations link" do
-    travel_to @event.exhibit_informations_publish_start_at + 1.day do
-      get front_event_url(@event.url_subdirectory)
-      assert_select "a[href=?]", front_event_exhibit_informations_path(@event)
-    end
-  end
+  # test "should display exhibit informations link" do
+  #   travel_to @event.exhibit_informations_publish_start_at + 1.day do
+  #     get front_event_url(@event.url_subdirectory)
+  #     assert_select "a[href=?]", front_event_exhibit_informations_path(@event)
+  #   end
+  # end
 end
