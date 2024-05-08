@@ -42,6 +42,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       circle_name: exhibit_submission_params[:circle_name],
       title: exhibit_submission_params[:title],
       description: exhibit_submission_params[:description],
+      is_vr: exhibit_submission_params[:is_vr],
       movie_url: exhibit_submission_params[:movie_url],
       image: exhibit_submission_params[:image],
       status: ExhibitSubmission.statuses[:submitted]
@@ -82,6 +83,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       :circle_name,
       :title,
       :description,
+      :is_vr,
       :movie_url,
       :image
       )

@@ -2,6 +2,10 @@
   = form.text_field :circle_name, value: exhibit_submission.circle_name
   = form.text_field :title, value: exhibit_submission.title
   = form.text_area :description, value: exhibit_submission.description
+  - if exhibit_submission.is_vr
+    = form.check_box :is_vr, checked: true
+  - else
+    = form.check_box :is_vr
   = form.text_field :movie_url, value: exhibit_submission.movie_url
   = form.file_field :image
   - if exhibit_submission.errors.any?

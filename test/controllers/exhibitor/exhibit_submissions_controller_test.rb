@@ -25,9 +25,15 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
       params: {
         title: 'test',
         description: 'test',
-        movie_url: 'http://test'
+        movie_url: 'http://test',
+        is_vr: false
         }
     end
+    exhibit_submission = ExhibitSubmission.find_by(exhibit_information: ExhibitInformation.find_by(exhibitor: exhibitors(:unsubmitted)))
+    assert exhibit_submission.title == 'test'
+    assert exhibit_submission.description == 'test'
+    assert exhibit_submission.movie_url == 'http://test'
+    assert exhibit_submission.is_vr == false
   end
 
   test "should put update" do
@@ -35,9 +41,15 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     params: {
       title: 'test',
       description: 'test',
-      movie_url: 'http://test'
+      movie_url: 'http://test',
+      is_vr: true
       }
     assert_response :found
+    exhibit_submission = ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id)
+    assert exhibit_submission.title == 'test'
+    assert exhibit_submission.description == 'test'
+    assert exhibit_submission.movie_url == 'http://test'
+    assert exhibit_submission.is_vr == true
   end
 
   test "should not create when exhibit submission already exists" do

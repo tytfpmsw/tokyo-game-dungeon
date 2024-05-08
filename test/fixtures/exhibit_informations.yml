@@ -3,6 +3,7 @@ has_exhibited_and_registered_exhibit_past:
   exhibitor: has_exhibited_and_registered
   title: 過去の出展
   description: 過去の説明
+  is_vr: false
   movie_url: https://www.youtube.com/watch?=exhibited_registered1
   event: past
   circle_name: サークル1
@@ -12,6 +13,7 @@ has_exhibited_and_registered_exhibit_now_preparing:
   exhibitor: has_exhibited_and_registered
   title: 出展済み今回タイトル
   description: 出展済み今回説明
+  is_vr: false
   movie_url: https://www.youtube.com/watch?=exhibited_registered2
   event: now_preparing
   circle_name: サークル2
@@ -21,6 +23,7 @@ newbie_exhibit:
   exhibitor: newbie
   title: 初出展タイトル
   description: 初出展説明
+  is_vr: false
   movie_url: https://www.youtube.com/watch?=newbie
   event: now_preparing
   circle_name: サークル3
@@ -30,6 +33,7 @@ unsubmitted_exhibit:
   exhibitor: unsubmitted
   title: 
   description: 
+  is_vr: false
   movie_url: 
   event: now_preparing
   circle_name: 
@@ -38,6 +42,7 @@ destroyable_exhibit:
   exhibitor: destroyable_exhibitor
   title: 削除用タイトル
   description: 削除用説明
+  is_vr: false
   movie_url: https://www.youtube.com/watch?=destroyable
   event: now_preparing
   circle_name: サークル4

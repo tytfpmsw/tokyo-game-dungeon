@@ -54,12 +54,16 @@ ja:
         circle_name: サークル名
         title: タイトル
         description: 説明
+        is_vr: VRの出展をする
         movie_url: 動画URL
         image: 画像
       exhibit_submission:
         circle_name: サークル名
         title: タイトル
         description: 説明
+        is_vr:
+          true: VRの出展をする
+          false: VRを使用しない
         movie_url: 動画URL
         image: 画像
         status: ステータス

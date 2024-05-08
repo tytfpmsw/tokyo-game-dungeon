@@ -2,6 +2,7 @@
 has_exhibited_and_registered_exhibit_past:
   title: 過去の出展
   description: 過去の説明
+  is_vr: false
   movie_url: https://www.youtube.com/watch?=exhibited_registered1
   status: 2
   image: dummy.png
@@ -11,6 +12,7 @@ has_exhibited_and_registered_exhibit_past:
 has_exhibited_and_registered_exhibit_now_preparing:
   title: 出展済み今回タイトル
   description: 出展済み今回説明
+  is_vr: false
   movie_url: https://www.youtube.com/watch?=exhibited_registered2
   status: 2
   image: dummy.png
@@ -20,6 +22,7 @@ has_exhibited_and_registered_exhibit_now_preparing:
 newbie_exhibit:
   title: 初出展タイトル
   description: 初出展説明
+  is_vr: false
   movie_url: https://www.youtube.com/watch?=newbie
   status: 2
   image: dummy.png

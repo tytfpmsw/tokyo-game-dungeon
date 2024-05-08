@@ -48,6 +48,7 @@ class Admin::ExhibitSubmissionsController < Admin::ApplicationController
     @exhibit_information.circle_name = @exhibit_submission.circle_name? ? @exhibit_submission.circle_name : @exhibit_information.circle_name
     @exhibit_information.title = @exhibit_submission.title? ? @exhibit_submission.title : @exhibit_information.title
     @exhibit_information.description = @exhibit_submission.description? ? @exhibit_submission.description : @exhibit_information.description
+    @exhibit_information.is_vr = @exhibit_submission.is_vr? ? @exhibit_submission.is_vr : @exhibit_information.is_vr
     @exhibit_information.movie_url = @exhibit_submission.movie_url? ? @exhibit_submission.movie_url : @exhibit_information.movie_url
     # imageはcopy_imageでコピー済み
     @exhibit_information.update!(@exhibit_information.attributes)

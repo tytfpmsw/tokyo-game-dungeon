@@ -13,6 +13,12 @@
         %th= f.label :description, '説明'
         %td= f.text_area :description, value: @exhibit_submission&.description
       %tr
+        %th= f.label :is_vr, 'VRを使用する'
+        - if @exhibit_submission&.is_vr
+          %td= f.check_box :is_vr, value: @exhibit_submission&.is_vr, checked: true
+        - else
+          %td= f.check_box :is_vr, value: @exhibit_submission&.is_vr
+      %tr
         %th= f.label :movie_url, '動画URL'
         %td= f.text_field :movie_url, value: @exhibit_submission&.movie_url
       %tr

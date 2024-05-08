@@ -24,7 +24,7 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
   test "should create new exhibitor" do
     @exhibitor_count = Exhibitor.count
     @exhibit_information_count = ExhibitInformation.count
-    post(admin_event_exhibitors_url(@event.id), params: { email: 'unittest@example.com', name: 'unittest', discord_name: 'unittestdiscord'})
+    post(admin_event_exhibitors_url(@event.id), params: { email: 'unittest@example.com', name: 'unittest', discord_name: 'unittestdiscord', exhibitor_type: :working_adult })
 
     created_exhibitor = Exhibitor.find_by(email: 'unittest@example.com')
 
@@ -44,7 +44,10 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
   test "should not create new exhibitor but create exhibit_information" do
     @exhibit_information_count = ExhibitInformation.count
     @exhibitor_count = Exhibitor.count
-    post(admin_event_exhibitors_url(@event.id), params: { email: @exhibitor_exhibited_and_not_registered.email })
+    post(admin_event_exhibitors_url(@event.id), params: {
+      email: @exhibitor_exhibited_and_not_registered.email,
+      name: @exhibitor_exhibited_and_not_registered.name,
+      exhibitor_type: :working_adult })
 
     assert_equal(@exhibitor_count, Exhibitor.count)
     assert_equal(@exhibit_information_count + 1, ExhibitInformation.count)
@@ -61,9 +64,11 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
   end
 
   test "should update exhitibor" do
-    patch(admin_event_exhibitor_url(@event.id, @exhibitor.id), params: { name: 'updated_name' })
+    patch(admin_event_exhibitor_url(@event.id, @exhibitor.id), params: { email: 'updated@example.com', name: 'updated_name', exhibitor_type: :student })
 
+    assert_equal('updated@example.com', Exhibitor.find(@exhibitor.id).email)
     assert_equal('updated_name', Exhibitor.find(@exhibitor.id).name)
+    assert_equal('student', Exhibitor.find(@exhibitor.id).exhibitor_type)
   end
 
   test "should destroy exhibit_information" do
