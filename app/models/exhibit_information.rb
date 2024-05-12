@@ -4,6 +4,8 @@ class ExhibitInformation < ApplicationRecord
   has_one :exhibit_submission, dependent: :destroy
   has_many :exhibit_information_places
 
+  enum genre: Genre::TYPES
+
   validates :event, uniqueness: { scope: :exhibitor }
   validates :circle_name, length: { maximum: 25 }
   validates :title, length: { maximum: 25 }

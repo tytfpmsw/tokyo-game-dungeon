@@ -18,7 +18,7 @@
   .card-body.mx-3
     = turbo_frame_tag "exhibit-information-list", data: { turbo_action: :advance } do
       .row.py-2
-        .col-2.mt-auto
+        .col-1.mt-auto
           出展提出
         .col-2.mt-auto
           出展者
@@ -27,7 +27,9 @@
         .col-2.mt-auto
           タイトル
         .col-2.mt-auto
+          ジャンル
+        .col-1.mt-auto
           VR使用
-        .col-2.mt-auto
+        .col-1.mt-auto
       #exhibit-informations
         = render @exhibit_informations

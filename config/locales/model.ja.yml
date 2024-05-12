@@ -11,6 +11,7 @@ ja:
       exhibit_submission: 出展情報申請
       exhibitor: 出展者
       floor: フロア
+      genre: ジャンル
       place_block: ブロック
       sponsor: 協賛団体
       sponsorship: 協賛
@@ -84,6 +85,17 @@ ja:
       floor:
         name: フロア名
         image: フロア画像
+      genre:
+        undefined: 未指定
+        action: アクション
+        shooting: シューティング
+        puzzle: パズル
+        cardgame: カードゲーム
+        racing: レーシング
+        rpg: ロールプレイング
+        simulation: シミュレーション
+        adv_novel: アドベンチャー・ノベル
+        music: 音楽ゲーム
       place_block:
         name: ブロック名
         capacity: ブース数

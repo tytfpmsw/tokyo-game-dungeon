@@ -41,6 +41,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
     if @exhibit_submission.update(
       circle_name: exhibit_submission_params[:circle_name],
       title: exhibit_submission_params[:title],
+      genre: exhibit_submission_params[:genre],
       description: exhibit_submission_params[:description],
       is_vr: exhibit_submission_params[:is_vr],
       movie_url: exhibit_submission_params[:movie_url],
@@ -82,6 +83,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       ).permit(
       :circle_name,
       :title,
+      :genre,
       :description,
       :is_vr,
       :movie_url,

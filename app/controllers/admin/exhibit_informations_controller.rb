@@ -19,11 +19,12 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
     # 画像を参照できなくなってしまうので、ExhibitInformationにuploaderはマウントしない。
     # そのため、admin画面からでも直接ExhibitInformationは編集せず、ExhibitSubmissionを経由する。
     # Carrierwaveの画像を他モデルにコピーできる方法がわかれば修正する。
+     
+    # turbo_streamで置き換えるために@exhibit_informationを保持する必要がある
     @exhibit_information = @event.exhibit_informations.find(params[:id])
     @exhibit_submission = @exhibit_information.exhibit_submission
-    if @exhibit_submission.update(exhibit_information_params.merge(status: :submitted))
+    if @exhibit_submission.update(exhibit_information_params.merge(status: :submitted))      
       flash.now.notice = '出展情報を申請しました。承認することで反映されます。'
-      redirect_to admin_event_exhibit_informations_path(@event), notice: '出展情報を更新しました'
     else
       render :edit
     end
@@ -32,7 +33,7 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
   private
 
   def exhibit_information_params
-    params.require(:exhibit_information).permit(:circle_name, :title, :description, :is_vr, :movie_url, :image)
+    params.require(:exhibit_information).permit(:circle_name, :title, :genre, :description, :is_vr, :movie_url, :image)
   end
 
   def set_event

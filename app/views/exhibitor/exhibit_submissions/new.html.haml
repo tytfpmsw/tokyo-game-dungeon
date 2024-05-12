@@ -1,7 +1,7 @@
 .p-exhibitor-exhibit-submission-new
   %h1 出展情報の提出
 
-  = form_with url: exhibitor_event_exhibit_submissions_path do |f|
+  = bootstrap_form_with url: exhibitor_event_exhibit_submissions_path do |f|
     %table
       %tr
         %th= f.label :circle_name, 'サークル名'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_150306) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_11_015511) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_150306) do
     t.bigint "event_id", null: false
     t.string "circle_name"
     t.string "title"
+    t.integer "genre", default: 0, null: false
     t.string "description"
     t.boolean "is_vr", default: false, null: false
     t.text "movie_url"
@@ -91,6 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_150306) do
     t.bigint "exhibit_information_id", null: false
     t.string "circle_name"
     t.string "title"
+    t.integer "genre", default: 0, null: false
     t.string "description"
     t.boolean "is_vr", default: false, null: false
     t.text "movie_url"

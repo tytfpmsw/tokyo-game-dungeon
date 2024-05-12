@@ -2,6 +2,7 @@ class ExhibitSubmission < ApplicationRecord
   mount_uploader :image, ImageUploader
   belongs_to :exhibit_information
 
+  enum genre: Genre::TYPES
   enum :status, { draft: 0, submitted: 1, approved: 2, rejected: 3 }, prefix: true
 
   validates :exhibit_information, uniqueness: true

@@ -6,6 +6,7 @@
       %th 出展者
       %th サークル名
       %th タイトル
+      %th ジャンル
       %th 説明
       %th VR使用
       %th 動画URL
@@ -15,6 +16,7 @@
       %td= @exhibitor.name
       %td= @exhibit_submission.circle_name
       %td= @exhibit_submission.title
+      %td= @exhibit_submission.human_attribute_enum(:genre)
       %td= @exhibit_submission.description
       %td= @exhibit_submission.is_vr
       %td= @exhibit_submission.movie_url

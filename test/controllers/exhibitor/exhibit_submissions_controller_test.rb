@@ -31,6 +31,7 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     end
     exhibit_submission = ExhibitSubmission.find_by(exhibit_information: ExhibitInformation.find_by(exhibitor: exhibitors(:unsubmitted)))
     assert exhibit_submission.title == 'test'
+    assert exhibit_submission.genre == 'undefined'
     assert exhibit_submission.description == 'test'
     assert exhibit_submission.movie_url == 'http://test'
     assert exhibit_submission.is_vr == false
@@ -40,6 +41,7 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
     params: {
       title: 'test',
+      genre: 'shooting',
       description: 'test',
       movie_url: 'http://test',
       is_vr: true
@@ -47,9 +49,11 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert_response :found
     exhibit_submission = ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id)
     assert exhibit_submission.title == 'test'
+    assert exhibit_submission.genre == 'shooting'
     assert exhibit_submission.description == 'test'
     assert exhibit_submission.movie_url == 'http://test'
     assert exhibit_submission.is_vr == true
+    assert exhibit_submission.status == 'submitted'
   end
 
   test "should not create when exhibit submission already exists" do

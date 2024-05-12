@@ -10,6 +10,9 @@
         %th= f.label :title, 'タイトル'
         %td= f.text_field :title, value: @exhibit_submission&.title
       %tr
+        %th= f.label :genre, 'ジャンル'
+        %td= f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: @exhibit_submission&.genre
+      %tr
         %th= f.label :description, '説明'
         %td= f.text_area :description, value: @exhibit_submission&.description
       %tr

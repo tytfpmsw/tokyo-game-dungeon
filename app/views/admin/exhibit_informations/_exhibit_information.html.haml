@@ -1,10 +1,9 @@
 = turbo_frame_tag exhibit_information do
   .row.py-2.border-top
-    .col-2.my-auto
+    .col-1.my-auto
       - if exhibit_information.exhibit_submission&.status_submitted?
         = button_to "確認", admin_event_exhibit_submission_path(exhibit_information.event, exhibit_information.exhibit_submission), method: :get, class: "btn btn-outline-primary", data: { turbo_frame: "_top" }
       - else
-        
     .col-2.my-auto
       = exhibit_information.exhibitor.name
     .col-2.my-auto
@@ -12,7 +11,9 @@
     .col-2.my-auto
       = exhibit_information.title
     .col-2.my-auto
+      = exhibit_information.human_attribute_enum(:genre)
+    .col-1.my-auto
       = t(exhibit_information.is_vr)
-    .col-2.my-auto
+    .col-1.my-auto
       .d-flex.justify-content-end
         = link_to "編集", edit_admin_event_exhibit_information_path(exhibit_information.event.id, exhibit_information), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }

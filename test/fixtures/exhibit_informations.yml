@@ -2,6 +2,7 @@
 has_exhibited_and_registered_exhibit_past:
   exhibitor: has_exhibited_and_registered
   title: 過去の出展
+  genre: 0
   description: 過去の説明
   is_vr: false
   movie_url: https://www.youtube.com/watch?=exhibited_registered1
@@ -12,6 +13,7 @@ has_exhibited_and_registered_exhibit_past:
 has_exhibited_and_registered_exhibit_now_preparing:
   exhibitor: has_exhibited_and_registered
   title: 出展済み今回タイトル
+  genre: 0
   description: 出展済み今回説明
   is_vr: false
   movie_url: https://www.youtube.com/watch?=exhibited_registered2
@@ -22,6 +24,7 @@ has_exhibited_and_registered_exhibit_now_preparing:
 newbie_exhibit:
   exhibitor: newbie
   title: 初出展タイトル
+  genre: 1
   description: 初出展説明
   is_vr: false
   movie_url: https://www.youtube.com/watch?=newbie
@@ -32,6 +35,7 @@ newbie_exhibit:
 unsubmitted_exhibit:
   exhibitor: unsubmitted
   title: 
+  genre: 0
   description: 
   is_vr: false
   movie_url: 
@@ -41,6 +45,7 @@ unsubmitted_exhibit:
 destroyable_exhibit:
   exhibitor: destroyable_exhibitor
   title: 削除用タイトル
+  genre: 2
   description: 削除用説明
   is_vr: false
   movie_url: https://www.youtube.com/watch?=destroyable
