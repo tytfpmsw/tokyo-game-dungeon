@@ -23,11 +23,13 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert_difference('ExhibitSubmission.count') do
       post exhibitor_event_exhibit_submissions_url(@event.url_subdirectory),
       params: {
-        title: 'test',
-        description: 'test',
-        movie_url: 'http://test',
-        is_vr: false
+        exhibit_submission: {
+          title: 'test',
+          description: 'test',
+          movie_url: 'http://test',
+          is_vr: false
         }
+      }
     end
     exhibit_submission = ExhibitSubmission.find_by(exhibit_information: ExhibitInformation.find_by(exhibitor: exhibitors(:unsubmitted)))
     assert exhibit_submission.title == 'test'
@@ -35,17 +37,20 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert exhibit_submission.description == 'test'
     assert exhibit_submission.movie_url == 'http://test'
     assert exhibit_submission.is_vr == false
+    assert exhibit_submission.status == 'submitted'
   end
 
   test "should put update" do
     put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
     params: {
-      title: 'test',
-      genre: 'shooting',
-      description: 'test',
-      movie_url: 'http://test',
-      is_vr: true
+      exhibit_submission: {
+        title: 'test',
+        genre: 'shooting',
+        description: 'test',
+        movie_url: 'http://test',
+        is_vr: true
       }
+    }
     assert_response :found
     exhibit_submission = ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id)
     assert exhibit_submission.title == 'test'
@@ -60,10 +65,12 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert_no_difference('ExhibitSubmission.count') do
       post exhibitor_event_exhibit_submissions_url(@event.url_subdirectory),
       params: {
-        title: 'test',
-        description: 'test',
-        movie_url: 'http://test'
+        exhibit_submission: {
+          title: 'test',
+          description: 'test',
+          movie_url: 'http://test'
         }
+      }
     end 
   end
 
@@ -74,10 +81,12 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert_no_difference('ExhibitSubmission.count') do
       post exhibitor_event_exhibit_submissions_url(@event.url_subdirectory),
       params: {
-        title: 'test',
-        description: 'test',
-        movie_url: 'http://test'
+        exhibit_submission: {
+          title: 'test',
+          description: 'test',
+          movie_url: 'http://test'
         }
+      }
     end
   end
 
@@ -86,10 +95,12 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     travel_to 1.week.since do
       put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
       params: {
-        title: 'test',
-        description: 'test',
-        movie_url: 'http://test'
+        exhibit_submission: {
+          title: 'test',
+          description: 'test',
+          movie_url: 'http://test'
         }
+      }
       assert_response :forbidden
       assert ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id).title == '初出展タイトル'
     end
@@ -98,13 +109,15 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
   test "should update when original_work is filled" do
     put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
     params: {
-      title: 'test',
-      genre: 'shooting',
-      description: 'test',
-      movie_url: 'http://test',
-      is_vr: true,
-      original_work: 'OriginalWork'
+      exhibit_submission: {
+        title: 'test',
+        genre: 'shooting',
+        description: 'test',
+        movie_url: 'http://test',
+        is_vr: true,
+        original_work: 'OriginalWork'
       }
+    }
     assert_response :found
     exhibit_submission = ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id)
     assert exhibit_submission.title == 'test'

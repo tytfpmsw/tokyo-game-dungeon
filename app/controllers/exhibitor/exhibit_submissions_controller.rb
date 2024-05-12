@@ -22,6 +22,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
 
     @exhibit_submission = ExhibitSubmission.new(exhibit_submission_params)
     @exhibit_submission.exhibit_information = @exhibit_information
+    @exhibit_submission.status = ExhibitSubmission.statuses[:submitted]
 
     unless @exhibit_submission.save
       render :new, status: :unprocessable_entity
@@ -80,8 +81,9 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
     params.except(
       :authenticity_token,
       :commit,
-      :subdomain
-      ).permit(
+      :subdomain)
+      .require(:exhibit_submission)
+      .permit(
       :circle_name,
       :title,
       :genre,

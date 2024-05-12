@@ -9,3 +9,9 @@
     margin: 0 auto;
   }
 }
+
+label.required:after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
+}

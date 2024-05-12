@@ -2,5 +2,5 @@
   = form.email_field :email
   = form.text_field :name
   = form.text_field :discord_name
-  = form.select :exhibitor_type, Exhibitor.exhibitor_types.keys.map { |exhibitor_type| [exhibitor_type.humanize, exhibitor_type] }
+  = form.select :exhibitor_type, Exhibitor.exhibitor_types.keys.map { |k| [t("activerecord.attributes.exhibitor/exhibitor_type.#{k}"), k] }
   = form.primary
