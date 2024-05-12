@@ -13,7 +13,9 @@
     .col-2.my-auto
       = exhibit_information.human_attribute_enum(:genre)
     .col-1.my-auto
-      = t(exhibit_information.is_vr)
+      = exhibit_information.is_vr ? "VRを出展" : "-"
     .col-1.my-auto
       .d-flex.justify-content-end
-        = link_to "編集", edit_admin_event_exhibit_information_path(exhibit_information.event.id, exhibit_information), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
+        - unless exhibit_information.exhibit_submission&.status_submitted?
+          = link_to "編集", edit_admin_event_exhibit_information_path(exhibit_information.event.id, exhibit_information), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
+        

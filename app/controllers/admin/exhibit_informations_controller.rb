@@ -11,6 +11,12 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
 
   def edit
     @exhibit_information = @event.exhibit_informations.find(params[:id])
+
+    if @exhibit_information.exhibit_submission.status_submitted?
+      @exhibit_informations = @event.exhibit_informations
+      redirect_to admin_event_exhibit_informations_path(@event), status: :unprocessable_entity, alert: '現在審査中です。先に審査を完了してください。'
+      return
+    end
   end
 
   def update
@@ -23,6 +29,12 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
     # turbo_streamで置き換えるために@exhibit_informationを保持する必要がある
     @exhibit_information = @event.exhibit_informations.find(params[:id])
     @exhibit_submission = @exhibit_information.exhibit_submission
+
+    if @exhibit_submission.status_submitted?
+      redirect_to admin_event_exhibit_informations_path(@event), alert: '現在審査中です。先に審査を完了してください。'
+      return
+    end
+
     if @exhibit_submission.update(exhibit_information_params.merge(status: :submitted))      
       flash.now.notice = '出展情報を申請しました。承認することで反映されます。'
     else

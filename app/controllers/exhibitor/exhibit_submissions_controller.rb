@@ -29,15 +29,22 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       return
     end
 
-    redirect_to exhibitor_root_path, notice: '出展情報を提出しました。'
+    redirect_to exhibitor_event_path(@event.url_subdirectory), notice: '出展情報を提出しました。'
   end
 
   def edit
-    @exhibit_submission = ExhibitSubmission.find(params[:id])
+    @exhibit_submission = ExhibitSubmission.find_by(exhibit_information: @exhibit_information)
+    if @exhibit_submission.status_submitted?
+      redirect_to exhibitor_event_path(@event.url_subdirectory), alert: '現在審査中です。審査が終了するまでお待ちください。'
+    end
   end
 
   def update
-    @exhibit_submission = ExhibitSubmission.find(params[:id])
+    @exhibit_submission = ExhibitSubmission.find_by(exhibit_information: @exhibit_information)
+
+    if @exhibit_submission.status_submitted?
+      redirect_to exhibitor_event_path(@event), alert: '現在審査中です。審査が終了するまでお待ちください。'
+    end
 
     if @exhibit_submission.update(
       circle_name: exhibit_submission_params[:circle_name],

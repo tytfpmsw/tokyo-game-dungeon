@@ -45,4 +45,27 @@ class Exhibitor::EventsControllerTest < Exhibitor::IntegrationTest
     get exhibitor_event_url(@future_event.url_subdirectory)
     assert_redirected_to exhibitor_root_url
   end
+
+  test "should get show with new submit button" do
+    sign_out exhibitors(:newbie)
+    sign_in exhibitors(:unsubmitted)
+    get exhibitor_event_url(@event.url_subdirectory)
+    assert_response :success
+    assert_select "form[action=?]", new_exhibitor_event_exhibit_submission_path(@event.url_subdirectory)
+  end
+
+  test "should get show with edit submit button" do
+    get exhibitor_event_url(@event.url_subdirectory)
+    assert_response :success
+    assert_select "form[action=?]", edit_exhibitor_event_exhibit_submission_path(@event.url_subdirectory, exhibit_informations(:newbie_exhibit))
+  end
+
+  test "should not get show with edit submit button when status is submitted" do
+    exhibit_submission = exhibit_submissions(:newbie_exhibit)
+    exhibit_submission.update!(status: :submitted)
+
+    get exhibitor_event_url(@event.url_subdirectory)
+    assert_response :success
+    assert_select "form[action=?]", edit_exhibitor_event_exhibit_submission_path(@event.url_subdirectory, exhibit_informations(:newbie_exhibit)), count: 0
+  end
 end

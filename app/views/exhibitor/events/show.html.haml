@@ -10,7 +10,67 @@
         %tr
           %td
             = image_tag @event.main_image.url, size: '300x300'
-  - if @exhibit_submission.present?
-    = button_to '出展情報提出', edit_exhibitor_event_exhibit_submission_path(@event.url_subdirectory, @exhibit_submission), method: :get, class: 'btn btn-primary mg-auto mb-4'
+  - if @exhibit_information.exhibit_submission.present?
+    - if @exhibit_information.exhibit_submission.status_submitted?
+      %p
+        現在下記の情報で提出しています。
+        審査完了までお待ちください。
+      %table.border
+        %tr
+          %th サークル名
+          %td= @exhibit_information.exhibit_submission.circle_name
+        %tr
+          %th 作品名
+          %td= @exhibit_information.exhibit_submission.title
+        %tr
+          %th ジャンル
+          %td= t("activerecord.attributes.genre.#{@exhibit_information.exhibit_submission.genre}")
+        %tr
+          %th 作品説明
+          %td= @exhibit_information.exhibit_submission.description
+        %tr
+          %th 動画URL
+          %td= @exhibit_information.exhibit_submission.movie_url
+        %tr
+          %th 画像
+          %td
+            = image_tag @exhibit_information.exhibit_submission.image.url, size: '300x300'
+        %tr
+          %th 原作
+          %td= @exhibit_information.exhibit_submission.original_work
+        %tr
+          %th VR出展
+          %td= @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展' : 'VRゲームは出展しない'
+    - else
+      = button_to '出展情報提出', edit_exhibitor_event_exhibit_submission_path(@event.url_subdirectory, @exhibit_information.exhibit_submission), method: :get, class: 'btn btn-primary mg-auto mb-4'
+      %p
+        現在は下記の情報で承認されています。
+        修正するには「出展情報提出」ボタンをクリックしてください。
+      %table.border
+        %tr
+          %th サークル名
+          %td= @exhibit_information.exhibit_submission.circle_name
+        %tr
+          %th 作品名
+          %td= @exhibit_information.exhibit_submission.title
+        %tr
+          %th ジャンル
+          %td= t("activerecord.attributes.genre.#{@exhibit_information.exhibit_submission.genre}")
+        %tr
+          %th 作品説明
+          %td= @exhibit_information.exhibit_submission.description
+        %tr
+          %th 動画URL
+          %td= @exhibit_information.exhibit_submission.movie_url
+        %tr
+          %th 画像
+          %td
+            = image_tag @exhibit_information.exhibit_submission.image.url, size: '300x300'
+        %tr
+          %th 原作
+          %td= @exhibit_information.exhibit_submission.original_work
+        %tr
+          %th VR出展
+          %td= @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展' : 'VRゲームは出展しない'
   - else
     = button_to '出展情報提出', new_exhibitor_event_exhibit_submission_path(@event.url_subdirectory), method: :get, class: 'btn btn-primary mg-auto mb-4'

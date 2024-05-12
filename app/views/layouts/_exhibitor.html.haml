@@ -1,5 +1,7 @@
 .exhibitor-wrapper.container 
   - if exhibitor_signed_in?
+    .row
+      = render 'exhibitor/shared/header'
     .row 
       .col-4 
         = render 'exhibitor/shared/sidemenu' 

@@ -10,6 +10,6 @@ class Exhibitor::EventsController < Exhibitor::ApplicationController
       redirect_to exhibitor_root_path
       return
     end
-    @exhibit_submission = ExhibitSubmission.find_by(exhibit_information: ExhibitInformation.find_by(event: @event, exhibitor: current_exhibitor))
+    @exhibit_information = ExhibitInformation.includes(:exhibit_submission).find_by(event: @event, exhibitor: current_exhibitor)
   end
 end
