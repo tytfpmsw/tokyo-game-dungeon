@@ -94,4 +94,25 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
       assert ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id).title == '初出展タイトル'
     end
   end
+
+  test "should update when original_work is filled" do
+    put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
+    params: {
+      title: 'test',
+      genre: 'shooting',
+      description: 'test',
+      movie_url: 'http://test',
+      is_vr: true,
+      original_work: 'OriginalWork'
+      }
+    assert_response :found
+    exhibit_submission = ExhibitSubmission.find(exhibit_submissions(:newbie_exhibit).id)
+    assert exhibit_submission.title == 'test'
+    assert exhibit_submission.genre == 'shooting'
+    assert exhibit_submission.description == 'test'
+    assert exhibit_submission.movie_url == 'http://test'
+    assert exhibit_submission.is_vr == true
+    assert exhibit_submission.original_work == 'OriginalWork'
+    assert exhibit_submission.status == 'submitted'
+  end
 end

@@ -46,6 +46,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       is_vr: exhibit_submission_params[:is_vr],
       movie_url: exhibit_submission_params[:movie_url],
       image: exhibit_submission_params[:image],
+      original_work: exhibit_submission_params[:original_work],
       status: ExhibitSubmission.statuses[:submitted]
     )
       redirect_to exhibitor_root_path, notice: '提出情報を更新しました。'
@@ -87,7 +88,8 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       :description,
       :is_vr,
       :movie_url,
-      :image
+      :image,
+      :original_work
       )
   end
 end

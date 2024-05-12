@@ -23,11 +23,63 @@ class Admin::ExhibitInformationsControllerTest < Admin::IntegrationTest
         title: "updatedTitle",
         genre: "adv_novel",
         is_vr: true,
+        movie_url: "https://updated.com",
+        original_work: "OriginalWork" } }
+    assert_equal "updatedCircle", @exhibit_information.reload.exhibit_submission.circle_name
+    assert_equal "updatedTitle", @exhibit_information.reload.exhibit_submission.title
+    assert_equal "adv_novel", @exhibit_information.reload.exhibit_submission.genre
+    assert_equal true, @exhibit_information.reload.exhibit_submission.is_vr
+    assert_equal "https://updated.com", @exhibit_information.reload.exhibit_submission.movie_url
+    assert_equal "OriginalWork", @exhibit_information.reload.exhibit_submission.original_work
+  end
+
+  test "should update when original_work is blank" do
+    patch admin_event_exhibit_information_url(@event.id, @exhibit_information.id), params: {
+      exhibit_information: {
+        circle_name: "updatedCircle",
+        title: "updatedTitle",
+        genre: "adv_novel",
+        is_vr: true,
+        movie_url: "https://updated.com",
+        original_work: "" } }
+    assert_equal "updatedCircle", @exhibit_information.reload.exhibit_submission.circle_name
+    assert_equal "updatedTitle", @exhibit_information.reload.exhibit_submission.title
+    assert_equal "adv_novel", @exhibit_information.reload.exhibit_submission.genre
+    assert_equal true, @exhibit_information.reload.exhibit_submission.is_vr
+    assert_equal "https://updated.com", @exhibit_information.reload.exhibit_submission.movie_url
+    assert_equal "", @exhibit_information.reload.exhibit_submission.original_work
+  end
+
+  test "should update when original_work is nil" do
+    patch admin_event_exhibit_information_url(@event.id, @exhibit_information.id), params: {
+      exhibit_information: {
+        circle_name: "updatedCircle",
+        title: "updatedTitle",
+        genre: "adv_novel",
+        is_vr: true,
+        movie_url: "https://updated.com",
+        original_work: nil } }
+    assert_equal "updatedCircle", @exhibit_information.reload.exhibit_submission.circle_name
+    assert_equal "updatedTitle", @exhibit_information.reload.exhibit_submission.title
+    assert_equal "adv_novel", @exhibit_information.reload.exhibit_submission.genre
+    assert_equal true, @exhibit_information.reload.exhibit_submission.is_vr
+    assert_equal "https://updated.com", @exhibit_information.reload.exhibit_submission.movie_url
+    assert_nil @exhibit_information.reload.exhibit_submission.original_work
+  end
+
+  test "should update when original_work is not present" do
+    patch admin_event_exhibit_information_url(@event.id, @exhibit_information.id), params: {
+      exhibit_information: {
+        circle_name: "updatedCircle",
+        title: "updatedTitle",
+        genre: "adv_novel",
+        is_vr: true,
         movie_url: "https://updated.com" } }
     assert_equal "updatedCircle", @exhibit_information.reload.exhibit_submission.circle_name
     assert_equal "updatedTitle", @exhibit_information.reload.exhibit_submission.title
     assert_equal "adv_novel", @exhibit_information.reload.exhibit_submission.genre
     assert_equal true, @exhibit_information.reload.exhibit_submission.is_vr
     assert_equal "https://updated.com", @exhibit_information.reload.exhibit_submission.movie_url
+    assert_nil @exhibit_information.reload.exhibit_submission.original_work
   end
 end

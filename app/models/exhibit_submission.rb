@@ -10,6 +10,7 @@ class ExhibitSubmission < ApplicationRecord
   validates :title, length: { maximum: 25 }
   validates :description, length: { maximum: 255 }
   validates :movie_url, allow_blank: true, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :original_work, allow_blank: true, length: { maximum: 25 }
   
   def submit
     begin

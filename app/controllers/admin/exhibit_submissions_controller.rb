@@ -26,19 +26,18 @@ class Admin::ExhibitSubmissionsController < Admin::ApplicationController
     @exhibit_information.description = @exhibit_submission.description? ? @exhibit_submission.description : @exhibit_information.description
     @exhibit_information.is_vr = @exhibit_submission.is_vr? ? @exhibit_submission.is_vr : @exhibit_information.is_vr
     @exhibit_information.movie_url = @exhibit_submission.movie_url? ? @exhibit_submission.movie_url : @exhibit_information.movie_url
+    @exhibit_information.original_work = @exhibit_submission.original_work? ? @exhibit_submission.original_work : @exhibit_information.original_work
     # imageはcopy_imageでコピー済み
     @exhibit_information.update!(@exhibit_information.attributes)
     
     @exhibit_submission.update!(status: "approved")
-    redirect_to admin_event_exhibit_informations_path
-    flash.now.notice = '出展情報を承認しました。'
+    redirect_to admin_event_exhibit_informations_path, notice: '出展情報を承認しました。'
   end
 
   def reject
     @exhibit_submission = ExhibitSubmission.find(params[:id])
     @exhibit_submission.update!(status: "rejected")
-    redirect_to admin_event_exhibit_informations_path
-    flash.now.notice = '出展情報を却下しました。'
+    redirect_to admin_event_exhibit_informations_path, notice: '出展情報を却下しました。'
   end
 
   private 

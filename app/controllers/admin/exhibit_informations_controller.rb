@@ -33,7 +33,15 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
   private
 
   def exhibit_information_params
-    params.require(:exhibit_information).permit(:circle_name, :title, :genre, :description, :is_vr, :movie_url, :image)
+    params.require(:exhibit_information).permit(
+      :circle_name,
+      :title,
+      :genre,
+      :description,
+      :is_vr,
+      :movie_url,
+      :image,
+      :original_work)
   end
 
   def set_event

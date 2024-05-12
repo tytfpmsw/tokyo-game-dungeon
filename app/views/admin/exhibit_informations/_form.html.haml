@@ -9,6 +9,7 @@
     = form.check_box :is_vr
   = form.text_field :movie_url, value: exhibit_submission.movie_url
   = form.file_field :image
+  = form.text_field :original_work, value: exhibit_submission.original_work
   - if exhibit_submission.errors.any?
     #error_explanation
       %h2= "#{exhibit_submission.errors.count}個のエラーで保存できませんでした:"
