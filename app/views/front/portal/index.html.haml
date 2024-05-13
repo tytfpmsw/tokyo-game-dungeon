@@ -2,46 +2,47 @@
 .p-portal
   .inner.container
     .row.container
-      .events-wrapper.col-8
+      .main-contents-wrapper.col-8
         .scheduled-event-wrapper
-          .scheduled-event-header
-            %h2 今後開催予定のイベント
-          .scheduled-event-body
-            %table
-              - @events_upcoming.each do |event|
+          .content
+            .content-header
+              %h2 今後開催予定のイベント
+            .content-body
+              %table
+                - @events_upcoming.each do |event|
+                  %tr
+                    %td
+                      %h3.title
+                        = event.name
+                      = link_to front_event_path(event.url_subdirectory) do
+                        .event-image
+                          = image_tag event.main_image.url, size: '300x200'
+            .content-footer
+        .past-event-wrapper
+          .content
+            .content-header
+              %h2 過去のイベント
+            .content-body
+              %table
                 %tr
                   %td
-                    %h3.title
-                      = event.name
-                    = link_to front_event_path(event.url_subdirectory) do
-                      .event-image
-                        = image_tag event.main_image.url, size: '300x200'
-          .scheduled-event-footer
-        .past-event-wrapper
-          .past-event-header
-            %h2 過去のイベント
-          .past-event-body
-            %table
-              %tr
-                %td
-                  = link_to '過去の開催', 'https://tokyogamedungeon.com/archive/'
-              -# - @events_archived.each do |event|
-              -#   %tr
-              -#     %td
-              -#       %h3.title
-              -#         = event.name
-              -#       = link_to front_event_path(event.url_subdirectory) do
-              -#         .event-image
-              -#           = image_tag event.main_image.url, size: '300x200'
-          .past-event-footer
+                    = link_to '過去の開催', 'https://tokyogamedungeon.com/archive/'
+                -# - @events_archived.each do |event|
+                -#   %tr
+                -#     %td
+                -#       %h3.title
+                -#         = event.name
+                -#       = link_to front_event_path(event.url_subdirectory) do
+                -#         .event-image
+                -#           = image_tag event.main_image.url, size: '300x200'
+            .content-footer
+      .side-contents.col-4
+        .content
+          .content-header
+            %h2 公式X
+          .content-body 
+            %a{ class: "twitter-timeline", href: "https://twitter.com/TG_Dungeon?ref_src=twsrc%5Etfw" }
+            %script{ async: true, src: "https://platform.twitter.com/widgets.js", charset: "utf-8" }
+          .content-footer
         
-      .menu.col-4
-        .menu-header
-          %h2 メニュー
-        .menu-body 
-          %ul
-            %li リンク1
-            %li リンク2
-            %li リンク3
-        .menu-footer
     .row.container
