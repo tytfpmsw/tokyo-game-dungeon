@@ -49,7 +49,7 @@ class Admin::EventsController < Admin::ApplicationController
     if @event.publish
       redirect_to admin_event_url(@event), notice: 'イベントを公開しました。'
     else
-      redirect_to admin_event_url(event), alert: "#{@event.errors.full_messages.join(', ')}"
+      redirect_to admin_event_url(@event), alert: "#{@event.errors.full_messages.join(', ')}"
     end
   end
 

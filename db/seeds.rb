@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Administrator.find_or_create_by!(email: 'admin@example.com') do |administrator|
-  administrator.password = "Abcd-1234"
+Administrator.find_or_create_by!(email: Rails.application.credentials.initial_account.name) do |administrator|
+  administrator.password = Rails.application.credentials.initial_account.password
 end
 
