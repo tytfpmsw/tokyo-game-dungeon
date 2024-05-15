@@ -10,6 +10,12 @@ class Front::EventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should send inquiry email" do
+    assert_emails 1 do
+      post inquiry_front_events_url(@event.url_subdirectory), params: { name: "test", contact: "test@example.com", inquiry: "test" }
+    end
+  end
+
   # test "should not display exhibit informations link" do
   #   get front_event_url(@event.url_subdirectory)
   #   assert_select "a[href=?]", front_event_exhibit_informations_path(@event), count: 0

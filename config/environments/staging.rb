@@ -97,7 +97,7 @@ Rails.application.configure do
    
   config.exhibit_informations_image_root = "public"
 
-  credentials = Aws::Credentials.new(Rails.application.credentials.aws.access_key, Rails.application.credentials.aws.secret_access_key)
+  credentials = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
   Aws::Rails.add_action_mailer_delivery_method(
     :ses,
     credentials: credentials,
