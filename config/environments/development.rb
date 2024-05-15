@@ -79,4 +79,6 @@ Rails.application.configure do
   config.hosts << ".tokyogamedungeon.localhost"
 
   config.exhibit_informations_image_root = "public"
+
+  config.admin_email = "test@example.com"
 end

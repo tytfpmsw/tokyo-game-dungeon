@@ -8,8 +8,8 @@ class InquiryMailerTest < ActionMailer::TestCase
       mail.deliver_now
     end
 
-    assert_equal ["inquiry@tokyogamedungeon.com"], mail.from
-    assert_equal ["ty.tf.pmsw@gmail.com"], mail.to
+    assert_equal ["inquiry@gamedungeon.jp"], mail.from
+    assert_equal ["test@example.com"], mail.to
     assert_equal "新規のお問い合わせがあります", mail.subject
     assert_match "名前：テスト", mail.body.to_s
     assert_match "連絡先：test@example.com", mail.body.to_s

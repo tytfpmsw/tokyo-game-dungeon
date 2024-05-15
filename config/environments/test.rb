@@ -63,4 +63,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.exhibit_informations_image_root = "test/images"
+
+  config.admin_email = "test@example.com"
 end
