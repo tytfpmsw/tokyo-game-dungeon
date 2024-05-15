@@ -80,18 +80,22 @@ gem 'mini_magick', '~> 4.11'
 
 gem 'bootstrap', '~> 5.3.0'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.6'
 
-gem 'sassc-rails'
+gem 'sassc-rails', '~> 2.1'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.5'
 
-gem 'kaminari'
+gem 'kaminari', '~> 1.2'
 
-gem 'ransack'
+gem 'ransack', '~> 4.1'
 
 gem 'bootstrap_form'
 
+gem 'aws-sdk-rails', '~> 3.12'
+
+gem 'dotenv-rails', '~> 3.1'
+
 group :production, :staging do
-  gem 'unicorn'
+  gem 'unicorn', '~> 6.1'
 end

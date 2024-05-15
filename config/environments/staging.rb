@@ -96,4 +96,18 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
    
   config.exhibit_informations_image_root = "public"
+
+  credentials = Aws::Credentials.new(Rails.application.credentials.aws.access_key, Rails.application.credentials.aws.secret_access_key)
+  Aws::Rails.add_action_mailer_delivery_method(
+    :ses,
+    credentials: credentials,
+    region: "ap-northeast-1"
+  )
+
+  config.action_mailer.default_url_options = { host: "gamedungeon.jp" }
+  config.action_mailer.delivery_method = :ses
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.admin.email = "ty.tf.pmsw@gmail.com"
 end
