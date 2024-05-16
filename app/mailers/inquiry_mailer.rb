@@ -1,6 +1,6 @@
 class InquiryMailer < ApplicationMailer
-  default to: -> { Rails.application.config.admin_email },
-          from: email_address_with_name("inquiry@gamedungeon.jp", "東京ゲームダンジョンCMS")
+  default to: -> { Rails.configuration.app.admin[:email] },
+          from: email_address_with_name(Rails.configuration.app.system[:email], "東京ゲームダンジョンCMS")
 
   def inquiry_email(name, email, content)
     @name = name

@@ -56,11 +56,13 @@ class Admin::ExhibitorsControllerTest < Admin::IntegrationTest
   test "should not create but update when exhibitor already exists" do
     @exhibitor_count = Exhibitor.count
     @exhibit_information_count = ExhibitInformation.count
-    post(admin_event_exhibitors_url(@event.id), params: { email: @exhibitor_exhibited_and_not_registered.email, name: 'updated_name' })
+    post(admin_event_exhibitors_url(@event.id), params: { email: @exhibitor_exhibited_and_not_registered.email, name: 'updated_name', discord_name: 'updated_discord_name', exhibitor_type: :student})
 
     assert_equal(@exhibitor_count, Exhibitor.count)
     assert_equal(@exhibit_information_count + 1, ExhibitInformation.count)
     assert_equal('updated_name', Exhibitor.find(@exhibitor_exhibited_and_not_registered.id).name)
+    assert_equal('updated_discord_name', Exhibitor.find(@exhibitor_exhibited_and_not_registered.id).discord_name)
+    assert_equal('student', Exhibitor.find(@exhibitor_exhibited_and_not_registered.id).exhibitor_type)
   end
 
   test "should update exhitibor" do

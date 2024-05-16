@@ -20,6 +20,17 @@ has_exhibited_and_registered_exhibit_now_preparing:
   event: now_preparing
   circle_name: サークル2
 
+# 過去出展済み・今回未登録出展者の過去情報
+has_exhibited_and_not_registered_exhibit_past:
+  exhibitor: has_exhibited_and_not_registered
+  title: 過去の出展
+  genre: 0
+  description: 過去の説明
+  is_vr: false
+  movie_url: https://www.youtube.com/watch?=exhibited_not_registered1
+  event: past
+  circle_name: サークル1
+
 # 新規出展者の今回情報
 newbie_exhibit:
   exhibitor: newbie

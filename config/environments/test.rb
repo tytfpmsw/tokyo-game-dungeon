@@ -65,4 +65,6 @@ Rails.application.configure do
   config.exhibit_informations_image_root = "test/images"
 
   config.admin_email = "test@example.com"
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

@@ -96,6 +96,12 @@ gem 'aws-sdk-rails', '~> 3.12'
 
 gem 'dotenv-rails', '~> 3.1'
 
+gem 'recaptcha', '~> 5.16', require: 'recaptcha/rails'
+
 group :production, :staging do
   gem 'unicorn', '~> 6.1'
+end
+
+group :development do
+  gem 'letter_opener'
 end

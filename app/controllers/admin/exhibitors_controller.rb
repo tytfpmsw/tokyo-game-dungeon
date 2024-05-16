@@ -18,42 +18,64 @@ class Admin::ExhibitorsController < Admin::ApplicationController
   end
 
   def create
-    @exhibitor = Exhibitor.find_by(email: exhibitor_params[:email])
+    begin
+      @exhibitor = Exhibitor.find_by(email: exhibitor_params[:email])
 
-    # すでに登録済みかつ今回のイベントに出展権限がある場合
-    if @exhibitor && ExhibitInformation.where(exhibitor: @exhibitor, event: @event).exists?
+      # すでに登録済みかつ今回のイベントに出展権限がある場合
+      if @exhibitor && ExhibitInformation.where(exhibitor: @exhibitor, event: @event).exists?
+        render :new, status: :unprocessable_entity
+        flash.now.alert = "すでに登録済みです。" and return
+      end
+
+      # 過去に出展がない場合exhibitorを新規作成
+      unless @exhibitor
+        @init_password = SecureRandom.hex(8)
+        @exhibitor = Exhibitor.new(
+          email: params[:email],
+          name: params[:name],
+          discord_name: params[:discord_name],
+          exhibitor_type: params[:exhibitor_type],
+          password: @init_password,
+          password_confirmation: @init_password)
+        @exhibitor.save!
+        @exhibitor = Exhibitor.find_by(email: params[:email])
+        ExhibitorMailer.exhibitor_registered_email(params[:email], @event.name, @init_password).deliver_now
+      else
+        # 登録されていてもシステム移行前のイベントの場合は管理側が登録したものなので、あらためてパスワードを通知する
+        if @exhibitor.exhibit_informations.maximum(:event_id) <= Rails.configuration.app.event_id[:before_migrate][:max]
+          @init_password = SecureRandom.hex(8)
+          @exhibitor.update!(
+            name: params[:name],
+            discord_name: params[:discord_name],
+            exhibitor_type: params[:exhibitor_type],
+            password: @init_password,
+            password_confirmation: @init_password)
+          ExhibitorMailer.exhibitor_registered_email(@exhibitor.email, @event.name, @init_password).deliver_now
+        else
+          # 移行後に登録されている場合はそのままパスワードを使いたいので他項目の更新のみ
+          @exhibitor.update!(
+            name: params[:name],
+            discord_name: params[:discord_name],
+            exhibitor_type: params[:exhibitor_type])
+          ExhibitorMailer.event_registered_email(@exhibitor.email, @event.name).deliver_now
+        end
+      end
+
+      # 空の出展情報を作成する
+      @exhibit_information = ExhibitInformation.new(exhibitor: @exhibitor, event: @event)
+      @exhibit_information.save!
+
+      if @init_password
+        additional_message = "初期パスワードは#{@init_password}です。"
+        flash.now.notice = "出展者を登録しました。" + additional_message
+        return  
+      end
+      flash.now.notice = "出展者を登録しました。"
+
+    rescue => e
       render :new, status: :unprocessable_entity
-      flash.now.alert = "すでに登録済みです。" and return
+      flash.now.alert = "処理に失敗しました。 + #{e.message}"      
     end
-
-    # 過去に出展がない場合exhibitorを新規作成
-    unless @exhibitor
-      @init_password = SecureRandom.hex(8)
-      @exhibitor = Exhibitor.new(
-        email: params[:email],
-        name: params[:name],
-        discord_name: params[:discord_name],
-        exhibitor_type: params[:exhibitor_type],
-        password: @init_password,
-        password_confirmation: @init_password)
-      @exhibitor.save!
-      @exhibitor = Exhibitor.find_by(email: params[:email])
-    else
-      @exhibitor.update!(name: params[:name], discord_name: params[:discord_name])
-    end
-
-    # 空の出展情報を作成する
-    @exhibit_information = ExhibitInformation.new(exhibitor: @exhibitor, event: @event)
-    @exhibit_information.save!
-
-    if @init_password
-      additional_message = "初期パスワードは#{@init_password}です。"
-      flash.now.notice = "出展者を登録しました。" + additional_message
-      # TODO: メール送信
-      return  
-    end
-    flash.now.notice = "出展者を登録しました。"
-    # TODO: メール送信
   end
 
   def edit

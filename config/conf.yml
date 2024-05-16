@@ -1,0 +1,44 @@
+default: &default
+  event_id:
+    before_migrate:
+      max: 7
+  admin:
+    email: test@example.com
+  system:
+    email: system@gamedungeon.jp
+
+development:
+  <<: *default
+  event_id:
+    before_migrate:
+      max: 0
+  admin:
+    email:
+      - test@example.com
+      - test2@example.com
+
+test:
+  <<: *default
+  event_id:
+    before_migrate:
+      max: 1
+  admin:
+    email: test@example.com
+
+staging:
+  <<: *default
+  event_id:
+    before_migrate:
+      max: 0
+  admin:
+    email:
+      - ty.tf.pmsw@gmail.com
+
+production:
+  <<: *default
+  event_id:
+    before_migrate:
+      max: 7
+  admin:
+    email:
+      - ty.tf.pmsw@gmail.com

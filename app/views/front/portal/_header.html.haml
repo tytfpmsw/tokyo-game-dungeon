@@ -7,12 +7,12 @@
         %h1
           = link_to front_root_path do
             東京ゲームダンジョン ポータルサイト
-    .right
-      %ul
-        - if @event.present?
-          %li.page-item.page-item-has-children
-            = link_to front_event_path(@event.url_subdirectory) do
-              = @event.name
-        %li.page-item.page-item-has-children
-          = link_to front_root_path do
-            過去の開催
+    -# .right
+    -#   %ul
+    -#     - if @event.present?
+    -#       %li.page-item.page-item-has-children
+    -#         = link_to front_event_path(@event.url_subdirectory) do
+    -#           = @event.name
+    -#     %li.page-item.page-item-has-children
+    -#       = link_to front_root_path do
+    -#         過去の開催
