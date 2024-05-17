@@ -135,7 +135,7 @@
       %h2 お問合せ
       .event-contact-body
         .content 
-          = render 'front/events/form', event: @event
+          = render 'front/events/form', event: @event, show_checkbox_recaptcha: @show_checkbox_recaptcha
         .content
           = image_tag 'Charlotte0-1.gif'
           
