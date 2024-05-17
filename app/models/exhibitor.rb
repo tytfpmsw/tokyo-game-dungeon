@@ -16,7 +16,7 @@ class Exhibitor < ApplicationRecord
   end
 
   def regenerate_password
-    init_password = SecureRandom.hex(8)
+    init_password = SecureRandom.hex(4)
     self.password = init_password
     self.password_confirmation = init_password
     self.save!

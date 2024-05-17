@@ -29,7 +29,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
 
       # 過去に出展がない場合exhibitorを新規作成
       unless @exhibitor
-        @init_password = SecureRandom.hex(8)
+        @init_password = SecureRandom.hex(4)
         @exhibitor = Exhibitor.new(
           email: params[:email],
           name: params[:name],
@@ -43,7 +43,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
       else
         # 登録されていてもシステム移行前のイベントの場合は管理側が登録したものなので、あらためてパスワードを通知する
         if @exhibitor.exhibit_informations.maximum(:event_id) <= Rails.configuration.app.event_id[:before_migrate][:max]
-          @init_password = SecureRandom.hex(8)
+          @init_password = SecureRandom.hex(4)
           @exhibitor.update!(
             name: params[:name],
             discord_name: params[:discord_name],

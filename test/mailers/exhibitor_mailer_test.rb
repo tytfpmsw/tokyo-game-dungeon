@@ -17,6 +17,7 @@ class ExhibitorMailerTest < ActionMailer::TestCase
     assert_equal "【東京ゲームダンジョン】ログイン用パスワードのお知らせ", mail.subject
     assert_match "東京ゲームダンジョン２への出展登録が完了しました。", mail.body.to_s
     assert_match "初期パスワード： password123", mail.body.to_s
+    assert_match "https://", mail.body.to_s
   end
 
   test "event_registered_email" do
@@ -34,5 +35,6 @@ class ExhibitorMailerTest < ActionMailer::TestCase
     assert_equal "【東京ゲームダンジョン】イベント出展登録完了のお知らせ", mail.subject
     assert_match "東京ゲームダンジョン２への出展登録が完了しました。", mail.body.to_s
     assert_match "パスワードは前回まで使用していたものを引き続き使用できます。", mail.body.to_s
+    assert_match "https://", mail.body.to_s
   end
 end

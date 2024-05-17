@@ -9,4 +9,7 @@
     = f.label :content, 'お問い合わせ内容'
     = f.text_area :content, class: 'form-control', required: true
   .form-group
+    = recaptcha_v3 action: 'inquiry'
+    = f.hidden_field :event_url_subdirectory, value: event.url_subdirectory
+  .form-group
     = f.submit '送信', class: 'btn btn-primary'
