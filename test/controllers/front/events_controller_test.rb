@@ -12,7 +12,7 @@ class Front::EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should send inquiry email" do
     assert_emails 1 do
-      post inquiry_front_events_url(@event.url_subdirectory), params: { name: "test", contact: "test@example.com", inquiry: "test" }
+      post inquiry_front_events_url(@event.url_subdirectory), params: { name: "test", contact: "test@example.com", inquiry: "test", event_url_subdirectory: @event.url_subdirectory }
     end
   end
 

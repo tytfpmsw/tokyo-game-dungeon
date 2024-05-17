@@ -42,7 +42,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
         ExhibitorMailer.exhibitor_registered_email(params[:email], @event.name, @init_password).deliver_now
       else
         # 登録されていてもシステム移行前のイベントの場合は管理側が登録したものなので、あらためてパスワードを通知する
-        if @exhibitor.exhibit_informations.maximum(:event_id) <= Rails.configuration.app.event_id[:before_migrate][:max]
+        if @exhibitor.exhibit_informations.present? && @exhibitor.exhibit_informations.maximum(:event_id) <= Rails.configuration.app.event_id[:before_migrate][:max]
           @init_password = SecureRandom.hex(4)
           @exhibitor.update!(
             name: params[:name],

@@ -20,7 +20,8 @@ class Front::EventsController < ApplicationController
       if !success
         @show_checkbox_recaptcha = true
       end
-      render :show
+      flash[:alert] = "recaptcha認証に失敗しました。"
+      redirect_to front_event_path(@event.url_subdirectory)
     end
   end
 end
