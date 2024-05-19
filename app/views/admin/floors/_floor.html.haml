@@ -1,8 +1,13 @@
 = turbo_frame_tag floor do
   .row.py-2.border-top
-    .col-3.my-auto
+    .col-4.my-auto
       = floor.name
-    .col-3
+    .col-4.my-auto
+      - if floor.image.present?
+        = image_tag floor.image.url, class: "img-thumbnail"
+      - else
+        画像なし
+    .col-4
       .d-flex.justify-content-end
         = link_to "ブロック編集", admin_floor_place_blocks_url(floor), class: "btn btn-outline-primary", data: { turbo_frame: "_top" }
         = link_to "編集", edit_admin_floor_path(floor), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }

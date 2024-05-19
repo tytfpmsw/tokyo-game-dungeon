@@ -20,7 +20,7 @@ class Admin::FloorsController < Admin::ApplicationController
   end
 
   def create
-    @floor = Floor.new(name: floor_params[:floor][:name], event_schedule: @event_schedule)
+    @floor = Floor.new(name: floor_params[:floor][:name], image: floor_params[:floor][:image], event_schedule: @event_schedule)
 
     if @floor.save
       flash.now.notice = "フロアを作成しました。"
@@ -32,7 +32,7 @@ class Admin::FloorsController < Admin::ApplicationController
   def update
     @floor = Floor.find(params[:id])
 
-    if @floor.update(name: floor_params[:floor][:name])
+    if @floor.update(name: floor_params[:floor][:name], image: floor_params[:floor][:image])
       flash.now.notice = "フロアを更新しました。"
     else
       render :edit, status: :unprocessable_entity
@@ -52,6 +52,6 @@ class Admin::FloorsController < Admin::ApplicationController
     end
 
     def floor_params
-      params.permit(:event_schedule, floor: [ :name ])
+      params.permit(:event_schedule, floor: [ :name, :image ])
     end
 end

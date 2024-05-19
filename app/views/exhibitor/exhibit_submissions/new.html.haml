@@ -15,13 +15,13 @@
         %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, counter_over_limit_class: "text-danger" } }
           = f.label :circle_name, class: 'required'
           %small.text-muted 50文字以内
-          = f.text_field :circle_name, value: @exhibit_submission&.circle_name, hide_label: true, required: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          = f.text_field :circle_name, value: @exhibit_submission&.circle_name, hide_label: true, required: true, :placeholder => "例：", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
           %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, char_counter_over_limit_class: "text-danger" } }
           = f.label :title, class: 'required'
           %small.text-muted 50文字以内
-          = f.text_field :title, value: @exhibit_submission&.title, hide_label: true, required: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          = f.text_field :title, value: @exhibit_submission&.title, hide_label: true, required: true, :placeholder => "例：", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
           %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td
@@ -32,28 +32,28 @@
         %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 100, char_counter_over_limit_class: "text-danger" } }
           = f.label :description
           %small.text-muted 100文字以内
-          = f.text_area :description, value: @exhibit_submission&.description, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          = f.text_area :description, value: @exhibit_submission&.description, hide_label: true, :placeholder => "例：", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
           %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td
           = f.label :title_url
           %small.text-muted 出展作品の公式サイトやBoothのURLなどを記入してください。
-          = f.text_field :title_url, value: @exhibit_submission&.title_url, hide_label: true, :placeholder => "https://example.com/xxx"
+          = f.text_field :title_url, value: @exhibit_submission&.title_url, hide_label: true, :placeholder => "例：https://example.com/xxx"
       %tr
         %td
           = f.label :steam_url
           %small.text-muted 出展作品のSteamページのURLを記入してください。
-          = f.text_field :steam_url, value: @exhibit_submission&.steam_url, hide_label: true, :placeholder => "https://store.steampowered.com/app/xxx/xxx/"
+          = f.text_field :steam_url, value: @exhibit_submission&.steam_url, hide_label: true, :placeholder => "例：https://store.steampowered.com/app/xxx/xxx/"
       %tr
         %td
           = f.label :twitter_url
           %small.text-muted 出展作品のX(Twitter)アカウントのURLを記入してください。
-          = f.text_field :twitter_url, value: @exhibit_submission&.twitter_url, hide_label: true, :placeholder => "https://x.com/xxx/"
+          = f.text_field :twitter_url, value: @exhibit_submission&.twitter_url, hide_label: true, :placeholder => "例：https://x.com/xxx/"
       %tr
         %td
           = f.label :movie_url
           %small.text-muted 出展作品の紹介動画のURLを記入してください。
-          = f.text_field :movie_url, value: @exhibit_submission&.movie_url, hide_label: true, :placeholder => "https://www.youtube.com/watch?v=xxx"
+          = f.text_field :movie_url, value: @exhibit_submission&.movie_url, hide_label: true, :placeholder => "例：https://www.youtube.com/watch?v=xxx"
       %tr
         %td
           = f.label :image, class: 'required'
@@ -68,13 +68,13 @@
         %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, char_counter_over_limit_class: "text-danger" } }
           = f.label :original_work
           %small.text-muted 二次創作の作品を出展する場合は、原作のタイトルを記入してください(50文字以内)。
-          = f.text_field :original_work, value: @exhibit_submission&.original_work, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          = f.text_field :original_work, value: @exhibit_submission&.original_work, hide_label: true, :placeholder => "例：", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
           %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 100, char_counter_over_limit_class: "text-danger" } }
           = f.label :memo
           %small.text-muted 他の出展者と展示スペースを連結したい、大型の機器を持ち込む場合などはご記入ください(100文字以内)。
-          = f.text_area :memo, value: @exhibit_submission&.memo, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          = f.text_area :memo, value: @exhibit_submission&.memo, hide_label: true, :placeholder => "例：", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
           %small.text-muted{ data: { char_counter: { target: 'count' } } }          
       %tr
         %td
