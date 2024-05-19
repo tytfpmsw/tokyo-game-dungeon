@@ -1,4 +1,11 @@
 %tr
   %td.border
     %a.exhibitor-event{href: exhibitor_event_path(event.url_subdirectory)}
+      %p
+        = event.name
       = image_tag event.logo_image.url, size: '290x70'
+      %br
+      出展情報提出期限： #{event.exhibit_submit_end_at.strftime('%Y年%m月%d日 %H:%M')}
+  %td.border
+    %a.exhibitor-event{href: exhibitor_event_path(event.url_subdirectory)}
+      = button_to '出展情報', exhibitor_event_path(event.url_subdirectory), class: 'btn btn-primary'
