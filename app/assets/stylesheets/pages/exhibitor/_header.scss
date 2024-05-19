@@ -1,8 +1,12 @@
-.s-admin-header {
-    background-color: darkturquoise;
-    color: white;
+.s-exhibitor-header {
+    background-color: #FF0066;
+    height: 100px;
+    display:flex;
+    align-items: center;
+    justify-content: start;
 
-    h1 {
-        text-align: start;
+    .logo {
+        background-color: white;
+        width: 290px;
     }
 }

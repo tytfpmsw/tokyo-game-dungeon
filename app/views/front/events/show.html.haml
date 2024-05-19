@@ -32,9 +32,9 @@
               = "#{@event.name}開催のお知らせ"
             %p 
               = "次回は#{ l @event.event_schedules.first.start_at, format: :month}に開催します。"
-              %br 
+              %br
                 汝、締切が欲しいか...？
-            = link_to '詳細'
+            = link_to '詳細', 'https://tokyogamedungeon.com/wp-content/uploads/2024/05/wp_gaiden_info_240514.pdf', target: '_blank', rel: 'noopener noreferrer'
         .content
           .card
             = image_tag 'CharacterIcon_300x300_2.png'
@@ -43,13 +43,13 @@
               出店を希望される方はまず規約をご確認ください。
               %br
                 面倒臭いと思いますが、必ず読んでから申し込んでください。
-            = link_to '詳細'
+            = link_to '詳細', 'https://tokyogamedungeon.com/wp-content/uploads/2024/05/wp_gaiden_info_240514.pdf', target: '_blank', rel: 'noopener noreferrer'
         .content
           .card
             = image_tag 'CharacterIcon_300x300_3.png'
             %h3 Disord
             %p 出展を希望される方は申し込む前にDiscordサーバーにご参加ください。連絡はDiscordでおこないます。
-            = link_to 'Discord'
+            = link_to 'Discord', 'https://discord.com/invite/5a3Fa3DpXT', target: '_blank', rel: 'noopener noreferrer'
     
     = render 'front/shared/divider'
 
