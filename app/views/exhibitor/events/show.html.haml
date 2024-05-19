@@ -56,8 +56,10 @@
         %td
           - if @exhibit_information.exhibit_submission.image.present?
             = image_tag @exhibit_information.exhibit_submission.image.url, size: '300x300'
-          - else 
+          - elsif @exhibit_information.image.present?
             = image_tag @exhibit_information.image, size: '300x300'
+          - else 
+            未提出
       %tr
         %th= t('activerecord.attributes.exhibit_submission.is_vr')
         %td= @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展する' : 'VRゲームは出展しない'        

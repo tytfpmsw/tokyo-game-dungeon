@@ -11,7 +11,7 @@ class Exhibitor::EventsControllerTest < Exhibitor::IntegrationTest
     get exhibitor_root_url
     assert_response :success
     assert_select "a[href=?]", exhibitor_event_path(@event.url_subdirectory)
-    assert_select ".exhibitor-event", count: 1
+    assert_select ".exhibitor-event", count: 2 # 1イベントにつきこのクラスは2つ出力される
 
     travel_to Time.current + 2.day.since do
       get exhibitor_root_url
@@ -25,14 +25,14 @@ class Exhibitor::EventsControllerTest < Exhibitor::IntegrationTest
     get exhibitor_root_url
     assert_response :success
     assert_select "a[href=?]", exhibitor_event_path(@event.url_subdirectory)
-    assert_select ".exhibitor-event", count: 1
+    assert_select ".exhibitor-event", count: 2
 
     travel_to Time.current + 1.week + 2.day do
       get exhibitor_root_url
       assert_response :success
       assert_select "a[href=?]", exhibitor_event_path(@event.url_subdirectory), count: 0
       assert_select "a[href=?]", exhibitor_event_path(@future_event.url_subdirectory)
-      assert_select ".exhibitor-event", count: 1
+      assert_select ".exhibitor-event", count: 2
     end
   end
 

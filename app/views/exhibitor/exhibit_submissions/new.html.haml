@@ -12,25 +12,28 @@
   = bootstrap_form_with url: exhibitor_event_exhibit_submissions_path, model: @exhibit_submission do |f|
     %table
       %tr
-        %td
+        %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, counter_over_limit_class: "text-danger" } }
           = f.label :circle_name, class: 'required'
           %small.text-muted 50文字以内
-          = f.text_field :circle_name, value: @exhibit_submission&.circle_name, hide_label: true, required: true, :placeholder => ""
+          = f.text_field :circle_name, value: @exhibit_submission&.circle_name, hide_label: true, required: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
-        %td
+        %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, char_counter_over_limit_class: "text-danger" } }
           = f.label :title, class: 'required'
           %small.text-muted 50文字以内
-          = f.text_field :title, value: @exhibit_submission&.title, hide_label: true, required: true, :placeholder => ""
+          = f.text_field :title, value: @exhibit_submission&.title, hide_label: true, required: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td
           = f.label :genre
           %small.text-muted 出展作品のジャンルを一つ選択してください。
           = f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: @exhibit_submission&.genre, hide_label: true
       %tr
-        %td
+        %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 100, char_counter_over_limit_class: "text-danger" } }
           = f.label :description
           %small.text-muted 100文字以内
-          = f.text_area :description, value: @exhibit_submission&.description, hide_label: true, :placeholder => ""
+          = f.text_area :description, value: @exhibit_submission&.description, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td
           = f.label :title_url
@@ -62,15 +65,17 @@
           %small.text-muted VRの出展の場合はチェックしてください。
           = f.check_box :is_vr, value: @exhibit_submission&.is_vr, hide_label: true
       %tr
-        %td
+        %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, char_counter_over_limit_class: "text-danger" } }
           = f.label :original_work
           %small.text-muted 二次創作の作品を出展する場合は、原作のタイトルを記入してください(50文字以内)。
-          = f.text_field :original_work, value: @exhibit_submission&.original_work, hide_label: true, :placeholder => ""
+          = f.text_field :original_work, value: @exhibit_submission&.original_work, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
-        %td
+        %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 100, char_counter_over_limit_class: "text-danger" } }
           = f.label :memo
           %small.text-muted 他の出展者と展示スペースを連結したい、大型の機器を持ち込む場合などはご記入ください(100文字以内)。
-          = f.text_area :memo, value: @exhibit_submission&.memo, hide_label: true, :placeholder => ""
+          = f.text_area :memo, value: @exhibit_submission&.memo, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          %small.text-muted{ data: { char_counter: { target: 'count' } } }          
       %tr
         %td
           = f.label :delivery_usage_scale

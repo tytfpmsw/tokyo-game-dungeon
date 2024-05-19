@@ -172,7 +172,7 @@
     .event-contact-body {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
       width: 80%;
       margin: 50px auto;

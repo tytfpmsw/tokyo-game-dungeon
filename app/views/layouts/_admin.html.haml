@@ -1,4 +1,4 @@
-.admin-wrapper.container
+.admin-wrapper.container.mb-5
   - if administrator_signed_in?
     .row
       = render 'admin/shared/header'
@@ -11,3 +11,4 @@
     .row
       .col-12
         = yield
+  = render 'layouts/footer'

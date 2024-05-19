@@ -1,4 +1,4 @@
-.exhibitor-wrapper.container 
+.exhibitor-wrapper.container.mb-5
   - if exhibitor_signed_in?
     .row
       = render 'exhibitor/shared/header'
@@ -11,3 +11,4 @@
     .row
       .col-12
         = yield
+= render 'layouts/footer'
