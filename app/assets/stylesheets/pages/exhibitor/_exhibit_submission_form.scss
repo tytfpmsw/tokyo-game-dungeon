@@ -7,9 +7,23 @@
         margin: 0 auto;
         border-collapse: separate;
         border-spacing: 0 2rem;
+
+        td {
+            text-align: start;
+
+            label {
+                font-size: 1.5rem;
+            }
+
+            small {
+                display: block;
+            }
+        }
     }
 
     .form-check-input {
         float: none !important;
+        width: 1.5rem;
+        height: 1.5rem;
     }
 }

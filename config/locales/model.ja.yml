@@ -12,7 +12,7 @@ ja:
       exhibit_submission: 出展情報申請
       exhibitor: 出展者
       floor: フロア
-      genre: ジャンル
+      genre: 出展作品ジャンル
       place_block: ブロック
       sponsor: 協賛団体
       sponsorship: 協賛
@@ -58,30 +58,30 @@ ja:
       exhibit_information_places:
         place_number: 出展場所番号
       exhibit_information:
-        circle_name: サークル名
-        title: タイトル
-        genre: ジャンル
-        description: 説明
+        circle_name: 出展団体名
+        title: 出展作品タイトル
+        genre: 出展作品ジャンル
+        description: 出展作品の紹介文
         is_vr: VRの出展
-        title_url: 作品のURL
-        steam_url: SteamのURL
-        twitter_url: X(twitter)のURL
-        movie_url: 動画URL
-        image: 画像
+        title_url: 出展作品のホームページURL
+        steam_url: 出展作品のSteamのURL
+        twitter_url: 出展作品のX(Twitter)のURL
+        movie_url: 出展作品の動画URL
+        image: 出展作品キービジュアル
         original_work: 原作タイトル
         memo: メモ
         delivery_usage_scale: 宅配サービスの利用予定
       exhibit_submission:
-        circle_name: サークル名
-        title: タイトル
-        genre: ジャンル
-        description: 説明
+        circle_name: 出展団体名
+        title: 出展作品タイトル
+        genre: 出展作品ジャンル
+        description: 出展作品の紹介文
         is_vr: VRの出展
-        title_url: 作品のURL
-        steam_url: SteamのURL
-        twitter_url: X(twitter)のURL
-        movie_url: 動画URL
-        image: 画像
+        title_url: 出展作品のホームページURL
+        steam_url: 出展作品のSteamのURL
+        twitter_url: 出展作品のX(Twitter)のURL
+        movie_url: 出展作品の動画URL
+        image: 出展作品キービジュアル
         original_work: 原作タイトル
         memo: メモ
         delivery_usage_scale: 宅配サービスの利用予定

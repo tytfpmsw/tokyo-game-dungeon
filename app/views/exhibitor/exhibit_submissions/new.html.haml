@@ -4,38 +4,70 @@
   = bootstrap_form_with url: exhibitor_event_exhibit_submissions_path, model: @exhibit_submission do |f|
     %table
       %tr
-        %td= f.text_field :circle_name, value: @exhibit_submission&.circle_name, help: '50文字以内', required: true
+        %td
+          = f.label :circle_name, class: 'required'
+          %small.text-muted 50文字以内
+          = f.text_field :circle_name, value: @exhibit_submission&.circle_name, hide_label: true, required: true, :placeholder => ""
       %tr
-        %td= f.text_field :title, value: @exhibit_submission&.title, help: '50文字以内', required: true
+        %td
+          = f.label :title, class: 'required'
+          %small.text-muted 50文字以内
+          = f.text_field :title, value: @exhibit_submission&.title, hide_label: true, required: true, :placeholder => ""
       %tr
-        %td= f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: @exhibit_submission&.genre
+        %td
+          = f.label :genre
+          %small.text-muted 出展作品のジャンルを一つ選択してください。
+          = f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: @exhibit_submission&.genre, hide_label: true
       %tr
-        %td= f.text_area :description, value: @exhibit_submission&.description, help: '100文字以内'
+        %td
+          = f.label :description
+          %small.text-muted 100文字以内
+          = f.text_area :description, value: @exhibit_submission&.description, hide_label: true, :placeholder => ""
       %tr
-        %td= f.text_field :title_url, value: @exhibit_submission&.title_url
+        %td
+          = f.label :title_url
+          %small.text-muted 出展作品の公式サイトやBoothのURLなどを記入してください。
+          = f.text_field :title_url, value: @exhibit_submission&.title_url, hide_label: true, :placeholder => "https://example.com/xxx"
       %tr
-        %td= f.text_field :steam_url, value: @exhibit_submission&.steam_url
+        %td
+          = f.label :steam_url
+          %small.text-muted 出展作品のSteamページのURLを記入してください。
+          = f.text_field :steam_url, value: @exhibit_submission&.steam_url, hide_label: true, :placeholder => "https://store.steampowered.com/app/xxx/xxx/"
       %tr
-        %td= f.text_field :twitter_url, value: @exhibit_submission&.twitter_url
+        %td
+          = f.label :twitter_url
+          %small.text-muted 出展作品のX(Twitter)アカウントのURLを記入してください。
+          = f.text_field :twitter_url, value: @exhibit_submission&.twitter_url, hide_label: true, :placeholder => "https://x.com/xxx/"
       %tr
-        %td= f.text_field :movie_url, value: @exhibit_submission&.movie_url
+        %td
+          = f.label :movie_url
+          %small.text-muted 出展作品の紹介動画のURLを記入してください。
+          = f.text_field :movie_url, value: @exhibit_submission&.movie_url, hide_label: true, :placeholder => "https://www.youtube.com/watch?v=xxx"
       %tr
-        %td= f.file_field :image, required: true
+        %td
+          = f.label :image, class: 'required'
+          %small.text-muted 出展作品のキービジュアルを選択してください。
+          = f.file_field :image, required: true, hide_label: true
       %tr
-        %td= f.text_field :original_work, value: @exhibit_submission&.original_work, help: '二次創作の作品を出展する場合は、原作のタイトルを記入してください(50文字以内)。'
+        %td
+          = f.label :is_vr
+          %small.text-muted VRの出展の場合はチェックしてください。
+          = f.check_box :is_vr, value: @exhibit_submission&.is_vr, hide_label: true
       %tr
-        %td= f.text_area :memo, value: @exhibit_submission&.memo, help: '他の出展者と展示スペースを連結したい、大型の機器を持ち込む場合などはご記入ください(100文字以内)。'
+        %td
+          = f.label :original_work
+          %small.text-muted 二次創作の作品を出展する場合は、原作のタイトルを記入してください(50文字以内)。
+          = f.text_field :original_work, value: @exhibit_submission&.original_work, hide_label: true, :placeholder => ""
       %tr
-        %td= f.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, selected: @exhibit_submission&.delivery_usage_scale
+        %td
+          = f.label :memo
+          %small.text-muted 他の出展者と展示スペースを連結したい、大型の機器を持ち込む場合などはご記入ください(100文字以内)。
+          = f.text_area :memo, value: @exhibit_submission&.memo, hide_label: true, :placeholder => ""
       %tr
-        - if @exhibit_submission&.is_vr
-          %td
-            = f.check_box :is_vr, value: @exhibit_submission&.is_vr, checked: true
-            VRの出展の場合はチェックしてください。
-        - else
-          %td
-            = f.check_box :is_vr, value: @exhibit_submission&.is_vr
-            VRの出展の場合はチェックしてください。
+        %td
+          = f.label :delivery_usage_scale
+          %small.text-muted 当日に宅配サービスを利用する場合、おおまかな利用規模を選択してください。
+          = f.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, selected: @exhibit_submission&.delivery_usage_scale, hide_label: true
       - if @exhibit_submission&.errors&.any?
         #error_explanation
           %ul

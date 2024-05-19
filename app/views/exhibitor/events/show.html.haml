@@ -15,62 +15,55 @@
       %p
         現在下記の情報で提出しています。
         審査完了までお待ちください。
-      %table.border
-        %tr
-          %th サークル名
-          %td= @exhibit_information.exhibit_submission.circle_name
-        %tr
-          %th 作品名
-          %td= @exhibit_information.exhibit_submission.title
-        %tr
-          %th ジャンル
-          %td= t("activerecord.attributes.genre.#{@exhibit_information.exhibit_submission.genre}")
-        %tr
-          %th 作品説明
-          %td= @exhibit_information.exhibit_submission.description
-        %tr
-          %th 動画URL
-          %td= @exhibit_information.exhibit_submission.movie_url
-        %tr
-          %th 画像
-          %td
-            = image_tag @exhibit_information.exhibit_submission.image.url, size: '300x300'
-        %tr
-          %th 原作
-          %td= @exhibit_information.exhibit_submission.original_work
-        %tr
-          %th VR出展
-          %td= @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展' : 'VRゲームは出展しない'
-    - else
+    - elsif @exhibit_information.exhibit_submission.status_approved?
       = button_to '出展情報提出', edit_exhibitor_event_exhibit_submission_path(@event.url_subdirectory, @exhibit_information.exhibit_submission), method: :get, class: 'btn btn-primary mg-auto mb-4'
       %p
         現在は下記の情報で承認されています。
         修正するには「出展情報提出」ボタンをクリックしてください。
-      %table.border
-        %tr
-          %th サークル名
-          %td= @exhibit_information.exhibit_submission.circle_name
-        %tr
-          %th 作品名
-          %td= @exhibit_information.exhibit_submission.title
-        %tr
-          %th ジャンル
-          %td= t("activerecord.attributes.genre.#{@exhibit_information.exhibit_submission.genre}")
-        %tr
-          %th 作品説明
-          %td= @exhibit_information.exhibit_submission.description
-        %tr
-          %th 動画URL
-          %td= @exhibit_information.exhibit_submission.movie_url
-        %tr
-          %th 画像
-          %td
+    %table.border
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.circle_name')
+        %td= @exhibit_information.exhibit_submission.circle_name
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.title')
+        %td= @exhibit_information.exhibit_submission.title
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.genre')
+        %td= t("activerecord.attributes.genre.#{@exhibit_information.exhibit_submission.genre}")
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.description')
+        %td= @exhibit_information.exhibit_submission.description
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.title_url')
+        %td= @exhibit_information.exhibit_submission.title_url
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.steam_url')
+        %td= @exhibit_information.exhibit_submission.steam_url
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.twitter_url')
+        %td= @exhibit_information.exhibit_submission.twitter_url
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.movie_url')
+        %td= @exhibit_information.exhibit_submission.movie_url
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.image')
+        %td
+          - if @exhibit_information.exhibit_submission.image.present?
             = image_tag @exhibit_information.exhibit_submission.image.url, size: '300x300'
-        %tr
-          %th 原作
-          %td= @exhibit_information.exhibit_submission.original_work
-        %tr
-          %th VR出展
-          %td= @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展' : 'VRゲームは出展しない'
+          - else 
+            = image_tag @exhibit_information.image, size: '300x300'
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.is_vr')
+        %td= @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展する' : 'VRゲームは出展しない'        
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.original_work')
+        %td= @exhibit_information.exhibit_submission.original_work
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.memo')
+        %td= @exhibit_information.exhibit_submission.memo
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.delivery_usage_scale')
+        %td= t("activerecord.attributes.delivery_usage_scale.#{@exhibit_information.exhibit_submission.delivery_usage_scale}")
+
   - else
     = button_to '出展情報提出', new_exhibitor_event_exhibit_submission_path(@event.url_subdirectory), method: :get, class: 'btn btn-primary mg-auto mb-4'

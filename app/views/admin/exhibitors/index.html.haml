@@ -1,29 +1,39 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @event.name, admin_event_path(@event)
+  %li.breadcrumb-item.active
+    出展者一覧
+
 .p-admin-exhibitor-index
   %h4.fw-bold
     %span #{@event.name} 出展者一覧
 
-  .card.shadow.mt-3
-    .card-header
-      =icon_with_text("search", "検索条件")
-    .card-body
-      =search_form_for(@search, url: admin_event_exhibitors_path(@event), html: { data: { turbo_frame: "exhibitors", controller: "search_form", action: "input->search_form#submit" } }) do |f|
-        .row.g3.mb-3
-          .col-2.col-xl-2
-            =f.label :name_cont, "出展者名", class: "form-label"
-            =f.search_field :name_cont, class: "form-control"
-          .col-2.col-xl-2
-            =f.label :email_cont, "メールアドレス", class: "form-label"
-            =f.search_field :email_cont, class: "form-control"
-          .col-2.col-xl-2
-            =f.label :discord_name_cont, "Discordユーザー名", class: "form-label"
-            =f.search_field :discord_name_cont, class: "form-control"
-          .col-2.col-xl-2
-            =f.label :exhibitor_type_eq, "出展者種別", class: "form-label"
-            =f.select :exhibitor_type_eq, Exhibitor.exhibitor_types.keys.map { |exhibitor_type| [exhibitor_type.humanize, exhibitor_type] }, { include_blank: true }, class: "form-select"
-          .col-2.col-xl-2
-            = f.submit
-          .col-2.d-flex.align-items-end
-            =link_to "クリア", admin_event_exhibitors_path(@event), class: "btn btn-outline-secondary", method: :get
+  -# .card.shadow.mt-3
+  -#   .card-header
+  -#     =icon_with_text("search", "検索条件")
+  -#   .card-body
+  -#     =search_form_for(@search, url: admin_event_exhibitors_path(@event), html: { data: { turbo_frame: "exhibitors", controller: "search_form", action: "input->search_form#submit" } }) do |f|
+  -#       .row.g3.mb-3
+  -#         .col-2.col-xl-2
+  -#           =f.label :name_cont, "出展者名", class: "form-label"
+  -#           =f.search_field :name_cont, class: "form-control"
+  -#         .col-2.col-xl-2
+  -#           =f.label :email_cont, "メールアドレス", class: "form-label"
+  -#           =f.search_field :email_cont, class: "form-control"
+  -#         .col-2.col-xl-2
+  -#           =f.label :discord_name_cont, "Discordユーザー名", class: "form-label"
+  -#           =f.search_field :discord_name_cont, class: "form-control"
+  -#         .col-2.col-xl-2
+  -#           =f.label :exhibitor_type_eq, "出展者種別", class: "form-label"
+  -#           =f.select :exhibitor_type_eq, Exhibitor.exhibitor_types.keys.map { |exhibitor_type| [exhibitor_type.humanize, exhibitor_type] }, { include_blank: true }, class: "form-select"
+  -#         .col-2.col-xl-2
+  -#           = f.submit
+  -#         .col-2.d-flex.align-items-end
+  -#           =link_to "クリア", admin_event_exhibitors_path(@event), class: "btn btn-outline-secondary", method: :get
   
   .card.shadow.mt-3
     .card-header
