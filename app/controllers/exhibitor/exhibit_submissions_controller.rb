@@ -51,10 +51,15 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       title: exhibit_submission_params[:title],
       genre: exhibit_submission_params[:genre],
       description: exhibit_submission_params[:description],
+      title_url: exhibit_submission_params[:title_url],
+      steam_url: exhibit_submission_params[:steam_url],
+      twitter_url: exhibit_submission_params[:twitter_url],
       is_vr: exhibit_submission_params[:is_vr],
       movie_url: exhibit_submission_params[:movie_url],
       image: exhibit_submission_params[:image],
       original_work: exhibit_submission_params[:original_work],
+      memo: exhibit_submission_params[:memo],
+      delivery_usage_scale: exhibit_submission_params[:delivery_usage_scale],
       status: ExhibitSubmission.statuses[:submitted]
     )
       redirect_to exhibitor_root_path, notice: '提出情報を更新しました。'
@@ -95,10 +100,15 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       :title,
       :genre,
       :description,
+      :title_url,
+      :steam_url,
+      :twitter_url,
       :is_vr,
       :movie_url,
       :image,
-      :original_work
+      :original_work,
+      :memo,
+      :delivery_usage_scale,
       )
   end
 end

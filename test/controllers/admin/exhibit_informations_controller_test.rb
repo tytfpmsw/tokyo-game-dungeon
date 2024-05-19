@@ -22,15 +22,26 @@ class Admin::ExhibitInformationsControllerTest < Admin::IntegrationTest
         circle_name: "updatedCircle",
         title: "updatedTitle",
         genre: "adv_novel",
+        title_url: "https://example.com/updated",
+        steam_url: "https://store.steampowered.com/updated",
+        twitter_url: "https://x.com/updated",
         is_vr: true,
         movie_url: "https://updated.com",
-        original_work: "OriginalWork" } }
+        original_work: "OriginalWork",
+        memo: "updated",
+        delivery_usage_scale: "large",
+        } }
     assert_equal "updatedCircle", @exhibit_information.reload.exhibit_submission.circle_name
     assert_equal "updatedTitle", @exhibit_information.reload.exhibit_submission.title
     assert_equal "adv_novel", @exhibit_information.reload.exhibit_submission.genre
+    assert_equal "https://example.com/updated", @exhibit_information.reload.exhibit_submission.title_url
+    assert_equal "https://store.steampowered.com/updated", @exhibit_information.reload.exhibit_submission.steam_url
+    assert_equal "https://x.com/updated", @exhibit_information.reload.exhibit_submission.twitter_url
     assert_equal true, @exhibit_information.reload.exhibit_submission.is_vr
     assert_equal "https://updated.com", @exhibit_information.reload.exhibit_submission.movie_url
     assert_equal "OriginalWork", @exhibit_information.reload.exhibit_submission.original_work
+    assert_equal "updated", @exhibit_information.reload.exhibit_submission.memo
+    assert_equal "large", @exhibit_information.reload.exhibit_submission.delivery_usage_scale
   end
 
   test "should update when original_work is blank" do

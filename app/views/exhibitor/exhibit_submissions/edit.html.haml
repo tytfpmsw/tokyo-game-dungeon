@@ -12,11 +12,21 @@
       %tr
         %td= f.text_area :description, value: @exhibit_submission&.description, help: '100文字以内'
       %tr
+        %td= f.text_field :title_url, value: @exhibit_submission&.title_url
+      %tr
+        %td= f.text_field :steam_url, value: @exhibit_submission&.steam_url
+      %tr
+        %td= f.text_field :twitter_url, value: @exhibit_submission&.twitter_url
+      %tr
         %td= f.text_field :movie_url, value: @exhibit_submission&.movie_url
       %tr
         %td= f.file_field :image, help: '画像に変更がない場合はアップロードは不要です。'
       %tr
         %td= f.text_field :original_work, value: @exhibit_submission&.original_work, help: '二次創作の作品を出展する場合は、原作のタイトルを50未字以内で記入してください。'
+      %tr
+        %td= f.text_area :memo, value: @exhibit_submission&.memo, help: '他の出展者と展示スペースを連結したい、大型の機器を持ち込む場合などは100文字以内でご記入ください。'
+      %tr
+        %td= f.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, selected: @exhibit_submission&.delivery_usage_scale
       %tr
         - if @exhibit_submission&.is_vr
           %td

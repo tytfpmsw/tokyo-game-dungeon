@@ -4,14 +4,19 @@ class ExhibitInformation < ApplicationRecord
   has_one :exhibit_submission, dependent: :destroy
   has_many :exhibit_information_places
 
-  enum genre: Genre::TYPES
+  enum genre: Genre::TYPES, _prefix: true
+  enum delivery_usage_scale: DeliveryUsageScale::SCALES, _prefix: true
 
   validates :event, uniqueness: { scope: :exhibitor }
   validates :circle_name, length: { maximum: 50 }
   validates :title, length: { maximum: 50 }
   validates :description, length: { maximum: 100 }
-  validates :movie_url, allow_blank: true, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :title_url, allow_blank: true, url_format: true
+  validates :steam_url, allow_blank: true, url_format: true
+  validates :twitter_url, allow_blank: true, url_format: true
+  validates :movie_url, allow_blank: true, url_format: true
   validates :original_work, allow_blank: true, length: { maximum: 50 }
+  validates :memo, allow_blank: true, length: { maximum: 100 }
 
   def copy_image(source_image_path)
     file_name = File.basename(source_image_path)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_024958) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_17_150418) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,10 +79,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_024958) do
     t.string "title"
     t.integer "genre", default: 0, null: false
     t.string "description"
+    t.text "title_url"
+    t.text "steam_url"
+    t.text "twitter_url"
     t.boolean "is_vr", default: false, null: false
     t.text "movie_url"
     t.string "image"
     t.string "original_work"
+    t.text "memo"
+    t.integer "delivery_usage_scale"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_exhibit_informations_on_event_id"
@@ -95,10 +100,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_024958) do
     t.string "title"
     t.integer "genre", default: 0, null: false
     t.string "description"
+    t.text "title_url"
+    t.text "steam_url"
+    t.text "twitter_url"
     t.boolean "is_vr", default: false, null: false
     t.text "movie_url"
     t.string "image"
     t.string "original_work"
+    t.text "memo"
+    t.integer "delivery_usage_scale"
     t.integer "status"
     t.string "update_user"
     t.text "update_comment"

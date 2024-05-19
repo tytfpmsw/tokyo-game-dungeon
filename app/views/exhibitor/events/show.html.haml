@@ -2,14 +2,14 @@
   %h1
     = @event.name
   .row.justify-content-center
-    .col-4.mg-auto.mb-4
+    .col-8.mg-auto.mb-4
       %table.border
         %tr
           %td
             = image_tag @event.logo_image.url, size: '290x70'
         %tr
           %td
-            = image_tag @event.main_image.url, size: '300x300'
+            = image_tag @event.main_image.url, size: '480x270'
   - if @exhibit_information.exhibit_submission.present?
     - if @exhibit_information.exhibit_submission.status_submitted?
       %p

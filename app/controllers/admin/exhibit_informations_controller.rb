@@ -50,10 +50,16 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
       :title,
       :genre,
       :description,
+      :title_url,
+      :steam_url,
+      :twitter_url,
       :is_vr,
       :movie_url,
       :image,
-      :original_work)
+      :original_work,
+      :memo,
+      :delivery_usage_scale,
+      )
   end
 
   def set_event

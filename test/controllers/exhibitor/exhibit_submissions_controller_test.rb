@@ -26,8 +26,13 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
         exhibit_submission: {
           title: 'test',
           description: 'test',
+          title_url: 'http://test',
+          steam_url: 'http://store.steampowered.com/test',
+          twitter_url: 'http://x.com/test',
           movie_url: 'http://test',
-          is_vr: false
+          is_vr: false,
+          memo: 'test',
+          delivery_usage_scale: 'small',
         }
       }
     end
@@ -35,8 +40,13 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert exhibit_submission.title == 'test'
     assert exhibit_submission.genre == 'undefined'
     assert exhibit_submission.description == 'test'
+    assert exhibit_submission.title_url == 'http://test'
+    assert exhibit_submission.steam_url == 'http://store.steampowered.com/test'
+    assert exhibit_submission.twitter_url == 'http://x.com/test'
     assert exhibit_submission.movie_url == 'http://test'
     assert exhibit_submission.is_vr == false
+    assert exhibit_submission.memo == 'test'
+    assert exhibit_submission.delivery_usage_scale == 'small'
     assert exhibit_submission.status == 'submitted'
   end
 

@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       administrator: 管理者
+      delivery_usage_scale: 宅配サービスの利用予定
       event_report: イベントレポート
       event_schedule: 開催日
       event_schedule: 開催日時
@@ -18,6 +19,11 @@ ja:
     attributes:
       administrator:
         email: メールアドレス
+      delivery_usage_scale:
+        none: 利用しない
+        small: ダンボール1個
+        middle: ダンボール2~3個
+        large: ダンボール4個以上
       event_report:
         title: タイトル
         url: URL
@@ -57,18 +63,28 @@ ja:
         genre: ジャンル
         description: 説明
         is_vr: VRの出展
+        title_url: 作品のURL
+        steam_url: SteamのURL
+        twitter_url: X(twitter)のURL
         movie_url: 動画URL
         image: 画像
         original_work: 原作タイトル
+        memo: メモ
+        delivery_usage_scale: 宅配サービスの利用予定
       exhibit_submission:
         circle_name: サークル名
         title: タイトル
         genre: ジャンル
         description: 説明
         is_vr: VRの出展
+        title_url: 作品のURL
+        steam_url: SteamのURL
+        twitter_url: X(twitter)のURL
         movie_url: 動画URL
         image: 画像
         original_work: 原作タイトル
+        memo: メモ
+        delivery_usage_scale: 宅配サービスの利用予定
         status: ステータス
         update_user: 更新者
         update_comment: コメント

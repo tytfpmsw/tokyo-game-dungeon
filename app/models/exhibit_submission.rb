@@ -2,15 +2,20 @@ class ExhibitSubmission < ApplicationRecord
   mount_uploader :image, ImageUploader
   belongs_to :exhibit_information
 
-  enum genre: Genre::TYPES
+  enum genre: Genre::TYPES, _prefix: true
+  enum delivery_usage_scale: DeliveryUsageScale::SCALES, _prefix: true
   enum :status, { draft: 0, submitted: 1, approved: 2, rejected: 3 }, prefix: true
 
   validates :exhibit_information, uniqueness: true
   validates :circle_name, length: { maximum: 50 }
   validates :title, length: { maximum: 50 }
   validates :description, length: { maximum: 100 }
-  validates :movie_url, allow_blank: true, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :title_url, allow_blank: true, url_format: true
+  validates :steam_url, allow_blank: true, url_format: true
+  validates :twitter_url, allow_blank: true, url_format: true
+  validates :movie_url, allow_blank: true, url_format: true
   validates :original_work, allow_blank: true, length: { maximum: 50 }
+  validates :memo, allow_blank: true, length: { maximum: 100 }
   
   def submit
     begin
