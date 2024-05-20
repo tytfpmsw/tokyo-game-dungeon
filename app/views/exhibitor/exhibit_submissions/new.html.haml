@@ -25,14 +25,14 @@
           %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td
-          = f.label :genre
+          = f.label :genre, class: 'required'
           %small.text-muted 出展作品のジャンルを一つ選択してください。
-          = f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: @exhibit_submission&.genre, hide_label: true
+          = f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, hide_label: true, required: true
       %tr
         %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 100, char_counter_over_limit_class: "text-danger" } }
-          = f.label :description
+          = f.label :description, class: 'required'
           %small.text-muted 100文字以内
-          = f.text_area :description, value: @exhibit_submission&.description, hide_label: true, :placeholder => "例：", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          = f.text_area :description, value: @exhibit_submission&.description, hide_label: true, required: true, :placeholder => "例：", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
           %small.text-muted{ data: { char_counter: { target: 'count' } } }
       %tr
         %td
@@ -78,9 +78,9 @@
           %small.text-muted{ data: { char_counter: { target: 'count' } } }          
       %tr
         %td
-          = f.label :delivery_usage_scale
+          = f.label :delivery_usage_scale, class: 'required'
           %small.text-muted 当日に宅配サービスを利用する場合、おおまかな利用規模を選択してください。
-          = f.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, selected: @exhibit_submission&.delivery_usage_scale, hide_label: true
+          = f.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, include_blank: true, selected: @exhibit_submission&.delivery_usage_scale, hide_label: true, required: true
       - if @exhibit_submission&.errors&.any?
         #error_explanation
           %ul

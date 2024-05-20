@@ -16,6 +16,8 @@ class ExhibitSubmission < ApplicationRecord
   validates :movie_url, allow_blank: true, url_format: true
   validates :original_work, allow_blank: true, length: { maximum: 50 }
   validates :memo, allow_blank: true, length: { maximum: 100 }
+
+  validate :genre_validate
   
   def submit
     begin
@@ -40,5 +42,13 @@ class ExhibitSubmission < ApplicationRecord
 
   def reject!
     update!(status: :rejected)
+  end
+
+  private
+
+  def genre_validate
+    if genre_undefined?
+      errors.add(:genre, 'を選択してください')
+    end
   end
 end
