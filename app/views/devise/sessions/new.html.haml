@@ -1,5 +1,5 @@
-%h2 ログイン
-
+= image_tag 'login_admin.png', size: '300x300', alt: '東京ゲームダンジョン管理者ログインページ' if admin?
+= image_tag 'login_exhibitor.png', size: '300x300', alt: '東京ゲームダンジョン出展者ログインページ' if exhibitor?
 
 = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
   .row.justify-content-center
