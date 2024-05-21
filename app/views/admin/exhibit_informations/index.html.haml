@@ -21,15 +21,15 @@
         .col-1.mt-auto
           出展提出
         .col-2.mt-auto
-          出展者
+          = t("activerecord.attributes.exhibit_information.circle_name")
         .col-2.mt-auto
-          サークル名
+          = t("activerecord.attributes.exhibit_information.title")
         .col-2.mt-auto
-          タイトル
-        .col-2.mt-auto
-          ジャンル
+          = t("activerecord.attributes.exhibit_information.genre")
         .col-1.mt-auto
-          VR使用
+          = t("activerecord.attributes.exhibit_information.is_vr")
+        .col-2.mt-auto
+          = t("activerecord.attributes.exhibit_information.image")
         .col-1.mt-auto
       #exhibit-informations
         = render @exhibit_informations

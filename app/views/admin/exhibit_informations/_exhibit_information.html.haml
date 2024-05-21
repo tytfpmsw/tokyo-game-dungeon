@@ -5,8 +5,6 @@
         = button_to "確認", admin_event_exhibit_submission_path(exhibit_information.event, exhibit_information.exhibit_submission), method: :get, class: "btn btn-outline-primary", data: { turbo_frame: "_top" }
       - else
     .col-2.my-auto
-      = exhibit_information.exhibitor.name
-    .col-2.my-auto
       = exhibit_information.circle_name
     .col-2.my-auto
       = exhibit_information.title
@@ -14,6 +12,11 @@
       = exhibit_information.human_attribute_enum(:genre)
     .col-1.my-auto
       = exhibit_information.is_vr ? "VRを出展" : "-"
+    .col-2.my-auto
+      - if exhibit_information.image.present?
+        = image_tag exhibit_information.image, size: "100x100"
+      - else
+        -
     .col-1.my-auto
       .d-flex.justify-content-end
         - unless exhibit_information.exhibit_submission&.status_submitted?

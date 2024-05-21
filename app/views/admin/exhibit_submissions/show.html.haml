@@ -1,30 +1,81 @@
-%h1 提出情報の詳細
+.p-admin-exhibit-submission-show
+  %h1 提出情報の詳細
 
-%table
-  %thead
-    %tr
-      %th 出展者
-      %th サークル名
-      %th タイトル
-      %th ジャンル
-      %th 説明
-      %th VR使用
-      %th 動画URL
-      %th 画像
-      %th 原作タイトル
-  %tbody
-    %tr
-      %td= @exhibitor.name
-      %td= @exhibit_submission.circle_name
-      %td= @exhibit_submission.title
-      %td= @exhibit_submission.human_attribute_enum(:genre)
-      %td= @exhibit_submission.description
-      %td= @exhibit_submission.is_vr
-      %td= @exhibit_submission.movie_url
-      %td= image_tag @exhibit_submission.image.url, width: 200
-      %td= @exhibit_submission.original_work
 
-= form_with url: admin_event_exhibit_submissions_url do |f|
-  %div
-    = f.submit '承認', formaction: approve_admin_event_exhibit_submission_path(@exhibit_submission.exhibit_information.event, @exhibit_submission)
-    = f.submit '却下', formaction: reject_admin_event_exhibit_submission_path(@exhibit_submission.exhibit_information.event, @exhibit_submission)
+  %table.mb-4
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.circle_name")
+      %td.border
+        = @exhibit_submission.circle_name
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.title")
+      %td.border
+        = @exhibit_submission.title
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.genre")
+      %td.border
+        = t("activerecord.attributes.genre.#{@exhibit_submission.genre}")
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.description")
+      %td.border
+        = @exhibit_submission.description
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.title_url")
+      %td.border
+        = @exhibit_submission.title_url
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.steam_url")
+      %td.border
+        = @exhibit_submission.steam_url
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.twitter_url")
+      %td.border
+        = @exhibit_submission.twitter_url
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.movie_url")
+      %td.border
+        = @exhibit_submission.movie_url
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.image")
+      %td.border
+        - if @exhibit_submission.image.present?
+          = image_tag @exhibit_submission.image.url, size: "500x500"
+        - else
+          ※変更なし
+          %br
+          = image_tag @exhibit_submission.exhibit_information.image, size: "500x500"
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.is_vr")
+      %td.border
+        = @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展する' : 'VRゲームは出展しない'
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.original_work")
+      %td.border
+        = @exhibit_submission.original_work
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.memo")
+      %td.border
+        = @exhibit_submission.memo
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.delivery_usage_scale")
+      %td.border
+        = t("activerecord.attributes.delivery_usage_scale.#{@exhibit_information.exhibit_submission.delivery_usage_scale}")
+
+
+  = form_with url: admin_event_exhibit_submissions_url do |f|
+    %div
+      = f.submit '承認', formaction: approve_admin_event_exhibit_submission_path(@exhibit_submission.exhibit_information.event, @exhibit_submission), class: 'btn btn-primary'
+      = f.submit '却下', formaction: reject_admin_event_exhibit_submission_path(@exhibit_submission.exhibit_information.event, @exhibit_submission), class: 'btn btn-danger'

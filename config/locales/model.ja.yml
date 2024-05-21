@@ -59,32 +59,32 @@ ja:
         place_number: 出展場所番号
       exhibit_information:
         circle_name: 出展団体名
-        title: 出展作品タイトル
-        genre: 出展作品ジャンル
+        title: 出展作品のタイトル
+        genre: 出展作品のゲームジャンル
         description: 出展作品の紹介文
-        is_vr: VRの出展
-        title_url: 出展作品のホームページURL
+        is_vr: VR機器の使用
+        title_url: ホームページ
         steam_url: 出展作品のSteamのURL
-        twitter_url: 出展作品のX(Twitter)のURL
+        twitter_url: X（旧Twitter）
         movie_url: 出展作品の動画URL
-        image: 出展作品キービジュアル
-        original_work: 原作タイトル
-        memo: メモ
-        delivery_usage_scale: 宅配サービスの利用予定
+        image: 出展作品のキービジュアル
+        original_work: （二次創作作品の場合）原作のタイトル
+        memo: その他の連絡事項
+        delivery_usage_scale: 宅配便サービスの利用予定
       exhibit_submission:
         circle_name: 出展団体名
-        title: 出展作品タイトル
-        genre: 出展作品ジャンル
+        title: 出展作品のタイトル
+        genre: 出展作品のゲームジャンル
         description: 出展作品の紹介文
-        is_vr: VRの出展
-        title_url: 出展作品のホームページURL
+        is_vr: VR機器の使用
+        title_url: ホームページ
         steam_url: 出展作品のSteamのURL
-        twitter_url: 出展作品のX(Twitter)のURL
+        twitter_url: X（旧Twitter）
         movie_url: 出展作品の動画URL
-        image: 出展作品キービジュアル
-        original_work: 原作タイトル
-        memo: メモ
-        delivery_usage_scale: 宅配サービスの利用予定
+        image: 出展作品のキービジュアル
+        original_work: （二次創作作品の場合）原作のタイトル
+        memo: その他の連絡事項
+        delivery_usage_scale: 宅配便サービスの利用予定
         status: ステータス
         update_user: 更新者
         update_comment: コメント

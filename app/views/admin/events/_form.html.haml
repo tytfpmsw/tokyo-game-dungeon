@@ -1,39 +1,40 @@
-= form_with model: [:admin, @event] do |f|
-  %table
-    %tr
-      %th= f.label :name, 'イベント名'
-      %td= f.text_field :name, value: @event.name
-    %tr
-      %th= f.label :url_subdirectory, 'URLサブディレクトリ'
-      %td= f.text_field :url_subdirectory, value: @event.url_subdirectory
-    %tr
-      %th= f.label :location, '開催場所'
-      %td= f.select :location, Event.locations.keys.map { |k| [t("activerecord.attributes.event/location.#{k}"), k] }, selected: @event.location
-    %tr
-      %th= f.label :logo_image, 'ロゴ画像'
-      %td= f.file_field :logo_image
-    %tr
-      %th= f.label :main_image, 'メイン画像'
-      %td= f.file_field :main_image
-    %tr
-      %th= f.label :publish_start_at, 'イベントページ公開日時'
-      %td= f.datetime_field :publish_start_at, value: @event.publish_start_at
-    %tr
-      %th= f.label :exhibit_submit_start_at, '出展情報申込開始日時'
-      %td= f.datetime_field :exhibit_submit_start_at, value: @event.exhibit_submit_start_at
-    %tr
-      %th= f.label :exhibit_submit_end_at, '出展情報申込締切日時'
-      %td= f.datetime_field :exhibit_submit_end_at, value: @event.exhibit_submit_end_at
-    %tr
-      %th= f.label :exhibit_informations_publish_start_at, '出展情報公開日時'
-      %td= f.datetime_field :exhibit_informations_publish_start_at, value: @event.exhibit_informations_publish_start_at
+.p-admin-event-form
+  = bootstrap_form_with model: [:admin, @event] do |f|
+    %table
+      %tr
+        %th= f.label :name, class: 'required'
+        %td= f.text_field :name, value: @event.name, hide_label: true, required: true
+      %tr
+        %th= f.label :url_subdirectory, class: 'required'
+        %td= f.text_field :url_subdirectory, value: @event.url_subdirectory, hide_label: true
+      %tr
+        %th= f.label :location, '開催場所', class: 'required'
+        %td= f.select :location, Event.locations.keys.map { |k| [t("activerecord.attributes.event/location.#{k}"), k] }, selected: @event.location, hide_label: true
+      %tr
+        %th= f.label :logo_image, 'ロゴ画像'
+        %td= f.file_field :logo_image, hide_label: true
+      %tr
+        %th= f.label :main_image, 'メイン画像'
+        %td= f.file_field :main_image, hide_label: true
+      %tr
+        %th= f.label :publish_start_at, 'イベントページ公開日時'
+        %td= f.datetime_field :publish_start_at, value: @event.publish_start_at, hide_label: true
+      %tr
+        %th= f.label :exhibit_submit_start_at, '出展情報申込開始日時'
+        %td= f.datetime_field :exhibit_submit_start_at, value: @event.exhibit_submit_start_at, hide_label: true
+      %tr
+        %th= f.label :exhibit_submit_end_at, '出展情報申込締切日時'
+        %td= f.datetime_field :exhibit_submit_end_at, value: @event.exhibit_submit_end_at, hide_label: true
+      %tr
+        %th= f.label :exhibit_informations_publish_start_at, '出展情報公開日時'
+        %td= f.datetime_field :exhibit_informations_publish_start_at, value: @event.exhibit_informations_publish_start_at, hide_label: true
 
-  - if @event.errors.any?
-    #error_explanation
-      %h2= "#{@event.errors.count}個のエラーで保存できませんでした:"
-      %ul
-        - @event.errors.full_messages.each do |message|
-          %li= message
+    - if @event.errors.any?
+      #error_explanation
+        %h2= "#{@event.errors.count}個のエラーで保存できませんでした:"
+        %ul
+          - @event.errors.full_messages.each do |message|
+            %li= message
 
-  .actions
-    = f.submit '保存する'
+    .actions
+      = f.submit '保存する', class: 'btn btn-primary'

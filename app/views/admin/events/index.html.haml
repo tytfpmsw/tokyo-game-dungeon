@@ -1,3 +1,9 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item.active
+    イベント一覧
+
 .p-admin-events-index
   %h2.mt-4.mb-4 イベント一覧
   = button_to 'イベントを新規作成する', new_admin_event_path, method: :get, class: 'btn btn-primary mg-auto mb-4'

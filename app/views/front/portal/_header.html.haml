@@ -1,18 +1,5 @@
 %header.l-portal-header
   .container
-    .left
-      - if @event.present?
-        = link_to image_tag(@event.logo_image.url), front_event_path(@event.url_subdirectory), class: 'logo'
-      - else
-        %h1
-          = link_to front_root_path do
-            東京ゲームダンジョン ポータルサイト
-    -# .right
-    -#   %ul
-    -#     - if @event.present?
-    -#       %li.page-item.page-item-has-children
-    -#         = link_to front_event_path(@event.url_subdirectory) do
-    -#           = @event.name
-    -#     %li.page-item.page-item-has-children
-    -#       = link_to front_root_path do
-    -#         過去の開催
+    %h1
+      = link_to front_root_path do
+        = image_tag 'tgd_logo_portal.png', size: '290x70', alt: '東京ゲームダンジョン'
