@@ -64,8 +64,8 @@ ja:
         description: 出展作品の紹介文
         is_vr: VR機器の使用
         title_url: ホームページ
-        steam_url: 出展作品のSteamのURL
         twitter_url: X（旧Twitter）
+        steam_app_id: Steam作品appID
         movie_url: 出展作品の動画URL
         image: 出展作品のキービジュアル
         original_work: （二次創作作品の場合）原作のタイトル
@@ -78,8 +78,8 @@ ja:
         description: 出展作品の紹介文
         is_vr: VR機器の使用
         title_url: ホームページ
-        steam_url: 出展作品のSteamのURL
         twitter_url: X（旧Twitter）
+        steam_app_id: Steam作品appID
         movie_url: 出展作品の動画URL
         image: 出展作品のキービジュアル
         original_work: （二次創作作品の場合）原作のタイトル

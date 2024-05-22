@@ -80,9 +80,14 @@
         = f.text_field :title_url, value: exhibit_submission&.title_url, hide_label: true, :placeholder => "例：https://tokyogamedungeon.com"
     %tr
       %td
-        = f.label :steam_url
-        %small.text-muted 出展作品のSteamページのURLを記入してください。
-        = f.text_field :steam_url, value: exhibit_submission&.steam_url, hide_label: true, :placeholder => "例：https://store.steampowered.com/app/xxx/xxx/"
+        = f.label :steam_app_id
+        %small.text-muted
+          Steamにページがある場合、IDをご記入ください。
+          %br
+          ストアURL→https://store.steampowered.com/app/2271940/_/
+          %br
+          ID→2271940
+        = f.text_field :steam_app_id, value: exhibit_submission&.steam_app_id, hide_label: true, :placeholder => "例：2271940"
     %tr
       %td
         = f.label :movie_url

@@ -12,8 +12,8 @@ class ExhibitInformation < ApplicationRecord
   validates :title, length: { maximum: 50 }
   validates :description, length: { maximum: 100 }
   validates :title_url, allow_blank: true, url_format: true
-  validates :steam_url, allow_blank: true, url_format: true
   validates :twitter_url, allow_blank: true, url_format: true
+  validates :steam_app_id, allow_blank: true, numericality: { only_integer: true, greater_than: 0 }
   validates :movie_url, allow_blank: true, url_format: true
   validates :original_work, allow_blank: true, length: { maximum: 50 }
   validates :memo, allow_blank: true, length: { maximum: 1000 }
