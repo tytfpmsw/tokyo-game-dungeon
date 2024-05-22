@@ -12,6 +12,6 @@ class ExhibitSubmissionTest < ActiveSupport::TestCase
   test "should raise error when title_url is invalid" do
     @exhibit_submission.title_url = "invalid_url"
     assert_not @exhibit_submission.valid?
-    assert_includes @exhibit_submission.errors.full_messages, "出展作品のホームページURLは正しいURL形式で入力してください"
+    assert_includes @exhibit_submission.errors.full_messages, "ホームページは正しいURL形式で入力してください"
   end
 end

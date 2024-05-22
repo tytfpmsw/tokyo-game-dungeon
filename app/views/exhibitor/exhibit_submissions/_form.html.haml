@@ -1,0 +1,116 @@
+= bootstrap_form_with model: [:exhibitor, event, exhibit_submission] do |f|
+  %p
+    「#{event.name}」の出展情報提出フォームです。以下の内容をご確認の上、出展作品の情報やキービジュアル、PVなど出展情報のご提出をお願いします。
+  %p
+    ◯提出期限：#{event.exhibit_submit_end_at.strftime('%Y年%m月%d日 %H時%M分')}
+    %br
+    期限内であれば何度でも提出ができます。
+  %p
+    ◯注意事項：
+    %br
+    ・提出期限までに出展情報をお送りいただけない場合、出展キャンセルとなりますのでご注意ください。
+    %br
+    ・キービジュアルには500 x 500 pixelの正方形のサイズで提出してください。サイズを間違える方が多数います。
+  %p
+    質問がありましたらDiscordの質問チャンネルまたはDMでお問い合わせください。
+  %table
+    %tr
+      %td
+        = f.label :delivery_usage_scale, class: 'required'
+        %small.text-muted
+          出展用機材の搬入・搬出での宅配便サービスの利用についてお教えください。
+          %br
+          荷物は「長さ」「幅」「深さ」3辺の合計が160cm以下のダンボールを1個とします。
+          %br
+          ※会場施設に概算の数量を連絡する用途ですので、後から変更されても問題ありません。
+        = f.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, include_blank: true, selected: exhibit_submission&.delivery_usage_scale, hide_label: true, required: true
+    %tr
+      %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, counter_over_limit_class: "text-danger" } }
+        = f.label :circle_name, class: 'required'
+        %small.text-muted 50文字以内でご記入ください。
+        = f.text_field :circle_name, value: exhibit_submission&.circle_name, hide_label: true, required: true, :placeholder => "例：ダンジョン・ゲームズ", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+        %small.text-muted{ data: { char_counter: { target: 'count' } } }
+    %tr
+      %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, char_counter_over_limit_class: "text-danger" } }
+        = f.label :title, class: 'required'
+        %small.text-muted 50文字以内でご記入ください。
+        = f.text_field :title, value: exhibit_submission&.title, hide_label: true, required: true, :placeholder => "例：東京ゲームダンジョン伝説5", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+        %small.text-muted{ data: { char_counter: { target: 'count' } } }
+    %tr
+      %td
+        = f.label :image, class: 'required'
+        %small.text-muted
+          出展作品のキービジュアルの画像ファイルをアップロードしてください。
+          %br
+          画像サイズ→500 x 500 pixel
+        = f.file_field :image, required: true, hide_label: true
+        %br
+        = image_tag 'key_visual_sample.png', size: "500x500"
+    %tr
+      %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 100, char_counter_over_limit_class: "text-danger" } }
+        = f.label :description, class: 'required'
+        %small.text-muted 100文字以内でご記入ください。
+        = f.text_area :description, value: exhibit_submission&.description, hide_label: true, required: true, :placeholder => "例：描き込まれたドット絵による2Dローグライクゲーム。3年の開発を経て、2024年夏にいよいよSteamにてリリース予定。会場ではデモ版の試遊が可能、グッズの販売もします！", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+        %small.text-muted{ data: { char_counter: { target: 'count' } } }
+    %tr
+      %td
+        = f.label :genre, class: 'required'
+        %small.text-muted 最も近いゲームジャンルを1つお選びください。
+        = f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, hide_label: true, required: true
+    %tr
+      %td
+        = f.label :is_vr
+        %small.text-muted 出展作品でVR機器を使用する場合、チェックをつけてください。
+        = f.check_box :is_vr, value: exhibit_submission&.is_vr, hide_label: true
+    %tr
+      %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, char_counter_over_limit_class: "text-danger" } }
+        = f.label :original_work
+        %small.text-muted 出展作品が二次創作の場合、原作のタイトルをご記入ください。
+        = f.text_field :original_work, value: exhibit_submission&.original_work, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+        %small.text-muted{ data: { char_counter: { target: 'count' } } }
+    %tr
+      %td
+        = f.label :twitter_url
+        %small.text-muted 出展団体・出展作品のX（旧Twitter）アカウントをご記入ください。
+        = f.text_field :twitter_url, value: exhibit_submission&.twitter_url, hide_label: true, :placeholder => "例：https://x.com/TG_Dungeon"
+    %tr
+      %td
+        = f.label :title_url
+        %small.text-muted 出展団体・出展作品のホームページURLをご記入ください。
+        = f.text_field :title_url, value: exhibit_submission&.title_url, hide_label: true, :placeholder => "例：https://tokyogamedungeon.com"
+    %tr
+      %td
+        = f.label :steam_url
+        %small.text-muted 出展作品のSteamページのURLを記入してください。
+        = f.text_field :steam_url, value: exhibit_submission&.steam_url, hide_label: true, :placeholder => "例：https://store.steampowered.com/app/xxx/xxx/"
+    %tr
+      %td
+        = f.label :movie_url
+        %small.text-muted
+          出展作品のPVの動画URLをご記入ください。
+          %br
+          ・動画の長さは120秒以内でお願いします。
+          %br
+          　120秒を大幅に超過している場合、イベント当日に上映できませんのでご注意ください。
+          %br
+          ・光が激しく点滅する動画はお控えください。
+          %br
+          ・PVの事前公開を希望されない場合は「その他の連絡事項」でその旨をご連絡ください。
+        = f.text_field :movie_url, value: exhibit_submission&.movie_url, hide_label: true, :placeholder => "例：https://www.youtube.com/watch?v=xxx"
+    %tr
+      %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 1000, char_counter_over_limit_class: "text-danger" } }
+        = f.label :memo
+        %small.text-muted
+          他の出展者と展示スペースを連結したい、大型の機器を持ち込む場合などはご記入ください(1000文字以内)。
+          %br
+          ※運営への質問はDiscordの質問チャンネルにお願いします。
+        = f.text_area :memo, value: exhibit_submission&.memo, hide_label: true, :placeholder => "例：「◯◯◯（出展団体名）」との連結希望", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+        %small.text-muted{ data: { char_counter: { target: 'count' } } }
+
+    - if exhibit_submission&.errors&.any?
+      #error_explanation
+        %ul
+          - exhibit_submission.errors.full_messages.each do |message|
+            %li.validation-error= message
+  .submit-buttons
+    = f.submit '提出する', class: 'btn btn-primary'

@@ -1,19 +1,25 @@
-%h4.fw-bold
-  %span 協賛
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item.active
+    協賛一覧
 
-.card.shadow.mt-3 
-  .card-header
-    = icon_with_text("search", "検索条件")
-  .card-body
-    = search_form_for([:admin, @search], html: { data: { turbo_frame: "sponsors", controller: "search_form", action: "input->search_form#submit" } }) do |f|
-      .row.g3.mb-3
-        .col-4.col-xl-2
-          = f.label :name_cont, "団体名", class: "form-label"
-          = f.search_field :name_cont, class: "form-control"
-        .col-4.col-xl-2
-          = f.submit
-        .col-4.d-flex.align-items-end
-          = link_to "クリア", admin_sponsors_path(@event), class: "btn btn-outline-secondary", method: :get
+%h4.fw-bold
+  %span 協賛一覧
+
+-# .card.shadow.mt-3 
+-#   .card-header
+-#     = icon_with_text("search", "検索条件")
+-#   .card-body
+-#     = search_form_for([:admin, @search], html: { data: { turbo_frame: "sponsors", controller: "search_form", action: "input->search_form#submit" } }) do |f|
+-#       .row.g3.mb-3
+-#         .col-4.col-xl-2
+-#           = f.label :name_cont, "団体名", class: "form-label"
+-#           = f.search_field :name_cont, class: "form-control"
+-#         .col-4.col-xl-2
+-#           = f.submit
+-#         .col-4.d-flex.align-items-end
+-#           = link_to "クリア", admin_sponsors_path(@event), class: "btn btn-outline-secondary", method: :get
 
 .card.shadow.mt-3
   .card-header

@@ -21,11 +21,12 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     sign_in exhibitors(:unsubmitted)
 
     assert_difference('ExhibitSubmission.count') do
-      post exhibitor_event_exhibit_submissions_url(@event.url_subdirectory),
+      post exhibitor_event_exhibit_submissions_url(@event.id),
       params: {
         exhibit_submission: {
           title: 'test',
           description: 'test',
+          genre: 'rpg',
           title_url: 'http://test',
           steam_url: 'http://store.steampowered.com/test',
           twitter_url: 'http://x.com/test',
@@ -38,7 +39,7 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     end
     exhibit_submission = ExhibitSubmission.find_by(exhibit_information: ExhibitInformation.find_by(exhibitor: exhibitors(:unsubmitted)))
     assert exhibit_submission.title == 'test'
-    assert exhibit_submission.genre == 'undefined'
+    assert exhibit_submission.genre == 'rpg'
     assert exhibit_submission.description == 'test'
     assert exhibit_submission.title_url == 'http://test'
     assert exhibit_submission.steam_url == 'http://store.steampowered.com/test'
@@ -51,7 +52,7 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
   end
 
   test "should put update" do
-    put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
+    put exhibitor_event_exhibit_submission_url(@event.id, exhibit_submissions(:newbie_exhibit)),
     params: {
       exhibit_submission: {
         title: 'test',
@@ -73,15 +74,45 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
 
   test "should not create when exhibit submission already exists" do
     assert_no_difference('ExhibitSubmission.count') do
-      post exhibitor_event_exhibit_submissions_url(@event.url_subdirectory),
+      post exhibitor_event_exhibit_submissions_url(@event.id),
       params: {
         exhibit_submission: {
           title: 'test',
           description: 'test',
-          movie_url: 'http://test'
+          genre: 'rpg',
+          title_url: 'http://test',
+          steam_url: 'http://store.steampowered.com/test',
+          twitter_url: 'http://x.com/test',
+          movie_url: 'http://test',
+          is_vr: false,
+          memo: 'test',
+          delivery_usage_scale: 'small',
         }
       }
     end 
+  end
+
+  test "should not create when genre is undefined" do
+    sign_out exhibitors(:newbie)
+    sign_in exhibitors(:unsubmitted)
+
+    assert_no_difference('ExhibitSubmission.count') do
+      post exhibitor_event_exhibit_submissions_url(@event.id),
+      params: {
+        exhibit_submission: {
+          title: 'test',
+          description: 'test',
+          genre: 'undefined',
+          title_url: 'http://test',
+          steam_url: 'http://store.steampowered.com/test',
+          twitter_url: 'http://x.com/test',
+          movie_url: 'http://test',
+          is_vr: false,
+          memo: 'test',
+          delivery_usage_scale: 'small',
+        }
+      }
+    end
   end
 
   test "should not create when exhibit information is nil" do
@@ -89,12 +120,19 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     sign_in exhibitors(:has_exhibited_and_not_registered)
 
     assert_no_difference('ExhibitSubmission.count') do
-      post exhibitor_event_exhibit_submissions_url(@event.url_subdirectory),
+      post exhibitor_event_exhibit_submissions_url(@event.id),
       params: {
         exhibit_submission: {
           title: 'test',
           description: 'test',
-          movie_url: 'http://test'
+          genre: 'rpg',
+          title_url: 'http://test',
+          steam_url: 'http://store.steampowered.com/test',
+          twitter_url: 'http://x.com/test',
+          movie_url: 'http://test',
+          is_vr: false,
+          memo: 'test',
+          delivery_usage_scale: 'small',
         }
       }
     end
@@ -103,7 +141,7 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
   test "should not update when event is not in submit period" do
     
     travel_to 1.week.since do
-      put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
+      put exhibitor_event_exhibit_submission_url(@event.id, exhibit_submissions(:newbie_exhibit)),
       params: {
         exhibit_submission: {
           title: 'test',
@@ -117,7 +155,7 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
   end
 
   test "should update when original_work is filled" do
-    put exhibitor_event_exhibit_submission_url(@event.url_subdirectory, exhibit_submissions(:newbie_exhibit)),
+    put exhibitor_event_exhibit_submission_url(@event.id, exhibit_submissions(:newbie_exhibit)),
     params: {
       exhibit_submission: {
         title: 'test',

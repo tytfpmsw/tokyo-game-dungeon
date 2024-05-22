@@ -1,6 +1,7 @@
 class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
 
-  before_action :set_event
+  before_action :set_event, only: %i[index new edit]
+  before_action :set_event_by_id, only: %i[create update]
   before_action :set_exhibit_information
   before_action :set_exhibitor
   before_action :return_to_exhibitor_root_if_exhibitor_can_not_submit
@@ -74,6 +75,12 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
     @event = Event.find_by!(url_subdirectory: params[:event_url_subdirectory])
   end
 
+  def set_event_by_id
+    # すごくトリッキーだが、createとupdateの際はform_withの制約上
+    # event.url_subdirectoryの部分にidが入ってしまうためこうしている
+    @event = Event.find(params[:event_url_subdirectory])
+  end
+
   def set_exhibitor
     @exhibitor = current_exhibitor
   end
@@ -84,7 +91,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
 
   def return_to_exhibitor_root_if_exhibitor_can_not_submit
     unless @event.exhibitor_registered?(current_exhibitor) && @event.in_submit_period?
-      redirect_to exhibitor_root_path, status: :forbidden
+      redirect_to exhibitor_root_path, status: :forbidden, alert: '出展情報を提出できません。'
       return
     end
   end

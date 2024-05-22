@@ -15,7 +15,7 @@ class ExhibitSubmission < ApplicationRecord
   validates :twitter_url, allow_blank: true, url_format: true
   validates :movie_url, allow_blank: true, url_format: true
   validates :original_work, allow_blank: true, length: { maximum: 50 }
-  validates :memo, allow_blank: true, length: { maximum: 100 }
+  validates :memo, allow_blank: true, length: { maximum: 1000 }
 
   validate :genre_validate
   

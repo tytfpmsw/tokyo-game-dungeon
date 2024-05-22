@@ -1,20 +1,17 @@
 = bootstrap_form_with(model: [:admin, @event, exhibit_information], data: { action: "turbo:submit-end->modal#close"}) do |form|
+  = form.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, selected: exhibit_submission.delivery_usage_scale
   = form.text_field :circle_name, value: exhibit_submission.circle_name
   = form.text_field :title, value: exhibit_submission.title
-  = form.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: exhibit_submission.genre
+  = form.file_field :image
   = form.text_area :description, value: exhibit_submission.description
+  = form.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: exhibit_submission.genre
+  = form.check_box :is_vr, checked: exhibit_submission.is_vr
+  = form.text_field :original_work, value: exhibit_submission.original_work
+  = form.text_field :twitter_url, value: exhibit_submission.twitter_url
   = form.text_field :title_url, value: exhibit_submission.title_url
   = form.text_field :steam_url, value: exhibit_submission.steam_url
-  = form.text_field :twitter_url, value: exhibit_submission.twitter_url
-  - if exhibit_submission.is_vr
-    = form.check_box :is_vr, checked: true
-  - else
-    = form.check_box :is_vr
   = form.text_field :movie_url, value: exhibit_submission.movie_url
-  = form.file_field :image
-  = form.text_field :original_work, value: exhibit_submission.original_work
   = form.text_area :memo, value: exhibit_submission.memo
-  = form.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, selected: exhibit_submission.delivery_usage_scale
   - if exhibit_submission.errors.any?
     #error_explanation
       %h2= "#{exhibit_submission.errors.count}個のエラーで保存できませんでした:"

@@ -41,4 +41,5 @@ production:
       max: 6
   admin:
     email:
+      - info@tokyogamedungeon.com
       - ty.tf.pmsw@gmail.com

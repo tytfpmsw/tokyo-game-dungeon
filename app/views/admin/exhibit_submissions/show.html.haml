@@ -1,8 +1,25 @@
+.breadcrumb
+  %li.breadcrumb-item
+    = link_to "管理者トップ", admin_root_path
+  %li.breadcrumb-item
+    = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @event.name, admin_event_path(@event)
+  %li.breadcrumb-item
+    = link_to "出展情報一覧", admin_event_exhibit_informations_path(@event)
+  %li.breadcrumb-item.active
+    提出情報の詳細
+
 .p-admin-exhibit-submission-show
   %h1 提出情報の詳細
 
 
   %table.mb-4
+    %tr
+    %th.border
+      = t("activerecord.attributes.exhibit_submission.delivery_usage_scale")
+    %td.border
+      = t("activerecord.attributes.delivery_usage_scale.#{@exhibit_information.exhibit_submission.delivery_usage_scale}")
     %tr
       %th.border
         = t("activerecord.attributes.exhibit_submission.circle_name")
@@ -15,9 +32,16 @@
         = @exhibit_submission.title
     %tr
       %th.border
-        = t("activerecord.attributes.exhibit_submission.genre")
+        = t("activerecord.attributes.exhibit_submission.image")
       %td.border
-        = t("activerecord.attributes.genre.#{@exhibit_submission.genre}")
+        - if @exhibit_submission.image.present?
+          = image_tag @exhibit_submission.image.url
+        - elsif @exhibit_information.exhibit_submission.image.present?
+          ※変更なし
+          %br
+          = image_tag @exhibit_submission.exhibit_information.image
+        - else 
+          未提出
     %tr
       %th.border
         = t("activerecord.attributes.exhibit_submission.description")
@@ -25,34 +49,9 @@
         = @exhibit_submission.description
     %tr
       %th.border
-        = t("activerecord.attributes.exhibit_submission.title_url")
+        = t("activerecord.attributes.exhibit_submission.genre")
       %td.border
-        = @exhibit_submission.title_url
-    %tr
-      %th.border
-        = t("activerecord.attributes.exhibit_submission.steam_url")
-      %td.border
-        = @exhibit_submission.steam_url
-    %tr
-      %th.border
-        = t("activerecord.attributes.exhibit_submission.twitter_url")
-      %td.border
-        = @exhibit_submission.twitter_url
-    %tr
-      %th.border
-        = t("activerecord.attributes.exhibit_submission.movie_url")
-      %td.border
-        = @exhibit_submission.movie_url
-    %tr
-      %th.border
-        = t("activerecord.attributes.exhibit_submission.image")
-      %td.border
-        - if @exhibit_submission.image.present?
-          = image_tag @exhibit_submission.image.url, size: "500x500"
-        - else
-          ※変更なし
-          %br
-          = image_tag @exhibit_submission.exhibit_information.image, size: "500x500"
+        = t("activerecord.attributes.genre.#{@exhibit_submission.genre}")
     %tr
       %th.border
         = t("activerecord.attributes.exhibit_submission.is_vr")
@@ -65,15 +64,29 @@
         = @exhibit_submission.original_work
     %tr
       %th.border
+        = t("activerecord.attributes.exhibit_submission.twitter_url")
+      %td.border
+        = @exhibit_submission.twitter_url
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.title_url")
+      %td.border
+        = @exhibit_submission.title_url
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.steam_url")
+      %td.border
+        = @exhibit_submission.steam_url
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.movie_url")
+      %td.border
+        = @exhibit_submission.movie_url
+    %tr
+      %th.border
         = t("activerecord.attributes.exhibit_submission.memo")
       %td.border
         = @exhibit_submission.memo
-    %tr
-      %th.border
-        = t("activerecord.attributes.exhibit_submission.delivery_usage_scale")
-      %td.border
-        = t("activerecord.attributes.delivery_usage_scale.#{@exhibit_information.exhibit_submission.delivery_usage_scale}")
-
 
   = form_with url: admin_event_exhibit_submissions_url do |f|
     %div
