@@ -22,8 +22,8 @@ class Admin::ExhibitSubmissionsControllerTest < Admin::IntegrationTest
     exhibit_submission = exhibit_submissions(:newbie_exhibit)
     exhibit_submission.is_vr = true
     exhibit_submission.title_url = "https://example.com/updated"
-    exhibit_submission.steam_url = "https://store.steampowered.com/updated"
     exhibit_submission.twitter_url = "https://x.com/updated"
+    exhibit_submission.steam_app_id = 34567
     exhibit_submission.memo = "updated"
     exhibit_submission.delivery_usage_scale = "large"
     exhibit_submission.save
@@ -31,8 +31,8 @@ class Admin::ExhibitSubmissionsControllerTest < Admin::IntegrationTest
     assert @exhibit_submission.reload.status_approved?
     assert @exhibit_information.reload.is_vr?
     assert_equal "https://example.com/updated", @exhibit_information.reload.title_url
-    assert_equal "https://store.steampowered.com/updated", @exhibit_information.reload.steam_url
     assert_equal "https://x.com/updated", @exhibit_information.reload.twitter_url
+    assert_equal 34567, @exhibit_information.reload.steam_app_id
     assert_equal "updated", @exhibit_information.reload.memo
     assert_equal "large", @exhibit_information.reload.delivery_usage_scale
   end

@@ -28,8 +28,8 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
           description: 'test',
           genre: 'rpg',
           title_url: 'http://test',
-          steam_url: 'http://store.steampowered.com/test',
           twitter_url: 'http://x.com/test',
+          steam_app_id: '23456',
           movie_url: 'http://test',
           is_vr: false,
           memo: 'test',
@@ -42,8 +42,8 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert exhibit_submission.genre == 'rpg'
     assert exhibit_submission.description == 'test'
     assert exhibit_submission.title_url == 'http://test'
-    assert exhibit_submission.steam_url == 'http://store.steampowered.com/test'
     assert exhibit_submission.twitter_url == 'http://x.com/test'
+    assert exhibit_submission.steam_app_id == 23456
     assert exhibit_submission.movie_url == 'http://test'
     assert exhibit_submission.is_vr == false
     assert exhibit_submission.memo == 'test'

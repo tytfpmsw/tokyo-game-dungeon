@@ -23,7 +23,7 @@ class Admin::ExhibitInformationsControllerTest < Admin::IntegrationTest
         title: "updatedTitle",
         genre: "adv_novel",
         title_url: "https://example.com/updated",
-        steam_url: "https://store.steampowered.com/updated",
+        steam_app_id: "23456",
         twitter_url: "https://x.com/updated",
         is_vr: true,
         movie_url: "https://updated.com",
@@ -35,8 +35,8 @@ class Admin::ExhibitInformationsControllerTest < Admin::IntegrationTest
     assert_equal "updatedTitle", @exhibit_information.reload.exhibit_submission.title
     assert_equal "adv_novel", @exhibit_information.reload.exhibit_submission.genre
     assert_equal "https://example.com/updated", @exhibit_information.reload.exhibit_submission.title_url
-    assert_equal "https://store.steampowered.com/updated", @exhibit_information.reload.exhibit_submission.steam_url
     assert_equal "https://x.com/updated", @exhibit_information.reload.exhibit_submission.twitter_url
+    assert_equal 23456, @exhibit_information.reload.exhibit_submission.steam_app_id
     assert_equal true, @exhibit_information.reload.exhibit_submission.is_vr
     assert_equal "https://updated.com", @exhibit_information.reload.exhibit_submission.movie_url
     assert_equal "OriginalWork", @exhibit_information.reload.exhibit_submission.original_work

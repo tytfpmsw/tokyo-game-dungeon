@@ -38,8 +38,8 @@ newbie_exhibit:
   genre: 1
   description: 初出展説明
   title_url: https://example.com/title_url
-  steam_url: https://store.steampowered.com/steam_url
   twitter_url: https://x.com/twitter_url
+  steam_app_id: 123456
   is_vr: false
   movie_url: https://www.youtube.com/watch?=newbie
   event: now_preparing
