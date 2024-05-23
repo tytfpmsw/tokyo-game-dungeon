@@ -20,10 +20,16 @@
           %td= @event.human_attribute_enum(:location)
         %tr
           %th ロゴ
-          %td= image_tag @event.logo_image.url, size: '290x70'
+          - if @event.logo_image.present?
+            %td= image_tag @event.logo_image.url, size: '290x70'
+          - else
+            %td 未設定
         %tr
           %th メイン画像
-          %td= image_tag @event.main_image.url, size: '480x270'
+          - if @event.main_image.present?
+            %td= image_tag @event.main_image.url, size: '480x270'
+          - else
+            %td 未設定
         %tr
           %th イベントページ公開日時
           %td= @event.publish_start_at
