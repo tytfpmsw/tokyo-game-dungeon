@@ -42,7 +42,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
         ExhibitorMailer.exhibitor_registered_email(params[:email], @event.name, @init_password).deliver_now
       else
         # アーカイブ済みのイベントに登録しようとしている場合、または過去に登録されていても
-        # システム移行前のイベントが最後の場合は管理側が登録したものなので、あらためてパスワードを通知する
+        # システム移行前のイベントが最後の出展の場合は管理側が登録したものなので、あらためてパスワードを通知する
         if @event.archived? || (@exhibitor.exhibit_informations.present? && @exhibitor.exhibit_informations.maximum(:event_id) <= Rails.configuration.app.event_id[:before_migrate][:max])
           @init_password = SecureRandom.hex(4)
           @exhibitor.update!(

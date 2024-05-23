@@ -1,7 +1,7 @@
 default: &default
   event_id:
     before_migrate:
-      max: 7
+      max: 6
   admin:
     email: test@example.com
   system:
