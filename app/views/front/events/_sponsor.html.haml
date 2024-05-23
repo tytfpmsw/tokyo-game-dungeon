@@ -1,12 +1,13 @@
 .event-sponsor-body
-  - if sponsor.url.present?
-    %a{ :href => sponsor.url, :target => "_blank", :rel => "noopener" }
-      .event-sponsor-content
+  - sponsors.each do |sponsor|
+    - if sponsor.url.present?
+      %a{ :href => sponsor.url, :target => "_blank", :rel => "noopener" }
+        .content
+          - if sponsor.image.present?
+            = image_tag sponsor.image&.url
+          %h3= sponsor.name
+    - else
+      .content
         - if sponsor.image.present?
           = image_tag sponsor.image&.url
         %h3= sponsor.name
-  - else
-    .event-sponsor-content
-      - if sponsor.image.present?
-        = image_tag sponsor.image&.url
-      %h3= sponsor.name
