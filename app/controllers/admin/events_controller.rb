@@ -1,6 +1,6 @@
 class Admin::EventsController < Admin::ApplicationController
 
-  before_action :set_event, only: %i[ show edit update publish ]
+  before_action :set_event, only: %i[ show edit update publish unpublish archive ]
 
   def index
     @events = Event.all
@@ -56,6 +56,11 @@ class Admin::EventsController < Admin::ApplicationController
   def unpublish
     @event.unpublish
     redirect_to admin_event_url(@event), notice: 'イベントを非公開にしました。'
+  end
+
+  def archive
+    @event.archive
+    redirect_to admin_event_url(@event), notice: 'イベントをアーカイブしました。'
   end
 
   private

@@ -46,6 +46,10 @@ class Event < ApplicationRecord
     update!(status: :unpublished)
   end
 
+  def archive
+    update!(status: :archived)
+  end
+
   def all_day_has_floors?
     event_schedules.all?(&:has_floors?)
   end

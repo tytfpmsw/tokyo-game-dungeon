@@ -46,3 +46,5 @@
     = button_to 'イベントを公開待ちにする', publish_admin_event_path(@event), method: :patch, class: 'btn btn-primary mg-auto mb-4'
   - else
     = button_to 'イベントを非公開にする', unpublish_admin_event_path(@event), method: :patch, class: 'btn btn-primary mg-auto mb-4'
+  - if !@event.archived?
+    = button_to 'イベントを開催済みのページに変更する', archive_admin_event_path(@event), method: :patch, class: 'btn btn-danger mg-auto mb-4'

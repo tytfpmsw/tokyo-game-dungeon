@@ -11,6 +11,8 @@
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
+    - if front? && Rails.env.production?
+      = render 'layouts/google_analytics'
   %body
     .container-fluid.text-center
       = turbo_frame_tag 'modal'

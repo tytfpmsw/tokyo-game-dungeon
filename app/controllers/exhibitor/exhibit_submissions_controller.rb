@@ -64,6 +64,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       status: ExhibitSubmission.statuses[:submitted]
     )
       redirect_to exhibitor_root_path, notice: '提出情報を更新しました。'
+      InquiryMailer.exhibit_submission_email(current_exhibitor, @exhibit_information).deliver_now
     else
       render :edit, status: :unprocessable_entity
     end

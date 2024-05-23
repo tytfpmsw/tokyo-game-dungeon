@@ -41,8 +41,9 @@ class Admin::ExhibitorsController < Admin::ApplicationController
         @exhibitor = Exhibitor.find_by(email: params[:email])
         ExhibitorMailer.exhibitor_registered_email(params[:email], @event.name, @init_password).deliver_now
       else
-        # 登録されていてもシステム移行前のイベントの場合は管理側が登録したものなので、あらためてパスワードを通知する
-        if @exhibitor.exhibit_informations.present? && @exhibitor.exhibit_informations.maximum(:event_id) <= Rails.configuration.app.event_id[:before_migrate][:max]
+        # アーカイブ済みのイベントに登録しようとしている場合、または過去に登録されていても
+        # システム移行前のイベントが最後の場合は管理側が登録したものなので、あらためてパスワードを通知する
+        if @event.archived? || (@exhibitor.exhibit_informations.present? && @exhibitor.exhibit_informations.maximum(:event_id) <= Rails.configuration.app.event_id[:before_migrate][:max])
           @init_password = SecureRandom.hex(4)
           @exhibitor.update!(
             name: params[:name],
@@ -73,8 +74,7 @@ class Admin::ExhibitorsController < Admin::ApplicationController
       flash.now.notice = "出展者を登録しました。"
 
     rescue => e
-      render :new, status: :unprocessable_entity
-      flash.now.alert = "処理に失敗しました。 + #{e.message}"      
+      render :new, status: :unprocessable_entity, alert: "処理に失敗しました。 + #{e.message}"      
     end
   end
 
