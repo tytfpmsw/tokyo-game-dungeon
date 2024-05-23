@@ -3,8 +3,10 @@
     = link_to "管理者トップ", admin_root_path
   %li.breadcrumb-item
     = link_to "イベント一覧", admin_events_path
+  %li.breadcrumb-item
+    = link_to @event.name, admin_event_path(@event)
   %li.breadcrumb-item.active
-    = @event.name
+    イベント情報編集
 
 %h2 イベント情報編集
 
