@@ -27,4 +27,13 @@ class ExhibitorMailer < ApplicationMailer
       subject: "【東京ゲームダンジョン】出展申請が承認されました"
     )
   end
+
+  def regenerate_password_email(exhibitor_email, password)
+    @password = password
+    mail(
+      to: exhibitor_email,
+      bcc: Rails.configuration.app.admin[:email],
+      subject: "【東京ゲームダンジョン】パスワード再発行のお知らせ"
+    )
+  end
 end

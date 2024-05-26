@@ -12,4 +12,4 @@
       .d-flex.justify-content-end
         = link_to "編集", edit_admin_event_exhibitor_path(@event, exhibitor), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
         = button_to "パスワードをリセット", regenerate_password_admin_event_exhibitor_path(@event, exhibitor), method: :patch, class: "btn btn-outline-primary", data: { turbo_confirm: "#{exhibitor.name}さんのパスワードをリセットして本人にメールを送信します。よろしいですか？", turbo_frame: "exhibitors" }
-        = button_to "削除", admin_event_exhibitor_url(@event, exhibitor), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？", turbo_frame: "exhibitors" }
+        = button_to "削除", admin_event_exhibitor_url(@event, exhibitor), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "このイベントに紐づけたこの出展者の出展情報も同時に削除されます。本当にイベントから削除しますか？", turbo_frame: "exhibitors" }

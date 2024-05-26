@@ -37,4 +37,21 @@ class ExhibitorMailerTest < ActionMailer::TestCase
     assert_match "パスワードは前回まで使用していたものを引き続き使用できます。", mail.body.to_s
     assert_match "https://", mail.body.to_s
   end
+
+  test "regenerate_password_email" do
+    mail = ExhibitorMailer.regenerate_password_email(
+      "exhibitor@example.com",
+      "password123")
+    
+    assert_emails 1 do
+      mail.deliver_now
+    end
+
+    assert_equal ["system@gamedungeon.jp"], mail.from
+    assert_equal ["exhibitor@example.com"], mail.to
+    assert_equal ["test@example.com"], mail.bcc
+    assert_equal "【東京ゲームダンジョン】パスワード再発行のお知らせ", mail.subject
+    assert_match "東京ゲームダンジョン出展者ページログイン用のパスワードを再設定しました。", mail.body.to_s
+    assert_match "パスワード： password123", mail.body.to_s
+  end
 end

@@ -94,18 +94,20 @@ class Admin::ExhibitorsController < Admin::ApplicationController
   end
 
   def destroy
-    @exhibit_information = ExhibitInformation.find_by(exhibitor_id: params[:id], event_id: @event.id)
-    @exhibit_information.destroy!
     # turbo_streamで動的に削除する対象として@exhibitorを指定
     @exhibitor = Exhibitor.find(params[:id])
-    flash.now.notice = "出展権限を削除しました。"
+    @exhibit_information = ExhibitInformation.find_by(exhibitor_id: params[:id], event_id: @event.id)
+    if @exhibit_information.destroy
+      flash.now.notice = "出展権限を削除しました。"
+    else
+      render :index, status: :unprocessable_entity, alert: "削除に失敗しました。"
+    end
   end
 
   def regenerate_password
     @exhibitor = Exhibitor.find(params[:id])
     @init_password = @exhibitor.regenerate_password
     flash.now.notice = "#{@exhibitor.name}さんのパスワードを再設定しました。新規パスワードは'#{@init_password}'です。"
-    # TODO: メール送信
   end
 
   private

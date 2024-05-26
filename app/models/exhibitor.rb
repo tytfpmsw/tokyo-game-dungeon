@@ -15,11 +15,12 @@ class Exhibitor < ApplicationRecord
     %w[name email discord_name exhibitor_type]
   end
 
-  def regenerate_password
+  def regenerate_password(send_mail: true)
     init_password = SecureRandom.hex(4)
     self.password = init_password
     self.password_confirmation = init_password
     self.save!
+    ExhibitorMailer.regenerate_password_email(email, init_password).deliver_now if send_mail
     init_password
   end
 end

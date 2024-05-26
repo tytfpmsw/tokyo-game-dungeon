@@ -88,6 +88,10 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
 
   def set_exhibit_information
     @exhibit_information = ExhibitInformation.find_by(event: @event, exhibitor: current_exhibitor)
+    if @exhibit_information.nil?
+      redirect_to exhibitor_root_path, alert: '出展情報が見つかりませんでした。'
+      return
+    end
   end
 
   def return_to_exhibitor_root_if_exhibitor_can_not_submit
