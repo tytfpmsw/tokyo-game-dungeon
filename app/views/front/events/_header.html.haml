@@ -12,9 +12,23 @@
     -#           = "#{@event.name}出展作品一覧"
 
     .right
-      %ul
-        %li.page-item.page-item-has-children
-          - if @event.exhibit_informations_publish_start_at.present? && @event.exhibit_informations_publish_start_at < Time.zone.now
-            = link_to front_event_exhibit_informations_path(@event.url_subdirectory) do
-              = "#{@event.name}出展作品一覧"
+      .flat-menu
+        = link_to front_event_path(@event.url_subdirectory) do
+          = "#{@event.name}トップへ"
+        - if @event.exhibit_informations_publish_start_at.present? && @event.exhibit_informations_publish_start_at < Time.zone.now
+          = link_to front_event_exhibit_informations_path(@event.url_subdirectory) do
+            出展作品一覧へ
+      .toggle-menu
+        %input.toggle{ type: 'checkbox', id: 'toggle' }
+        %label{ for: 'toggle' }
+          メニュー
+        .content
+          %ul
+            %li
+              = link_to front_event_path(@event.url_subdirectory) do
+                = "#{@event.name}トップへ"
+            %li
+              - if @event.exhibit_informations_publish_start_at.present? && @event.exhibit_informations_publish_start_at < Time.zone.now
+                = link_to front_event_exhibit_informations_path(@event.url_subdirectory) do
+                  出展作品一覧へ
 

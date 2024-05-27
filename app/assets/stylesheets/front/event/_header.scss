@@ -7,16 +7,24 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 1rem;
 
     .left {
+      display: flex;
       float: left;
-      @media (max-width: 768px) {
-        display: none;
-      }
+      align-items: center;
 
-      img.logo {
-        width: 290px;
-        height: 70px;
+      .logo {
+        img {
+          width: 290px;
+          height: 70px;
+          
+          @media (max-width: 768px) {
+            margin-top: 1rem;
+            width: 145px;
+            height: 35px;
+          }
+        }
       }
 
       h1 {
@@ -33,17 +41,75 @@
     }
 
     .right {
+      margin-top: 10px;
       float: right;
-      padding: 30px;
-      
-      a {
-          font-size: 17px;
-          font-weight: 400;
+
+      @media (min-width: 1025px) {
+        .flat-menu {
+          display: block;
+          
+          a {
+            text-decoration: none;
+            color: #FF0066;
+            margin: 0 20px;
+            font-size: 1.2rem;
+          }
+        }
+
+        .toggle-menu {
+          display: none;
+        }
       }
 
-      li {
-        display: inline-block;
-        position: relative;
+      @media (max-width: 1024px) {
+        .flat-menu {
+          display: none;
+        }
+        .toggle-menu {
+          text-align: right;
+          
+          a {
+              font-size: 17px;
+              font-weight: 400;
+          }
+
+          ul {
+            padding-left: 0;
+            color: #FF0066;
+
+            li {
+              margin-bottom: 20px;
+              position: relative;
+
+              a {
+                text-decoration: none;
+              }
+            }
+          }
+
+          .toggle {
+            display: none;
+          }
+
+          .toggle + label {
+            cursor: pointer;
+            background-color: #FF0066;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+          }
+
+          .toggle:checked + label + .content {
+            display: block;
+          }
+
+          .content {
+            background-color: #f8f9fa;
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+          }
+        }
       }
     }
 
