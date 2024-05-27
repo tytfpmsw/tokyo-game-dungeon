@@ -25,6 +25,9 @@
         .content
           %ul
             %li
+              = link_to front_root_path do
+                ポータルページへ
+            %li
               = link_to front_event_path(@event.url_subdirectory) do
                 = "#{@event.name}トップへ"
             %li
