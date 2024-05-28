@@ -30,6 +30,7 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       return
     end
 
+    InquiryMailer.exhibit_submission_email(current_exhibitor, @exhibit_information).deliver_now
     redirect_to exhibitor_event_path(@event.url_subdirectory), notice: '出展情報を提出しました。'
   end
 
