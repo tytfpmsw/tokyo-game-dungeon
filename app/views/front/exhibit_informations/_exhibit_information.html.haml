@@ -3,7 +3,8 @@
     = image_tag @exhibit_information.image, class: 'exhibit-image'
   - else
     = image_tag 'noimage.jpg', class: 'exhibit-image'
-  %p= "#{@exhibit_information.place_block.name}-#{@exhibit_information.exhibit_information_place.place_number}"
+  %p= "出展団体名：#{@exhibit_information.circle_name}"
+  %p= "出展場所：#{@exhibit_information.place_block.name}-#{@exhibit_information.exhibit_information_place.place_number}"
   %p= @exhibit_information.description.present? ? simple_format(h(@exhibit_information.description)) : '出展者からの入稿をお待ちください！'
   %hr
   .icons
