@@ -1,2 +1,2 @@
-%h1 Front::ExhibitInformations#show
-%p Find me in app/views/front/exhibit_informations/show.html.haml
+= render 'modal', title: @exhibit_information.title do
+  = render 'exhibit_information', exhibit_information: @exhibit_information

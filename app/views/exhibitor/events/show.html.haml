@@ -52,7 +52,8 @@
             未提出
       %tr
         %th= t('activerecord.attributes.exhibit_submission.description')
-        %td= @exhibit_information.exhibit_submission.description
+        -# 改行が反映されるようにsimple_format/hを使用
+        %td= simple_format(h(@exhibit_information.exhibit_submission.description))
       %tr
         %th= t('activerecord.attributes.exhibit_submission.genre')
         %td= t("activerecord.attributes.genre.#{@exhibit_information.exhibit_submission.genre}")

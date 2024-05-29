@@ -3,6 +3,7 @@ class ExhibitInformation < ApplicationRecord
   belongs_to :event
   has_one :exhibit_submission, dependent: :destroy
   has_one :exhibit_information_place, dependent: :destroy
+  has_one :place_block, through: :exhibit_information_place
 
   enum genre: Genre::TYPES, _prefix: true
   enum delivery_usage_scale: DeliveryUsageScale::SCALES, _prefix: true

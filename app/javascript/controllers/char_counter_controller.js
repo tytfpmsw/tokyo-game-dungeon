@@ -7,14 +7,19 @@ export default class extends Controller {
 
   connect() {
     let length = this.fieldTarget.value.length
-    this.countTarget.textContent = `現在${length}文字`
+    // valueの改行の数をカウント
+    let lineBreaks = (this.fieldTarget.value.match(/\n/g) || []).length
+    let count = length + lineBreaks
+    this.countTarget.textContent = `現在${count}文字`
   }
 
   change() {
     let length = this.fieldTarget.value.length
-    this.countTarget.textContent = `現在${length}文字`
+    let lineBreaks = (this.fieldTarget.value.match(/\n/g) || []).length
+    let count = length + lineBreaks
+    this.countTarget.textContent = `現在${count}文字`
 
-    if (length > this.characterCountMaxValue) {
+    if (count > this.characterCountMaxValue) {
       console.log("over")
       this.countTarget.classList.add("text-danger")
     } else {

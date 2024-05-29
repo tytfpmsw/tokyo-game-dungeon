@@ -21,5 +21,5 @@
       .row.exhibit-informations
         - for i in 1..place_block.capacity do
           - if @exhibit_information_places.find { |eip| eip.place_block == place_block && eip.place_number == i}
-            = render 'exhibit_information', { exhibit_information: @exhibit_information_places.find { |eip| eip.place_block == place_block && eip.place_number == i}.exhibit_information, place_block: place_block, place_number: i }
+            = render 'exhibit_information_panel', { exhibit_information: @exhibit_information_places.find { |eip| eip.place_block == place_block && eip.place_number == i}.exhibit_information, place_block: place_block, place_number: i }
       = render 'front/shared/divider'

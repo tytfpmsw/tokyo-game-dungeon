@@ -1,10 +1,20 @@
-.p-exhibit-information
-  - if exhibit_information.image.present?
-    = image_tag exhibit_information.image, class: 'exhibit-image'
+.exhibit-information
+  - if @exhibit_information.image.present?
+    = image_tag @exhibit_information.image, class: 'exhibit-image'
   - else
     = image_tag 'noimage.jpg', class: 'exhibit-image'
-  %h2= exhibit_information.title.present? ? exhibit_information.title : '準備中'
-  %p= "#{place_block.name}-#{place_number}"
-  %p= exhibit_information.description.present? ? exhibit_information.description : '出展者からの入稿をお待ちください！'
-  - if exhibit_information.movie_url.present?
-    = link_to image_tag('buttonPV.jpg'), exhibit_information.movie_url, class: 'exhibit-movie'
+  %p= "#{@exhibit_information.place_block.name}-#{@exhibit_information.exhibit_information_place.place_number}"
+  %p= @exhibit_information.description.present? ? simple_format(h(@exhibit_information.description)) : '出展者からの入稿をお待ちください！'
+  %hr
+  .icons
+    - if @exhibit_information.title_url.present?
+      = link_to image_tag('icon_web.png'), @exhibit_information.title_url, class: 'icon', target: '_blank', rel: 'noopener noreferrer'
+    - if @exhibit_information.steam_app_id.present?
+      = link_to image_tag('icon_steam.png'), "https://store.steampowered.com/app/#{@exhibit_information.steam_app_id}", class: 'icon', target: '_blank', rel: 'noopener noreferrer'
+    - if @exhibit_information.twitter_url.present?
+      = link_to image_tag('icon_x.png'), @exhibit_information.twitter_url, class: 'icon', target: '_blank', rel: 'noopener noreferrer'
+    - if @exhibit_information.movie_url.present?
+      = link_to image_tag('icon_pv.png'), @exhibit_information.movie_url, class: 'icon', target: '_blank', rel: 'noopener noreferrer'
+  - if @exhibit_information.steam_app_id.present?
+    .steam-widget-wrapper
+      %iframe{ src: "https://store.steampowered.com/widget/#{@exhibit_information.steam_app_id}/", frameborder: '0', width: '646', height: '190' }
