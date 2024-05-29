@@ -17,6 +17,8 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
   end
 
   test "should post create" do
+    InquiryMailer.deliveries.clear
+
     sign_out exhibitors(:newbie)
     sign_in exhibitors(:unsubmitted)
 
@@ -49,9 +51,14 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert exhibit_submission.memo == 'test'
     assert exhibit_submission.delivery_usage_scale == 'small'
     assert exhibit_submission.status == 'submitted'
+
+    mail = InquiryMailer.deliveries.last
+    assert_equal '【東京ゲームダンジョン】出展情報が提出されました', mail.subject
   end
 
   test "should put update" do
+    InquiryMailer.deliveries.clear
+    
     put exhibitor_event_exhibit_submission_url(@event.id, exhibit_submissions(:newbie_exhibit)),
     params: {
       exhibit_submission: {
@@ -70,6 +77,9 @@ class Exhibitor::ExhibitSubmissionsControllerTest < Exhibitor::IntegrationTest
     assert exhibit_submission.movie_url == 'http://test'
     assert exhibit_submission.is_vr == true
     assert exhibit_submission.status == 'submitted'
+
+    mail = InquiryMailer.deliveries.last
+    assert_equal '【東京ゲームダンジョン】出展情報が提出されました', mail.subject
   end
 
   test "should not create when exhibit submission already exists" do
