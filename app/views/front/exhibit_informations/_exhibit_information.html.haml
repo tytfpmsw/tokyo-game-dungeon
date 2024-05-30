@@ -19,3 +19,7 @@
   - if @exhibit_information.steam_app_id.present?
     .steam-widget-wrapper
       %iframe{ src: "https://store.steampowered.com/widget/#{@exhibit_information.steam_app_id}/", frameborder: '0', width: '646', height: '190' }
+  - if @exhibit_information.youtube_widget_url.present?
+    .movie
+      %iframe{ src: @exhibit_information.youtube_widget_url, frameborder: '0', allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen: true }
+      

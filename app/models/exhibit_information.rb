@@ -34,4 +34,12 @@ class ExhibitInformation < ApplicationRecord
     FileUtils.cp(source_image_path, dest_full_path)
     self.image = image_tag_path
   end
+
+  def youtube_widget_url
+    if movie_url&.include?('youtu.be')
+      @youtube_widget_url ||= movie_url.gsub(%r{https://youtu.be/}, 'https://www.youtube.com/embed/')
+    elsif movie_url&.include?('youtube.com')
+      @youtube_widget_url ||= movie_url&.gsub(%r{https://www.youtube.com/watch\?v=}, 'https://www.youtube.com/embed/')
+    end
+  end
 end

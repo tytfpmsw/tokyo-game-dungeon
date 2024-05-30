@@ -17,6 +17,7 @@ class Exhibitor::EventsControllerTest < Exhibitor::IntegrationTest
       get exhibitor_root_url
       assert_response :success
       assert_select ".exhibitor-event", count: 0
+      assert_select "p", "現在、出展情報を提出できるイベントはありません。"
     end
   end
 

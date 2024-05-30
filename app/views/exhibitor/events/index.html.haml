@@ -3,8 +3,11 @@
     出展者トップページ
 
 .p-exhibitor-events-index
-  %h2.mt-4.mb-4 出展予定イベント一覧
+  %h2.mt-4.mb-4 出展情報提出可能イベント一覧
 
   .row.justify-content-center
-    %table.col-8.mg-auto
-      = render @events
+    - if @events.present?
+      %table.col-8.mg-auto
+        = render @events
+    - else
+      %p 現在、出展情報を提出できるイベントはありません。
