@@ -4,5 +4,5 @@
   - else
     = image_tag 'noimage.jpg', class: 'exhibit-image'
   %h2= exhibit_information.title.present? ? exhibit_information.title : '準備中'
-  %p= "#{place_block.name}-#{place_number}"
-  %p= exhibit_information.circle_name
+  %p.place= "#{place_block.name}-#{place_number}"
+  %p.circle-name= exhibit_information.circle_name
