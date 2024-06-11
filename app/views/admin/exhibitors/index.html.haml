@@ -49,6 +49,8 @@
             =sort_link(@search, :discord_name, "Discordユーザー名")
           .col-2.mt-auto
             =sort_link(@search, :exhibitor_type, "出展者種別")
+          .col-2.mt-auto
+            パスワードリセット
           .col-2.d-flex.justify-content-end
             =button_to "出展者を追加", new_admin_event_exhibitor_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
 

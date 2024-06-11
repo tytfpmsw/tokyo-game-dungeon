@@ -101,6 +101,8 @@
           ・光が激しく点滅する動画はお控えください。
           %br
           ・PVの事前公開を希望されない場合は「その他の連絡事項」でその旨をご連絡ください。
+          %br
+          ・YouTubeのURLを記入いただくと、作品の個別ページで動画が埋め込まれます（YouTube以外のURLは通常のリンクのみとなります）。
         = f.text_field :movie_url, value: exhibit_submission&.movie_url, hide_label: true, :placeholder => "例：https://www.youtube.com/watch?v=xxx"
     %tr
       %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 1000, char_counter_over_limit_class: "text-danger" } }

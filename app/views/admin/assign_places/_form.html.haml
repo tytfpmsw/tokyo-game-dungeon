@@ -2,8 +2,8 @@
   = form.select :exhibit_information_id, @exhibit_informations.map { |ei| [ei.title, ei.id] }, { label: "展示情報" }
   = form.hidden_field :place_block_id, value: place_block.id
   = form.hidden_field :number, value: number
-  -# - if floor.errors[:name].present?
-  -#   - floor.errors.full_messages_for(:name).each do |message|
-  -#     .validation-error
-  -#       = message
+  - if @exhibit_information_place&.errors&.any?
+    - @exhibit_information_place.errors.full_messages.each do |message|
+      .validation-error
+        = message
   = form.primary

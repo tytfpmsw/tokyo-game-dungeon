@@ -1,2 +1,3 @@
-= turbo_stream.update @place
+= turbo_stream.update "place_#{@exhibit_information_place.place_number}" do
+  = render partial: 'admin/assign_places/place', locals: { place_block: @place_block, number: @exhibit_information_place.place_number, exhibit_information_title: "" }
 = turbo_stream_flash

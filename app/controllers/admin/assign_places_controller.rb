@@ -24,8 +24,9 @@ class Admin::AssignPlacesController < Admin::ApplicationController
 
     if @exhibit_information_place.save
       flash.now.notice = "配置を更新しました。"
+      @exhibit_information_places = ExhibitInformationPlace.where(place_block: @place_block)
     else
-      @exhibit_informations = ExhibitInformation.where(event: @floor.event)
+      @exhibit_informations = ExhibitInformation.where(event: @place_block.event)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -36,7 +37,8 @@ class Admin::AssignPlacesController < Admin::ApplicationController
     @exhibit_information_place = ExhibitInformationPlace.find_by(place_block: @place_block, place_number: @number)
     @exhibit_information_place.destroy
 
-    redirect_to admin_floor_assign_places_path(@floor, place_block_id: @place_block.id)
+    @exhibit_information_places = ExhibitInformationPlace.where(place_block: @place_block)
+    flash.now.notice = "配置を解除しました。"
   end
 
   private

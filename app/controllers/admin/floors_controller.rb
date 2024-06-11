@@ -35,14 +35,22 @@ class Admin::FloorsController < Admin::ApplicationController
     if @floor.update(name: floor_params[:floor][:name], image: floor_params[:floor][:image])
       flash.now.notice = "フロアを更新しました。"
     else
+      @event = @floor.event_schedule.event
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @floor = Floor.find(params[:id])
-    @floor.destroy!
-    flash.now.notice = "フロアを削除しました。"
+    if @floor.destroy
+      flash.now.notice = "フロアを削除しました。"
+    else
+      flash.now.alert = "フロアの削除に失敗しました。"
+      @event = @floor.event_schedule.event
+      @event_schedule = @floor.event_schedule
+      @floors = Floor.where(event_schedule: @floor.event_schedule)
+      render turbo_stream: turbo_stream.append("flashes", partial: "flash"), status: :unprocessable_entity
+    end
   end
 
   private
