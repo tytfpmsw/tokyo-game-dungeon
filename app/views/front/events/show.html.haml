@@ -19,6 +19,12 @@
 
     = render 'front/shared/divider'
 
+    .event-ticket-wrapper
+      %a{ href: 'https://passmarket.yahoo.co.jp/event/show/detail/02ja1a7g6rt31.html', :target => '_blank', :rel => 'noopener noreferrer' }
+        = image_tag 'Button_PassMarket_500x100.png', size: '500x100'
+
+    = render 'front/shared/divider'
+
     - case Event.locations[@event.location]
     - when Event.locations[:hamamatsu_tsbc]
       = render 'news_hamamatsu_tsbc'
@@ -100,7 +106,7 @@
           .organizer-info 
             %p 
               ゲーム会社で働いたことはないが、なぜかゲーム開発沼にハマる。<br/>
-              2016年から<a href="https://indiegame.connpass.com/" target="_blank" rel="noopener">ゲーム開発のもくもく会</a>を100回以上開催、2022年に東京ゲームダンジョンを立ち上げる。<br/>
+              2016年から<a href="https://indiegame.connpass.com/" target="_blank" rel="noopener noreferrer">ゲーム開発のもくもく会</a>を100回以上開催、2022年に東京ゲームダンジョンを立ち上げる。<br/>
               写真は愛犬のジョー。
 
     = render 'front/shared/divider'
