@@ -17,7 +17,7 @@
     %h2= @floor.name
   - if !@exhibit_information_places.nil?
     - @place_blocks.each do |place_block|
-      %h2{id: place_block.name}= place_block.name
+      %h2{id: place_block.id}= place_block.name
       .row.exhibit-informations
         - for i in 1..place_block.capacity do
           - if @exhibit_information_places.find { |eip| eip.place_block == place_block && eip.place_number == i}

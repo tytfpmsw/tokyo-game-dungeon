@@ -23,4 +23,4 @@
   .navigation-buttons.place-block
     - place_blocks.each do |place_block|
       .navigation-button
-        %a{ href: "##{place_block.name}" }= place_block.name
+        %a{ href: "##{place_block.id}" }= place_block.name
