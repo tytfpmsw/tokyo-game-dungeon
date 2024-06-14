@@ -121,15 +121,17 @@
 
 .p-exhibit-informations-content {
 
+  overflow-wrap: break-word;
+
   .exhibit-informations {
     @media screen and (min-width: 768px) {
       grid-template-columns: repeat(auto-fit, 300px);
     }
     @media screen and (max-width: 768px){
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 45% 45%;
     }
     display: grid;
-    grid-gap: 0 5%;
+    grid-gap: 2rem 5%;
     justify-content: center;
     align-items: start;
     width: 100%;
