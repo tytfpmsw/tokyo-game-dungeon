@@ -24,13 +24,13 @@ class Admin::ExhibitSubmissionsController < Admin::ApplicationController
     @exhibit_information.title = @exhibit_submission.title? ? @exhibit_submission.title : @exhibit_information.title
     @exhibit_information.genre = @exhibit_submission.genre? ? @exhibit_submission.genre : @exhibit_information.genre
     @exhibit_information.description = @exhibit_submission.description? ? @exhibit_submission.description : @exhibit_information.description
-    @exhibit_information.title_url = @exhibit_submission.title_url? ? @exhibit_submission.title_url : @exhibit_information.title_url
-    @exhibit_information.twitter_url = @exhibit_submission.twitter_url? ? @exhibit_submission.twitter_url : @exhibit_information.twitter_url
-    @exhibit_information.steam_app_id = @exhibit_submission.steam_app_id? ? @exhibit_submission.steam_app_id : @exhibit_information.steam_app_id
+    @exhibit_information.title_url = @exhibit_submission.title_url
+    @exhibit_information.twitter_url = @exhibit_submission.twitter_url
+    @exhibit_information.steam_app_id = @exhibit_submission.steam_app_id
     @exhibit_information.is_vr = @exhibit_submission.is_vr? ? @exhibit_submission.is_vr : @exhibit_information.is_vr
-    @exhibit_information.movie_url = @exhibit_submission.movie_url? ? @exhibit_submission.movie_url : @exhibit_information.movie_url
-    @exhibit_information.original_work = @exhibit_submission.original_work? ? @exhibit_submission.original_work : @exhibit_information.original_work
-    @exhibit_information.memo = @exhibit_submission.memo? ? @exhibit_submission.memo : @exhibit_information.memo
+    @exhibit_information.movie_url = @exhibit_submission.movie_url
+    @exhibit_information.original_work = @exhibit_submission.original_work
+    @exhibit_information.memo = @exhibit_submission.memo
     @exhibit_information.delivery_usage_scale = @exhibit_submission.delivery_usage_scale? ? @exhibit_submission.delivery_usage_scale : @exhibit_information.delivery_usage_scale
     # imageはcopy_imageでコピー済み
     @exhibit_information.update!(@exhibit_information.attributes)
