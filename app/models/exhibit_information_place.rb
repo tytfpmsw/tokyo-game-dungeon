@@ -3,8 +3,7 @@ class ExhibitInformationPlace < ApplicationRecord
   belongs_to :exhibit_information
   belongs_to :place_block
 
-  validates :exhibit_information, uniqueness: { scope: :place_block }
-  validates :place_number, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }, uniqueness: { scope: :place_block }
+  validates :place_number, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
   validate :event_match
 

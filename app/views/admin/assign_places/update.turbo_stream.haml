@@ -1,3 +1,3 @@
 = turbo_stream.replace "place_#{@exhibit_information_place.place_number}" do
-  = render partial: 'admin/assign_places/place', locals: { place_block: @place_block, number: @exhibit_information_place.place_number, exhibit_information_title: @exhibit_information_places.find_by(place_block: @place_block, place_number: @exhibit_information_place.place_number).exhibit_information.title }
+  = render partial: 'admin/assign_places/place', locals: { place_block: @place_block, number: @exhibit_information_place.place_number, exhibit_informations: @exhibit_information_places.where(place_block: @place_block, place_number: @exhibit_information_place.place_number).map(&:exhibit_information) }
 = turbo_stream_flash

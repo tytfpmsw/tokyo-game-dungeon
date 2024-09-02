@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
-  create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_09_01_083116) do
+  create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
-  create_table "event_reports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_reports", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.string "title", null: false
     t.text "url"
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["event_id"], name: "index_event_reports_on_event_id"
   end
 
-  create_table "event_schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "event_schedules", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.datetime "start_at", null: false
     t.datetime "end_at", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["event_id"], name: "index_event_schedules_on_event_id"
   end
 
-  create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "events", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "url_subdirectory", null: false
     t.integer "status", default: 0, null: false
@@ -60,19 +60,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["url_subdirectory"], name: "index_events_on_url_subdirectory", unique: true
   end
 
-  create_table "exhibit_information_places", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "exhibit_information_places", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "exhibit_information_id", null: false
     t.bigint "place_block_id", null: false
     t.integer "place_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exhibit_information_id", "place_block_id"], name: "idx_on_exhibit_information_id_place_block_id_57297952ff", unique: true
+    t.index ["exhibit_information_id", "place_block_id"], name: "idx_on_exhibit_information_id_place_block_id_57297952ff"
     t.index ["exhibit_information_id"], name: "index_exhibit_information_places_on_exhibit_information_id"
-    t.index ["place_block_id", "place_number"], name: "idx_on_place_block_id_place_number_ec8e3797d3", unique: true
     t.index ["place_block_id"], name: "index_exhibit_information_places_on_place_block_id"
   end
 
-  create_table "exhibit_informations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "exhibit_informations", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "exhibitor_id", null: false
     t.bigint "event_id", null: false
     t.string "circle_name"
@@ -94,7 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id"
   end
 
-  create_table "exhibit_submissions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "exhibit_submissions", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "exhibit_information_id", null: false
     t.string "circle_name"
     t.string "title"
@@ -117,7 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["exhibit_information_id"], name: "index_exhibit_submissions_on_exhibit_information_id", unique: true
   end
 
-  create_table "exhibitors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "exhibitors", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -132,7 +131,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["reset_password_token"], name: "index_exhibitors_on_reset_password_token", unique: true
   end
 
-  create_table "floors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "floors", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "event_schedule_id", null: false
     t.string "name", null: false
     t.string "image"
@@ -141,7 +140,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["event_schedule_id"], name: "index_floors_on_event_schedule_id"
   end
 
-  create_table "place_blocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "place_blocks", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "floor_id", null: false
     t.string "name", null: false
     t.integer "capacity", null: false
@@ -150,7 +149,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.index ["floor_id"], name: "index_place_blocks_on_floor_id"
   end
 
-  create_table "sponsors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "sponsors", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "image"
     t.text "url"
@@ -158,7 +157,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_132816) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sponsorships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "sponsorships", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "sponsor_id", null: false
     t.datetime "created_at", null: false

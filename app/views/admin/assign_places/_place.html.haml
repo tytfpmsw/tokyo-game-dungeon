@@ -5,7 +5,9 @@
     .col-3.my-auto 
       = number
     .col-3.my-auto
-      = exhibit_information_title
+      - exhibit_informations.each do |exhibit_information|
+        %div
+          = exhibit_information.title
     .col-3
       .d-flex.justify-content-end
         = bootstrap_form_with(url: edit_admin_place_block_assign_place_url(place_block.id, number), method: :get, data: { turbo_frame: "modal" }) do |form|

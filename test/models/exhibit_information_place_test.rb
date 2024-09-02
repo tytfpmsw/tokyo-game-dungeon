@@ -14,7 +14,7 @@ class ExhibitInformationPlaceTest < ActiveSupport::TestCase
     assert_includes exhibit_information_place.errors.full_messages, "Place blockイベントが一致しません"
   end
 
-  test "should not save when place_number already used" do
+  test "allow duplicate place" do
     exhibit_information = exhibit_informations(:unsubmitted_exhibit)
     place_block = place_blocks(:now_preparing_A)
     exhibit_information_place = ExhibitInformationPlace.new(
@@ -23,8 +23,7 @@ class ExhibitInformationPlaceTest < ActiveSupport::TestCase
       place_number: 1
     )
 
-    assert_not exhibit_information_place.save
-    assert_includes exhibit_information_place.errors.full_messages, "Place numberはすでに存在します"
+    assert exhibit_information_place.save
   end
 
   test "should not save when place_block is not match with event" do

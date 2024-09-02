@@ -16,18 +16,18 @@ class Admin::AssignPlacesController < Admin::ApplicationController
     @exhibit_information = ExhibitInformation.find(params[:exhibit_information_id])
     @number = params[:number].to_i
 
-    @exhibit_information_place = ExhibitInformationPlace.find_by(place_block: @place_block, place_number: @number)
-    if @exhibit_information_place.nil?
+    @exhibit_information_place = ExhibitInformationPlace.find_by(place_block: @place_block, place_number: @number, exhibit_information: @exhibit_information)
+    unless @exhibit_information_place.present?
       @exhibit_information_place = ExhibitInformationPlace.new(place_block: @place_block, place_number: @number)
     end
     @exhibit_information_place.exhibit_information = @exhibit_information
 
     if @exhibit_information_place.save
-      flash.now.notice = "配置を更新しました。"
+      flash.now.notice = "配置しました。"
       @exhibit_information_places = ExhibitInformationPlace.where(place_block: @place_block)
     else
       @exhibit_informations = ExhibitInformation.where(event: @place_block.event)
-      render :edit, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +35,9 @@ class Admin::AssignPlacesController < Admin::ApplicationController
     @number = params[:number].to_i
 
     @exhibit_information_place = ExhibitInformationPlace.find_by(place_block: @place_block, place_number: @number)
-    @exhibit_information_place.destroy
+
+    @target_place = ExhibitInformationPlace.where(place_block: @place_block, place_number: @number)
+    @target_place.destroy_all
 
     @exhibit_information_places = ExhibitInformationPlace.where(place_block: @place_block)
     flash.now.notice = "配置を解除しました。"

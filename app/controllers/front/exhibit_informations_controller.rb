@@ -16,7 +16,7 @@ class Front::ExhibitInformationsController < ApplicationController
     @event_schedule = @event.event_schedules.first
     @floor = @event_schedule.floors.first
     @place_blocks = @event_schedule.floors.first.place_blocks
-    @exhibit_information_places = exhibit_information_places.where(place_block: @place_blocks)
+    @exhibit_information_places = exhibit_information_places.where(place_block: @place_blocks).order(:place_block_id, :place_number)
   end
 
   def show
