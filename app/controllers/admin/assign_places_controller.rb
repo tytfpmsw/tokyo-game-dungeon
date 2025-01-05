@@ -8,7 +8,7 @@ class Admin::AssignPlacesController < Admin::ApplicationController
   end
 
   def edit
-    @exhibit_informations = ExhibitInformation.where(event: @place_block.event)
+    @exhibit_informations = ExhibitInformation.order_by_title_in_event(@place_block.event)
     @number = params[:number].to_i
   end
 

@@ -19,6 +19,8 @@ class ExhibitInformation < ApplicationRecord
   validates :original_work, allow_blank: true, length: { maximum: 50 }
   validates :memo, allow_blank: true, length: { maximum: 1000 }
 
+  scope :order_by_title_in_event, -> (event) { where(event_id: event.id).order(:title) }
+
   def copy_image(source_image_path)
     file_name = File.basename(source_image_path)
     dest_suffix = 'uploads/exhibit_informations/image/' + id.to_s
