@@ -1,7 +1,7 @@
 class Exhibitor::EventsController < Exhibitor::ApplicationController
 
   def index
-    @events = Event.exhibitor_registered(current_exhibitor).in_submit_period.published_event_date_asc
+    @events = Event.exhibitor_registered(current_exhibitor).in_submit_period
   end
 
   def show
