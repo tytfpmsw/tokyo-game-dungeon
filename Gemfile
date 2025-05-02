@@ -75,8 +75,10 @@ end
 gem "devise", "~> 4.9"
 
 gem 'carrierwave', '~> 2.0'
-
+gem 'fog-aws', '~> 3.31'
 gem 'mini_magick', '~> 4.11'
+
+gem 'aws-sdk-s3', '~> 1.184'
 
 gem 'bootstrap', '~> 5.3.0'
 

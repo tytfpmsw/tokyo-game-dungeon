@@ -110,4 +110,5 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   config.admin_email = "ty.tf.pmsw@gmail.com"
+  config.s3_url = "https://djdso8o4anx32.cloudfront.net"
 end

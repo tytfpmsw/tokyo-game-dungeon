@@ -16,7 +16,7 @@
       = exhibit_information.is_vr ? "VRを出展" : "-"
     .col-2.my-auto
       - if exhibit_information.image.present?
-        = image_tag exhibit_information.image, size: "100x100"
+        = image_tag exhibit_information.image_url, size: "100x100"
       - else
         -
     .col-1.my-auto

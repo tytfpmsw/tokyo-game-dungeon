@@ -12,10 +12,10 @@
       %table.border
         %tr
           %td
-            = image_tag @event.logo_image.url, size: '290x70'
+            = image_tag @event.logo_image_url, size: '290x70'
         %tr
           %td
-            = image_tag @event.main_image.url, size: '480x270'
+            = image_tag @event.main_image_url, size: '480x270'
   - if @exhibit_information.exhibit_submission.present?
     - if @exhibit_information.exhibit_submission.status_submitted?
       %p
@@ -45,7 +45,7 @@
         %th= t('activerecord.attributes.exhibit_submission.image')
         %td
           - if @exhibit_information.exhibit_submission.image.present?
-            = image_tag @exhibit_information.exhibit_submission.image.url, size: '300x300'
+            = image_tag @exhibit_information.exhibit_submission.image_url, size: '300x300'
           - elsif @exhibit_information.image.present?
             = image_tag @exhibit_information.image, size: '300x300'
           - else 

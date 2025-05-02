@@ -4,7 +4,7 @@
       = floor.name
     .col-4.my-auto
       - if floor.image.present?
-        = image_tag floor.image.url, class: "img-thumbnail"
+        = image_tag floor.image_url, class: "img-thumbnail"
       - else
         画像なし
     .col-4

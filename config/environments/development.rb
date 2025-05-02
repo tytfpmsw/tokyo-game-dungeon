@@ -82,4 +82,5 @@ Rails.application.configure do
   config.exhibit_informations_image_root = "public"
 
   config.admin_email = "test@example.com"
+  config.s3_url = "https://djdso8o4anx32.cloudfront.net"
 end

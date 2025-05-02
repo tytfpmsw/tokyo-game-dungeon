@@ -21,13 +21,13 @@
         %tr
           %th ロゴ
           - if @event.logo_image.present?
-            %td= image_tag @event.logo_image.url, size: '290x70'
+            %td= image_tag @event.logo_image_url, size: '290x70'
           - else
             %td 未設定
         %tr
           %th メイン画像
           - if @event.main_image.present?
-            %td= image_tag @event.main_image.url, size: '480x270'
+            %td= image_tag @event.main_image_url, size: '480x270'
           - else
             %td 未設定
         %tr

@@ -3,7 +3,7 @@
     .col-3.my-auto
       = sponsorship.sponsor.name
     .col-3.my-auto
-      = sponsorship.sponsor.image.present? ? image_tag(sponsorship.sponsor.image.url, size: "100x100") : "No Image"
+      = sponsorship.sponsor.image.present? ? image_tag(sponsorship.sponsor.image_url, size: "100x100") : "No Image"
     .col-3.my-auto
       = sponsorship.sponsor.url.present? ? link_to(sponsorship.sponsor.url, sponsorship.sponsor.url) : "No URL"
     .col-3

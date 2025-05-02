@@ -4,10 +4,10 @@
 = render 'navigation', { event_schedule: @event_schedule, floor: @floor, place_blocks: @place_blocks }
 .p-exhibit-informations-map 
   - if @floor.present? && @floor.image.present?
-    = image_tag(@floor.image.url, class: 'map-image')
+    = image_tag(@floor.image_url, class: 'map-image')
   - else
     - if @event_schedule.floors.first.image.present?
-      = image_tag(@event_schedule.floors.first.image.url, class: 'map-image')
+      = image_tag(@event_schedule.floors.first.image_url, class: 'map-image')
 .p-exhibit-informations-content
   - if @event.event_schedules.count >= 2 && @event.floors.count >= 2
     %h2= "#{@event_schedule.day_number_in_event}日目 #{@floor.name}"

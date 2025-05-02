@@ -15,7 +15,7 @@
                       = event.name
                     = link_to front_event_path(event.url_subdirectory) do
                       .event-image
-                        = image_tag event.main_image.url, size: '300x200'
+                        = image_tag event.main_image_url, size: '300x200'
           .content-footer
       .past-event-wrapper
         .content
@@ -33,7 +33,7 @@
               -#         = event.name
               -#       = link_to front_event_path(event.url_subdirectory) do
               -#         .event-image
-              -#           = image_tag event.main_image.url, size: '300x200'
+              -#           = image_tag event.main_image_url, size: '300x200'
           .content-footer
     .side-contents
       .content

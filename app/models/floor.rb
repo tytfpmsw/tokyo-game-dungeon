@@ -8,4 +8,15 @@ class Floor < ApplicationRecord
   validates :name, presence: true
 
   mount_uploader :image, FloorImageUploader
+
+  def image_url
+    if Rails.env.development?
+      # テスト環境ではローカルの画像を参照する
+      image.url
+    else
+      # 本番環境ではS3の画像を参照する
+      return ActionController::Base.helpers.asset_path('noimage.jpg') if image.blank?
+      return S3Facade.new.get_object_url(Rails.application.config.s3_url, image)
+    end
+  end
 end

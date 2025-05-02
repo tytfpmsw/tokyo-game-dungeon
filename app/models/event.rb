@@ -61,6 +61,26 @@ class Event < ApplicationRecord
   def in_submit_period?
     exhibit_submit_start_at <= Time.current && exhibit_submit_end_at >= Time.current
   end
+
+  def logo_image_url
+    if Rails.env.development?
+      logo_image.url
+    else
+      # 本番環境ではS3の画像を参照する
+      return ActionController::Base.helpers.asset_path('noimage.jpg') if logo_image.blank?
+      return S3Facade.new.get_object_url(Rails.application.config.s3_url, logo_image)
+    end
+  end
+
+  def main_image_url
+    if Rails.env.development?
+      main_image.url
+    else
+      # 本番環境ではS3の画像を参照する
+      return ActionController::Base.helpers.asset_path('noimage.jpg') if main_image.blank?
+      return S3Facade.new.get_object_url(Rails.application.config.s3_url, main_image)
+    end
+  end
   
   private
 

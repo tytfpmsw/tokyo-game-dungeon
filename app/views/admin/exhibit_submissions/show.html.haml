@@ -35,7 +35,7 @@
         = t("activerecord.attributes.exhibit_submission.image")
       %td.border
         - if @exhibit_submission.image.present?
-          = image_tag @exhibit_submission.image.url
+          = image_tag @exhibit_submission.image_url
         - elsif @exhibit_information.exhibit_submission.image.present?
           ※変更なし
           %br
