@@ -4,10 +4,10 @@
       %a{ :href => sponsor.url, :target => "_blank", :rel => "noopener noreferrer" }
         .content
           - if sponsor.image.present?
-            = image_tag sponsor.image&.url
+            = image_tag sponsor.image_url
           %h3= sponsor.name
     - else
       .content
         - if sponsor.image.present?
-          = image_tag sponsor.image&.url
+          = image_tag sponsor.image_url
         %h3= sponsor.name
