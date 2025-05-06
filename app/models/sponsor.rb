@@ -21,7 +21,7 @@ class Sponsor < ApplicationRecord
     else
       # 本番環境ではS3の画像を参照する
       return ActionController::Base.helpers.asset_path('noimage.jpg') if image.blank?
-      return S3Facade.new.get_object_url(Rails.application.config.s3_url, image)
+      return S3Facade.new.get_object_url(Rails.application.config.s3_url, '/uploads/sponsor/image/' + id.to_s + '/' + self[:image])
     end
   end
 end
