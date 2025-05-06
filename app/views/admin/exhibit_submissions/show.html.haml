@@ -39,7 +39,7 @@
         - elsif @exhibit_information.exhibit_submission.image.present?
           ※変更なし
           %br
-          = image_tag @exhibit_submission.exhibit_information.image
+          = image_tag @exhibit_submission.exhibit_information.image_url
         - else 
           未提出
     %tr

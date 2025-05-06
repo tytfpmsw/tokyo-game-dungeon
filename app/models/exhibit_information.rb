@@ -28,6 +28,7 @@ class ExhibitInformation < ApplicationRecord
     else
       # 本番環境ではS3の画像を参照する
       return ActionController::Base.helpers.asset_path('noimage.jpg') if image.blank?
+      # ExhibitInformationのimageはS3をマウントしていないので、そのままDBに保存されているパスを渡すだけでいい
       S3Facade.new.get_object_url(Rails.application.config.s3_url, image)
     end
   end

@@ -68,7 +68,7 @@ class Event < ApplicationRecord
     else
       # 本番環境ではS3の画像を参照する
       return ActionController::Base.helpers.asset_path('noimage.jpg') if logo_image.blank?
-      return S3Facade.new.get_object_url(Rails.application.config.s3_url, logo_image)
+      return S3Facade.new.get_object_url(Rails.application.config.s3_url, '/uploads/event/logo_image/' + id.to_s + '/' + self[:logo_image])
     end
   end
 
@@ -78,7 +78,7 @@ class Event < ApplicationRecord
     else
       # 本番環境ではS3の画像を参照する
       return ActionController::Base.helpers.asset_path('noimage.jpg') if main_image.blank?
-      return S3Facade.new.get_object_url(Rails.application.config.s3_url, main_image)
+      return S3Facade.new.get_object_url(Rails.application.config.s3_url, '/uploads/event/main_image/' + id.to_s + '/' + self[:main_image])
     end
   end
   
