@@ -34,7 +34,7 @@ class ExhibitInformation < ApplicationRecord
   end
 
   def copy_image(source_image_path)
-    file_name = File.basename(source_image_path)
+    file_name = File.basename(source_image_path).sub(/^[^\.]*/, id.to_s)
     dest_suffix = 'uploads/exhibit_informations/image/' + id.to_s
     
     if Rails.env.development?
