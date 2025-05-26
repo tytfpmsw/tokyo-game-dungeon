@@ -44,6 +44,11 @@
           未提出
     %tr
       %th.border
+        = t("activerecord.attributes.exhibit_submission.highlight")
+      %td.border
+        = @exhibit_submission.highlight
+    %tr
+      %th.border
         = t("activerecord.attributes.exhibit_submission.description")
       %td.border
         = @exhibit_submission.description
@@ -54,6 +59,11 @@
         = t("activerecord.attributes.genre.#{@exhibit_submission.genre}")
     %tr
       %th.border
+        = t("activerecord.attributes.exhibit_submission.exhibition_level")
+      %td.border
+        = t("activerecord.attributes.exhibition_level.#{@exhibit_submission.exhibition_level}")
+    %tr
+      %th.border
         = t("activerecord.attributes.exhibit_submission.is_vr")
       %td.border
         = @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展する' : 'VRゲームは出展しない'
@@ -62,6 +72,11 @@
         = t("activerecord.attributes.exhibit_submission.original_work")
       %td.border
         = @exhibit_submission.original_work
+    %tr
+      %th.border
+        = t("activerecord.attributes.exhibit_submission.game_engine")
+      %td.border
+        = @exhibit_submission.game_engine.presence || '未提出'
     %tr
       %th.border
         = t("activerecord.attributes.exhibit_submission.twitter_url")

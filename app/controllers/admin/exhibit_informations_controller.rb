@@ -59,6 +59,9 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
       :original_work,
       :memo,
       :delivery_usage_scale,
+      :highlight,
+      :game_engine,
+      :exhibition_level,
       )
   end
 

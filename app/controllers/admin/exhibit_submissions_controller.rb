@@ -32,6 +32,9 @@ class Admin::ExhibitSubmissionsController < Admin::ApplicationController
     @exhibit_information.original_work = @exhibit_submission.original_work
     @exhibit_information.memo = @exhibit_submission.memo
     @exhibit_information.delivery_usage_scale = @exhibit_submission.delivery_usage_scale? ? @exhibit_submission.delivery_usage_scale : @exhibit_information.delivery_usage_scale
+    @exhibit_information.highlight = @exhibit_submission.highlight? ? @exhibit_submission.highlight : @exhibit_information.highlight
+    @exhibit_information.game_engine = @exhibit_submission.game_engine? ? @exhibit_submission.game_engine : @exhibit_information.game_engine
+    @exhibit_information.exhibition_level = @exhibit_submission.exhibition_level? ? @exhibit_submission.exhibition_level : @exhibit_information.exhibition_level
     # imageはcopy_imageでコピー済み
     @exhibit_information.update!(@exhibit_information.attributes)
     

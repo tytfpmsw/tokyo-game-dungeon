@@ -71,6 +71,9 @@ ja:
         original_work: （二次創作作品の場合）原作のタイトル
         memo: その他の連絡事項
         delivery_usage_scale: 宅配便サービスの利用予定
+        highlight: 展示の見どころ
+        exhibition_level: ゲームダンジョンの出展回数
+        game_engine: 出展作品で使用しているゲームエンジン
       exhibit_submission:
         circle_name: 出展団体名
         title: 出展作品のタイトル
@@ -85,6 +88,9 @@ ja:
         original_work: （二次創作作品の場合）原作のタイトル
         memo: その他の連絡事項
         delivery_usage_scale: 宅配便サービスの利用予定
+        highlight: 展示の見どころ
+        exhibition_level: ゲームダンジョンの出展回数
+        game_engine: 出展作品で使用しているゲームエンジン
         status: ステータス
         update_user: 更新者
         update_comment: コメント
@@ -93,6 +99,12 @@ ja:
         submitted: 申請済
         approved: 承認
         rejected: 却下
+      exhibition_level:
+        first: 初出展
+        second: 2回目
+        third: 3回目
+        fourth: 4回目
+        fifth_or_more: 5回目以上
       exhibitor:
         email: メールアドレス
         name: 名前
@@ -124,4 +136,4 @@ ja:
 
   views:
     footer:
-      copyright: "©東京ゲームダンジョン準備会"
+      copyright: "©ゲームダンジョン事務局"

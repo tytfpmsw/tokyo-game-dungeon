@@ -51,6 +51,9 @@
           - else 
             未提出
       %tr
+        %th= t('activerecord.attributes.exhibit_submission.highlight')
+        %td= @exhibit_information.exhibit_submission.highlight
+      %tr
         %th= t('activerecord.attributes.exhibit_submission.description')
         -# 改行が反映されるようにsimple_format/hを使用
         %td= simple_format(h(@exhibit_information.exhibit_submission.description))
@@ -58,11 +61,17 @@
         %th= t('activerecord.attributes.exhibit_submission.genre')
         %td= t("activerecord.attributes.genre.#{@exhibit_information.exhibit_submission.genre}")
       %tr
+        %th= t('activerecord.attributes.exhibit_submission.exhibition_level')
+        %td= t("activerecord.attributes.exhibition_level.#{@exhibit_information.exhibit_submission.exhibition_level}")
+      %tr
         %th= t('activerecord.attributes.exhibit_submission.is_vr')
         %td= @exhibit_information.exhibit_submission.is_vr ? 'VRゲームを出展する' : 'VRゲームは出展しない'
       %tr
         %th= t('activerecord.attributes.exhibit_submission.original_work')
         %td= @exhibit_information.exhibit_submission.original_work
+      %tr
+        %th= t('activerecord.attributes.exhibit_submission.game_engine')
+        %td= @exhibit_information.exhibit_submission.game_engine
       %tr
         %th= t('activerecord.attributes.exhibit_submission.twitter_url')
         %td= @exhibit_information.exhibit_submission.twitter_url

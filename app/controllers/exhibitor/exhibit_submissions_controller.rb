@@ -62,6 +62,9 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       original_work: exhibit_submission_params[:original_work],
       memo: exhibit_submission_params[:memo],
       delivery_usage_scale: exhibit_submission_params[:delivery_usage_scale],
+      highlight: exhibit_submission_params[:highlight],
+      game_engine: exhibit_submission_params[:game_engine],
+      exhibition_level: exhibit_submission_params[:exhibition_level],
       status: ExhibitSubmission.statuses[:submitted]
     )
       redirect_to exhibitor_root_path, notice: '提出情報を更新しました。'
@@ -122,6 +125,9 @@ class Exhibitor::ExhibitSubmissionsController < Exhibitor::ApplicationController
       :original_work,
       :memo,
       :delivery_usage_scale,
+      :highlight,
+      :game_engine,
+      :exhibition_level,
       )
   end
 end

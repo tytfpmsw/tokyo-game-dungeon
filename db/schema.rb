@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_01_083116) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_24_025359) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -87,10 +87,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_083116) do
     t.string "original_work"
     t.text "memo"
     t.integer "delivery_usage_scale"
+    t.string "highlight"
+    t.string "game_engine"
+    t.integer "exhibition_level", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_exhibit_informations_on_event_id"
+    t.index ["exhibition_level"], name: "index_exhibit_informations_on_exhibition_level"
     t.index ["exhibitor_id"], name: "index_exhibit_informations_on_exhibitor_id"
+    t.index ["game_engine"], name: "index_exhibit_informations_on_game_engine"
   end
 
   create_table "exhibit_submissions", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
@@ -108,12 +113,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_01_083116) do
     t.string "original_work"
     t.text "memo"
     t.integer "delivery_usage_scale"
+    t.string "highlight"
+    t.string "game_engine"
+    t.integer "exhibition_level", default: 0
     t.integer "status"
     t.string "update_user"
     t.text "update_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exhibit_information_id"], name: "index_exhibit_submissions_on_exhibit_information_id", unique: true
+    t.index ["exhibition_level"], name: "index_exhibit_submissions_on_exhibition_level"
+    t.index ["game_engine"], name: "index_exhibit_submissions_on_game_engine"
   end
 
   create_table "exhibitors", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|

@@ -31,9 +31,9 @@
         = f.text_field :circle_name, value: exhibit_submission&.circle_name, hide_label: true, required: true, :placeholder => "例：ダンジョン・ゲームズ", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
         %small.text-muted{ data: { char_counter: { target: 'count' } } }
     %tr
-      %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 50, char_counter_over_limit_class: "text-danger" } }
+      %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 40, char_counter_over_limit_class: "text-danger" } }
         = f.label :title, class: 'required'
-        %small.text-muted 50文字以内でご記入ください。
+        %small.text-muted 40文字以内でご記入ください。
         = f.text_field :title, value: exhibit_submission&.title, hide_label: true, required: true, :placeholder => "例：東京ゲームダンジョン伝説5", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
         %small.text-muted{ data: { char_counter: { target: 'count' } } }
     %tr
@@ -47,6 +47,13 @@
         %br
         = image_tag 'key_visual_sample.png', size: "500x500"
     %tr
+      %td
+        = f.label :highlight, class: 'required'
+        %small.text-muted
+          WEBとパンフレットに掲載されます。30文字以内でご記入ください。
+        = f.text_field :highlight, value: exhibit_submission&.highlight, hide_label: true, required: true, :placeholder => "例：GB風ドット絵のナラティブRPGです！グッズ物販もやります！", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+        %small.text-muted{ data: { char_counter: { target: 'count' } } }
+    %tr
       %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 100, char_counter_over_limit_class: "text-danger" } }
         = f.label :description, class: 'required'
         %small.text-muted 100文字以内でご記入ください。
@@ -59,6 +66,13 @@
         = f.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, hide_label: true, required: true
     %tr
       %td
+        = f.label :exhibition_level, class: 'required'
+        %small.text-muted
+          本作品をゲームダンジョンに出展した回数を教えてください。
+          WEBに掲載はされません。
+        = f.select :exhibition_level, ExhibitInformation.exhibition_levels.keys.map { |k| [t("activerecord.attributes.exhibition_level.#{k}"), k] }, hide_label: true, required: true
+    %tr
+      %td
         = f.label :is_vr
         %small.text-muted 出展作品でVR機器を使用する場合、チェックをつけてください。
         = f.check_box :is_vr, value: exhibit_submission&.is_vr, hide_label: true
@@ -68,6 +82,11 @@
         %small.text-muted 出展作品が二次創作の場合、原作のタイトルをご記入ください。
         = f.text_field :original_work, value: exhibit_submission&.original_work, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
         %small.text-muted{ data: { char_counter: { target: 'count' } } }
+    %tr
+      %td
+        = f.label :game_engine, class: 'required'
+        %small.text-muted WEBに掲載はされません。
+        = f.select :game_engine, ['Unity', 'Unreal Engine', 'Gogot Engine', 'GameMaker Studio', 'RPG Maker(RPGツクール)', 'RPG Developer Bakin', 'ティラノビルダー/ティラノスクリプト', 'ゲームエンジンは不使用', 'その他'], hide_label: true, required: true
     %tr
       %td
         = f.label :twitter_url
@@ -87,6 +106,8 @@
           ストアURL→https://store.steampowered.com/app/2271940/_/
           %br
           ID→2271940
+          %br
+          ※Steam側の審査通過前の場合、通過後に必ず運営にご連絡ください。
         = f.text_field :steam_app_id, value: exhibit_submission&.steam_app_id, hide_label: true, :placeholder => "例：2271940"
     %tr
       %td
@@ -103,6 +124,8 @@
           ・PVの事前公開を希望されない場合は「その他の連絡事項」でその旨をご連絡ください。
           %br
           ・YouTubeのURLを記入いただくと、作品の個別ページで動画が埋め込まれます（YouTube以外のURLは通常のリンクのみとなります）。
+          %br
+          　※開始位置設定がある場合、ショート動画の場合は埋め込みではなく通常リンクとなりますのでご注意ください。
         = f.text_field :movie_url, value: exhibit_submission&.movie_url, hide_label: true, :placeholder => "例：https://www.youtube.com/watch?v=xxx"
     %tr
       %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 1000, char_counter_over_limit_class: "text-danger" } }
