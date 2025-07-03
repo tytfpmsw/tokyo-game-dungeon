@@ -4,10 +4,37 @@ class Admin::ExhibitorsController < Admin::ApplicationController
 
   def index
     @exhibit_informations = ExhibitInformation.where(event: @event)
-    @search = Exhibitor.where(id: @exhibit_informations.pluck(:exhibitor_id)).ransack(params[:q])
-    @search.sorts = 'id asc' if @search.sorts.empty?
-    @exhibitors = @search.result.page(params[:page])
+    Rails.logger.debug("ExhibitInformations for event #{@event.id}: #{@exhibit_informations.pluck(:id)}") if Rails.env.development?
+
+    exhibitor_ids = @exhibit_informations.pluck(:exhibitor_id)
+    Rails.logger.debug("Exhibitor IDs: #{exhibitor_ids}") if Rails.env.development?
+
+    if params[:q_dynamic].present?
+      # パラメータの構造を確認
+      Rails.logger.debug("params[:q_dynamic]: #{params[:q_dynamic].inspect}") if Rails.env.development?
+
+      field = params[:q_dynamic][:field]
+      matcher = params[:q_dynamic][:matcher]
+      keyword = params[:q_dynamic][:keyword]
+
+      query_key = "#{field}_#{matcher}"
+      Rails.logger.debug("Ransack dynamic query: #{query_key} => #{keyword}") if Rails.env.development?
+
+      @q = Exhibitor.ransack(query_key => keyword)
+    else
+      @q = Exhibitor.ransack(nil)
+    end
+
+    if @q.result.respond_to?(:to_sql)
+      Rails.logger.debug("Ransack SQL: #{@q.result.to_sql}")
+    end
+
+    Rails.logger.debug("@q.result: #{@q.result.inspect}") if Rails.env.development?
+    @exhibitors = @q.result(distinct: true).where(id: exhibitor_ids)
+    Rails.logger.debug("@exhibitors: #{@exhibitors.inspect}") if Rails.env.development?
+    @exhibitors
   end
+
 
   def show
     @exhibitor = Exhibitor.find(params[:id])

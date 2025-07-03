@@ -3,7 +3,18 @@ class Admin::ExhibitInformationsController < Admin::ApplicationController
   before_action :set_event
 
   def index
-    @exhibit_informations = @event.exhibit_informations
+    if params[:q_dynamic].present?
+      field = params[:q_dynamic][:field]
+      matcher = params[:q_dynamic][:matcher]
+      keyword = params[:q_dynamic][:keyword]
+
+      query_key = "#{field}_#{matcher}"
+      @q = @event.exhibit_informations.ransack(query_key => keyword)
+    else
+      @q = @event.exhibit_informations.ransack(params[:q])
+    end
+
+    @exhibit_informations = @q.result(distinct: true)
   end
 
   # newとcreateについては、イベントにExhibitorを紐づけた際に

@@ -23,4 +23,12 @@ class Exhibitor < ApplicationRecord
     ExhibitorMailer.regenerate_password_email(email, init_password).deliver_now if send_mail
     init_password
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name email discord_name exhibitor_type]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end

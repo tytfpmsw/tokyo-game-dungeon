@@ -12,54 +12,60 @@
   %h4.fw-bold
     %span #{@event.name} 出展者一覧
 
-  -# .card.shadow.mt-3
-  -#   .card-header
-  -#     =icon_with_text("search", "検索条件")
-  -#   .card-body
-  -#     =search_form_for(@search, url: admin_event_exhibitors_path(@event), html: { data: { turbo_frame: "exhibitors", controller: "search_form", action: "input->search_form#submit" } }) do |f|
-  -#       .row.g3.mb-3
-  -#         .col-2.col-xl-2
-  -#           =f.label :name_cont, "出展者名", class: "form-label"
-  -#           =f.search_field :name_cont, class: "form-control"
-  -#         .col-2.col-xl-2
-  -#           =f.label :email_cont, "メールアドレス", class: "form-label"
-  -#           =f.search_field :email_cont, class: "form-control"
-  -#         .col-2.col-xl-2
-  -#           =f.label :discord_name_cont, "Discordユーザー名", class: "form-label"
-  -#           =f.search_field :discord_name_cont, class: "form-control"
-  -#         .col-2.col-xl-2
-  -#           =f.label :exhibitor_type_eq, "出展者種別", class: "form-label"
-  -#           =f.select :exhibitor_type_eq, Exhibitor.exhibitor_types.keys.map { |exhibitor_type| [exhibitor_type.humanize, exhibitor_type] }, { include_blank: true }, class: "form-select"
-  -#         .col-2.col-xl-2
-  -#           = f.submit
-  -#         .col-2.d-flex.align-items-end
-  -#           =link_to "クリア", admin_event_exhibitors_path(@event), class: "btn btn-outline-secondary", method: :get
-  
   .card.shadow.mt-3
     .card-header
       = icon_with_text("table", "一覧")
     .card-body.mx-3
       =turbo_frame_tag "exhibitor-list", data: { turbo_action: :advance } do
+        = form_with url: request.path, method: :get, local: true do
+          .row.g-2.mb-3
+            .col-md-3
+              = label_tag 'q_dynamic[field]', '検索対象', class: 'form-label'
+              = select_tag 'q_dynamic[field]',
+                options_for_select([['名前', 'name'],['メールアドレス', 'email'],['discord名', 'discord_name']], params.dig(:q_dynamic, :field)),
+                class: 'form-select'
+            .col-md-3
+              = label_tag 'q_dynamic[matcher]', '検索方法', class: 'form-label'
+              = select_tag 'q_dynamic[matcher]',
+                options_for_select([['部分一致', 'cont'],['完全一致', 'eq']], params.dig(:q_dynamic, :matcher)),
+                class: 'form-select'
+            .col-md-4
+              = label_tag 'q_dynamic[keyword]', 'キーワード', class: 'form-label'
+              = text_field_tag 'q_dynamic[keyword]', params.dig(:q_dynamic, :keyword), class: 'form-control'
+            .col-md-2.d-flex.align-items-end
+              = submit_tag '検索', class: 'btn btn-primary w-100'
         .row.py-2
           .col-2.mt-auto
-            =sort_link(@search, :email, "メールアドレス")
+            -# =sort_link(@search, :email, "メールアドレス")
+            = t("activerecord.attributes.exhibitor.email")
           .col-2.mt-auto
-            =sort_link(@search, :name, "出展者名")
+            -# =sort_link(@search, :name, "出展者名")
+            = t("activerecord.attributes.exhibitor.name")
           .col-2.mt-auto
-            =sort_link(@search, :discord_name, "Discordユーザー名")
+            -# =sort_link(@search, :discord_name, "Discordユーザー名")
+            = t("activerecord.attributes.exhibitor.discord_name")
           .col-2.mt-auto
-            =sort_link(@search, :exhibitor_type, "出展者種別")
+            -# =sort_link(@search, :exhibitor_type, "出展者種別")
+            = t("activerecord.attributes.exhibitor.exhibitor_type")
           .col-2.mt-auto
             パスワードリセット
           .col-2.d-flex.justify-content-end
             =button_to "出展者を追加", new_admin_event_exhibitor_path(@event), method: :get, class: "btn btn-primary", data: { turbo_frame: "modal" }
-
-    .card-body.mx-3
-      =turbo_frame_tag "exhibitors", data: { turbo_action: :advance} do
-        #exhibitors
-          =turbo_frame_tag "exhibitor-page-#{@exhibitors.current_page}" do
-            =render @exhibitors
-            =turbo_frame_tag "exhibitor-page-#{@exhibitors.next_page}"
+            
+        - @exhibitors.each do |exhibitor|
+          .row.py-2.border-top
+            .col-2.my-auto= exhibitor.email
+            .col-2.my-auto= exhibitor.name
+            .col-2.my-auto= exhibitor.discord_name
+            .col-2.my-auto= exhibitor.human_attribute_enum(:exhibitor_type)
+            .col-2.my-auto
+              = button_to "リセットする", regenerate_password_admin_event_exhibitor_path(@event, exhibitor),
+                method: :patch, class: "btn btn-outline-primary",
+                data: { turbo_confirm: "#{exhibitor.name}さんのパスワードをリセットして本人にメールを送信します。よろしいですか？" }
+            .col-2.d-flex.justify-content-end
+              = link_to "編集", edit_admin_event_exhibitor_path(@event, exhibitor),
+                class: "btn btn-outline-primary", data: { turbo_frame: "modal" }
+              = button_to "削除", admin_event_exhibitor_url(@event, exhibitor),
+                method: :delete, class: "btn btn-outline-danger",
+                data: { turbo_confirm: "本当に削除しますか？" }
     
-    .d-flex.justify-content-end.mt-3
-      =paginate @exhibitors

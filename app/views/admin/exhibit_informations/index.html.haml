@@ -17,6 +17,23 @@
     = icon_with_text("table", "一覧")
   .card-body.mx-3
     = turbo_frame_tag "exhibit-information-list", data: { turbo_action: :advance } do
+      = form_with url: request.path, method: :get, local: true do
+        .row.g-2.mb-3
+          .col-md-3
+            = label_tag 'q_dynamic[field]', '検索対象', class: 'form-label'
+            = select_tag 'q_dynamic[field]',
+              options_for_select([['サークル名', 'circle_name'],['作品タイトル', 'title'],['ジャンル', 'genre']], params.dig(:q_dynamic, :field)),
+              class: 'form-select'
+          .col-md-3
+            = label_tag 'q_dynamic[matcher]', '検索方法', class: 'form-label'
+            = select_tag 'q_dynamic[matcher]',
+              options_for_select([['部分一致', 'cont'],['完全一致', 'eq']], params.dig(:q_dynamic, :matcher)),
+              class: 'form-select'
+          .col-md-4
+            = label_tag 'q_dynamic[keyword]', 'キーワード', class: 'form-label'
+            = text_field_tag 'q_dynamic[keyword]', params.dig(:q_dynamic, :keyword), class: 'form-control'
+          .col-md-2.d-flex.align-items-end
+            = submit_tag '検索', class: 'btn btn-primary w-100'
       .row.py-2
         .col-1.mt-auto
           出展提出

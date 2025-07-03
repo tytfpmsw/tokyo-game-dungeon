@@ -70,4 +70,8 @@ class ExhibitInformation < ApplicationRecord
       @youtube_widget_url ||= movie_url&.gsub(%r{https://www.youtube.com/watch\?v=}, 'https://www.youtube.com/embed/')
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["circle_name", "created_at", "delivery_usage_scale", "description", "event_id", "exhibition_level", "exhibitor_id", "game_engine", "genre", "highlight", "id", "id_value", "image", "is_vr", "memo", "movie_url", "original_work", "steam_app_id", "title", "title_url", "twitter_url", "updated_at"]
+  end
 end
