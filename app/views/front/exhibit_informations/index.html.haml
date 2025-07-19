@@ -19,6 +19,6 @@
     - @place_blocks.each do |place_block|
       %h2{id: place_block.id}= place_block.name
       .row.exhibit-informations
-        - @exhibit_information_places.where(place_block: place_block).order(:place_number).each do |eip|
+        - @exhibit_information_places.where(place_block: place_block).order(:place_number, :id).each do |eip|
           = render 'exhibit_information_panel', { exhibit_information: eip.exhibit_information, place_block: place_block, place_number: eip.place_number }
       = render 'front/shared/divider'
