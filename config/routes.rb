@@ -40,6 +40,11 @@ Rails.application.routes.draw do
             post :reject
           end
         end
+        resources :event_features, only: [:index, :edit, :update] do
+          collection do
+            post :create_default_features
+          end
+        end
       end
       resources :event_schedules, only: [:show, :edit, :update, :destroy] do
         resources :floors

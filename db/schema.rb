@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_24_025359) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_07_105119) do
   create_table "administrators", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -21,6 +21,23 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_24_025359) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_administrators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
+  end
+
+  create_table "event_event_features", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "event_feature_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_feature_id"], name: "index_event_event_features_on_event_feature_id"
+    t.index ["event_id"], name: "index_event_event_features_on_event_id"
+  end
+
+  create_table "event_features", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "label"
+    t.text "description"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "event_reports", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
@@ -177,6 +194,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_24_025359) do
     t.index ["sponsor_id"], name: "index_sponsorships_on_sponsor_id"
   end
 
+  add_foreign_key "event_event_features", "event_features"
+  add_foreign_key "event_event_features", "events"
   add_foreign_key "event_reports", "events"
   add_foreign_key "event_schedules", "events"
   add_foreign_key "exhibit_information_places", "exhibit_informations"

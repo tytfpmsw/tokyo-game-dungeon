@@ -1,0 +1,24 @@
+= bootstrap_form_with(model: [:admin, @event, exhibit_information], data: { action: "turbo:submit-end->modal#close"}) do |form|
+  = form.select :delivery_usage_scale, ExhibitInformation.delivery_usage_scales.keys.map { |k| [t("activerecord.attributes.delivery_usage_scale.#{k}"), k] }, selected: exhibit_submission.delivery_usage_scale
+  = form.text_field :circle_name, value: exhibit_submission.circle_name
+  = form.text_field :title, value: exhibit_submission.title
+  = form.file_field :image
+  = form.text_field :highlight, value: exhibit_submission&.highlight
+  = form.text_area :description, value: exhibit_submission.description
+  = form.select :genre, ExhibitInformation.genres.keys.map { |k| [t("activerecord.attributes.genre.#{k}"), k] }, selected: exhibit_submission.genre
+  = form.select :exhibition_level, ExhibitInformation.exhibition_levels.keys.map { |k| [t("activerecord.attributes.exhibition_level.#{k}"), k] }, selected: exhibit_submission.exhibition_level
+  = form.check_box :is_vr, checked: exhibit_submission.is_vr
+  = form.text_field :original_work, value: exhibit_submission.original_work
+  = form.select :game_engine, ['Unity', 'Unreal Engine', 'Gogot Engine', 'GameMaker Studio', 'RPG Maker(RPGツクール)', 'RPG Developer Bakin', 'ティラノビルダー/ティラノスクリプト', 'ゲームエンジンは不使用', 'その他'], selected: exhibit_submission.game_engine
+  = form.text_field :twitter_url, value: exhibit_submission.twitter_url
+  = form.text_field :title_url, value: exhibit_submission.title_url
+  = form.text_field :steam_app_id, value: exhibit_submission.steam_app_id
+  = form.text_field :movie_url, value: exhibit_submission.movie_url
+  = form.text_area :memo, value: exhibit_submission.memo
+  - if exhibit_submission.errors.any?
+    #error_explanation
+      %h2= "#{exhibit_submission.errors.count}個のエラーで保存できませんでした:"
+      %ul
+        - exhibit_submission.errors.full_messages.each do |message|
+          %li= message
+  = form.primary

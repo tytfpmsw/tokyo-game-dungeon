@@ -1,0 +1,14 @@
+= turbo_frame_tag event_feature do
+  .row.py-2.border-top
+    .col-3.my-auto
+      = event_feature.label
+    .col-3.my-auto
+      = event_feature.description
+    .col-3.my-auto
+      - if event_feature.image.present?
+        = image_tag event_feature.image_url, size: "100x100"
+      - else
+        = '-'
+    .col-3.my-auto
+      .d-flex.justify-content-end
+        = link_to "編集", edit_admin_event_event_feature_path(event_feature.event.id, event_feature), class: "btn btn-outline-primary", data: { turbo_frame: "modal" }

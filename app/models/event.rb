@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   has_many :floors, through: :event_schedules
   has_many :place_blocks, through: :floors
   has_many :exhibit_information_places, through: :exhibit_informations
+  has_many :event_event_features, dependent: :destroy
+  has_many :event_features, through: :event_event_features
 
   validates :name, presence: true
   validates :url_subdirectory, presence: true, uniqueness: true, format: { with: /\A[a-z0-9_\-]+\z/ }
@@ -93,6 +95,13 @@ class Event < ApplicationRecord
   def exhibit_informations_publish_start_at_is_valid
     if  exhibit_informations_publish_start_at < publish_start_at
       errors.add(:exhibit_informations_publish_start_at, "はイベント公開日時より後に設定してください")
+    end
+  end
+
+  def create_defult_event_features
+    3.times do
+      feature = EventFeature.create(label: '', description: '', image: '')
+      EventEventFeature.create(event: self, event_feature: feature)
     end
   end
 end
