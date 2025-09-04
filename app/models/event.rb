@@ -19,7 +19,7 @@ class Event < ApplicationRecord
   mount_uploader :reflection_image, ReflectionImageUploader
 
   enum :status, { unpublished: 0, published: 1, archived: 2 }, _prefix: true
-  enum :location, { undecided: 0, hamamatsu_tsbc: 1, note_place: 2 }, _prefix: true
+  enum :location, { undecided: 0, hamamatsu_tsbc: 1, note_place: 2, winc_aichi: 3, mydome_osaka: 4 }, _prefix: true
 
   scope :first_day_asc, -> { joins(:event_schedules).order(Arel.sql('event_schedules.start_at')) }
   scope :first_day_desc, -> { joins(:event_schedules).order(Arel.sql('event_schedules.start_at DESC')) }
