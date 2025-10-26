@@ -131,10 +131,12 @@
       %td{ data: { controller: 'char-counter', char_counter_character_count_max_value: 1000, char_counter_over_limit_class: "text-danger" } }
         = f.label :memo
         %small.text-muted
-          他の出展者と展示スペースを連結したい、大型の機器を持ち込む場合などはご記入ください(1000文字以内)。
+          その他、運営への連絡事項がありましたらご記入ください（1000文字以内）。
           %br
-          ※運営への質問はDiscordの質問チャンネルにお願いします。
-        = f.text_area :memo, value: exhibit_submission&.memo, hide_label: true, :placeholder => "例：「◯◯◯（出展団体名）」との連結希望", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
+          ※連結希望は専用のフォームがありますので、こちらへ記載しないでください。
+          %br
+          ※運営への質問はDiscordの質問チャンネルに記載してください。
+        = f.text_area :memo, value: exhibit_submission&.memo, hide_label: true, :placeholder => "", data: { char_counter_target: "field", action: 'keyup->char-counter#change' }
         %small.text-muted{ data: { char_counter: { target: 'count' } } }
 
     - if exhibit_submission&.errors&.any?
