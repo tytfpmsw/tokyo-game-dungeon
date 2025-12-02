@@ -9,7 +9,7 @@
   = form.select :exhibition_level, ExhibitInformation.exhibition_levels.keys.map { |k| [t("activerecord.attributes.exhibition_level.#{k}"), k] }, selected: exhibit_submission.exhibition_level
   = form.check_box :is_vr, checked: exhibit_submission.is_vr
   = form.text_field :original_work, value: exhibit_submission.original_work
-  = form.select :game_engine, ['Unity', 'Unreal Engine', 'Gogot Engine', 'GameMaker Studio', 'RPG Maker(RPGツクール)', 'RPG Developer Bakin', 'ティラノビルダー/ティラノスクリプト', 'ゲームエンジンは不使用', 'その他'], selected: exhibit_submission.game_engine
+  = form.select :game_engine, ['Unity', 'Unreal Engine', 'Godot Engine', 'GameMaker Studio', 'RPG Maker(RPGツクール)', 'RPG Developer Bakin', 'ティラノビルダー/ティラノスクリプト', 'ゲームエンジンは不使用', 'その他'], selected: exhibit_submission.game_engine
   = form.text_field :twitter_url, value: exhibit_submission.twitter_url
   = form.text_field :title_url, value: exhibit_submission.title_url
   = form.text_field :steam_app_id, value: exhibit_submission.steam_app_id
