@@ -1,7 +1,7 @@
 %header.l-event-header.sticky-top
   %nav.container
     .left
-      = link_to image_tag('tgd_logo.png'), front_event_path(@event.url_subdirectory), class: 'logo'
+      = link_to image_tag('tgd_logo.png'), 'https://tokyogamedungeon.com/', class: 'logo'
     -# %button{ class: 'navbar-toggler', type: 'button', data: { bs: { toggle: 'collapse', target: '#navbarNavDropdown' } }, aria:{ controls: 'navbarNavDropdown', expanded: 'false', label: 'Toggle navigation' } }
     -#   %span.navbar-toggler-icon
     -# %div.collapse.navbar-collapse#navbarNavDropdown
@@ -13,7 +13,7 @@
 
     .right
       .flat-menu
-        = link_to front_event_path(@event.url_subdirectory) do
+        = link_to 'https://tokyogamedungeon.com/' do
           = "#{@event.name}トップへ"
         - if @event.exhibit_informations_publish_start_at.present? && @event.exhibit_informations_publish_start_at < Time.zone.now
           = link_to front_event_exhibit_informations_path(@event.url_subdirectory) do
