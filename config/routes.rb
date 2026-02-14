@@ -24,6 +24,7 @@ Rails.application.routes.draw do
           patch :publish
           patch :unpublish
           patch :archive
+          get :export_exhibit_informations
         end
         resources :event_schedules
         resources :exhibit_informations

@@ -48,6 +48,7 @@
   = button_to '協賛管理', admin_event_sponsorships_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展者管理', admin_event_exhibitors_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
   = button_to '出展情報確認', admin_event_exhibit_informations_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4'
+  = button_to '出展情報をCSVでダウンロード', export_exhibit_informations_admin_event_path(@event), method: :get, class: 'btn btn-primary mg-auto mb-4', data: { turbo: false }
   - if @event.unpublished?
     = button_to 'イベントを公開待ちにする', publish_admin_event_path(@event), method: :patch, class: 'btn btn-primary mg-auto mb-4'
   - else
